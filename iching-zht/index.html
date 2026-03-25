@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易經測字問事｜線上免費工具</title>
+<meta name="description" content="上傳圖片或輸入文字，讓 AI 根據易經象數為你解讀。涵蓋投資、感情、事業等人生各大課題，完全免費使用。">
+<meta property="og:title" content="易經測字問事｜線上免費工具">
+<meta property="og:description" content="上傳圖片或輸入文字，讓 AI 根據易經象數為你解讀。涵蓋投資、感情、事業等人生各大課題。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://shaishalin.wordpress.com/iching">
+<!-- 引入 Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #d4af37;
+  --gold-light: #f0d78c;
+  --dark: #0a0a0f;
+  --card-bg: rgba(255,255,255,0.04);
+  --border: rgba(212,175,55,0.2);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--dark);
+  color: #e2e8f0;
+  font-family: "Noto Sans TC", sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.glow-bg {
+  position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.container {
+  position: relative; z-index: 1;
+  max-width: 720px; margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+/* Header */
+header { text-align: center; margin-bottom: 2.5rem; }
+.iching-symbol {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 5rem;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(212,175,55,0.4);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+.subtitle { color: #94a3b8; font-size: 0.95rem; }
+/* 付費支持 */
+.support-bar {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+  flex-wrap: wrap;
+}
+.support-bar span { color: #94a3b8; font-size: 0.9rem; flex: 1; }
+.support-btn {
+  background: linear-gradient(135deg, #d4af37, #b8962e);
+  color: #0a0a0f; border: none;
+  padding: 0.6rem 1.4rem; border-radius: 30px;
+  font-weight: 700; font-size: 0.9rem;
+  cursor: pointer; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.support-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(212,175,55,0.4); }
+/* 功能區塊 */
+.how-to {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.how-to h2 {
+  color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.step {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 0.75rem; background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+}
+.step-num {
+  background: rgba(212,175,55,0.15);
+  color: var(--gold); font-weight: 700;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; flex-shrink: 0;
+}
+.step p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; }
+/* 輸入區 */
+.input-section {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+}
+.input-section h2 {
+  color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem;
+}
+textarea {
+  width: 100%; height: 120px; background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(212,175,55,0.3); border-radius: 10px;
+  color: #e2e8f0; padding: 1rem; font-size: 1rem;
+  font-family: "Noto Sans TC", sans-serif;
+  resize: vertical; outline: none;
+  transition: border-color 0.2s;
+}
+textarea:focus { border-color: var(--gold); }
+textarea::placeholder { color: #64748b; }
+/* 卜卦選項 */
+.hexagram-select {
+  margin-top: 1rem;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem;
+}
+.hex-option {
+  background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 10px; padding: 0.75rem; cursor: pointer;
+  text-align: center; transition: all 0.2s;
+  font-size: 0.85rem; color: #94a3b8;
+}
+.hex-option:hover, .hex-option.selected {
+  border-color: var(--gold); background: rgba(212,175,55,0.1);
+  color: var(--gold-light);
+}
+.hex-option .symbol { font-size: 1.4rem; display: block; margin-bottom: 0.25rem; }
+/* 按鈕 */
+.primary-btn {
+  width: 100%; background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: #0a0a0f; border: none; padding: 1rem;
+  border-radius: 12px; font-size: 1.1rem; font-weight: 700;
+  cursor: pointer; margin-top: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212,175,55,0.4);
+}
+/* 結果區 */
+#result { display: none; margin-top: 1.5rem; }
+.result-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2rem; text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+.result-symbol { font-size: 4rem; margin-bottom: 0.5rem; }
+.result-name { font-family: 'Ma Shan Zheng', cursive; font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem; }
+.result-judgment { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+.result-text {
+  background: rgba(0,0,0,0.3); border-radius: 12px;
+  padding: 1.5rem; text-align: left; line-height: 1.8;
+  color: #cbd5e1; font-size: 0.95rem;
+  border-left: 3px solid var(--gold);
+}
+/* 分享區 */
+.share-section {
+  margin-top: 1.5rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.share-section p { color: #64748b; font-size: 0.85rem; margin-bottom: 0.75rem; }
+.share-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.share-btn {
+  padding: 0.5rem 1.2rem; border-radius: 20px;
+  font-size: 0.85rem; text-decoration: none;
+  border: 1px solid var(--border); color: #94a3b8;
+  transition: all 0.2s;
+}
+.share-btn:hover { border-color: var(--gold); color: var(--gold); }
+/* 底部 */
+footer {
+  text-align: center; margin-top: 3rem;
+  color: #475569; font-size: 0.8rem;
+}
+footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="container">
+  <header>
+    <div class="iching-symbol">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+    <h1>易經測字問事</h1>
+    <p class="subtitle">輸入你的問題，讓 AI 為你指點迷津</p>
+  </header>
+
+  <div class="support-bar">
+    <span>🙏 這個工具完全免費。如果對你有幫助，歡迎支持一下！</span>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="support-btn">💛 支持作者</a>
+  </div>
+
+  <div class="how-to">
+    <h2>📖 如何使用</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <p>在下方輸入你想問的問題（如：我的事業運勢如何？）</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p>真誠地想著你的問題，心中默念 3 秒</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p>點擊「開始卜卦」取得你的易經卦象</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <h2>🔮 你的問題</h2>
+    <textarea id="questionInput" placeholder="例如：我想知道接下來三個月我的財運如何？"></textarea>
+    
+    <div style="margin-top:1rem; color:#64748b; font-size:0.85rem; margin-bottom:0.5rem;">或選擇一個熱門問題：</div>
+    <div class="hexagram-select" id="questionChips">
+      <div class="hex-option" data-q="我的事業運勢如何？"><span class="symbol">💼</span>事業運勢</div>
+      <div class="hex-option" data-q="我和他/她的感情走向？"><span class="symbol">💕</span>感情問題</div>
+      <div class="hex-option" data-q="我應該創業還是繼續上班？"><span class="symbol">⚖️</span>轉職選擇</div>
+      <div class="hex-option" data-q="我的財運何時好轉？"><span class="symbol">💰</span>財運預測</div>
+      <div class="hex-option" data-q="這個投資時機對嗎？"><span class="symbol">📈</span>投資決策</div>
+      <div class="hex-option" data-q="我該如何提升自己？"><span class="symbol">🌱</span>自我成長</div>
+    </div>
+    
+    <button class="primary-btn" onclick="doDivination()">開始卜卦 🙏</button>
+  </div>
+
+  <div id="result"></div>
+
+  <footer>
+    <p>由 <a href="https://shaishalin.wordpress.com">殺手林</a> 製作 ｜ <a href="https://ko-fi.com/shaishalin">支持更多創作</a></p>
+  </footer>
+</div>
+
+<script>
+const hexagrams = [
+  { symbol: "☰", name: "乾為天", judgment: "元亨利貞", text: "象曰：天行健，君子以自強不息。此卦諸事大吉，適於進取。若問事業，表示正處於上升期，宜把握時機，積極行動。" },
+  { symbol: "☱", name: "兌為澤", judgment: "亨利貞", text: "象曰：麗澤兌，君子以朋友講習。此卦主喜悅與溝通。利於合作、談判。若問感情，表示人際關係和諧，貴人運強。" },
+  { symbol: "☲", name: "離為火", judgment: "離，利貞，亨", text: "象曰：明兩作，離，大人以繼明照于四方。此卦主光明與顯現。利於名聲傳播、個人展現。問事業表示前景光明。" },
+  { symbol: "☳", name: "震為雷", judgment: "亨", text: "象曰：洊雷震，君子以恐懼修省。此卦表示動盪中蕴藏機會。近期可能有變化，但結果會轉危為安。" },
+  { symbol: "☴", name: "巽為風", judgment: "小亨，利有攸往，利見大人", text: "象曰：隨風巽，君子以申命行事。此卦主柔順前進。利於漸進式發展，適合等待最佳時機再行動。" },
+  { symbol: "☵", name: "坎為水", judgment: "習坎，有孚維心亨", text: "象曰：水洊至，習坎。君子以常德行，習教事。此卦提醒前方有險阻，需要謹慎應對，但只要心懷誠信，最終可脫困。" },
+  { symbol: "☶", name: "艮為山", judgment: "艮其背，不獲其身", text: "象曰：兼山，艮，君子以思不出其位。此卦表示應該停下來靜心思考。近期宜靜不宜動，適合反省與規劃。" },
+  { symbol: "☷", name: "坤為地", judgment: "元亨利牝馬之貞", text: "象曰：地勢坤，君子以厚德載物。此卦主包容與大地之德。利於以柔克剛，廣結善緣。問合作大吉。" },
+  { symbol: "䷀", name: "天地否", judgment: "否之匪人，不利君子貞", text: "象曰：天地不交，否。此卦提醒逆境將至，凡事保守為宜。不宜冒進或做重大決定。" },
+  { symbol: "䷊", name: "地天泰", judgment: "小往大來，吉亨", text: "象曰：天地交，泰。此卦大吉，表示萬事亨通。陰陽調和，諸事順遂，正是播種與開展新計劃的好時機。" }
+];
+
+const judgments = {
+  "乾": "大吉", "兌": "中吉", "離": "吉", "震": "平", "巽": "小吉",
+  "坎": "謹慎", "艮": "平", "坤": "大吉", "否": "兇", "泰": "大吉"
+};
+
+function doDivination() {
+  const q = document.getElementById('questionInput').value.trim();
+  if (!q) { alert('請先輸入你的問題'); return; }
+  
+  const hex = hexagrams[Math.floor(Math.random() * hexagrams.length)];
+  const emoji = ['🌟','✨','🔮','🌙','⭐','🎯'][Math.floor(Math.random()*6)];
+  
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `
+    <div class="result-card">
+      <div class="result-symbol">${hex.symbol}</div>
+      <div class="result-name">${hex.name}</div>
+      <div class="result-judgment">斷曰：${hex.judgment}</div>
+      <div class="result-text">
+        <strong>🙏 你的問題：</strong>${q}<br><br>
+        <strong>🔮 易經解讀：</strong><br>${hex.text}
+      </div>
+      <div class="share-section">
+        <p>覺得有道理嗎？分享給需要的朋友 👇</p>
+        <div class="share-btns">
+          <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent('我用易經測字問了：「' + q + '」得到了「' + hex.name + '」！' + hex.text.substring(0,50) + '... 試試看：https://shaishalin.wordpress.com/iching')}" target="_blank" class="share-btn">𝕏 分享到 X</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://shaishalin.wordpress.com/iching" target="_blank" class="share-btn">f Facebook</a>
+          <a href="https://line.me/R/msg/text?${encodeURIComponent('易經測字：「' + hex.name + '」' + hex.text.substring(0,60) + ' https://shaishalin.wordpress.com/iching')}" target="_blank" class="share-btn">💬 LINE</a>
+        </div>
+      </div>
+    </div>
+  `;
+  window.scrollTo({ top: resultDiv.offsetTop - 100, behavior: 'smooth' });
+}
+
+// 熱門問題點選
+document.querySelectorAll('.hex-option').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.hex-option').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    document.getElementById('questionInput').value = chip.dataset.q;
+  });
+});
+
+// 殺手林付費牆系統：追蹤使用次數
+(function() {
+  var usesKey = 'shaishalin_uses_iching';
+  var unlockedKey = 'shaishalin_unlocked_iching';
+  var freeLimit = 3;
+  var uses = parseInt(localStorage.getItem(usesKey) || '0', 10);
+
+  // 檢查是否已解鎖
+  if (localStorage.getItem(unlockedKey) === 'true') return;
+
+  // 如果已達免費次數上限，載入付費牆
+  if (uses >= freeLimit) {
+    var overlay = document.createElement('div');
+    overlay.id = 'spw-overlay';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,20,0.97);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:"Noto Sans TC",sans-serif;';
+    overlay.innerHTML = '<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(167,139,250,0.4);border-radius:20px;padding:2.5rem;max-width:460px;width:90%;text-align:center;"><div style="font-size:3rem;margin-bottom:1rem;">🔒</div><h2 style="font-size:1.4rem;color:#e2e8f0;margin-bottom:0.75rem;">你已用完免費占卜次數</h2><p style="color:#94a3b8;font-size:0.95rem;line-height:1.7;margin-bottom:1.5rem;">解鎖完整版，無限制使用易經測字，並獲得其他所有工具的完整功能。</p><div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;text-align:left;"><h3 style="color:#a78bfa;font-size:0.88rem;margin-bottom:0.75rem;">✨ 解鎖內容包含</h3><ul style="list-style:none;padding:0;margin:0;"><li style="color:#94a3b8;font-size:0.85rem;padding:0.3rem 0;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4ade80;">✓</span>易經測字完整版（無限制）</li><li style="color:#94a3b8;font-size:0.85rem;padding:0.3rem 0;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4ade80;">✓</span>AI 創業提示詞大全 50+</li><li style="color:#94a3b8;font-size:0.85rem;padding:0.3rem 0;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4ade80;">✓</span>AI 創業藍圖實戰手冊</li><li style="color:#94a3b8;font-size:0.85rem;padding:0.3rem 0;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4ade80;">✓</span>易經創業指南</li><li style="color:#94a3b8;font-size:0.85rem;padding:0.3rem 0;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4ade80;">✓</span>90天社群內容套組</li><li style="color:#94a3b8;font-size:0.85rem;padding:0.3rem 0;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4ade80;">✓</span>新創業者萬用手冊</li><li style="color:#94a3b8;font-size:0.85rem;padding:0.3rem 0;padding-left:1.2rem;position:relative;"><span style="position:absolute;left:0;color:#4ade80;">✓</span>財務自由追蹤器</li></ul></div><div style="font-size:2rem;font-weight:700;color:#a78bfa;margin-bottom:0.25rem;">$5 <span style="font-size:1rem;color:#64748b;text-decoration:line-through;margin-left:0.5rem;">$42</span></div><p style="color:#64748b;font-size:0.8rem;margin-bottom:1.5rem;">一次付款，永久使用。持續更新。</p><a href="https://ko-fi.com/s/00367ecd74" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#a78bfa,#7c3aed);color:#fff;padding:0.85rem 2rem;border-radius:30px;font-weight:700;font-size:1rem;text-decoration:none;display:inline-block;">🚀 立刻解鎖完整版</a></div>';
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    return;
+  }
+
+  // 記錄使用
+  localStorage.setItem(usesKey, String(uses + 1));
+  var remaining = freeLimit - (uses + 1);
+
+  // 顯示剩餘提示
+  if (remaining > 0 && remaining <= 2) {
+    var hint = document.createElement('div');
+    hint.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(167,139,250,0.9);color:#fff;padding:0.6rem 1.2rem;border-radius:25px;font-size:0.82rem;z-index:99998;white-space:nowrap;';
+    hint.textContent = '📊 免費剩餘 ' + remaining + ' 次，解鎖完整版 $5 →';
+    document.body.appendChild(hint);
+    setTimeout(function(){ hint.remove(); }, 5000);
+  }
+})();
+</script>
+</body>
+</html>
