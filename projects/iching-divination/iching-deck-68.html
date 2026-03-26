@@ -1,0 +1,3949 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易經商業決策卡套組｜68張</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Playfair+Display:wght@400;700&display=swap');
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dark: #8B6914;
+    --bg-dark: #0D0D0D;
+    --bg-card: #141414;
+    --bg-card-inner: #1A1A1A;
+    --text-light: #F0E6C8;
+    --text-muted: #9A8B6F;
+    --border-gold: #6B4F1D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Noto Serif TC', 'STSong', 'SimSun', serif;
+    line-height: 1.6;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: linear-gradient(160deg, #0D0D0D 0%, #1a1200 50%, #0D0D0D 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40mm 20mm;
+    page-break-after: always;
+    border: 2px solid var(--gold-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    font-size: 11pt;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 16pt;
+    border: 1px solid var(--gold-dark);
+    padding: 4pt 16pt;
+    display: inline-block;
+  }
+
+  .cover-title {
+    font-size: 42pt;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 6px;
+    line-height: 1.3;
+    margin-bottom: 10pt;
+    text-shadow: 0 0 40px rgba(201,168,76,0.3);
+  }
+
+  .cover-subtitle {
+    font-size: 18pt;
+    color: var(--gold-light);
+    letter-spacing: 8px;
+    margin-bottom: 30pt;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cover-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20pt auto;
+  }
+
+  .cover-tagline {
+    font-size: 13pt;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-bottom: 8pt;
+  }
+
+  .cover-desc {
+    font-size: 11pt;
+    color: var(--text-muted);
+    max-width: 380px;
+    line-height: 1.8;
+    margin: 12pt auto 24pt;
+  }
+
+  .cover-hexagrams {
+    font-size: 36pt;
+    letter-spacing: 8px;
+    margin: 16pt 0;
+    color: var(--gold-dark);
+  }
+
+  .cover-price-box {
+    border: 1px solid var(--gold-dark);
+    background: rgba(201,168,76,0.05);
+    padding: 14pt 32pt;
+    margin-top: 16pt;
+    display: inline-block;
+  }
+
+  .cover-price {
+    font-size: 28pt;
+    font-weight: 700;
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .cover-price-label {
+    font-size: 9pt;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    margin-top: 2pt;
+  }
+
+  .cover-kofi {
+    margin-top: 20pt;
+    font-size: 10pt;
+    color: var(--text-muted);
+  }
+
+  .cover-kofi a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--gold-dark);
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 20mm;
+    font-size: 8pt;
+    color: rgba(154,139,111,0.4);
+    letter-spacing: 2px;
+  }
+
+  /* ── CARD LAYOUT ── */
+  .card-page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    page-break-after: always;
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-page:last-child {
+    page-break-after: auto;
+  }
+
+  .card {
+    width: 100%;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    padding: 18mm 16mm;
+    background: linear-gradient(145deg, #111111 0%, #0a0a0a 100%);
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  }
+
+  /* corner ornaments */
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--gold-dark);
+    border-style: solid;
+    opacity: 0.6;
+  }
+  .corner-tl { top: 8mm; left: 8mm; border-width: 1px 0 0 1px; }
+  .corner-tr { top: 8mm; right: 8mm; border-width: 1px 1px 0 0; }
+  .corner-bl { bottom: 8mm; left: 8mm; border-width: 0 0 1px 1px; }
+  .corner-br { bottom: 8mm; right: 8mm; border-width: 0 1px 1px 0; }
+
+  /* card header */
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10mm;
+    padding-bottom: 6mm;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .card-number {
+    font-size: 9pt;
+    color: var(--gold-dark);
+    letter-spacing: 2px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .card-title-block {
+    text-align: center;
+    flex: 1;
+    padding: 0 8mm;
+  }
+
+  .card-hex-symbol {
+    font-size: 52pt;
+    color: var(--gold);
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(201,168,76,0.25);
+    letter-spacing: 4px;
+    margin-bottom: 4pt;
+  }
+
+  .card-hex-name-zh {
+    font-size: 24pt;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 6px;
+    line-height: 1.2;
+  }
+
+  .card-hex-name-en {
+    font-size: 9pt;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    margin-top: 3pt;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .card-trigram {
+    font-size: 18pt;
+    color: var(--gold-dark);
+    letter-spacing: 2px;
+    align-self: center;
+  }
+
+  /* card body */
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8mm;
+  }
+
+  .card-section {
+    background: var(--bg-card-inner);
+    border-left: 2px solid var(--gold-dark);
+    padding: 6mm 8mm;
+  }
+
+  .card-section-label {
+    font-size: 8pt;
+    color: var(--gold-dark);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4pt;
+  }
+
+  .card-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4pt;
+  }
+
+  .keyword-tag {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold-light);
+    font-size: 9pt;
+    padding: 2pt 8pt;
+    letter-spacing: 1px;
+  }
+
+  .card-guidance {
+    font-size: 11pt;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  .card-guidance p {
+    margin-bottom: 4pt;
+  }
+
+  .card-guidance p:last-child {
+    margin-bottom: 0;
+  }
+
+  .card-action {
+    display: flex;
+    align-items: flex-start;
+    gap: 6pt;
+    background: rgba(201,168,76,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 6mm 8mm;
+  }
+
+  .action-icon {
+    font-size: 16pt;
+    color: var(--gold);
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+
+  .action-text {
+    font-size: 11pt;
+    color: var(--gold-light);
+    font-weight: 700;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+
+  /* card footer */
+  .card-footer {
+    margin-top: 6mm;
+    padding-top: 4mm;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-footer-brand {
+    font-size: 8pt;
+    color: rgba(154,139,111,0.35);
+    letter-spacing: 2px;
+  }
+
+  .card-footer-ko-fi {
+    font-size: 8pt;
+    color: rgba(154,139,111,0.35);
+  }
+
+  .card-footer-ko-fi a {
+    color: rgba(201,168,76,0.4);
+    text-decoration: none;
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      background: #000;
+    }
+
+    .card-page {
+      width: 210mm;
+      height: 297mm;
+      margin: 0;
+      page-break-after: always;
+      page-break-inside: avoid;
+      overflow: hidden;
+    }
+
+    .card-page:last-child {
+      page-break-after: auto;
+    }
+
+    .cover {
+      width: 210mm;
+      height: 297mm;
+      page-break-after: always;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .card {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .keyword-tag, .card-section, .card-action {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+
+  /* ── SCREEN VIEW ── */
+  @media screen {
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      gap: 0;
+    }
+
+    .cover, .card-page {
+      box-shadow: 0 4px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.15);
+      margin-bottom: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COVER PAGE                                                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="corner-tl"></div><div class="corner-tr"></div>
+  <div class="corner-bl"></div><div class="corner-br"></div>
+
+  <div class="cover-badge">Digital Product · 數位商品</div>
+
+  <div class="cover-hexagrams">☰☷☵☲☶☴☱☳䷊䷫䷀䷁䷂䷃䷄䷅䷆䷇</div>
+
+  <div class="cover-title">易經商業決策卡</div>
+  <div class="cover-subtitle">I CHING BUSINESS oracle</div>
+
+  <div class="cover-divider"></div>
+
+  <div class="cover-tagline">68 張卦象 · 創業者的智慧羅盤</div>
+  <div class="cover-desc">
+    適用於創業決策、個人成長、商業談判、團隊領導。<br>
+    每張卡片收錄六十四卦核心義理，轉化為現代商業語言，<br>
+    協助你在關鍵時刻做出明智選擇。
+  </div>
+
+  <div class="cover-price-box">
+    <div class="cover-price">$19.9</div>
+    <div class="cover-price-label">RECOMMENDED PRICE · 建議售價</div>
+  </div>
+
+  <div class="cover-kofi">
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a>
+    — 購買連結 Purchase Link
+  </div>
+
+  <div class="cover-footer">易經商業決策卡套組 © 2024 · 僅限數位使用</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- HELPER: build one card                                       -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<script>
+// (卡片內容由後端 Python/JS 產生，以下為靜態 HTML結構說明)
+// 68張卡片定義：
+const CARDS = [
+  // No, 卦名ZH, 卦名EN, 符號, 上下卦, 關鍵詞[], 指導語[], 行動建議
+];
+
+// 完整68張卡片資料（見下方靜態 HTML）
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CARDS 01–10                                                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- CARD 01 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">01 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☰</div>
+        <div class="card-hex-name-zh">乾</div>
+        <div class="card-hex-name-en">QIAN · THE CREATIVE</div>
+      </div>
+      <div class="card-trigram">上☰下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">領導力</span>
+          <span class="keyword-tag">執行力</span>
+          <span class="keyword-tag">開創</span>
+          <span class="keyword-tag">野心</span>
+          <span class="keyword-tag">剛健</span>
+          <span class="keyword-tag">霸業</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>☀ 此刻你站在事業的巔峰，具備衝破一切阻礙的能量。太陽普照萬物，你的雄心正如旭日東升，無可阻擋。</p>
+          <p>⚡ 但「潛龍勿用」提醒：真正的領袖懂得在蓄積期隱忍鋒芒。盘点你的資源，確認核心團隊是否到位。</p>
+          <p>💎 當你擁有充足的準備與明確的願景時，就勇敢地邁出第一步，市場正在等待你的出現。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">今日訂下一個大膽的商業目標，並將它拆解為三個本週可執行的關鍵行動。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 02 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">02 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☷</div>
+        <div class="card-hex-name-zh">坤</div>
+        <div class="card-hex-name-en">KUN · THE RECEPTIVE</div>
+      </div>
+      <div class="card-trigram">上☷下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">穩健</span>
+          <span class="keyword-tag">耐心</span>
+          <span class="keyword-tag">累積</span>
+          <span class="keyword-tag">合作</span>
+          <span class="keyword-tag">承載</span>
+          <span class="keyword-tag">厚德</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌍 大地承載萬物，你的事業正處於播種與耕耘的階段。此刻看不見快速回報，但根基正在穩固地建立。</p>
+          <p>🤝 「西南得朋，東北喪朋」：選擇合作夥伴時，優先考慮價值觀契合，而非眼前的利益交換。</p>
+          <p>🌱 真正的企業家知道何時前進，更知道何時低頭耕耘。今日適合做策略性沉潛，修煉內功。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">花30分鐘整理並歸檔你目前的商業計劃文件，修補一個你一直忽略的營運漏洞。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 03 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">03 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☵☳</div>
+        <div class="card-hex-name-zh">屯</div>
+        <div class="card-hex-name-en">ZHUN · DIFFICULTY BEGINNING</div>
+      </div>
+      <div class="card-trigram">上☵下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">草創</span>
+          <span class="keyword-tag">阻力</span>
+          <span class="keyword-tag">萌芽</span>
+          <span class="keyword-tag">融資</span>
+          <span class="keyword-tag">突破</span>
+          <span class="keyword-tag">考驗</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌱 萬事起頭難，你的事業正處於「雷雨交加」的創業初期。供應商不穩、資金緊張、客戶稀少——這都是正常的。</p>
+          <p>⚔️ 「君子以經綸」：越是困難，越要用清晰的策略武裝自己。沒有計劃的忙亂，只會消耗更多資源。</p>
+          <p>🎯 聚焦在最小可行性產品（MVP），先讓一件事成功，再複製放大。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">寫下你目前最大的三個商業障礙，並為每個障礙訂出第一個可以立即嘗試的突破方案。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 04 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">04 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☶☴</div>
+        <div class="card-hex-name-zh">蒙</div>
+        <div class="card-hex-name-en">MENG · YOUTHFUL FOLLY</div>
+      </div>
+      <div class="card-trigram">上☶下☴</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">教育</span>
+          <span class="keyword-tag">启蒙</span>
+          <span class="keyword-tag">學習</span>
+          <span class="keyword-tag">摸索</span>
+          <span class="keyword-tag">市場教育</span>
+          <span class="keyword-tag">試錯</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>📚 你的商業模式或許還未成熟，團隊能力也許還有盲區——承認「不知」並不可恥，這是成長的起點。</p>
+          <p>🧭 「山下出泉，蒙以養正」：找到一個值得信賴的導師或顧問，他們一句話可能為你省下數月的冤枉路。</p>
+          <p>💡 同時，別忘了教育你的客戶。領先市場的產品，往往需要先花時間解釋它的價值。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">聯繫一位你尊敬的業界前輩，安排一次30分鐘的創業諮詢電話，或報名一堂線上課程填補一個技能缺口。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 05 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">05 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☵☰</div>
+        <div class="card-hex-name-zh">需</div>
+        <div class="card-hex-name-en">XU · WAITING</div>
+      </div>
+      <div class="card-trigram">上☵下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">等待</span>
+          <span class="keyword-tag">耐心</span>
+          <span class="keyword-tag">籌備</span>
+          <span class="keyword-tag">時機</span>
+          <span class="keyword-tag">談判</span>
+          <span class="keyword-tag">融資</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⏳ 獵人在渡河前等待——你正在等待的，可能是投資人的回覆、關鍵客戶的決定，或市場時機的來臨。</p>
+          <p>🛡️ 「需於郊，利用恆，無咎」：保持耐心與誠信，不要因為焦慮而做出讓步或降低標準。</p>
+          <p>📊 等待不是停滯。利用這段時間做好充分準備：完善你的 pitch、測試產品、或深化客戶關係。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">盤點你正在等待的三件事，為每件設定一個最晚啟動「主動出擊」的日期，不要无限期等待。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 06 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">06 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☵</div>
+        <div class="card-hex-name-zh">讼</div>
+        <div class="card-hex-name-en">SONG · CONFLICT</div>
+      </div>
+      <div class="card-trigram">上☰下☵</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">爭執</span>
+          <span class="keyword-tag">訴訟</span>
+          <span class="keyword-tag">談判</span>
+          <span class="keyword-tag">風險</span>
+          <span class="keyword-tag">協商</span>
+          <span class="keyword-tag">危機</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚔️ 你正處於商業衝突中——無論是與合作方的糾紛、團隊內部的分歧，還是競爭對手的挑釁。</p>
+          <p>⚖️ 「做事謀始」：在衝突升級前，回到原點審視合約與共識。80%的爭執源於一開始沒有說清楚。</p>
+          <p>🤝 優先選擇調解而非訴訟。時間與名譽的成本，往往比讓步的代價更高。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">主動聯繫衝突方，表達傾聽的意願，並提議一個雙方都能接受的中間方案。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 07 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">07 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☵</div>
+        <div class="card-hex-name-zh">師</div>
+        <div class="card-hex-name-en">SHI · THE ARMY</div>
+      </div>
+      <div class="card-trigram">上☷下☵</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">領導</span>
+          <span class="keyword-tag">團隊</span>
+          <span class="keyword-tag">執行</span>
+          <span class="keyword-tag">紀律</span>
+          <span class="keyword-tag">攻堅</span>
+          <span class="keyword-tag">授權</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚔️ 軍隊需要有明確的領袖與紀律，團隊作戰亦然。你可能是那個需要站出來承擔決策責任的人。</p>
+          <p>🎯 「貞，丈人吉，無咎」：選擇正確的人來領導，確保方向明確且正義，你的團隊才會跟隨。</p>
+          <p>👥 別一個人扛下所有。識別團隊中各有所長的人，把合適的任務授權給合適的人。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">本週召開一次團隊例會，明確三個本月的核心目標，並確認每人的分工與責任歸屬。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 08 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">08 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☵☷</div>
+        <div class="card-hex-name-zh">比</div>
+        <div class="card-hex-name-en">BI · HOLDING TOGETHER</div>
+      </div>
+      <div class="card-trigram">上☵下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">聯盟</span>
+          <span class="keyword-tag">合作</span>
+          <span class="keyword-tag">聯誼</span>
+          <span class="keyword-tag">合併</span>
+          <span class="keyword-tag">信任</span>
+          <span class="keyword-tag">聯盟</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🤝 「地上有水，比」：現在是建立策略聯盟的時機。找到與你互補的企業，携手創造雙贏格局。</p>
+          <p>🌟 「顯比」：真誠的合作關係，勝過算計的利益同盟。尋找價值觀一致的夥伴，而非只看短期利益。</p>
+          <p>🔍 在深入合作前，先進行盡職調查。了解對方的財務狀況、團隊文化與真實意圖。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">列出你業務中最需要的兩項外部資源，主動聯繫具備該資源的潛在合作夥伴，約一次探索性會議。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 09 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">09 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☰</div>
+        <div class="card-hex-name-zh">小畜</div>
+        <div class="card-hex-name-en">XIAO XU · SMALL TAMING</div>
+      </div>
+      <div class="card-trigram">上☴下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">積累</span>
+          <span class="keyword-tag">保守</span>
+          <span class="keyword-tag">小幅</span>
+          <span class="keyword-tag">穩增</span>
+          <span class="keyword-tag">蓄勢</span>
+          <span class="keyword-tag">審慎</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌾 風起天上，烏雲欲雨而未下——你的事業正在積累階段，小幅前進比大步冒進更適合此時。</p>
+          <p>📈 「密雲不雨，自我西郊」：市場還沒有完全打開，不要急於全線推出。先專注一個小市場，打透再做下一步。</p>
+          <p>💰 現金流優先於規模。先讓現有業務穩定獲利，再考虑扩张。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">計算你目前的月均支出與營收，找出一個可以在本月降低15%成本的地方。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 10 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">10 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☱</div>
+        <div class="card-hex-name-zh">履</div>
+        <div class="card-hex-name-en">LV · TENACIOUS CONDUCT</div>
+      </div>
+      <div class="card-trigram">上☰下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">謹慎</span>
+          <span class="keyword-tag">誠信</span>
+          <span class="keyword-tag">踏實</span>
+          <span class="keyword-tag">履約</span>
+          <span class="keyword-tag">合規</span>
+          <span class="keyword-tag">穩步</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>👞 「履虎尾，不咥人，亨」：走在老虎尾巴後面卻未被咬傷——你正小心翼翼地在高風險領域前進。</p>
+          <p>⚖️ 越是關鍵時刻，越要堅守原則與誠信。短期看似吃虧的決定，長期往往是最聰明的投資。</p>
+          <p>📋 建立規範的內部流程與合規機制，降低因疏忽導致災難性錯誤的風險。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">檢查你最近簽署的一份重要合約，確認所有承諾的條款是否都已經或即將被履行。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 11 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">11 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☷</div>
+        <div class="card-hex-name-zh">泰</div>
+        <div class="card-hex-name-en">TAI · PEACE &amp; HORIZON</div>
+      </div>
+      <div class="card-trigram">上☷下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">繁榮</span>
+          <span class="keyword-tag">上升</span>
+          <span class="keyword-tag">吉利</span>
+          <span class="keyword-tag">擴張</span>
+          <span class="keyword-tag">和諧</span>
+          <span class="keyword-tag">通達</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌱 天地交泰，萬物通達——這是你的黃金時期。業務成長順利，團隊士氣高昂，外部資源源源不絕。</p>
+          <p>🚀 「小往大來」：果斷地擴張你的業務邊界。現在是增加投資、擴大團隊、引進人才的絕佳時機。</p>
+          <p>⚠️ 繁榮時也要保持警覺。留意成本結構與組織能力是否能支撐成長速度，避免「大者倒下」。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">評估一個你一直想啟動的擴張計劃，現在就邁出第一步：無論是見第一個客戶、發出第一封招募郵件，或下第一筆設備訂單。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 12 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">12 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☰</div>
+        <div class="card-hex-name-zh">否</div>
+        <div class="card-hex-name-en">PI · STANDSTILL</div>
+      </div>
+      <div class="card-trigram">上☷下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">停滯</span>
+          <span class="keyword-tag">逆風</span>
+          <span class="keyword-tag">保守</span>
+          <span class="keyword-tag">低潮</span>
+          <span class="keyword-tag">收縮</span>
+          <span class="keyword-tag">觀望</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌫️ 天地不交，萬物不通——外部環境正在逆轉。市場降溫、資金緊縮、合作案延期，這段時間需要格外謹慎。</p>
+          <p>🛡️ 「儉德辟難」：收起鋒芒，降低杠桿，儲備現金。最好的防守就是等待更好的進攻時機。</p>
+          <p>🔍 同時，這也是審視內部的最佳時機：優化流程、裁撤冗餘、強化核心競爭力。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">列出三個在景氣不好時反而更應該堅持的長期投資（如品牌、人才、核心技術），並開始行動。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 13 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">13 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☲☰</div>
+        <div class="card-hex-name-zh">同人</div>
+        <div class="card-hex-name-en">TONG REN · FELLOWSHIP</div>
+      </div>
+      <div class="card-trigram">上☲下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">合作</span>
+          <span class="keyword-tag">結盟</span>
+          <span class="keyword-tag">共享</span>
+          <span class="keyword-tag">開源</span>
+          <span class="keyword-tag">社群</span>
+          <span class="keyword-tag">共贏</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🔥 火光冲天，照亮萬物——你正在建立一個以共同願景為基礎的社群或合作網絡。</p>
+          <p>🌐 「大人君子，類族辯物」：開放你的胸襟，連結更多元的合作夥伴。生態系統比單打獨鬥更有力量。</p>
+          <p>💡 考慮建立開放的平台或合作機制，讓更多人參與並受益於你的商業模式。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">公開分享你的商業故事或專業知識，邀請三個你欣賞的人或組織，建立更深度的連結。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 14 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">14 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☲</div>
+        <div class="card-hex-name-zh">大有</div>
+        <div class="card-hex-name-en">DA YOU · GREAT HAVINGS</div>
+      </div>
+      <div class="card-trigram">上☰下☲</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">豐收</span>
+          <span class="keyword-tag">成功</span>
+          <span class="keyword-tag">資源</span>
+          <span class="keyword-tag">成就</span>
+          <span class="keyword-tag">人氣</span>
+          <span class="keyword-tag">旺盛</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌾 火在天上，光照萬物——你迎來了大豐收的時刻。營收創新高、品牌影響力擴大、人才主動來投。</p>
+          <p>🤝 「匪其彭，無咎」：成功時保持謙遜，不要炫耀張揚。財富與影響力的使用方式定義了你的格局。</p>
+          <p>🌱 考慮将部分收益回馈社会或投资于行业生态，这将为你的长期声誉奠定基石。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">規划一个慈善捐赠、导师计划或行业分享项目，将你成功的一部分价值反馈给更广阔的生态。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 15 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">15 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☶</div>
+        <div class="card-hex-name-zh">謙</div>
+        <div class="card-hex-name-en">QIAN · MODESTY</div>
+      </div>
+      <div class="card-trigram">上☷下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">謙遜</span>
+          <span class="keyword-tag">低調</span>
+          <span class="keyword-tag">內斂</span>
+          <span class="keyword-tag">口碑</span>
+          <span class="keyword-tag">積德</span>
+          <span class="keyword-tag">長青</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⛰️ 地中有山，山在地上——高者自降，卑者自升。謙遜是企業家最稀缺的品質，也是最持久競爭力。</p>
+          <p>👂 「謙謙君子，卑以自牧」：主動傾聽團隊、客户、股东的反馈，即使是你不想聽的話。</p>
+          <p>🏆 越成功，越要低姿態。你的謙遜會吸引更多優秀的人與你同行。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">本週主動感謝一位團隊成員或合作夥伴，具體說出他們哪件事做得好，語氣真誠而非場面話。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 16 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">16 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☳☷</div>
+        <div class="card-hex-name-zh">豫</div>
+        <div class="card-hex-name-en">YU · ENTHUSIASM</div>
+      </div>
+      <div class="card-trigram">上☳下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">振奮</span>
+          <span class="keyword-tag">士氣</span>
+          <span class="keyword-tag">帶動</span>
+          <span class="keyword-tag">行銷</span>
+          <span class="keyword-tag">公關</span>
+          <span class="keyword-tag">攻勢</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚡ 雷出於地上，萬物皆動——你的團隊士氣高漲，市場情緒高漲，這是發動攻勢的最佳時機。</p>
+          <p>🎯 「豫，順以動」：以正當的理由、正當的方式，順勢而為。不要浪費這難得的能量窗口。</p>
+          <p>📣 發布新產品、發動行銷攻勢、引進新投資——現在就是最佳時機。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">啟動一個你一直在觀望的行銷或產品發布計劃，今天就公佈並開始執行。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 17 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">17 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☳</div>
+        <div class="card-hex-name-zh">隨</div>
+        <div class="card-hex-name-en">SUI · FOLLOWING</div>
+      </div>
+      <div class="card-trigram">上☱下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">跟隨</span>
+          <span class="keyword-tag">彈性</span>
+          <span class="keyword-tag">調整</span>
+          <span class="keyword-tag">轉向</span>
+          <span class="keyword-tag">敏捷</span>
+          <span class="keyword-tag">應變</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🔄 澤中有雷，隨——客觀環境正在轉變，你的計劃需要跟隨現實做出調整。</p>
+          <p>✅ 「君子以嚮晦入宴息」：跟隨不是盲從，而是看清楚了方向後，做出的戰略性調整。</p>
+          <p>🧭 快速試錯、快速迭代。這種敏捷性，往往是小型企業戰勝大型競爭對手的關鍵武器。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">回顧你正在堅持的一個策略，問自己：它現在仍然適用嗎？如果不是，就果斷調整方向。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 18 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">18 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☶☴</div>
+        <div class="card-hex-name-zh">蠱</div>
+        <div class="card-hex-name-en">GU · CORRUPTION</div>
+      </div>
+      <div class="card-trigram">上☶下☴</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">整頓</span>
+          <span class="keyword-tag">改革</span>
+          <span class="keyword-tag">除弊</span>
+          <span class="keyword-tag">重組</span>
+          <span class="keyword-tag">革新</span>
+          <span class="keyword-tag">清理</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🔧 風吹山下，萬物壞敗——你的組織積累了需要處理的問題。是時候進行整頓、改革與重新出發。</p>
+          <p>⚠️ 「干父之蠱」：改革的過程中，會遇到既得利益者的阻力。你需要有勇氣，也需要有智慧。</p>
+          <p>🧹 問題拖得越久，代價越大。主動識別並處理積压的問題，是恢復元氣的第一步。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">列出一個你組織中長期存在但一直未解決的問題，今天就啟動處理解決方案的第一步。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 19 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">19 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☱</div>
+        <div class="card-hex-name-zh">臨</div>
+        <div class="card-hex-name-en">LIN · APPROACH</div>
+      </div>
+      <div class="card-trigram">上☷下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">逼近</span>
+          <span class="keyword-tag">監管</span>
+          <span class="keyword-tag">擴展</span>
+          <span class="keyword-tag">逼近</span>
+          <span class="keyword-tag">管理</span>
+          <span class="keyword-tag">來臨</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🎯 澤上有地，居高臨下——你正面臨一個重要的決策節點，它即將到來並需要你立即關注。</p>
+          <p>⚖️ 「咸臨」：用感化而非命令的方式影響團隊與合作方，會帶來更好的結果。</p>
+          <p>📊 保持對市場趨勢的敏銳度，預先佈局才能在變化來臨時從容應對。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">預判一個未來三個月可能發生的重要變化，現在就開始準備應對方案，不要等到它發生了才反應。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 20 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">20 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☷</div>
+        <div class="card-hex-name-zh">觀</div>
+        <div class="card-hex-name-en">GUAN · CONTEMPLATION</div>
+      </div>
+      <div class="card-trigram">上☴下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">觀察</span>
+          <span class="keyword-tag">省視</span>
+          <span class="keyword-tag">學習</span>
+          <span class="keyword-tag">榜樣</span>
+          <span class="keyword-tag">審視</span>
+          <span class="keyword-tag">標杆</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>👁️ 風行地上，週覽萬物——你需要退後一步，以旁觀者的視角審視你的事業全局。</p>
+          <p>🔍 「觀我生，進退」：評估你的核心價值主張是否仍然正確，你的商業模式是否仍然有效。</p>
+          <p>📚 研究行業標杆企業，找出他們做對了什麼、你又可以從中學習什麼。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">花兩小時做一次全面的事業健康檢查：財務狀況、團隊狀況、市場狀況，列出最重要的三個觀察。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 21 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">21 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☳☱</div>
+        <div class="card-hex-name-zh">噬嗑</div>
+        <div class="card-hex-name-en">SHI KE · BITING THROUGH</div>
+      </div>
+      <div class="card-trigram">上☳下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">果斷</span>
+          <span class="keyword-tag">裁決</span>
+          <span class="keyword-tag">清除</span>
+          <span class="keyword-tag">執法</span>
+          <span class="keyword-tag">終結</span>
+          <span class="keyword-tag">突破</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚖️ 雷電交加，有物當噬——有些障礙必須果斷清除，無法繞過。猶豫只會讓問題繼續消耗資源。</p>
+          <p>🔨 「利用獄」：在必要時，採取堅決的法律或紀律行動，保護組織的核心利益。</p>
+          <p>✂️ 果斷終止一個錯誤的合作或項目，往往比繼續堅持更有價值。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">果斷結束一個你一直在觀望是否放棄的計劃或合作，給自己一個明確的終止決定與時間點。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 49 -->
+
+<!-- CARD 22 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">22 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☵</div>
+        <div class="card-hex-name-zh">師</div>
+        <div class="card-hex-name-en">SHI · THE ARMY</div>
+      </div>
+      <div class="card-trigram">上☷下☵</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">領導</span>
+          <span class="keyword-tag">團隊</span>
+          <span class="keyword-tag">執行</span>
+          <span class="keyword-tag">紀律</span>
+          <span class="keyword-tag">攻堅</span>
+          <span class="keyword-tag">授權</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚔️ 軍隊需要有明確的領袖與紀律，團隊作戰亦然。你可能是那個需要站出來承擔決策責任的人。</p>
+          <p>🎯 「貞，丈人吉，無咎」：選擇正確的人來領導，確保方向明確且正義，你的團隊才會跟隨。</p>
+          <p>👥 別一個人扛下所有。識別團隊中各有所長的人，把合適的任務授權給合適的人。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">本週召開一次團隊例會，明確三個本月的核心目標，並確認每人的分工與責任歸屬。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 23 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">23 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☵☷</div>
+        <div class="card-hex-name-zh">比</div>
+        <div class="card-hex-name-en">BI · HOLDING TOGETHER</div>
+      </div>
+      <div class="card-trigram">上☵下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">聯盟</span>
+          <span class="keyword-tag">合作</span>
+          <span class="keyword-tag">合併</span>
+          <span class="keyword-tag">信任</span>
+          <span class="keyword-tag">共贏</span>
+          <span class="keyword-tag">策略</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🤝 「地上有水，比」：現在是建立策略聯盟的時機。找到與你互補的企業，携手創造雙贏格局。</p>
+          <p>🌟 「顯比」：真誠的合作關係，勝過算計的利益同盟。尋找價值觀一致的夥伴。</p>
+          <p>🔍 在深入合作前，先進行盡職調查。了解對方的財務狀況、團隊文化與真實意圖。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">列出你業務中最需要的兩項外部資源，主動聯繫具備該資源的潛在合作夥伴，約一次探索性會議。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 24 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">24 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☰</div>
+        <div class="card-hex-name-zh">小畜</div>
+        <div class="card-hex-name-en">XIAO XU · SMALL TAMING</div>
+      </div>
+      <div class="card-trigram">上☴下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">積累</span>
+          <span class="keyword-tag">保守</span>
+          <span class="keyword-tag">小幅</span>
+          <span class="keyword-tag">穩增</span>
+          <span class="keyword-tag">蓄勢</span>
+          <span class="keyword-tag">審慎</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌾 風起天上，烏雲欲雨而未下——你的事業正在積累階段，小幅前進比大步冒進更適合此時。</p>
+          <p>📈 「密雲不雨，自我西郊」：市場還沒有完全打開，不要急於全線推出。先專注一個小市場，打透再做下一步。</p>
+          <p>💰 現金流優先於規模。先讓現有業務穩定獲利，再考慮擴張。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">計算你目前的月均支出與營收，找出一個可以在本月降低15%成本的地方。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 25 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">25 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☱</div>
+        <div class="card-hex-name-zh">履</div>
+        <div class="card-hex-name-en">LV · TENACIOUS CONDUCT</div>
+      </div>
+      <div class="card-trigram">上☰下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">謹慎</span>
+          <span class="keyword-tag">誠信</span>
+          <span class="keyword-tag">踏實</span>
+          <span class="keyword-tag">履約</span>
+          <span class="keyword-tag">合規</span>
+          <span class="keyword-tag">穩步</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>👞 「履虎尾，不咥人，亨」：走在老虎尾巴後面卻未被咬傷——你正小心翼翼地在高風險領域前進。</p>
+          <p>⚖️ 越是關鍵時刻，越要堅守原則與誠信。短期看似吃虧的決定，長期往往是最聰明的投資。</p>
+          <p>📋 建立規範的內部流程與合規機制，降低因疏忽導致災難性錯誤的風險。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">檢查你最近簽署的一份重要合約，確認所有承諾的條款是否都已經或即將被履行。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 26 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">26 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☷</div>
+        <div class="card-hex-name-zh">泰</div>
+        <div class="card-hex-name-en">TAI · PEACE &amp; HORIZON</div>
+      </div>
+      <div class="card-trigram">上☷下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">繁榮</span>
+          <span class="keyword-tag">上升</span>
+          <span class="keyword-tag">吉利</span>
+          <span class="keyword-tag">擴張</span>
+          <span class="keyword-tag">和諧</span>
+          <span class="keyword-tag">通達</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌱 天地交泰，萬物通達——這是你的黃金時期。業務成長順利，團隊士氣高昂，外部資源源源不絕。</p>
+          <p>🚀 「小往大來」：果斷地擴張你的業務邊界。現在是增加投資、擴大團隊、引進人才的絕佳時機。</p>
+          <p>⚠️ 繁榮時也要保持警覺。留意成本結構與組織能力是否能支撐成長速度。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">評估一個你一直想啟動的擴張計劃，現在就邁出第一步：無論是見第一個客戶、發出第一封招募郵件，或下第一筆設備訂單。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 27 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">27 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☰</div>
+        <div class="card-hex-name-zh">否</div>
+        <div class="card-hex-name-en">PI · STANDSTILL</div>
+      </div>
+      <div class="card-trigram">上☷下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">停滯</span>
+          <span class="keyword-tag">逆風</span>
+          <span class="keyword-tag">保守</span>
+          <span class="keyword-tag">低潮</span>
+          <span class="keyword-tag">收縮</span>
+          <span class="keyword-tag">觀望</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌫️ 天地不交，萬物不通——外部環境正在逆轉。市場降溫、資金緊縮、合作案延期，這段時間需要格外謹慎。</p>
+          <p>🛡️ 「儉德辟難」：收起鋒芒，降低槓桿，儲備現金。最好的防守就是等待更好的進攻時機。</p>
+          <p>🔍 同時，這也是審視內部的最佳時機：優化流程、裁撤冗餘、強化核心競爭力。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">列出三個在景氣不好時反而更應該堅持的長期投資（如品牌、人才、核心技術），並開始行動。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 28 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">28 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☲☰</div>
+        <div class="card-hex-name-zh">同人</div>
+        <div class="card-hex-name-en">TONG REN · FELLOWSHIP</div>
+      </div>
+      <div class="card-trigram">上☲下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">合作</span>
+          <span class="keyword-tag">結盟</span>
+          <span class="keyword-tag">共享</span>
+          <span class="keyword-tag">社群</span>
+          <span class="keyword-tag">共贏</span>
+          <span class="keyword-tag">開源</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🔥 火光冲天，照亮萬物——你正在建立一個以共同願景為基礎的社群或合作網絡。</p>
+          <p>🌐 「大人君子，類族辯物」：開放你的胸襟，連結更多元的合作夥伴。生態系統比單打獨鬥更有力量。</p>
+          <p>💡 考慮建立開放的平台或合作機制，讓更多人參與並受益於你的商業模式。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">公開分享你的商業故事或專業知識，邀請三個你欣賞的人或組織，建立更深度的連結。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 29 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">29 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☲</div>
+        <div class="card-hex-name-zh">大有</div>
+        <div class="card-hex-name-en">DA YOU · GREAT HAVINGS</div>
+      </div>
+      <div class="card-trigram">上☰下☲</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">豐收</span>
+          <span class="keyword-tag">成功</span>
+          <span class="keyword-tag">資源</span>
+          <span class="keyword-tag">成就</span>
+          <span class="keyword-tag">人氣</span>
+          <span class="keyword-tag">旺盛</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌾 火在天上，光照萬物——你迎來了大豐收的時刻。營收創新高、品牌影響力擴大、人才主動來投。</p>
+          <p>🤝 「匪其彭，無咎」：成功時保持謙遜，不要炫耀張揚。財富與影響力的使用方式定義了你的格局。</p>
+          <p>🌱 考慮將部分收益回饋社會或投資於行業生態，這將為你的長期聲譽奠定基石。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">規劃一個慈善捐贈、導師計劃或行業分享項目，將你成功的一部分價值反饋給更廣闊的生態。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 30 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">30 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☶</div>
+        <div class="card-hex-name-zh">謙</div>
+        <div class="card-hex-name-en">QIAN · MODESTY</div>
+      </div>
+      <div class="card-trigram">上☷下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">謙遜</span>
+          <span class="keyword-tag">低調</span>
+          <span class="keyword-tag">內斂</span>
+          <span class="keyword-tag">口碑</span>
+          <span class="keyword-tag">積德</span>
+          <span class="keyword-tag">長青</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⛰️ 地中有山，山在地上——高者自降，卑者自升。謙遜是企業家最稀缺的品質，也是最持久競爭力。</p>
+          <p>👂 「謙謙君子，卑以自牧」：主動傾聽團隊、客戶股东的反饋，即使是你不想聽的話。</p>
+          <p>🏆 越成功，越要低姿態。你的謙遜會吸引更多優秀的人與你同行。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">本週主動感謝一位團隊成員或合作夥伴，具體說出他們哪件事做得好，語氣真誠而非場面話。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 31 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">31 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☳☷</div>
+        <div class="card-hex-name-zh">豫</div>
+        <div class="card-hex-name-en">YU · ENTHUSIASM</div>
+      </div>
+      <div class="card-trigram">上☳下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">振奮</span>
+          <span class="keyword-tag">士氣</span>
+          <span class="keyword-tag">帶動</span>
+          <span class="keyword-tag">行銷</span>
+          <span class="keyword-tag">公關</span>
+          <span class="keyword-tag">攻勢</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚡ 雷出於地上，萬物皆動——你的團隊士氣高漲，市場情緒高漲，這是發動攻勢的最佳時機。</p>
+          <p>🎯 「豫，順以動」：以正當的理由、正當的方式，順勢而為。不要浪費這難得的能量窗口。</p>
+          <p>📣 發布新產品、發動行銷攻勢、引進新投資——現在就是最佳時機。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">啟動一個你一直在觀望的行銷或產品發布計劃，今天就公佈並開始執行。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 32 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">32 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☳</div>
+        <div class="card-hex-name-zh">隨</div>
+        <div class="card-hex-name-en">SUI · FOLLOWING</div>
+      </div>
+      <div class="card-trigram">上☱下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">跟隨</span>
+          <span class="keyword-tag">彈性</span>
+          <span class="keyword-tag">調整</span>
+          <span class="keyword-tag">轉向</span>
+          <span class="keyword-tag">敏捷</span>
+          <span class="keyword-tag">應變</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🔄 澤中有雷，隨——客觀環境正在轉變，你的計劃需要跟隨現實做出調整。</p>
+          <p>✅ 「君子以嚮晦入宴息」：跟隨不是盲從，而是看清楚了方向後，做出的戰略性調整。</p>
+          <p>🧭 快速試錯、快速迭代。這種敏捷性，往往是小型企業戰勝大型競爭對手的關鍵武器。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">回顧你正在堅持的一個策略，問自己：它現在仍然適用嗎？如果不是，就果斷調整方向。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 33 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">33 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☶☴</div>
+        <div class="card-hex-name-zh">蠱</div>
+        <div class="card-hex-name-en">GU · CORRUPTION</div>
+      </div>
+      <div class="card-trigram">上☶下☴</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">整頓</span>
+          <span class="keyword-tag">改革</span>
+          <span class="keyword-tag">除弊</span>
+          <span class="keyword-tag">重組</span>
+          <span class="keyword-tag">革新</span>
+          <span class="keyword-tag">清理</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🔧 風吹山下，萬物壞敗——你的組織積累了需要處理的問題。是時候進行整頓、改革與重新出發。</p>
+          <p>⚠️ 「干父之蠱」：改革的過程中，會遇到既得利益者的阻力。你需要有勇氣，也需要有智慧。</p>
+          <p>🧹 問題拖得越久，代價越大。主動識別並處理積压的問題，是恢復元氣的第一步。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">列出一個你組織中長期存在但一直未解決的問題，今天就啟動處理解決方案的第一步。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 34 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">34 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☱</div>
+        <div class="card-hex-name-zh">臨</div>
+        <div class="card-hex-name-en">LIN · APPROACH</div>
+      </div>
+      <div class="card-trigram">上☷下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">逼近</span>
+          <span class="keyword-tag">監管</span>
+          <span class="keyword-tag">擴展</span>
+          <span class="keyword-tag">管理</span>
+          <span class="keyword-tag">來臨</span>
+          <span class="keyword-tag">逼近</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🎯 澤上有地，居高臨下——你正面臨一個重要的決策節點，它即將到來並需要你立即關注。</p>
+          <p>⚖️ 「咸臨」：用感化而非命令的方式影響團隊與合作方，會帶來更好的結果。</p>
+          <p>📊 保持對市場趨勢的敏銳度，預先佈局才能在變化來臨時從容應對。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">預判一個未來三個月可能發生的重要變化，現在就開始準備應對方案，不要等到它發生了才反應。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 35 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">35 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☷</div>
+        <div class="card-hex-name-zh">觀</div>
+        <div class="card-hex-name-en">GUAN · CONTEMPLATION</div>
+      </div>
+      <div class="card-trigram">上☴下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">觀察</span>
+          <span class="keyword-tag">省視</span>
+          <span class="keyword-tag">學習</span>
+          <span class="keyword-tag">榜樣</span>
+          <span class="keyword-tag">審視</span>
+          <span class="keyword-tag">標杆</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>👁️ 風行地上，週覽萬物——你需要退後一步，以旁觀者的視角審視你的事業全局。</p>
+          <p>🔍 「觀我生，進退」：評估你的核心價值主張是否仍然正確，你的商業模式是否仍然有效。</p>
+          <p>📚 研究行業標杆企業，找出他們做對了什麼、你又可以從中學習什麼。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">花兩小時做一次全面的事業健康檢查：財務狀況、團隊狀況、市場狀況，列出最重要的三個觀察。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 36 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">36 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☳☱</div>
+        <div class="card-hex-name-zh">噬嗑</div>
+        <div class="card-hex-name-en">SHI KE · BITING THROUGH</div>
+      </div>
+      <div class="card-trigram">上☳下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">果斷</span>
+          <span class="keyword-tag">裁決</span>
+          <span class="keyword-tag">清除</span>
+          <span class="keyword-tag">執法</span>
+          <span class="keyword-tag">終結</span>
+          <span class="keyword-tag">突破</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚖️ 雷電交加，有物當噬——有些障礙必須果斷清除，無法繞過。猶豫只會讓問題繼續消耗資源。</p>
+          <p>🔨 「利用獄」：在必要時，採取堅決的法律或紀律行動，保護組織的核心利益。</p>
+          <p>✂️ 果斷終止一個錯誤的合作或項目，往往比繼續堅持更有價值。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">果斷結束一個你一直在觀望是否放棄的計劃或合作，給自己一個明確的終止決定與時間點。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 37 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">37 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☶</div>
+        <div class="card-hex-name-zh">賁</div>
+        <div class="card-hex-name-en">BI · GRACE</div>
+      </div>
+      <div class="card-trigram">上☱下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">包裝</span>
+          <span class="keyword-tag">形象</span>
+          <span class="keyword-tag">品牌</span>
+          <span class="keyword-tag">公關</span>
+          <span class="keyword-tag">美學</span>
+          <span class="keyword-tag">呈現</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>✨ 山下有火，萬物照形——此時是提升品牌形象與產品呈現的絕佳時機。外包的「形式」與內在的「實質」同樣重要。</p>
+          <p>🎨 「賁其趾」：細節決定格局。網站設計、提案簡報、甚至名片質感，都在無聲地傳遞你的品牌價值。</p>
+          <p>📸 投資品牌形象與公關策略，這些看不見的資產會在關鍵時刻為你贏得競爭優勢。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">檢查你的品牌素材（網站、社群媒體、提案文件），找出三個可以立即提升視覺專業度的地方。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 38 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">38 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☶</div>
+        <div class="card-hex-name-zh">剝</div>
+        <div class="card-hex-name-en">BO · CLAWING</div>
+      </div>
+      <div class="card-trigram">上☷下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">侵蝕</span>
+          <span class="keyword-tag">低迷</span>
+          <span class="keyword-tag">流失</span>
+          <span class="keyword-tag">保存</span>
+          <span class="keyword-tag">守住</span>
+          <span class="keyword-tag">危機</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🏔️ 山附於地，漸被侵蝕——某些部分正在悄悄流失：客戶、資金、人才或市場份額。</p>
+          <p>🛡️ 「剝床以足」：問題始於基層。關注那些細微的流失信號，在它們擴大之前堵住漏洞。</p>
+          <p>⚡ 保存核心競爭力，果斷放棄已被淘汰的業務或產品線，保存現金與精力。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">分析過去三個月的關鍵指標變化（營收、客戶、流量），找出任何負面趨勢的根源並制定止損方案。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 39 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">39 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☳☷</div>
+        <div class="card-hex-name-zh">復</div>
+        <div class="card-hex-name-en">FU · RETURN</div>
+      </div>
+      <div class="card-trigram">上☳下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">復甦</span>
+          <span class="keyword-tag">回歸</span>
+          <span class="keyword-tag">重啟</span>
+          <span class="keyword-tag">反彈</span>
+          <span class="keyword-tag">歸零</span>
+          <span class="keyword-tag">初心</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌅 雷在地中，陽氣漸生——最艱難的時刻已經過去。現在是重新出發、恢復元氣的轉折點。</p>
+          <p>🔄 「一陽復始」：回歸你的核心使命與產品。忘記那些分散注意力的多元化，聚焦在真正重要的事。</p>
+          <p>🚀 這個時機適合重新啟動之前擱置的項目，之前的失敗經驗現在都是寶貴的智慧。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">重新啟動一個你之前因困難而暫停的計劃，並根據過去的經驗調整策略，今天就邁出第一步。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 40 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">40 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☳</div>
+        <div class="card-hex-name-zh">無妄</div>
+        <div class="card-hex-name-en">WU WANG · INNOCENCE</div>
+      </div>
+      <div class="card-trigram">上☰下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">誠信</span>
+          <span class="keyword-tag">坦蕩</span>
+          <span class="keyword-tag">正道</span>
+          <span class="keyword-tag">初心</span>
+          <span class="keyword-tag">自然</span>
+          <span class="keyword-tag">本真</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌾 天下雷行，萬物皆實——抱持一顆真誠的心，不投機、不取巧，你的事業才能走得長遠。</p>
+          <p>💯 「無妄，往有攸利」：走正道雖然看起來不那麼「聰明」，但最終會為你帶來最穩固的回報。</p>
+          <p>🤝 與其花心思在策略套路上，不如把時間用在真正為客戶創造價值。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">審視你的商業模式，確認它是否真的在為客戶解決問題並創造真實價值。調整任何偏離初心的策略。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 41 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">41 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☶☰</div>
+        <div class="card-hex-name-zh">大畜</div>
+        <div class="card-hex-name-en">DA XU · GREAT TAMING</div>
+      </div>
+      <div class="card-trigram">上☶下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">蓄積</span>
+          <span class="keyword-tag">人才</span>
+          <span class="keyword-tag">知識</span>
+          <span class="keyword-tag">投資</span>
+          <span class="keyword-tag">長線</span>
+          <span class="keyword-tag">實力</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🏛️ 天在山中，藏大量之象——現在是大力投資人才、知識與核心技術的時機，為未來的大爆發蓄積力量。</p>
+          <p>📚 「良馬逐」：引進最優秀的人才，建立最嚴謹的知識管理系統。這些投資短期看不到回報，長期卻無可替代。</p>
+          <p>⚙️ 建立可規模化的系統與流程，讓你的組織不依賴你個人，能持續高效運轉。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">擬定一個90天的團隊能力建設計劃，包括招募一位關鍵人才、引進一項新技術或建立一個知識管理系統。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 42 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">42 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☶☳</div>
+        <div class="card-hex-name-zh">頤</div>
+        <div class="card-hex-name-en">YI · NOURISHMENT</div>
+      </div>
+      <div class="card-trigram">上☶下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">養生</span>
+          <span class="keyword-tag">修煉</span>
+          <span class="keyword-tag">自養</span>
+          <span class="keyword-tag">充電</span>
+          <span class="keyword-tag">健康</span>
+          <span class="keyword-tag">根源</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌿 山下有雷，萬物皆養——照顧好你自己與團隊的根本需求，身心健康的狀態才能持續創造價值。</p>
+          <p>⚖️ 「節飲食」：在創業的高速成長期，尤其要注意工作與生活的平衡。燃燒殆尽的領導者無法帶領組織走遠。</p>
+          <p>💊 建立健康的企業文化，包括合理的工時、開放的溝通、以及對身心健康的實際支持。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">今天強迫自己按時下班一次，並安排一次與團隊成員的一對一深度交流，關心他們的工作與生活狀態。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 43 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">43 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☴</div>
+        <div class="card-hex-name-zh">大過</div>
+        <div class="card-hex-name-en">DA GUO · GREAT EXCESS</div>
+      </div>
+      <div class="card-trigram">上☱下☴</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">過度</span>
+          <span class="keyword-tag">冒進</span>
+          <span class="keyword-tag">危機</span>
+          <span class="keyword-tag">大膽</span>
+          <span class="keyword-tag">非常</span>
+          <span class="keyword-tag">轉折</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌊 澤滅木，大過——你的事業正處於一個非常時期，需要非一般的擔當與行動。這個階段風險極高，但回報也可能極大。</p>
+          <p>🧱 「棟橈」：組織的核心架構正承受巨大壓力。及時發現並加固最脆弱的環節，防止系統性崩塌。</p>
+          <p>⚡ 在非常時期，需要非常之人做非常之事。不要懼怕做出大膽但經過深思熟慮的決定。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">識別你事業中最脆弱的一個環節，今天就制訂一個防範和加固的方案，不要等到它爆發。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 44 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">44 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☵☵</div>
+        <div class="card-hex-name-zh">坎</div>
+        <div class="card-hex-name-en">KAN · THE ABYSM</div>
+      </div>
+      <div class="card-trigram">上☵下☵</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">危險</span>
+          <span class="keyword-tag">陷阱</span>
+          <span class="keyword-tag">考驗</span>
+          <span class="keyword-tag">資金</span>
+          <span class="keyword-tag">風險</span>
+          <span class="keyword-tag">困難</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌊 重重險陷，川上有水——你的事業正處於高度危險的時期，資金鏈、風險事件、或市場危機接踵而至。</p>
+          <p>🛡️ 「維心亨」：越是危險時刻，越要保持清晰的判斷力與冷靜的行動力。慌亂只會讓事情更糟。</p>
+          <p>⏳ 管控現金流是此時的第一優先。沒有現金就沒有明天，想方設法延長你的跑道。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">計算你的現金跑道（帳上現金除以月均支出），如果少於6個月，立即啟動緊急資金籌集計劃。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 45 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">45 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☲☲</div>
+        <div class="card-hex-name-zh">離</div>
+        <div class="card-hex-name-en">LI · THE CLINGING</div>
+      </div>
+      <div class="card-trigram">上☲下☲</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">明亮相</span>
+          <span class="keyword-tag">名聲</span>
+          <span class="keyword-tag">公眾</span>
+          <span class="keyword-tag">曝光</span>
+          <span class="keyword-tag">網紅</span>
+          <span class="keyword-tag">品牌</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>☀️ 火光普照，無物不亮——你的事業正受到公眾矚目。品牌曝光度高，但任何負面消息也會被放大。</p>
+          <p>🎯 「大人虎變」：主動塑造你的公眾形象，讓大眾看到你的價值觀與實力，而非被動等運氣。</p>
+          <p>⚡ 利用高曝光時期大力推廣，但同時要嚴守品牌形象與產品品質，口碑可以在一天內摧毀。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">策劃一次品牌曝光活動（媒體採訪、公開演講、社群內容），主動傳遞你的核心價值主張。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 46 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">46 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☶</div>
+        <div class="card-hex-name-zh">咸</div>
+        <div class="card-hex-name-en">XIAN · FEELING</div>
+      </div>
+      <div class="card-trigram">上☱下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">感應</span>
+          <span class="keyword-tag">人際</span>
+          <span class="keyword-tag">客戶</span>
+          <span class="keyword-tag">直覺</span>
+          <span class="keyword-tag">情感</span>
+          <span class="keyword-tag">連結</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>💞 澤山咸，柔上而剛下——人與人之間的深度連結，是商業合作最堅實的基礎。</p>
+          <p>🤝 「聖人感人心，而天下和平」：用心感受你的客戶、合作夥伴與團隊成員的需求，而非只靠數據說話。</p>
+          <p>💬 建立深度溝通的機制，定期與核心關係人進行有意義的交流。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">聯繫一位重要的客戶或合作夥伴，進行一次非業務性質的深度交流，問問他們真實的想法與需求。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 47 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">47 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☳</div>
+        <div class="card-hex-name-zh">恆</div>
+        <div class="card-hex-name-en">HENG · CONSTANCY</div>
+      </div>
+      <div class="card-trigram">上☴下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">持久</span>
+          <span class="keyword-tag">恆心</span>
+          <span class="keyword-tag">長期</span>
+          <span class="keyword-tag">堅持</span>
+          <span class="keyword-tag">耐力</span>
+          <span class="keyword-tag">信念</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚙️ 雷風恆，久而不已——成功的企業無一不是長期主義者。找到一個值得堅持的方向，然後持續深耕。</p>
+          <p>📈 「立不易方」：在策略上保持定力，不因短期波動而頻繁改變方向。方向對了，時間是你的朋友。</p>
+          <p>🔁 建立可重複、可規模化的商業模式，這才是真正的「恆」道。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">確認你的核心商業策略，在未來三個月內不做重大方向調整，專注於執行與優化。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 48 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">48 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☰</div>
+        <div class="card-hex-name-zh">遯</div>
+        <div class="card-hex-name-en">DUN · RETREAT</div>
+      </div>
+      <div class="card-trigram">上☱下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">退縮</span>
+          <span class="keyword-tag">隱退</span>
+          <span class="keyword-tag">保守</span>
+          <span class="keyword-tag">策略</span>
+          <span class="keyword-tag">等待</span>
+          <span class="keyword-tag">防守</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🏔️ 天在山上，強者在上——市場競爭格局不利於你，此時主動退讓比正面硬碰更為明智。</p>
+          <p>🧠 「小利貞，是而有所退」：戰術性的退卻不是失敗，而是為了保存實力，等待更好的時機。</p>
+          <p>🎯 退出一個不利的市場或放棄一個錯誤的客戶，把資源集中在真正有優勢的領域。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">評估你目前的產品線或客戶群，果斷終止一個沒有競爭優勢、持續消耗資源的項目。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">49 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☲☱</div>
+        <div class="card-hex-name-zh">革</div>
+        <div class="card-hex-name-en">GE · REVOLUTION</div>
+      </div>
+      <div class="card-trigram">上☲下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">革命</span>
+          <span class="keyword-tag">變革</span>
+          <span class="keyword-tag">轉型</span>
+          <span class="keyword-tag">顛覆</span>
+          <span class="keyword-tag">改革</span>
+          <span class="keyword-tag">重生</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🔥 澤中有火，矛盾之局——你的組織正面臨根本性的轉型，需要顛覆既有模式才能繼續生存。</p>
+          <p>⚡ 「湯武革命，順乎天而應乎人」：變革需要正當的理由與大多數人的支持。沒有共識的革命只會帶來混亂。</p>
+          <p>🎯 分階段推進改革，充分溝通每一步的意義，讓團隊成為變革的參與者而非被動接受者。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">制定一個清晰的組織變革藍圖，向核心團隊充分說明變革的必要性和方向，確保共識與信任。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 50 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">50 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☲</div>
+        <div class="card-hex-name-zh">鼎</div>
+        <div class="card-hex-name-en">DING · THE CAULDRON</div>
+      </div>
+      <div class="card-trigram">上☱下☲</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">鼎新</span>
+          <span class="keyword-tag">創新</span>
+          <span class="keyword-tag">稳定</span>
+          <span class="keyword-tag">烹飪</span>
+          <span class="keyword-tag">根本</span>
+          <span class="keyword-tag">傳承</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🍲 木上有火，烹飪之道——你的企業正在經歷一個「舊去新來」的蛻變過程，核心業務需要脫胎換骨。</p>
+          <p>🏺 「鼎取新」：勇於抛弃過時的產品、流程與思維，引入新技術、新人才與新商業模式。</p>
+          <p>👨‍🍳 同時也要傳承那些真正有價值的核心能力，讓「新」「舊」和諧共存。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">識別三個需要彻底更新的业务环节，引入新的技术或方法，同时保留一个你最核心的传统优势。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 51 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">51 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☳☳</div>
+        <div class="card-hex-name-zh">震</div>
+        <div class="card-hex-name-en">ZHEN · THUNDER</div>
+      </div>
+      <div class="card-trigram">上☳下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">震動</span>
+          <span class="keyword-tag">危機</span>
+          <span class="keyword-tag">突發</span>
+          <span class="keyword-tag">警覺</span>
+          <span class="keyword-tag">應變</span>
+          <span class="keyword-tag">震感</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚡ 洊雷震，萬物皆驚——突然的危機或市場震動正在發生考驗你的應變能力。</p>
+          <p>🧊 「震來致福」：危機中也藏著機會。保持冷靜，讓你的應變機制啟動，危机会迫使你快速成長。</p>
+          <p>📋 建立完善的危機應變預案，下次震動來臨時，你會比競爭對手更快恢復。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">建立一個危機應變小組和通訊流程，確保在突發事件發生時，團隊能在第一時間做出協調一致的回應。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 52 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">52 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☶☶</div>
+        <div class="card-hex-name-zh">艮</div>
+        <div class="card-hex-name-en">GEN · STOPPING</div>
+      </div>
+      <div class="card-trigram">上☶下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">停止</span>
+          <span class="keyword-tag">止損</span>
+          <span class="keyword-tag">紀律</span>
+          <span class="keyword-tag">專注</span>
+          <span class="keyword-tag">邊界</span>
+          <span class="keyword-tag">紀律</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⛰️ 兼山艮，止於其所——學會在正確的時機停止，這是創業者最難學會的紀律。</p>
+          <p>🛑 「時止則止，時行則行」：知道什麼時候該前進，什麼時候該停止，這是成熟的標誌。</p>
+          <p>✋ 果斷止損一個錯誤的項目或方向，比堅持錯誤更能保護你的資源與團隊士氣。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">回顧你正在堅持的三個項目或策略，判斷它們是否仍然值得堅持，果斷終止任何沒有進展的選項。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 53 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">53 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☶</div>
+        <div class="card-hex-name-zh">漸</div>
+        <div class="card-hex-name-en">JIAN · GRADUAL PROGRESS</div>
+      </div>
+      <div class="card-trigram">上☴下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">漸進</span>
+          <span class="keyword-tag">循序</span>
+          <span class="keyword-tag">階段</span>
+          <span class="keyword-tag">步驟</span>
+          <span class="keyword-tag">順序</span>
+          <span class="keyword-tag">次序</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌊 山上有木，漸——你的事業需要按部就班，循序漸進地推進，不要投機取巧追求一步登天。</p>
+          <p>📊 「女歸，吉」：每一個階段都有它的順序與邏輯。忽視了順序，往往導致全盤皆输。</p>
+          <p>🎯 制定清晰的階段性里程碑，每個階段的成功都為下一個階段奠定基礎。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">將你本年度的商業目標拆解為四個季度階段，每個階段設定可衡量的關鍵成果與驗證標準。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 54 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">54 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☳</div>
+        <div class="card-hex-name-zh">歸妹</div>
+        <div class="card-hex-name-en">GUI MEI · MARRIAGE</div>
+      </div>
+      <div class="card-trigram">上☱下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">結合</span>
+          <span class="keyword-tag">併購</span>
+          <span class="keyword-tag">合資</span>
+          <span class="keyword-tag">整合</span>
+          <span class="keyword-tag">合夥</span>
+          <span class="keyword-tag">聯姻</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>💍 澤上有雷，歸妹——兩個不同的實體正在結合，無論是合作、合資還是併購，這是一個重要的轉折點。</p>
+          <p>⚖️ 「匪寇，婚媾」：結合的動機要單純正當。以長期共贏為目標，而非單純的資源掠奪。</p>
+          <p>🤝 在結合之前，充分評估雙方的文化、價值觀與長期目標，確保婚後生活能和諧。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">如果你正在進行任何形式的商業結合或合作談判，現在就安排一次與對方高層的深度交流，確認雙方的長期契合度。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 55 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">55 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☲☳</div>
+        <div class="card-hex-name-zh">豐</div>
+        <div class="card-hex-name-en">FENG · ABUNDANCE</div>
+      </div>
+      <div class="card-trigram">上☲下☳</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">豐盛</span>
+          <span class="keyword-tag">豐收</span>
+          <span class="keyword-tag">繁榮</span>
+          <span class="keyword-tag">極大</span>
+          <span class="keyword-tag">豐厚</span>
+          <span class="keyword-tag">鼎盛</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌾 日中則昃，月盈則食——你的事業已達到頂峰，但頂峰也意味著即將到來的轉折。</p>
+          <p>⚡ 「宜照天下」：在巔峰時期，你的視野最廣、影響力最大。利用這個窗口推動最重要的變革。</p>
+          <p>🕯️ 同時開始為轉折做準備。不要等到能量開始消退才思考下一步。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">利用你目前的頂峰狀態，推動一個你一直在推遲的重大變革或新項目，並開始規划未來的新曲線。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 56 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">56 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☶☲</div>
+        <div class="card-hex-name-zh">旅</div>
+        <div class="card-hex-name-en">LV · THE WANDERER</div>
+      </div>
+      <div class="card-trigram">上☶下☲</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">旅行</span>
+          <span class="keyword-tag">探索</span>
+          <span class="keyword-tag">出走</span>
+          <span class="keyword-tag">新市場</span>
+          <span class="keyword-tag">考察</span>
+          <span class="keyword-tag">拓寬</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🏕️ 山上有火，旅——你正在一個陌生的環境中探索，可能是新市場、新產品線或新的商業模式。</p>
+          <p>🎒 「旅無所容」：在陌生環境中，保持低姿態與靈活性，不要過度依賴過去的成功經驗。</p>
+          <p>🔍 多走走看看，擴大你的視野與網絡。新市場的機會往往在旅行與交流中發現。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">安排一次商務考察或參加一個陌生的行業活動，跳出你的舒適圈，尋找新的商業靈感與合作機會。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 57 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">57 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☴</div>
+        <div class="card-hex-name-zh">巽</div>
+        <div class="card-hex-name-en">XUN · THE GENTLE</div>
+      </div>
+      <div class="card-trigram">上☴下☴</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">柔性</span>
+          <span class="keyword-tag">滲透</span>
+          <span class="keyword-tag">傳播</span>
+          <span class="keyword-tag">授權</span>
+          <span class="keyword-tag">風行</span>
+          <span class="keyword-tag">低調</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌬️ 風之象，無孔不入——用柔性與漸進的方式推動變革，比硬性命令更持久、更有效。</p>
+          <p>🍃 「随风，巽」：順勢而為，找準切入點，讓你的想法像風一樣自然地滲透到組織各個角落。</p>
+          <p>👥 充分授權，讓團隊成員有自主空間，這種領導方式能激發更大的創造力。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">選擇一個你想推動的變革，用柔性滲透的方式，通過影響核心意見領袖而非強制命令來達成目標。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 58 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">58 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☱</div>
+        <div class="card-hex-name-zh">兌</div>
+        <div class="card-hex-name-en">DUI · JOY</div>
+      </div>
+      <div class="card-trigram">上☱下☱</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">喜悦</span>
+          <span class="keyword-tag">和諧</span>
+          <span class="keyword-tag">愉快</span>
+          <span class="keyword-tag">公關</span>
+          <span class="keyword-tag">談判</span>
+          <span class="keyword-tag">關係</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>😊 麗澤兑，君子以朋友講習——這是建立和諧關係與愉快工作氛圍的時機。團隊凝聚力在此刻達到高峰。</p>
+          <p>🤝 「兑亨利貞」：真誠的喜悦與和諧關係是最強的商業資產。它會為你帶來客戶忠誠與人才磁力。</p>
+          <p>🎉 舉辦慶祝活動，肯定團隊成就，這些正向能量會轉化為更強的團隊戰鬥力。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">舉辦一次慶祝活動，表彰團隊成員的傑出貢獻，並公開感謝你的核心合作夥伴與客戶。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 59 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">59 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☴☵</div>
+        <div class="card-hex-name-zh">渙</div>
+        <div class="card-hex-name-en">HUAN · DISPERSION</div>
+      </div>
+      <div class="card-trigram">上☴下☵</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">渙散</span>
+          <span class="keyword-tag">重整</span>
+          <span class="keyword-tag">疏導</span>
+          <span class="keyword-tag">分拆</span>
+          <span class="keyword-tag">化解</span>
+          <span class="keyword-tag">重組</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌊 风水渙，患難分散——過度集中的組織或業務正在面臨分散的壓力，這可能是自然的，也可能需要主動推動。</p>
+          <p>🧹 「渙汗其大號」：果斷地進行業務重整或分拆，讓每一部分都能更靈活、更有聚焦地運作。</p>
+          <p>⚡ 有時候，適度的分散能讓整體更有韌性。評估哪些部分應該合併，哪些應該分拆。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">評估你的組織架構或產品組合，考慮是否需要分拆或獨立運作某些業務，以提升整體效率與專注度。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 60 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">60 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☵</div>
+        <div class="card-hex-name-zh">節</div>
+        <div class="card-hex-name-en">JIE · LIMITATION</div>
+      </div>
+      <div class="card-trigram">上☱下☵</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">節制</span>
+          <span class="keyword-tag">紀律</span>
+          <span class="keyword-tag">預算</span>
+          <span class="keyword-tag">限制</span>
+          <span class="keyword-tag">規範</span>
+          <span class="keyword-tag">節省</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>📏 澤上有水，節——資源需要節制，管理需要規範。明確的界限與規則，是團隊高效運作的基礎。</p>
+          <p>⚖️ 「安節，亨」：建立穩健的財務制度與管理規範，讓組織在明確的框架內自由發揮。</p>
+          <p>💰 嚴格的預算管理與成本控制，是企業長治久安的必要條件。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">檢視你的財務管理制度，更新或建立一項你一直缺少的財務或行政規範，確保所有支出都有明確的審批流程。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 61–68 (final 8 cards) -->
+<!-- CARD 61 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">61 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☱☴</div>
+        <div class="card-hex-name-zh">中孚</div>
+        <div class="card-hex-name-en">ZHONG FU · INNER TRUTH</div>
+      </div>
+      <div class="card-trigram">上☱下☴</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">誠信</span>
+          <span class="keyword-tag">信任</span>
+          <span class="keyword-tag">守信</span>
+          <span class="keyword-tag">真心</span>
+          <span class="keyword-tag">信用</span>
+          <span class="keyword-tag">堅守</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌾 澤上有風，中孚——信用是企業的根本。一旦失去信任，所有努力都會化為烏有。</p>
+          <p>🤝 「豚魚吉」：即使是小承諾，也要全力以赴去兌現。真正的信用來自於每一次的言行一致。</p>
+          <p>🛡️ 在任何情況下都不要犧牲誠信。短期的損失遠小於長期信任的崩塌。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">回顧你最近對客戶、團隊和合作夥伴的所有承諾，確保每一項都在按計劃兌現，如有延遲立即主動溝通。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 62 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">62 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☳☶</div>
+        <div class="card-hex-name-zh">小過</div>
+        <div class="card-hex-name-en">XIAO GUO · SMALL EXCESS</div>
+      </div>
+      <div class="card-trigram">上☳下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">過度</span>
+          <span class="keyword-tag">小错</span>
+          <span class="keyword-tag">修正</span>
+          <span class="keyword-tag">微調</span>
+          <span class="keyword-tag">細節</span>
+          <span class="keyword-tag">謹慎</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⚡ 山上有雷，小過——一些細節或小環節上做得過頭了，需要微調而非大改。</p>
+          <p>🔧 「可小事，不可大事」：現在適合做細節優化與小幅調整，而非大規模的變革或冒險。</p>
+          <p>🎯 注意那些看起來微小但累積起來會造成大問題的細節，及時修正。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">回顧你的產品或服務流程，找出三個可以微調優化的小細節，今天就修正它們。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 63 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">63 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☲☵</div>
+        <div class="card-hex-name-zh">既濟</div>
+        <div class="card-hex-name-en">JI JI · COMPLETION</div>
+      </div>
+      <div class="card-trigram">上☲下☵</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">完成</span>
+          <span class="keyword-tag">成功</span>
+          <span class="keyword-tag">圓滿</span>
+          <span class="keyword-tag">達成</span>
+          <span class="keyword-tag">里程碑</span>
+          <span class="keyword-tag">成就</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🏆 水在火上，既濟——一個重要的里程碑已經達成，你達到了階段性的成功。</p>
+          <p>🌟 「曳輪先濡」：成功的同時要保持警惕，因為接下來就是新的挑戰與新的循環開始。</p>
+          <p>🥂 好好慶祝這個成就，然後儘快開始規劃下一個目標。停留在成功上是最大的風險。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">慶祝你最近的一個重要成就，然後立即開始規劃下一個階段的目標與策略，不要讓成功的喜悅變成懈怠。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 64 -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">64 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☵☲</div>
+        <div class="card-hex-name-zh">未濟</div>
+        <div class="card-hex-name-en">WEI JI · NON-COMPLETION</div>
+      </div>
+      <div class="card-trigram">上☵下☲</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">未完成</span>
+          <span class="keyword-tag">開始</span>
+          <span class="keyword-tag">希望</span>
+          <span class="keyword-tag">探索</span>
+          <span class="keyword-tag">循環</span>
+          <span class="keyword-tag">新生</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌅 火在水上，未濟——這個階段是新的開始，萬事萬物都在醞釀新的循環。</p>
+          <p>🔄 「未濟亨，濡尾無攸利」：新的循環充滿未知與風險，需要更加謹慎的航行。</p>
+          <p>🌱 每一個結束都是新的開始。帶著過去的經驗與智慧，重新出發，你會走得更好。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">回顧你過去一個商業週期的學習與成長，為下一個循環設定三個明確的核心目標，帶著智慧重新出發。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 65 — 坤卦（市場營銷向） -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">65 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☷</div>
+        <div class="card-hex-name-zh">坤（行銷版）</div>
+        <div class="card-hex-name-en">KUN · MARKETING EDITION</div>
+      </div>
+      <div class="card-trigram">上☷下☷</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">內容行銷</span>
+          <span class="keyword-tag">長期耕耘</span>
+          <span class="keyword-tag">品牌底蘊</span>
+          <span class="keyword-tag">信任建立</span>
+          <span class="keyword-tag">自然流量</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🌍 大地之德，厚德載物——你的品牌正在建立深厚的信任基礎。這段時間的耕耘，短期内看不到爆發，但長期會形成無法撼動的品牌資產。</p>
+          <p>📝 「括囊無咎」：在品牌建設的過程中，適當的沉默與專注，比頻繁的曝光更有力量。</p>
+          <p>📈 持續輸出高質量的內容，建立鐵桿粉絲群體，讓他們成為你最有力的品牌傳播者。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">制定一個90天的內容行銷計劃，每週固定輸出對用戶有真實價值的內容，建立你的思想領導力與品牌影響力。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 66 — 乾卦（投資理財向） -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">66 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☰</div>
+        <div class="card-hex-name-zh">乾（投資版）</div>
+        <div class="card-hex-name-en">QIAN · INVESTMENT EDITION</div>
+      </div>
+      <div class="card-trigram">上☰下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">資產配置</span>
+          <span class="keyword-tag">高風險</span>
+          <span class="keyword-tag">主動投資</span>
+          <span class="keyword-tag">強勢成長</span>
+          <span class="keyword-tag">領導者</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>☀️ 天的能量，創造一切——你的投資組合正處於高成長階段。主動型投資此刻回報最豐厚。</p>
+          <p>⚡ 「亢龍有悔」：高成長伴隨高風險。保持對市場的警覺，設定止損線，避免過度自信導致全盤皆輸。</p>
+          <p>🎯 果斷地將資源投入高成長機會，同時保持對風險的敬畏。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">評估你的投資組合，考慮增加對高成長機會的配置，同時確保有適當的風險緩衝機制，設定明確的止損策略。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 67 — 泰卦（人脈經營向） -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">67 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☰☷</div>
+        <div class="card-hex-name-zh">泰（人脈版）</div>
+        <div class="card-hex-name-en">TAI · NETWORKING EDITION</div>
+      </div>
+      <div class="card-trigram">上☷下☰</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">人脈</span>
+          <span class="keyword-tag">貴人</span>
+          <span class="keyword-tag">_CONNECTIONS</span>
+          <span class="keyword-tag">資源連結</span>
+          <span class="keyword-tag">共贏</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>🤝 天地交泰，萬物通達——你的人脈網絡正進入黃金時期。各種資源開始流通、貴人適時出現。</p>
+          <p>🌐 「小往大來」：主動擴大你的社交圈，連結不同領域的關鍵人物，這些人脈將在未來產生巨大的價值。</p>
+          <p>💎 不要只索取，要學會給予。成為別人生命中的貴人，你也會吸引更多貴人來臨。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">主動聯繫三位你有一段時間沒聯繫的重要人脈，提供價值而非索取，並邀約一次面對面的深度交流。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CARD 68 — 謙卦（自我成長向） -->
+<div class="card-page">
+  <div class="card">
+    <div class="corner-tl"></div><div class="corner-tr"></div>
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <div class="card-header">
+      <div class="card-number">68 / 68</div>
+      <div class="card-title-block">
+        <div class="card-hex-symbol">☷☶</div>
+        <div class="card-hex-name-zh">謙（自修版）</div>
+        <div class="card-hex-name-en">QIAN · SELF-GROWTH EDITION</div>
+      </div>
+      <div class="card-trigram">上☷下☶</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-section">
+        <div class="card-section-label">BUSINESS KEYWORDS · 商業關鍵詞</div>
+        <div class="card-keywords">
+          <span class="keyword-tag">自學</span>
+          <span class="keyword-tag">反思</span>
+          <span class="keyword-tag">成長</span>
+          <span class="keyword-tag">領導力</span>
+          <span class="keyword-tag">認知升級</span>
+          <span class="keyword-tag">智慧</span>
+        </div>
+      </div>
+
+      <div class="card-section">
+        <div class="card-section-label">ENTREPRENEURIAL GUIDANCE · 創業指導</div>
+        <div class="card-guidance">
+          <p>⛰️ 山在地下，谦——你現在最需要的是內在的修煉與成長。外在的成就終有天花板，但內在的智慧沒有極限。</p>
+          <p>📚 「謙謙君子，卑以自牧」：保持空杯心態，永遠願意向他人學習。一個謙遜的領導者，能吸引最優秀的人才。</p>
+          <p>🧠 投資自己的認知升級——閱讀、教練輔導、跨界學習，這些投資的回報率是所有投資中最高的。</p>
+        </div>
+      </div>
+
+      <div class="card-action">
+        <div class="action-icon">▶</div>
+        <div class="action-text">報名一堂你一直想學的課程，或預約一位教練，開始你的下一階段認知升級之旅，並將所學應用於你的事業。</div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-footer-brand">易經商業決策卡 · 第68張 · 圓滿</div>
+      <div class="card-footer-ko-fi"><a href="https://ko-fi.com/s/00367ecd74" target="_blank">ko-fi.com/s/00367ecd74</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- END OF DECK -->
+</body>
+</html>
