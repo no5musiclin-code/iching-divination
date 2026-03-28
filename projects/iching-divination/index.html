@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易經測字 ｜ 問事</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    color: #e8dcc8;
+    font-family: "Noto Serif TC", "Songti SC", serif, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .bg-glow {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(180,140,60,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+  }
+  .title {
+    font-size: 2.2rem;
+    letter-spacing: 0.3em;
+    color: #c9a84c;
+    margin-bottom: 0.3rem;
+    font-weight: 400;
+  }
+  .subtitle {
+    font-size: 0.85rem;
+    letter-spacing: 0.5em;
+    color: #7a6a50;
+    margin-bottom: 3rem;
+  }
+  .input-area {
+    margin-bottom: 2rem;
+  }
+  .char-input {
+    width: 120px;
+    height: 120px;
+    font-size: 4rem;
+    text-align: center;
+    background: transparent;
+    border: 1px solid #3a3020;
+    color: #c9a84c;
+    outline: none;
+    border-radius: 4px;
+    caret-color: #c9a84c;
+    transition: border-color 0.3s;
+    font-family: serif;
+  }
+  .char-input:focus { border-color: #c9a84c; }
+  .char-input::placeholder { color: #3a3020; font-size: 2rem; }
+  .hint {
+    font-size: 0.75rem;
+    color: #5a4a30;
+    margin-top: 0.8rem;
+    letter-spacing: 0.2em;
+  }
+  .btn-divine {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    margin: 2rem auto 0;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5em;
+    background: transparent;
+    border: 1px solid #c9a84c;
+    color: #c9a84c;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.3s;
+    font-family: inherit;
+  }
+  .btn-divine:hover {
+    background: #c9a84c;
+    color: #0a0a0f;
+  }
+  .btn-divine:active { transform: scale(0.98); }
+
+  /* Result */
+  .result { display: none; text-align: center; animation: fadeIn 0.8s ease; }
+  .result.show { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .gua-symbol {
+    font-size: 5rem;
+    color: #c9a84c;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+  .gua-name {
+    font-size: 2rem;
+    letter-spacing: 0.3em;
+    color: #c9a84c;
+    margin-bottom: 0.3rem;
+  }
+  .gua-aka {
+    font-size: 0.85rem;
+    color: #7a6a50;
+    letter-spacing: 0.3em;
+    margin-bottom: 1.5rem;
+  }
+  .gua-meaning {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: #b8a888;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    text-align: left;
+    padding: 0 1rem;
+  }
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: #3a3020;
+    margin: 1.5rem auto;
+  }
+  .yao-line {
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    color: #8a7a60;
+    margin-bottom: 1.5rem;
+  }
+  .advice {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: #9a8a70;
+    max-width: 460px;
+    margin: 0 auto 2rem;
+    text-align: left;
+    padding: 0 1rem;
+  }
+  .btn-retry {
+    background: transparent;
+    border: none;
+    color: #5a4a30;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+  }
+  .btn-retry:hover { color: #c9a84c; }
+
+  /* Ko-fi */
+  .kofi-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #1e1a10;
+  }
+  .kofi-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: #4a3a28;
+    margin-bottom: 0.8rem;
+  }
+  .kofi-btn {
+    display: inline-block;
+    padding: 0.7rem 1.8rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: #c9a84c;
+    border: 1px solid #3a2a18;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .kofi-btn:hover {
+    border-color: #c9a84c;
+    background: rgba(201,168,76,0.08);
+  }
+  .kofi-note {
+    font-size: 0.65rem;
+    color: #3a2a18;
+    margin-top: 0.6rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* Loading */
+  .loading { display: none; font-size: 0.8rem; letter-spacing: 0.3em; color: #5a4a30; margin-top: 1rem; }
+  .loading.show { display: block; }
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<div class="container" id="main">
+  <h1 class="title">易經測字</h1>
+  <p class="subtitle">問　事</p>
+  <div class="input-area">
+    <input type="text" class="char-input" id="charInput" maxlength="1" placeholder="一字" autocomplete="off">
+    <p class="hint">輸入任意中文字，測其事之吉凶</p>
+  </div>
+  <button class="btn-divine" onclick="divine()">測</button>
+  <p class="loading" id="loading">天地運轉中⋯⋯</p>
+</div>
+
+<div class="container result" id="result">
+  <div class="gua-symbol" id="guaSymbol"></div>
+  <div class="gua-name" id="guaName"></div>
+  <div class="gua-aka" id="guaAka"></div>
+  <div class="divider"></div>
+  <div class="yao-line" id="yaoLine"></div>
+  <div class="gua-meaning" id="guaMeaning"></div>
+  <div class="divider"></div>
+  <div class="advice" id="advice"></div>
+  <button class="btn-retry" onclick="reset()">再測一次</button>
+
+  <div class="kofi-section">
+    <p class="kofi-label">若有所得，隨喜支持</p>
+    <a class="kofi-btn" href="https://ko-fi.com/shaishalin" target="_blank">資 持</a>
+    <p class="kofi-note">ko-fi.com/shaishalin</p>
+  </div>
+</div>
+
+<script>
+// 八卦：坎1 離2 震3 艮4 乾5 兌6 巽7 坤8
+const TRIGRAMS = ['','坎','離','震','艮','乾','兌','巽','坤'];
+const TRIG_MEAN = ['','水','火','雷','山','天','澤','風','地'];
+const TRIG_YIN = ['','☵','☲','�雷','☶','☰','☱','☴','☷'];
+
+// 六十四卦（依序：上卦×8＋下卦）
+const HEXAGRAMS = [
+  {n:1,  g:'𤣩', name:'乾', aka:'天', m:'元亨利貞', meaning:'純陽至健，天道輪轉。萬物始生，君子自強不息。諸事皆宜，惟宜守正，不可妄動。', advice:'天行健，君子以自強不息。此時氣勢正盛，宜把握時機，穩步前進，切忌冒進。'},
+  {n:2,  g:'𤣩', name:'坤', aka:'地', m:'元亨，利牝馬之貞', meaning:'至陰至柔，地道厚德。萬物皆歸，君子見微知著。諸事以柔克剛，守成為上。', advice:'地勢坤，君子以厚德載物。此時宜沉住氣，以柔化剛，守住基業，等待時機。'},
+  {n:3,  g:'屯', name:'屯', aka:'水雷', m:'元亨利貞，勿用有攸往', meaning:'萬物初生，艱難始創。坎上震下，雲雨將施而未成。諸事開頭難，宜守正待機。', advice:'屯者，難也。萬事開頭難，此時不宜有大動作，應穩固基礎，低調積累。'},
+  {n:4,  g:'蒙', name:'蒙', aka:'山水', m:'亨，非我求童蒙，童蒙求我', meaning:'迷茫未知，需要啟發。山下泉水流動，朦朧不清。諸事初期不明，宜虛心求教。', advice:'蒙以養正，圣功也。此時適合學習、請教、等待清醒的時刻到來。'},
+  {n:5,  g:'需', name:'需', aka:'水天', m:'有孚，光亨貞吉。利涉大川', meaning:'等待時機，不宜躁進。乾天在上，坎水在下，雲升天上待時而雨。諸事有待，不可強求。', advice:'需者，待也。此時應耐心等待，儲備力量，不宜冒險，等待最佳時機出現。'},
+  {n:6,  g:'讼', name:'師', aka:'地水', m:'貞，丈人吉，無咎', meaning:'爭端起，訴訟生。坎險在內，坤柔在外。諸事有紛爭，宜以德化解，守正不阿。', advice:'師者，眾也。此時有小人作祟或外來阻礙，宜守正不阿，蓄勢待發。'},
+  {n:7,  g:'比', name:'比', aka:'地上', m:'吉，原筮元永貞，不寧方來', meaning:'親密輔助，彼此親比。坤為地，水在地上，親密無間。諸事有人相助，吉祥。', advice:'比者，輔也。此時貴人現身，宜廣結善緣，虛心納諫，大有可為。'},
+  {n:8,  g:'小畜', name:'小畜', aka:'風天', m:'亨，密雲不雨，自我西郊', meaning:'小有積蓄，尚未豐盛。風行天上，雲密不雨。諸事小成，不可大意。', advice:'小畜者，積少成多。此時穩步前進，積累經驗與資源，等待更大的機遇。'},
+  {n:9,  g:'履', name:'履', aka:'天澤', m:'亨，履虎尾，不咥人，亨', meaning:'戰戰兢兢，如履薄冰。澤在天下，柔承乎剛。諸事高處有危，宜謹慎行走。', advice:'履者，禮也。此時走在薄冰上，務必謹言慎行，低調行事，終能化險為夷。'},
+  {n:10, g:'泰', name:'泰', aka:'天地', m:'小往大來，吉，亨', meaning:'天地交泰，陰陽和暢。坤上乾下，天地之氣相交。萬事通達，吉祥如意。', advice:'泰者，通也。此時運勢極佳，萬事順遂，宜把握良機，大展宏圖。'},
+  {n:11, g:'否', name:'否', aka:'天地', m:'否之匪人，不利君子貞，大往小來', meaning:'陰陽不和，萬事阻滯。乾上天在下，陽氣上升陰氣下沉，互不交感。諸事不順，宜守不宜動。', advice:'否者，塞也。此時局勢閉塞，宜韜光養晦，靜待轉機，不可強求。'},
+  {n:12, g:'同人', name:'同人', aka:'天火', m:'同人於野，亨，利涉大川，利君子貞', meaning:'天下大同，人心和暢。離火上焰，乾天在上，光明普照。諸事有人呼應，吉利。', advice:'同人者，合也。此時宜廣結善緣，與志同道合者並肩，力量會聚，大有可為。'},
+  {n:13, g:'大有', name:'大有', aka:'火天', m:'元亨', meaning:'大豐收，滿載而歸。火在天上，普照萬物。諸事大有收獲，名利雙收。', advice:'大有者，豐也。此時氣運正隆，宜把握機遇，廣納資源，忌得意忘形。'},
+  {n:14, g:'謙', name:'謙', aka:'地山', m:'亨，君子有終', meaning:'謙虛待下，諸事皆宜。山在地下，巍峨而不驕。諸事低調穩進，終有好結果。', advice:'謙者，讓也。此時最宜謙遜低調，不驕不躁，廣結善緣，必得善果。'},
+  {n:15, g:'豫', name:'豫', aka:'雷地', m:'利建侯行師', meaning:'喜悅和樂，萬物舒暢。雷出地上，陰陽和戰。諸事有令人振奮的消息。', advice:'豫者，樂也。此時心情舒暢，運勢上揚，宜乘勢而上，開創新局。'},
+  {n:16, g:'隨', name:'隨', aka:'澤雷', m:'元亨利貞，無咎', meaning:'隨遇而安，順勢而為。澤中有雷，悅而動。諸事有人追隨，或追隨他人皆可。', advice:'隨者，從也。此時宜隨緣而為，順勢而動，不固執，不勉強。'},
+  {n:17, g:'蠱', name:'蠱', aka:'風山', m:'元亨，利涉大川。先甲三日，後甲三日', meaning:'事務敗壞，亟需整頓。山下有風，風落山下，萬物壞敗。諸事需要大力整頓。', advice:'蠱者，壞也。此時積弊顯現，宜大刀闊斧整頓，新舊交替，迎來新生。'},
+  {n:18, g:'臨', name:'臨', aka:'地澤', m:'元亨利貞，八月有兌', meaning:'居高臨下，親臨督導。澤在地下，浸潤而上。諸事有新氣象，煥然一新。', advice:'臨者，治也。此時宜深入一線，主動掌控局面，不可旁觀等待。'},
+  {n:19, g:'觀', name:'觀', aka:'風地', m:'盥而不薦，有孚顒若', meaning:'觀望局勢，等待時機。風行地上，遍拂萬物。諸事此時宜觀望，不可冒進。', advice:'觀者，視也。此時局勢未明，靜觀其變，以不變應萬變，等待清晰。'},
+  {n:20, g:'噬嗑', name:'噬嗑', aka:'火雷', m:'亨，利用獄', meaning:'除去障礙，咬合而通。雷電交擊，剛柔相交。諸事有阻礙，需要決斷力。', advice:'噬嗑者，斷也。此時障礙當前，需當機立斷，雷厲風行，方能打通。'},
+  {n:21, g:'賁', name:'賁', aka:'山火', m:'亨，小利有攸往', meaning:'文飾美化，內外兼修。山火山上，文明止禮。諸事有包裝或美化需要。', advice:'賁者，飾也。此時宜充實內在之餘，也注重外在形象，包裝得當則事半功倍。'},
+  {n:22, g:'剝', name:'剝', aka:'山地', m:'不利有攸往', meaning:'剝落蝕退，陽氣將盡。山在地上，土蝕水侵。諸事衰敗，宜退不宜進。', advice:'剝者，落也。此時諸事不順，保存實力要紧，不宜大動作，守住根本。'},
+  {n:23, g:'復', name:'復', aka:'地雷', m:'亨，出入無疾，朋來無咎，反覆其道', meaning:'剝極而復，生機重現。地雷復，一陽來復。諸事重現希望，煥發新生。', advice:'復者，返也。此時度過難關，東山再起，萬事煥發新生機，吉祥。'},
+  {n:24, g:'無妄', name:'無妄', aka:'天雷', m:'元亨利貞，其匪正有眚，不利有攸往', meaning:'不妄為，守正道。天雷一震，誠信待天。諸事循正道而行，自有天佑。', advice:'無妄者，真也。此時腳踏實地，不抱僥倖心理，正道而行，必得庇佑。'},
+  {n:25, g:'大畜', name:'大畜', aka:'山天', m:'利貞，不家食吉，利涉大川', meaning:'大積蓄，大蓄養。天在山中，虛懷若谷。諸事大有積累，利於遠行。', advice:'大畜者，積也。此時宜廣納賢才，積累資源，蓄勢待發，大有可為。'},
+  {n:26, g:'頤', name:'頤', aka:'山雷', m:'貞吉，觀頤，自求口實', meaning:'養生之道，謹言慎食。山雷頤，口腹之欲。諸事注意休養，不可過度損耗。', advice:'頤者，養也。此時宜修身養性，節制耗費，穩健進補，積蓄能量。'},
+  {n:27, g:'大過', name:'大過', aka:'澤風', m:'棟橈，利有攸往，亨', meaning:'大為過度，棟樑彎曲。澤滅木，陰陽失調。諸事有大變動，需要警覺。', advice:'大過者，越也。此時處境艱難，需有非常之舉，方能度過危機。'},
+  {n:28, g:'坎', name:'坎', aka:'水水', m:'習坎，有孚，維心亨，行有尚', meaning:'重重險難，水深流急。坎為水，險中求通。諸事充滿挑戰，需有韌性。', advice:'坎者，陷也。此時前路多險，深溝高壘，戒急戒躁，用智慧突圍。'},
+  {n:29, g:'離', name:'離', aka:'火火', m:'畜牝牛，吉', meaning:'光明美麗，上下皆明。離為火，光明相續。諸事附麗得所，吉祥。', advice:'離者，麗也。此時如日中天，光明照耀，宜依附賢能，名利雙收。'},
+  {n:30, g:'咸', name:'咸', aka:'澤山', m:'亨，利貞，取女吉', meaning:'感應交心，彼此吸引。澤山咸，陰陽相感。諸事有桃花或人際驚喜。', advice:'咸者，感也。此時人心感通，情感順暢，單身者有姻緣，已婚者感情升溫。'},
+  {n:31, g:'恆', name:'恆', aka:'雷風', m:'亨，無咎，利貞，利有攸往', meaning:'持之以恆，長久不變。雷風恆，雷動風助。諸事需要恆心耐心。', advice:'恆者，久也。此時萬事貴在恆心，不變方向，持之以恆，必有成就。'},
+  {n:32, g:'遯', name:'遯', aka:'天山', m:'亨，小利貞', meaning:'見機退隱，保存實力。天山遯，陽氣消退。諸事適宜收斂，不宜張揚。', advice:'遯者，退也。此時局勢不明，宜退一步海闘天空，保存力量待機。'},
+  {n:33, g:'大壯', name:'大壯', aka:'雷天', m:'利貞', meaning:'勢力強大，諸事皆旺。雷在天上，聲勢浩大。諸事乘勢而進，大有可為。', advice:'大壯者，盛也。此時氣勢正旺，宜乘勝追擊，但需守正不阿，不可妄為。'},
+  {n:34, g:'晉', name:'晉', aka:'火地', m:'康侯用錫馬蕃庶，晝日三接', meaning:'旭日東升，諸事上進。火在地上，光明普照。諸事蒸蒸日上，吉祥。', advice:'晉者，進也。此時如日方升，宜積極進取，抓住機遇，大展身手。'},
+  {n:35, g:'明夷', name:'明夷', aka:'地火', m:'利艱貞', meaning:'光明受損，君子於行。火在地下，光明被遮。諸事有小人在暗處，需警覺。', advice:'明夷者，傷也。此時宜韜光養晦，不露鋒芒，慎言慎行，待時而動。'},
+  {n:36, g:'家人', name:'家人', aka:'風火', m:'利女貞', meaning:'家庭和睦，諸事安順。風自火出，風化相傳。諸事與家人家事相關。', advice:'家人者，內也。此時家宅平安，家庭和諧為重，理順家務，萬事皆興。'},
+  {n:37, g:'睽', name:'睽', aka:'火澤', m:'小事吉', meaning:'孤獨乖離，方向不同。火炎澤上，乖違睽異。諸事有分歧，需要耐心溝通。', advice:'睽者，異也。此時人心各異，宜耐心尋找共同點，小不忍則亂大謀。'},
+  {n:38, g:'蹇', name:'蹇', aka:'水山', m:'利西南，不利東北，利見大人，貞吉', meaning:'前路艱難，蹣跚前行。水在山上，艱阻重重。諸事遇到阻礙，需貴人相助。', advice:'蹇者，難也。此時山險水急，不宜冒險，需待援兵，靜候救援。'},
+  {n:39, g:'解', name:'解', aka:'雷水', m:'利西南，無所往，其來復吉。有攸往，夙吉', meaning:'解除困難，煥然冰消。雷雨交作，陰陽和暢。諸事先難後易，迎刃而解。', advice:'解者，緩也。此時困難即將過去，曙光在望，宜抓緊時機行動。'},
+  {n:40, g:'損', name:'損', aka:'山澤', m:'有攸往，無咎，利貞，其道上行', meaning:'減損自身，以誠感動。山下有澤，損下益上。諸事以退為進，舍小利得大道。', advice:'損者，失也。此時表面看來有所損失，實則以少勝多，厚積薄發。'},
+  {n:41, g:'益', name:'益', aka:'風雷', m:'利有攸往，利涉大川', meaning:'增益益处，源源不絕。風雷益，雷動風助。諸事有意外的增益。', advice:'益者，加也。此時萬事有如神助，穩步前進，收益漸增，大吉。'},
+  {n:42, g:'夬', name:'夬', aka:'澤天', m:'利於果斷，不利即往', meaning:'果斷決策，去除小人。澤水在天，陰陽即決。諸事需要當機立斷。', advice:'夬者，決也。此時局勢已到轉捩點，必須果斷行動，不可猶豫不決。'},
+  {n:43, g:'姤', name:'姤', aka:'天風', m:'女壯，勿用取女', meaning:'邂逅相遇，陰遇陽。天下有風，風行天下。諸事有新的邂逅或機會。', advice:'姤者，遇也。此時萬事有意外相遇，單身者有桃花，但需審慎選擇。'},
+  {n:44, g:'萃', name:'萃', aka:'澤地', m:'利見大人，亨利貞，用大牲吉，利有攸往', meaning:'聚集薈萃，人心所向。澤在地上，萬物薈聚。諸事人氣聚集，貴人雲集。', advice:'萃者，聚也。此時人脈旺盛，宜廣結善緣，聚集力量，大有可成。'},
+  {n:45, g:'升', name:'升', aka:'地風', m:'南征吉，無不利', meaning:'步步高升，諸事向上。地中生木，步步上升。諸事蒸蒸日上。', advice:'升者，登也。此時萬事走上坡路，宜把握良機，乘勢而上，大吉。'},
+  {n:46, g:'困', name:'困', aka:'澤水', m:'亨，貞大人吉，無咎，有言不信', meaning:'資源困乏，處境艱難。澤無水，困苦萬分。諸事艱困，宜守不宜動。', advice:'困者，窮也。此時財力人力皆乏，艱苦渡難，靜待轉機來臨。'},
+  {n:47, g:'井', name:'井', aka:'水風', m:'改邑不改井，無喪無得，往來井井', meaning:'源源不絕，取用不竭。水在井下，養人不竭。諸事有穩定的收益。', advice:'井者，不竭也。此時如井泉滋養，收益穩定，職業或事業進入平穩期。'},
+  {n:48, g:'革', name:'革', aka:'澤火', m:'己日乃孚，元亨利貞，悔亡', meaning:'破舊立新，改革革新。澤火革，湯武革命。諸事需要大破大立。', advice:'革者，變也。此時宜順時而變，改革舊制，迎接新生，但需選對時機。'},
+  {n:49, g:'鼎', name:'鼎', aka:'火風', m:'元吉，亨', meaning:'新舊交替，鼎立而治。火在澤上，烹飪成新。諸事有新局面。', advice:'鼎者，重也。此時立新規，成大器，諸事迎來新的領導者或新方向。'},
+  {n:50, g:'震', name:'震', aka:'震雷', m:'亨，震來虩虩，笑言啞啞', meaning:'雷聲震動，震驚百里。震為雷，聲勢浩大。諸事有震動，但終歸安靜。', advice:'震者，懼也。此時有震動之象，不宜冒進，但終能化險為夷，笑到最後。'},
+  {n:51, g:'艮', name:'艮', aka:'艮山', m:'艮其背，不獲其身，行其庭，不見其人，無咎', meaning:'靜止終止，時止則止。艮為山，巍然靜止。諸事到此為止，需要停下來。', advice:'艮者，止也。此時萬事宜靜不宜動，審時度勢，該放手時且放手。'},
+  {n:52, g:'漸', name:'漸', aka:'風山', m:'女歸吉，利貞', meaning:'循序漸進，逐步前進。山上有風，風行漸進。諸事按部就班，穩步前進。', advice:'漸者，進也。此時萬事不可急躁，按部就班，循序漸進，終能達到目標。'},
+  {n:53, g:'歸妹', name:'歸妹', aka:'雷澤', m:'征吉，無不利', meaning:'婚嫁之事，人生大事。雷澤歸妹，少女從長男。諸事與感情婚姻相關。', advice:'歸妹者，嫁也。此時有婚戀或合作之象，單身者有正緣出現，宜把握。'},
+  {n:54, g:'豐', name:'豐', aka:'雷火', m:'亨，王假之，勿憂，宜日中', meaning:'豐盛至極，如日中天。雷電皆至，光明照世。諸事如日中天，大豐收。', advice:'豐者，大也。此時萬事如日之中天，事業財運達到頂峰，宜低調守成。'},
+  {n:55, g:'旅', name:'旅', aka:'火山', m:'小亨，旅貞吉', meaning:'旅行在外，異地發展。火在山上，野處無居。諸事有奔波之象。', advice:'旅者，客也。此時宜往外發展或處理異地事務，需有彈性，隨遇而安。'},
+  {n:56, g:'巽', name:'巽', aka:'風風', m:'小亨，利有攸往，利見大人', meaning:'順風而從，低調行事。風為巽，謙遜入物。諸事宜低姿態，服從安排。', advice:'巽者，入也。此時宜順勢而為，低調行事，服從大局，則無往不利。'},
+  {n:57, g:'兌', name:'兌', aka:'澤澤', m:'亨，利貞', meaning:'喜悅悅樂，和氣致祥。澤為兌，欣悅相親。諸事和悅，人際關係順暢。', advice:'兌者，說也。此時萬事和悅，口舌消除，貴人多助，人際關係大吉。'},
+  {n:58, g:'渙', name:'渙', aka:'風水', m:'亨，王假有廟，利涉大川，利貞', meaning:'渙散聚合，危難有救。風行水上，渙然而解。諸事先危後解。', advice:'渙者，散也。此時困難逐漸消散，人心重新凝聚，宜把握時機行動。'},
+  {n:59, g:'節', name:'節', aka:'水澤', m:'亨，苦節不可貞', meaning:'節制有度，量入為出。水在澤上，潤而有限。諸事需控制開支。', advice:'節者，止也。此時宜量入為出，節制浪費，穩健理財，積穀防饑。'},
+  {n:60, g:'中孚', name:'中孚', aka:'風澤', m:'豚魚吉，利涉大川，利貞', meaning:'心中有信，誠信待人。澤上有風，吹動成信。諸事以誠信為本。', advice:'中孚者，信也。此時待人以誠，信用第一，誠信立身，諸事皆順。'},
+  {n:61, g:'小過', name:'小過', aka:'雷山', m:'亨，利貞，可小事，不可大事', meaning:'小有過失，小事通達。山上有雷，小事越軌。諸事有小問題，但不嚴重。', advice:'小過者，謬也。此時有小小的過失或失誤，應及時修正，不宜有大動作。'},
+  {n:62, g:'既濟', name:'既濟', aka:'水火', m:'亨，小利貞，初吉終亂', meaning:'大功已成，陰陽已定。水在火上，烹飪完成。諸事已成功，但需防後患。', advice:'既濟者，成也。此時大事已定，但盛極必衰，宜居安思危，守成防亂。'},
+  {n:63, g:'未濟', name:'未濟', aka:'火水', m:'亨，小狐汔濟，濡其尾，無攸利', meaning:'尚未完成，仍需努力。火在水上，陰陽未定。諸事未成，仍在努力中。', advice:'未濟者，終也。此時諸事尚未成功，但萬事皆在流轉之間，需要耐心恆心。'}
+];
+
+function getStrokeCount(char) {
+  // 利用 charCodeAt 簡單估算：常用漢字平均筆畫
+  var code = char.charCodeAt(0);
+  // 常用汉字范围 CJK Unified Ideographs
+  if (code >= 0x4E00 && code <= 0x9FFF) {
+    // 粗略估算：取 Unicode 碼點與筆畫的相關性
+    // 此方法為創意設計，非精確筆畫計算
+    return (code - 0x4E00) % 64 + 1;
+  }
+  return code % 64 + 1;
+}
+
+function divine() {
+  var input = document.getElementById('charInput');
+  var char = input.value.trim();
+  if (!char) return;
+
+  var loading = document.getElementById('loading');
+  loading.classList.add('show');
+
+  setTimeout(function() {
+    var strokes = getStrokeCount(char);
+    var idx = strokes % 64;
+    var hex = HEXAGRAMS[idx];
+    var trigramTop = TRIGRAMS[(strokes >> 3) % 8 + 1] || TRIGRAMS[1];
+    var trigramBot = TRIGRAMS[strokes % 8 + 1] || TRIGRAMS[(strokes % 8) + 1];
+
+    // 六爻：strokes 的二進位轉換
+    var bin = strokes.toString(2).padStart(6, '0');
+    var yaos = bin.split('').map(function(b) { return b === '1' ? '━━' : '━ ━'; });
+
+    document.getElementById('guaSymbol').textContent = hex.g;
+    document.getElementById('guaName').textContent = hex.name;
+    document.getElementById('guaAka').textContent = trigramBot + '下 · ' + trigramTop + '上';
+    document.getElementById('yaoLine').textContent = yaos.join('　');
+    document.getElementById('guaMeaning').textContent = hex.meaning;
+    document.getElementById('advice').textContent = hex.advice;
+
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('result').classList.add('show');
+    loading.classList.remove('show');
+  }, 1200);
+}
+
+function reset() {
+  document.getElementById('result').classList.remove('show');
+  document.getElementById('main').style.display = 'block';
+  document.getElementById('charInput').value = '';
+  document.getElementById('charInput').focus();
+}
+
+// 聚焦輸入框
+window.addEventListener('load', function() {
+  document.getElementById('charInput').focus();
+});
+</script>
+</body>
+</html>

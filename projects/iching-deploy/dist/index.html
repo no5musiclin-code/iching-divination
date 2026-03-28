@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0;url=iching-zht/index.html">
+<title>易經測字｜自動跳轉</title>
+<script>
+// 自動偵測語言並跳轉到對應版本
+var lang = navigator.language || navigator.userLanguage;
+var url = 'iching-zht/index.html'; // 預設繁中
+if (lang.startsWith('zh')) {
+  if (lang.includes('TW') || lang.includes('HK')) {
+    url = 'iching-zht/index.html';
+  } else {
+    url = 'iching-zhs/index.html';
+  }
+} else if (lang.startsWith('ja')) {
+  url = 'iching-ja/index.html';
+} else {
+  url = 'iching-en/index.html';
+}
+window.location.replace(url);
+</script>
+</head>
+<body>
+<p>跳轉中... <a href="iching-en/index.html">English</a> | <a href="iching-zht/index.html">繁體中文</a> | <a href="iching-zhs/index.html">簡體中文</a> | <a href="iching-ja/index.html">日本語</a></p>
+</body>
+</html>

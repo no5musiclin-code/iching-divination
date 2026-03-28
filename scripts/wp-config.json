@@ -1,0 +1,9 @@
+{
+  "site_url": "https://shaishalin.wordpress.com",
+  "username": "linblance@gmail.com",
+  "app_password": "PASTE_YOUR_APP_PASSWORD_HERE",
+  "rpc_endpoint": "https://shaishalin.wordpress.com/xmlrpc.php",
+  "categories": ["創業", "易經", "AI工具"],
+  "cron_schedule": "0 8 * * *",
+  "timezone": "Asia/Taipei"
+}

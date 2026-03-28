@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 創業工具包｜三合一數位商品 - 殺手林</title>
+<meta name="description" content="AI 創業提示詞大全 + 創業藍圖 + 易經創業指南，三個數位商品一次取得。">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a14; color: #e2e8f0; font-family: "Noto Sans TC", -apple-system, sans-serif; font-size: 16px; line-height: 1.6; }
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 3rem 1rem; text-align: center;
+}
+.badge { background: rgba(96,165,250,0.15); color: #60a5fa; border: 1px solid rgba(96,165,250,0.3); padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 0.75rem; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.75rem; line-height: 1.3; }
+.hero p { color: #94a3b8; max-width: 600px; margin: 0 auto 1rem; }
+.hero .price-tag { background: linear-gradient(135deg, #d4af37, #b8962e); color: #0a0a14; font-weight: 700; padding: 0.5rem 1.5rem; border-radius: 30px; display: inline-block; font-size: 1.1rem; margin-bottom: 1rem; }
+.container { max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+.products-nav { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 1rem; margin-bottom: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.nav-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+.nav-btn:hover, .nav-btn.active { background: rgba(96,165,250,0.15); border-color: #60a5fa; color: #60a5fa; }
+.product-section { display: none; }
+.product-section.active { display: block; }
+.product-header { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.product-header h2 { font-size: 1.5rem; color: #e2e8f0; margin-bottom: 0.5rem; }
+.product-header .subtitle { color: #60a5fa; font-size: 0.9rem; }
+.prompts-grid { display: flex; flex-direction: column; gap: 0.85rem; }
+.prompt-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.1rem 1.25rem; transition: all 0.2s; }
+.prompt-card:hover { border-color: rgba(96,165,250,0.4); transform: translateY(-1px); }
+.card-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.emoji { font-size: 1.4rem; }
+.card-title { font-weight: 700; font-size: 0.95rem; color: #e2e8f0; flex: 1; }
+.card-tag { font-size: 0.7rem; background: rgba(96,165,250,0.15); color: #60a5fa; padding: 0.15rem 0.6rem; border-radius: 10px; }
+.card-desc { color: #94a3b8; font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.6rem; }
+.card-prompt { background: rgba(0,0,0,0.35); border-left: 3px solid #60a5fa; border-radius: 0 6px 6px 0; padding: 0.7rem 0.9rem; font-size: 0.82rem; color: #cbd5e1; font-family: "SF Mono","Fira Code",monospace; line-height: 1.55; margin-top: 0.6rem; }
+.card-prompt::before { content: "📋 Prompt："; color: #60a5fa; font-family: "Noto Sans TC",sans-serif; display: block; font-size: 0.78rem; margin-bottom: 0.3rem; }
+.cat-label { font-size: 0.75rem; color: #d4af37; margin: 1.25rem 0 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.footer-cta { background: linear-gradient(135deg, #1e3a5f, #16213e); border: 1px solid rgba(96,165,250,0.3); border-radius: 14px; padding: 1.5rem; text-align: center; margin: 2rem 0; }
+.footer-cta h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+.footer-cta p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem; }
+footer { text-align: center; padding: 2rem 1rem; color: #475569; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
+footer a { color: #60a5fa; text-decoration: none; }
+/* Blueprint styles */
+.section { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(167,139,250,0.1); }
+.section h2 { font-size: 1.2rem; color: #e2e8f0; margin-bottom: 0.75rem; }
+.section h3 { font-size: 0.95rem; color: #a78bfa; margin: 1rem 0 0.5rem; }
+.section p { color: #94a3b8; font-size: 0.88rem; line-height: 1.7; }
+.step-box { background: rgba(167,139,250,0.05); border: 1px solid rgba(167,139,250,0.15); border-radius: 10px; padding: 1rem; margin: 0.75rem 0; }
+.step-box h4 { color: #e2e8f0; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.step-box p { margin-bottom: 0.4rem; font-size: 0.85rem; }
+/* I Ching styles */
+.iching-card { background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.15); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 0.85rem; }
+.iching-card .hex-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.iching-card .hex-symbol { font-size: 2rem; }
+.iching-card .hex-title { font-weight: 700; color: #f0d78c; font-size: 0.95rem; }
+.iching-card .hex-situation { background: rgba(212,175,55,0.08); border-radius: 6px; padding: 0.6rem 0.8rem; margin: 0.6rem 0; }
+.iching-card .hex-situation span { color: #d4af37; font-weight: 700; font-size: 0.78rem; }
+.iching-card .hex-situation p { color: #94a3b8; font-size: 0.82rem; margin-top: 0.2rem; }
+.iching-card .hex-strategy { color: #94a3b8; font-size: 0.85rem; line-height: 1.65; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">🎁 三合一數位商品</div>
+  <h1>AI 創業工具包｜完整版</h1>
+  <p>AI 創業提示詞大全 + 創業藍圖 + 易經創業指南，三個商品一次帶走</p>
+  <div class="price-tag">僅 $5 USD</div>
+</div>
+
+<div class="container">
+  <nav class="products-nav">
+    <a href="#prod1" class="nav-btn active" onclick="showSection('prod1', this); return false;">📋 提示詞大全</a>
+    <a href="#prod2" class="nav-btn" onclick="showSection('prod2', this); return false;">📘 創業藍圖</a>
+    <a href="#prod3" class="nav-btn" onclick="showSection('prod3', this); return false;">☰ 易經創業</a>
+  </nav>
+
+  <!-- 商品一：AI 創業提示詞大全 -->
+  <div id="prod1" class="product-section active">
+    <div class="product-header">
+      <h2>📋 AI 創業提示詞大全｜50+ 實戰模板</h2>
+      <p class="subtitle">涵蓋商業計劃 · 聯盟行銷 · SEO · 銷售漏斗 · 社群經營</p>
+    </div>
+
+    <div class="prompts-grid">
+
+      <div class="cat-label">💼 商業計劃</div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">📋</span>
+          <span class="card-title">SOSTAC 商業計劃教練</span>
+          <span class="card-tag">商業計劃</span>
+        </div>
+        <p class="card-desc">使用 SOSTAC 框架幫你制定完整的 90 天行動計劃。</p>
+        <div class="card-prompt">請用 SOSTAC 框架，幫我制定一個 90 天的 [目標] 行動計劃。請分別說明：Situation（現況分析）、Objectives（目標設定）、Strategy（策略）、Tactics（戰術）、Action（行動步驟）、Control（檢查點）。</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">🎯</span>
+          <span class="card-title">商業模式 Canvas 分析</span>
+          <span class="card-tag">商業計劃</span>
+        </div>
+        <p class="card-desc">用視覺化方式分析你的商業模式，涵蓋 9 大關鍵要素。</p>
+        <div class="card-prompt">請用商業模式 Canvas 的 9 個區塊，幫我分析 [你的商業模式或產品想法]：包括價值主張、客戶區隔、渠道、用戶關係、收益流、關鍵資源、關鍵活動、關鍵合作，成本結構。</div>
+      </div>
+
+      <div class="cat-label">📝 聯盟行銷</div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">✍️</span>
+          <span class="card-title">聯盟行銷文案生成器</span>
+          <span class="card-tag">聯盟行銷</span>
+        </div>
+        <p class="card-desc">三種風格（故事型 / 比較型 / 問題導向），直接拿來用。</p>
+        <div class="card-prompt">請為以下聯盟產品撰寫三種不同風格的行銷文案：1）故事型：結合個人真實使用經歷。2）比較型：與同類產品相比的優勢。3）問題導向：從目標用戶的痛苦點切入。產品：[產品名稱 + 連結 + 主要賣點]</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">🏆</span>
+          <span class="card-title">最佳聯盟產品評測</span>
+          <span class="card-tag">聯盟行銷</span>
+        </div>
+        <p class="card-desc">讓 AI 幫你評估哪個聯盟產品最有推廣價值。</p>
+        <div class="card-prompt">請幫我評測以下幾個聯盟產品，從推廣角度分析哪個最值得投入：[產品1名稱]、[產品2名稱]、[產品3名稱]。請從傭金比例、轉化率、產品口碑、競爭程度、推廣素材豐富度五個維度評分（1-10分）並給出建議。</div>
+      </div>
+
+      <div class="cat-label">🔍 SEO 與關鍵字</div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">🔑</span>
+          <span class="card-title">10 分鐘文章架構生成</span>
+          <span class="card-tag">SEO</span>
+        </div>
+        <p class="card-desc">輸入關鍵字，AI 幫你產出完整文章大綱，含標題、H標籤、內容量估算。</p>
+        <div class="card-prompt">我想要寫一篇關於 [關鍵字] 的 SEO 文章，目標字數 2000 字，請幫我產出：1）SEO 友善的標題（H1）。2）5 個 H2 小標題建議。3）每個段落的核心論點（50字以內）。4）結尾呼籲行動（CTA）建議。5）建議的 Meta Description（155字以內）。</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">📊</span>
+          <span class="card-title">長尾關鍵字挖掘</span>
+          <span class="card-tag">SEO</span>
+        </div>
+        <p class="card-desc">找到競爭低但搜尋量穩定的長尾關鍵字。</p>
+        <div class="card-prompt">請幫我找出 [主要關鍵字] 的 20 個長尾關鍵字。要求：每個關鍵字包含主要字組、競爭程度低（月搜量 100-1000）、有明確搜尋意圖。請用表格呈現：關鍵字 | 月搜量估算 | 競爭程度 | 建議用途。</div>
+      </div>
+
+      <div class="cat-label">📧 銷售漏斗</div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">💌</span>
+          <span class="card-title">5 封自動化郵件序列</span>
+          <span class="card-tag">Email 行銷</span>
+        </div>
+        <p class="card-desc">從引流到成交的完整 Email 序列，拿去直接用。</p>
+        <div class="card-prompt">請幫我撰寫一個 5 封郵件的自動化序列，主題是 [產品/服務名稱]。請針對新訂閱用戶設計：郵件1（歡迎鉤子）、郵件2（痛點放大）、郵件3（解決方案展示）、郵件4（社會證明）、郵件5（限時優惠）。每封郵件請給出：標題、預覽文字、內文（150字以內）、呼籲行動。</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">🚀</span>
+          <span class="card-title">高效銷售 Landing Page</span>
+          <span class="card-tag">轉化優化</span>
+        </div>
+        <p class="card-desc">讓 AI 幫你設計高轉化的著陸頁結構與文案。</p>
+        <div class="card-prompt">請幫我設計一個高轉化率的 Landing Page 文案，產品是 [產品名稱 + 價格 + 主要賣點]。請包含：1）強大的標題（H1）。2）副標題（價值主張）。3）3 個核心賣點。4）用戶見證格式（3 條）。5）常見問題（FAQ）5 條。6）最終 CTA。</div>
+      </div>
+
+      <div class="cat-label">📱 社群內容</div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">🗓️</span>
+          <span class="card-title">一個月社群內容日曆</span>
+          <span class="card-tag">社群經營</span>
+        </div>
+        <p class="card-desc">一個月份額 Twitter/Threads/IG 內容規劃，主題標籤全包。</p>
+        <div class="card-prompt">請幫我規劃一個月的社群內容日曆，主題是 [你的品牌/專業領域]，目標受眾是 [受眾描述]。請產出：每週 5 篇內容（共20篇），包含：發布日期、平台、內容形式、標題或大綱，建議 hashtag（3-5個）。</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">🎬</span>
+          <span class="card-title">短影音腳本生成</span>
+          <span class="card-tag">社群經營</span>
+        </div>
+        <p class="card-desc">60 秒腳本格式：鉤子 → 內容 → CTA，輕鬆拍片。</p>
+        <div class="card-prompt">請幫我寫一個 60 秒的短影音腳本，主題是 [你有興趣的知識/技巧]。格式請用：0-3秒（鉤子）、4-50秒（核心內容）、51-60秒（呼籲行動 + 關注）。語氣要有感染力，口語化，可以直接拿來拍片。</div>
+      </div>
+
+      <div class="cat-label">💰 變現策略</div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">💡</span>
+          <span class="card-title">網站變現瓶頸診斷</span>
+          <span class="card-tag">變現策略</span>
+        </div>
+        <p class="card-desc">讓 AI 當你的變現顧問，找出網站/業務的瓶頸。</p>
+        <div class="card-prompt">請幫我診斷我的 [網站/業務模式] 的變現瓶頸。我目前的數據是：月訪客 [數字]、主要流量來源 [來源]。我目前變現方式是 [方式]。請分析：1）現有變現方式的優化空間。2）潛在的新變現機會。3）最高性價比的改進建議。</div>
+      </div>
+
+      <div class="prompt-card">
+        <div class="card-header">
+          <span class="emoji">📈</span>
+          <span class="card-title">聯盟行銷收入預測</span>
+          <span class="card-tag">變現策略</span>
+        </div>
+        <p class="card-desc">用數字模型評估你的聯盟行銷潛在收入。</p>
+        <div class="card-prompt">請幫我用以下參數建立一個簡單的收入預測模型：月流量 [數字]、平均轉化率 2-3%、聯盟傭金比例 [X]%、平均訂單金額 [Y]。請計算：保守/中性/樂觀三種情境下的月收入，並說明影響收入最關鍵的變數是哪一個。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 商品二：AI 創業藍圖 -->
+  <div id="prod2" class="product-section">
+    <div class="product-header">
+      <h2>📘 AI 創業藍圖｜從零到月收 $500</h2>
+      <p class="subtitle">完整實戰手冊 · 50+ 頁 · 含 12 個實用模板</p>
+    </div>
+
+    <div class="section">
+      <h2>第一章：如何選擇你的 AI 商業模式</h2>
+      <h3>模式一：AI + 內容創作 → 聯盟行銷</h3>
+      <div class="step-box">
+        <h4>🎯 適合誰：</h4><p>喜歡寫作、有某個領域知識（理財、健康、科技、旅遊）的人</p>
+        <h4 style="margin-top:0.5rem;">💡 怎麼做：</h4>
+        <p>1. 用 AI 工具加速內容產出（每週 2-3 篇 SEO 文章）<br>2. 在文章中嵌入聯盟連結<br>3. 累積流量後被動收入自然來</p>
+        <h4 style="margin-top:0.5rem;">💰 變現潛力：</h4><p>月流量 1 萬 → 月收 $200-$500（聯盟傭金）</p>
+      </div>
+      <h3>模式二：AI + 技能 → 數位商品</h3>
+      <div class="step-box">
+        <h4>🎯 適合誰：</h4><p>有專業技能（設計、寫作、攝影、程式）的人</p>
+        <h4 style="margin-top:0.5rem;">💡 怎麼做：</h4>
+        <p>1. 用 AI 工具將技能系統化<br>2. 包裝成數位商品（電子書、模板包、教程）<br>3. 在 Gumroad / Ko-fi 銷售</p>
+        <h4 style="margin-top:0.5rem;">💰 變現潛力：</h4><p>一款受歡迎的數位商品 → 月收 $300-$1000+ 被動收入</p>
+      </div>
+      <h3>模式三：AI + 專業知識 → 付費諮詢</h3>
+      <div class="step-box">
+        <h4>🎯 適合誰：</h4><p>有某個領域深度經驗（行銷、法律、財務、健康）的人</p>
+        <h4 style="margin-top:0.5rem;">💡 怎麼做：</h4>
+        <p>1. 用 AI 工具提升服務效率<br>2. 建立標準化服務產品（1 小時顧問、策略評估）<br>3. 在 LinkedIn / 個人網站推廣</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>第二章：如何選擇利基市場</h2>
+      <h3>3 步法找到藍海利基：</h3>
+      <div class="step-box">
+        <h4>第一步：畫出「技能 × 興趣 × 需求」交集</h4>
+        <p>你在什麼領域有知識？你對什麼話題有熱情？什麼領域的人願意付錢？三個圈的交集就是你的候選利基。</p>
+      </div>
+      <div class="step-box">
+        <h4>第二步：驗證市場需求</h4>
+        <p>用 Google Trends 確認趨勢。用 Ubersuggest / AnswerThePublic 找有搜尋量但競爭不高的關鍵字。好的利基信號：月搜量 1000-5000、相關文章數少於 5 萬。</p>
+      </div>
+      <div class="step-box">
+        <h4>第三步：確認變現路徑</h4>
+        <p>在正式投入之前，先確認：這個利基市場的讀者/用戶，願意為什麼東西付錢？有聯盟計劃嗎？有付費課程嗎？變現路徑越清晰，成功的概率越高。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>第三章：AI 工具武裝清單</h2>
+      <h3>內容創作工具</h3>
+      <div class="step-box">
+        <p><strong>Claude / ChatGPT / Gemini</strong> — 主力寫作助理</p>
+        <p><strong>Gamma / Beautiful.ai</strong> — 快速生成簡報</p>
+        <p><strong>Canva + Magic Design</strong> — AI 圖片設計</p>
+      </div>
+      <h3>流量工具</h3>
+      <div class="step-box">
+        <p><strong>Google Analytics 4</strong> — 流量分析標配</p>
+        <p><strong>Ubersuggest</strong> — SEO 關鍵字研究</p>
+        <p><strong>ConvertKit / Mailchimp</strong> — Email 清單管理</p>
+      </div>
+      <h3>變現工具</h3>
+      <div class="step-box">
+        <p><strong>Ko-fi / Gumroad</strong> — 數位商品銷售，零成本開始</p>
+        <p><strong>WordPress.com</strong> — 個人網站/部落格</p>
+        <p><strong>Amazon Associates / Awin</strong> — 聯盟行銷</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>第四章：變現策略詳解</h2>
+      <h3>聯盟行銷變現路線圖</h3>
+      <div class="step-box">
+        <p><strong>第 1-3 個月：</strong>建立內容基礎。每週 2 篇 SEO 文章，累積 20-30 篇內容。用 AI 工具加速產出。</p>
+        <p style="margin-top:0.5rem;"><strong>第 4-6 個月：</strong>申請聯盟計劃。當你的網站有一定內容和流量後，申請目標品牌的聯盟計劃。</p>
+        <p style="margin-top:0.5rem;"><strong>第 6-12 個月：</strong>優化並擴張。找出最高轉化的內容和聯盟連結，集中資源擴張這块。</p>
+      </div>
+      <h3>數位商品變現路線圖</h3>
+      <div class="step-box">
+        <p><strong>第 1 步：</strong>找出你的「技能精華」——你對什麼事情比多數人做得更好？</p>
+        <p><strong>第 2 步：</strong>用 AI 工具將技能產品化——寫成電子書、製作成模板包、錄製教程。</p>
+        <p><strong>第 3 步：</strong>建立銷售漏斗——用免費內容引流 → Email 清單 → 銷售頁轉化。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>第五章：流量獲取</h2>
+      <div class="step-box">
+        <h4>SEO（搜尋引擎最佳化）</h4>
+        <p>是最被動、成本最低的免費流量來源。核心原則：選擇正確的關鍵字 + 產出高質量內容 + 持續獲取反向連結。工具：用 AI 工具加速內容產出，用 Ubersuggest 研究關鍵字。</p>
+      </div>
+      <div class="step-box">
+        <h4>社群媒體（X / Threads / IG）</h4>
+        <p>快速建立個人品牌影響力的管道。核心原則：提供價值、持續曝光、引流回主站。工具：用 AI 工具批量產出 Threads 推文、X 推文。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>第六章：變現計算機教學</h2>
+      <div class="step-box">
+        <h4>聯盟行銷收入計算公式：</h4>
+        <p><strong>月收入 = 月流量 × 轉化率 × 訂單金額 × 傭金比例</strong></p>
+        <p>例如：月流量 5,000 × 轉化率 2% × 平均訂單 $50 × 傭金 20% = <strong>$100/月</strong></p>
+      </div>
+      <div class="step-box">
+        <h4>數位商品收入計算公式：</h4>
+        <p><strong>月收入 = 產品價格 × 月銷量</strong></p>
+        <p>例如：產品定價 $19 × 每月銷量 30 份 = <strong>$570/月</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商品三：易經創業指南 -->
+  <div id="prod3" class="product-section">
+    <div class="product-header">
+      <h2>☰ 易經創業指南｜64 卦中的商業智慧</h2>
+      <p class="subtitle">傳統智慧與現代商業結合 · 10 個核心卦象深度解讀</p>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">☰</span>
+        <span class="hex-title">乾為天 — 領導者的自強之道</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>創業初期，團隊不穩、資源不足、方向不明時，需要一股前進的動力和清晰的願景。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「天行健，君子以自強不息」。創業初期，老闆就是火車頭。你必須比任何人都更努力、更堅定。這個階段最忌諱的是：三心二意、頻繁變換方向。<br><br><strong>行動建議：</strong>確立一個核心目標，每日衡量團隊的進展是否在正確軌道上。用「艱苦」代替「焦慮」——每一天具體地推進，遠比空想未來更有效。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">☷</span>
+        <span class="hex-title">坤為地 — 團隊合作的厚德</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>需要建立穩定的合作關係、培養核心團隊，或在談判中尋求共贏。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「地勢坤，君子以厚德載物」。真正的領導者不是個人英雄，而是能容納各種人才、整合各種資源的人。<br><br><strong>行動建議：</strong>這個階段的重點是「建立信任」。對合作夥伴和員工說到做到。當你累積了足夠的「德」時，優秀的人才和機會自然會向你靠攏。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">䷊</span>
+        <span class="hex-title">地天泰 — 合作的黃金時機</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>團隊士氣高漲、資金到位、業務開始起飛，是擴張的最佳時機。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「小往大來，吉亨」。陰陽調和，萬事皆通。這是創業中最理想的階段——但也是最危險的階段，因為多數人會在此時過度自信而擴張太快。<br><br><strong>行動建議：</strong>在泰的階段播種：擴張團隊，建立系統、累積現金流。但同時要保持危機意識，設立「過冬基金」。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">䷀</span>
+        <span class="hex-title">天地否 — 逆境中的保守策略</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>市場萎縮、資金緊張、團隊士氣低落，或是整個行業進入衰退期。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「否之匪人，不利君子貞」。天地不交，萬事停滯。在這個階段，最愚蠢的決定是「硬撐」和「擴張」。<br><br><strong>行動建議：</strong>果斷止血——砍掉不賺錢的業務線、裁減多餘的人、收緊現金流。同時，這也是你最好「練內功」的時機：改善產品、深化客戶關係、等待下一個周期。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">☵</span>
+        <span class="hex-title">坎為水 — 危機中的脫困智慧</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>遭遇重大危機——資金鏈斷裂、重要員工離開、產品出現嚴重問題。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「水澼至，習坎」。前有險阻，一波未平一波又起。但易經告訴我們：危機中蕴藏轉機，只要心懷誠信。<br><br><strong>行動建議：</strong>首先，確保現金流——哪怕需要借貸或出讓股份，也要先活下來。其次，公開透明地與團隊和投資人溝通。最後，危機往往是重新思考商業模式的契機。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">☴</span>
+        <span class="hex-title">巽為風 — 市場渗透策略</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>新產品上市、需要進入新市場、或者要在一個成熟的市場中建立品牌認知度。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「隨風巽，君子以申命行事」。風的特點是無孔不入——好的市場渗透策略也是如此，要持續、溫和、不可阻擋地進入用戶心智。<br><br><strong>行動建議：</strong>這個階段忌諱「大力推廣」——用户還不認識你，大規模廣告只會浪費錢。正確的做法是：小規模滲透、精準目標人群、口碑相傳。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">☲</span>
+        <span class="hex-title">離為火 — 品牌建立的藝術</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>產品已獲市場驗證，需要建立品牌認知、擴大影響力，或是準備對外融資。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「明兩作，離，大人以繼明照于四方」。火代表光明、顯現、照亮黑暗。在這個階段，你的目標是讓更多人「看見」你的品牌。<br><br><strong>行動建議：</strong>投資品牌建設——不只是視覺設計，而是品牌故事、價值主張、獨特定位。同時開始建立媒體關係，為後續融資或大規模擴張做準備。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">☶</span>
+        <span class="hex-title">艮為山 — 適時止損的哲學</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>發現某個產品線、專案或合作關係已無價值，繼續投入只是不斷消耗資源。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「兼山，艮，君子以思不出其位」。山代表靜止、停止，回歸本質。在該止損的時候果斷止損，是創業者最重要的紀律之一。<br><br><strong>行動建議：</strong>設定明確的「止損線」——當一個專案或產品累計虧損超過 X 金額，或連續 Y 個月沒有實質進展，果斷放棄。這個決定很難，但不做這個決定的代價更大。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">☱</span>
+        <span class="hex-title">兌為澤 — 談判與說服的藝術</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>對外談判（投資人、合作夥伴、供應商）、對內激勵團隊、或需要處理客戶投訴。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「麗澤兌，君子以朋友講習」。澤代表水的匯聚與潤澤萬物。在商業中，這代表「透過真誠的溝通，滋潤雙方的關係」。<br><br><strong>行動建議：</strong>成功的談判不是「我贏你輸」，而是找到「讓對方也滿意」的方案。與投資人談判時，不只談估值，談雙方如何共同創造長期價值。</div>
+    </div>
+
+    <div class="iching-card">
+      <div class="hex-header">
+        <span class="hex-symbol">䷫</span>
+        <span class="hex-title">澤雷隨 — 順勢而為的智慧</span>
+      </div>
+      <div class="hex-situation">
+        <span>📌 適用場景</span>
+        <p>市場趨勢已經明顯轉向（新技術出現、政策變化、消費者行為改變），你需要決定是否跟隨這波趨勢。</p>
+      </div>
+      <div class="hex-strategy"><strong>商業解讀：</strong>「澤中有雷，隨」。雷動而澤應，陰陽和而萬物生。真正的高手不是預測趨勢，而是看到趨勢後快速跟隨。<br><br><strong>行動建議：</strong>不要過度迷戀自己的「原創想法」——市場趨勢才是真正的裁判。當一個新的技術或商業模式被驗證後，果斷佈局。但「隨」不是盲目跟風，而是有選擇地跟隨。</div>
+    </div>
+  </div>
+
+  <div class="footer-cta">
+    <h3>🎁 三個商品一次帶走</h3>
+    <p style="font-size:1.1rem; color:#60a5fa; font-weight:700;">總價值 $21 → 僅 $5 USD</p>
+    <p>一次購買，永久使用。持續更新。</p>
+    <a href="https://ko-fi.com/s/00367ecd74" class="buy-btn" style="background:linear-gradient(135deg,#d4af37,#b8962e);color:#0a0a14;padding:0.8rem 2rem;border-radius:30px;font-weight:700;text-decoration:none;display:inline-block;">🚀 前往 Ko-fi 取得全套</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>由 <a href="https://shaishalin.wordpress.com">殺手林</a> 製作 ｜ <a href="https://ko-fi.com/shaishalin">支持更多創作</a></p>
+</footer>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.product-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

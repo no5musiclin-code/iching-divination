@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易経サインナップ｜無料オンライン占卜</title>
+<meta name="description" content="易経の八卦であなたの悩みを占います。恋愛、仕事、投資、人間関係など、人生の様々な問題を解決へと導きます。完全無料。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #d4af37; --gold-light: #f0d78c; --dark: #0a0a0f; --card-bg: rgba(255,255,255,0.04); --border: rgba(212,175,55,0.2); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: "Noto Sans JP", sans-serif; min-height: 100vh; overflow-x: hidden; }
+.glow-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 65%); pointer-events: none; }
+.container { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+header { text-align: center; margin-bottom: 2.5rem; }
+.lang-bar { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.lang-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.8rem; text-decoration: none; transition: all 0.2s; }
+.lang-btn:hover, .lang-btn.active { background: rgba(212,175,55,0.15); border-color: var(--gold); color: var(--gold); }
+.iching-symbol { font-size: 4.5rem; color: var(--gold); text-shadow: 0 0 40px rgba(212,175,55,0.4); line-height: 1; margin-bottom: 0.5rem; }
+h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.subtitle { color: #94a3b8; font-size: 1rem; }
+.support-bar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.support-bar span { color: #94a3b8; font-size: 0.9rem; flex: 1; }
+.support-btn { background: linear-gradient(135deg, #d4af37, #b8962e); color: #0a0a0f; border: none; padding: 0.6rem 1.4rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: transform 0.2s; }
+.support-btn:hover { transform: translateY(-2px); }
+.how-to { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.how-to h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; }
+.steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 10px; }
+.step-num { background: rgba(212,175,55,0.15); color: var(--gold); font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.step p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; }
+.input-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.input-section h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; }
+textarea { width: 100%; height: 120px; background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; color: #e2e8f0; padding: 1rem; font-size: 1rem; resize: vertical; outline: none; font-family: inherit; transition: border-color 0.2s; }
+textarea:focus { border-color: var(--gold); }
+textarea::placeholder { color: #64748b; }
+.hexagram-select { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.75rem; }
+.hex-option { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; padding: 0.75rem; cursor: pointer; text-align: center; transition: all 0.2s; font-size: 0.8rem; color: #94a3b8; }
+.hex-option:hover, .hex-option.selected { border-color: var(--gold); background: rgba(212,175,55,0.1); color: var(--gold-light); }
+.hex-option .symbol { font-size: 1.4rem; display: block; margin-bottom: 0.2rem; }
+.primary-btn { width: 100%; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0a0a0f; border: none; padding: 1rem; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 1rem; transition: transform 0.2s, box-shadow 0.2s; }
+.primary-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,55,0.4); }
+#result { display: none; margin-top: 1.5rem; }
+.result-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; text-align: center; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+.result-symbol { font-size: 4rem; margin-bottom: 0.5rem; }
+.result-name { font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+.result-judgment { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+.result-text { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.5rem; text-align: left; line-height: 1.8; color: #cbd5e1; font-size: 0.95rem; border-left: 3px solid var(--gold); }
+.share-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.share-section p { color: #64748b; font-size: 0.85rem; margin-bottom: 0.75rem; }
+.share-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.share-btn { padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.85rem; text-decoration: none; border: 1px solid var(--border); color: #94a3b8; transition: all 0.2s; }
+.share-btn:hover { border-color: var(--gold); color: var(--gold); }
+footer { text-align: center; margin-top: 3rem; color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
+.affiliate-box { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.affiliate-box h3 { color: var(--gold); font-size: 0.95rem; margin-bottom: 0.5rem; }
+.affiliate-box p { color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.75rem; }
+.affiliate-box a { display: inline-block; background: rgba(212,175,55,0.15); border: 1px solid rgba(212,175,55,0.4); color: var(--gold); padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.82rem; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="container">
+  <header>
+    <div class="lang-bar">
+      <a href="../iching-zht/index.html" class="lang-btn">繁体字</a>
+      <a href="../iching-zhs/index.html" class="lang-btn">簡体字</a>
+      <a href="../iching-en/index.html" class="lang-btn">English</a>
+      <a href="index.html" class="lang-btn active">日本語</a>
+    </div>
+    <div class="iching-symbol">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+    <h1>易経サインナップ</h1>
+    <p class="subtitle">易経の智恵であなたの迷いを解く — 恋愛・仕事・投資</p>
+  </header>
+
+  <div class="affiliate-box">
+    <h3>💼 起業家ツールボックス</h3>
+    <p>AIサイドハッスルブループリント — AIで副業・.passive incomeを構築するための完全ガイド</p>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank">Ko-fiで見る →</a>
+  </div>
+
+  <div class="support-bar">
+    <span>🙏 このツール是完全無料です。役に立ったら、ぜひサポートを！</span>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="support-btn">💛 作者サポート</a>
+  </div>
+
+  <div class="how-to">
+    <h2>✨ 使い方</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><p>下にあなたの質問を入力してください（例：「今年の転職は吉？」或いは「彼女は運命の人？」）</p></div>
+      <div class="step"><div class="step-num">2</div><p>感じた八卦を選んだ後、またはAIに選ばせてください</p></div>
+      <div class="step"><div class="step-num">3</div><p>「占う」ボタンをクリックして、易経の解釈を受け取ってください</p></div>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <h2>🔮 あなたの質問</h2>
+    <textarea id="questionInput" placeholder="質問を入力してください、例：来年、副業を始めるべきですか？"></textarea>
+    <div class="hexagram-select">
+      <div class="hex-option" data-q="仕事を変えるべきですか？"><span class="symbol">☰</span>乾為天</div>
+      <div class="hex-option" data-q="投資すべきですか？"><span class="symbol">☷</span>坤為地</div>
+      <div class="hex-option" data-q="この人間は信じられますか？"><span class="symbol">䷊</span>地天泰</div>
+      <div class="hex-option" data-q="このリスクを冒すべきですか？"><span class="symbol">☵</span>坎為水</div>
+      <div class="hex-option" data-q=" 사업을 확장해야 하나요?"><span class="symbol">☴</span>巽為風</div>
+      <div class="hex-option" data-q="この人は運命の人ですか？"><span class="symbol">☲</span>離為火</div>
+      <div class="hex-option" data-q="この関係を終えるべきですか？"><span class="symbol">☶</span>艮為山</div>
+      <div class="hex-option" data-q="次に何をすればいいですか？"><span class="symbol">䷫</span>沢雷随</div>
+    </div>
+    <button class="primary-btn" onclick="consultIChing()">🔮 易経で占う</button>
+  </div>
+
+  <div id="result"></div>
+
+  <footer>
+    <p><a href="https://shaishalin.wordpress.com" target="_blank">殺手林</a> 作 ｜ <a href="https://ko-fi.com/s/00367ecd74" target="_blank">作者サポート</a></p>
+  </footer>
+</div>
+
+<script>
+var hexagrams = {
+  "☰": { name: "乾為天（けんいてん）", judgment: "乾：純陽。刚健。万物を創る天の力。", reading: "乾は天。宇宙最初のエネルギーです。卦は告げます：迷わずACTIONS. あなたが驙躇しているなら、今が始める時です。天はあなたの味方です。自信を持って一歩を踏み出してください。成功は近い。", advice: ["今が始める時", "自信を持って行動", "天はあなたを見ている", "迷わず前へ"] },
+  "☷": { name: "坤為地（こんいち）", judgment: "坤：純陰。受け入れる。大地の力。", reading: "坤は地。すべてのものを包み込む母なる力。卦は告げます：今、走っていないで基を扎实しましょう。時を待ち、備えをすることは弱さではなく、知恵です。大地のように稳やかに、成功は自然とやってきます。", advice: ["今は待つ時", "備えよ", "大地のように稳やかに", "来るべき時に向けて準備を"] },
+  "☵": { name: "坎為水（かんいすい）", judgment: "坎：水。危険。深い淵。危機。", reading: "坎は水。淵に落ち込むような困難を象徴します。卦は警告します：今は無理をしないで。リスクを再評価し、新しい道を探してください。水は石に衝突せず、绕ります。", advice: ["今は注意が必要", "無理をしないで", "新しい道を探そう", "危ない時は止めろ"] },
+  "☴": { name: "巽為風（そんいふう）", judgment: "巽：風。滲透。少しずつ全てを動かす。", reading: "巽は風。風は固体な岩も浸食します。この卦は教えます：毎日小さな努力を続けることが успех입니다。急がず、休まず、ずっとやり続けることが最も強い武器です。", advice: ["毎日少しずつ", "的努力を続ける", "風のように柔らかく", "小さな積み重ねが大きな力に"] },
+  "☲": { name: "離為火（りい-fire）", judgment: "離：火。明かり。全てを照らす。", reading: "離は火。明るさと真理を象徴します。卦は教えます：今、真実が明らかになります。何か 또는 someone が见え始めているなら、それを見逃さないで。火は照らすが、燃え尽きないように。", advice: ["真実が明らかになる", "明るく照らそう", "火は注意深く", "烧け尽きず、有効に使え"] },
+  "☶": { name: "艮為山（ごんいさん）", judgment: "艮：山。静止。止まるべき時に止まる。", reading: "艮は山。静止と止まることを象徴します。卦は教えます：有时候、最善のアクションはアクションしないことです。今、止まって、休んで、振り返る時입니다。山の強みは動かないことです。", advice: ["止まれ", "静まれ", "休んで次への準備を", "山のように揺るぎなく"] },
+  "䷫": { name: "沢雷随（たくらいずい）", judgment: "随：沢と雷。従う。流れに身を委ねる。", reading: "随は、川の流れのように、自然に道を歩いていくことを象徴します。卦は教えます：固执するな、柔軟であれ。水は石と争わず、绕って海に達します。変化を恐れず、流れに乗ってください。", advice: ["自然に流れに乗れ", "柔軟さを保つ", "争わず、绕れ", "川は必ず海に辿り着く"] }
+};
+
+function consultIChing() {
+  var input = document.getElementById('questionInput').value.trim();
+  if (!input) { alert('まず質問を入力してください'); return; }
+  var keys = Object.keys(hexagrams);
+  var hex = hexagrams[keys[Math.floor(Math.random() * keys.length)]];
+  var adviceList = hex.advice.map(function(a) { return '<li>✨ ' + a + '</li>'; }).join('');
+  var html = '<div class="result-card"><div class="result-symbol">☰</div><div class="result-name">' + hex.name + '</div><div class="result-judgment">' + hex.judgment + '</div><div class="result-text"><p>' + hex.reading + '</p></div><div style="background:rgba(0,0,0,0.3);border-radius:10px;padding:1rem;margin-top:1rem;text-align:left;"><p style="color:var(--gold);font-size:0.9rem;margin-bottom:0.5rem;font-weight:700;">🌟 雰囲:</p><ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;">' + adviceList + '</ul></div><div class="share-section"><p>友達にシェア：</p><div class="share-btns"><a href="https://twitter.com/intent/tweet?text=' + encodeURIComponent('易経占いで「' + hex.name + '」が出ました！☯') + '&url=' + encodeURIComponent('https://shaishalin.wordpress.com/iching') + '" target="_blank" class="share-btn">𝕏 Twitter</a><a href="https://www.facebook.com/sharer/sharer.php?u=https://shaishalin.wordpress.com/iching" target="_blank" class="share-btn">f Facebook</a></div></div></div>';
+  document.getElementById('result').innerHTML = html;
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+}
+document.querySelectorAll('.hex-option').forEach(function(chip) {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.hex-option').forEach(function(c) { c.classList.remove('selected'); });
+    chip.classList.add('selected');
+    document.getElementById('questionInput').value = chip.dataset.q;
+  });
+});
+</script>
+</body>
+</html>

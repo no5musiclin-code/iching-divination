@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 殺手林變現啟動面板</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --muted: #8b949e;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-size: 2rem;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+  .hero .subtitle {
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .hero .stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .stat .label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .stat.red .num { color: var(--red); }
+  .stat.green .num { color: var(--green); }
+
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-header h2 {
+    font-size: 1.1rem;
+  }
+  .badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge.red { background: rgba(248,81,73,0.15); color: var(--red); }
+  .badge.yellow { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .badge.green { background: rgba(63,185,80,0.15); color: var(--green); }
+  .badge.blue { background: rgba(88,166,255,0.15); color: var(--blue); }
+
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    background: rgba(255,255,255,0.02);
+    transition: background 0.2s;
+  }
+  .task:hover { background: rgba(255,255,255,0.04); }
+  .task-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .task.high .task-num { background: rgba(248,81,73,0.2); color: var(--red); }
+  .task.medium .task-num { background: rgba(210,153,34,0.2); color: var(--yellow); }
+  .task-body { flex: 1; }
+  .task-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .task-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .task-link {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .task-link:hover { opacity: 0.85; }
+  .task-meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .pillar {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .pillar .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .pillar .name { font-weight: 600; margin-bottom: 0.25rem; }
+  .pillar .status { font-size: 0.8rem; }
+  .pillar.done .status { color: var(--green); }
+  .pillar.pending .status { color: var(--yellow); }
+  .pillar.blocked .status { color: var(--red); }
+
+  .time-estimate {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+  }
+
+  .big-goal {
+    background: linear-gradient(135deg, rgba(63,185,80,0.08), rgba(88,166,255,0.08));
+    border: 1px solid var(--green);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .big-goal h3 {
+    color: var(--green);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .big-goal p { color: var(--muted); font-size: 0.9rem; }
+
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 0.75rem;
+  }
+  .progress-bar .fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 3px;
+    transition: width 0.5s;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    font-size: 0.9rem;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .check-box.checked {
+    background: var(--green);
+    border-color: var(--green);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M10.28 2.28L4.5 8.06 1.72 5.28a1 1 0 0 0-1.44 1.44l3.5 3.5a1 1 0 0 0 1.44 0l6.5-6.5a1 1 0 0 0 0-1.44 1 1 0 0 0-1.44-.06z'/%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .todo-list { margin-top: 1rem; }
+  .section.purple { border-color: rgba(188,140,255,0.3); }
+  .section.purple .section-header h2 { color: var(--purple); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🚀 殺手林變現啟動面板</h1>
+  <p class="subtitle">幫主，這是唯一需要打開的頁面。所有下一步行動都在這裡。</p>
+  <p class="subtitle" style="font-size:0.85rem; margin-top:0.3rem;">最後更新：2026-03-27 21:48 | Day 2 週五晚間</p>
+  <div class="stats">
+    <div class="stat">
+      <div class="num">31</div>
+      <div class="label">庫存文章</div>
+    </div>
+    <div class="stat">
+      <div class="num">4</div>
+      <div class="label">已發布文章</div>
+    </div>
+    <div class="stat red">
+      <div class="num">0</div>
+      <div class="label">聯盟帳號</div>
+    </div>
+    <div class="stat green">
+      <div class="num">$0</div>
+      <div class="label">實際收入</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="section">
+  <div class="section-header">
+    <h2>📊 系統就緒度</h2>
+  </div>
+  <div style="margin-bottom:0.5rem; font-size:0.9rem;">變現系統完成度：<strong style="color:var(--green)">99%</strong></div>
+  <div class="progress-bar"><div class="fill" style="width:99%"></div></div>
+  <div style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">⚠️ 最後 1% = 幫主親自操作瀏覽器（約 30-60 分鐘）</div>
+</div>
+
+<!-- BIG GOAL -->
+<div class="big-goal">
+  <h3>🎯 本週末唯一目標：收到第一筆佣金</h3>
+  <p>所有系統已就緒。只要完成下面 3 件事，佣金系統就會啟動。</p>
+</div>
+
+<!-- PILLARS -->
+<div class="section">
+  <div class="section-header">
+    <h2>🏛️ 變現四大支柱</h2>
+    <span class="badge blue">3/4 需要幫主操作</span>
+  </div>
+  <div class="pillars">
+    <div class="pillar done">
+      <div class="icon">📝</div>
+      <div class="name">內容系統</div>
+      <div class="status">✅ 31篇就緒</div>
+    </div>
+    <div class="pillar done">
+      <div class="icon">🎁</div>
+      <div class="name">數位商品</div>
+      <div class="status">✅ 4套完整</div>
+    </div>
+    <div class="pillar done">
+      <div class="icon">📄</div>
+      <div class="name">銷售頁面</div>
+      <div class="status">✅ landing-page/</div>
+    </div>
+    <div class="pillar blocked">
+      <div class="icon">💰</div>
+      <div class="name">聯盟帳號</div>
+      <div class="status">⏳ 申請啟動</div>
+    </div>
+  </div>
+</div>
+
+<!-- TASKS -->
+<div class="section">
+  <div class="section-header">
+    <h2>🔴 本週末必做清單（按優先順序）</h2>
+    <span class="badge red">需要瀏覽器</span>
+  </div>
+
+  <div class="task high">
+    <div class="task-num">1</div>
+    <div class="task-body">
+      <div class="task-title">✅ ConvertKit 聯盟申請（已提交，等待批核）<span class="time-estimate">⏱️ 只需等待</span></div>
+      <div class="task-desc">申請已提交，ConvertKit 聯盟 50% 佣金。預計 3 工作天內批核（約 3/31-4/1）。</div>
+      <a href="https://app.convertkit.com/affiliate_portal" target="_blank" class="task-link">→ 查看 ConvertKit 聯盟狀態</a>
+      <div class="task-meta">📁 腳本：scripts/affiliate-email-sequence.md（批准後立即啟動）</div>
+    </div>
+  </div>
+
+  <div class="task high">
+    <div class="task-num">2</div>
+    <div class="task-body">
+      <div class="task-title">WordPress 發布庫存文章（3篇）<span class="time-estimate">⏱️ 20分鐘</span></div>
+      <div class="task-desc">直接複製貼上 SEO Meta，3 分鐘發布 1 篇。週末 Google 爬蟲活躍，現在發布週末正逢流量高峰。</div>
+      <a href="https://shaishalin.wordpress.com/wp-admin/post-new.php" target="_blank" class="task-link">→ WordPress 後台發布</a>
+      <div class="task-meta">📁 SEO Meta：scripts/SEO文章優化方案.md | 指南：scripts/wordpress-publish-guide.md</div>
+    </div>
+  </div>
+
+  <div class="task medium">
+    <div class="task-num">3</div>
+    <div class="task-body">
+      <div class="task-title">Ko-fi 上架另外 3 個商品<span class="time-estimate">⏱️ 15分鐘</span></div>
+      <div class="task-desc">目前只有 1 個商品上架。還有 3 套數位商品（超級部落格幫手、Email文案工廠、社群自動機）可立即上架。</div>
+      <a href="https://ko-fi.com/shaishalin/manage/products" target="_blank" class="task-link">→ Ko-fi 商品管理</a>
+      <div class="task-meta">📁 商品文案：scripts/gumroad商品上架文字.md（可直接移植到 Ko-fi）</div>
+    </div>
+  </div>
+
+  <div class="task medium">
+    <div class="task-num">4</div>
+    <div class="task-body">
+      <div class="task-title">申請 Rakuten 聯盟網<span class="time-estimate">⏱️ 15分鐘</span></div>
+      <div class="task-desc">日本最大聯盟平台，涵蓋多家品牌。腳本已準備好，直接照填。</div>
+      <a href="https://affiliate.rakuten.co.uk" target="_blank" class="task-link">→ Rakuten UK</a>
+      <div class="task-meta">📁 腳本：scripts/rakuten-聯盟申請攻略.md</div>
+    </div>
+  </div>
+
+  <div class="task medium">
+    <div class="task-num">5</div>
+    <div class="task-body">
+      <div class="task-title">ConvertKit 設定 Email List<span class="time-estimate">⏱️ 20分鐘</span></div>
+      <div class="task-desc">設定免費自動化 Email 序列（8 封從歡迎信到 CTA）。Lead Magnet 已就緒：freebies/7天AI收入挑戰.pdf</div>
+      <a href="https://app.convertkit.com" target="_blank" class="task-link">→ ConvertKit 後台</a>
+      <div class="task-meta">📁 Email 序列腳本：scripts/email-nurture-sequence.md</div>
+    </div>
+  </div>
+</div>
+
+<!-- READY TO COPY -->
+<div class="section purple">
+  <div class="section-header">
+    <h2>📋 已就緒素材（直接複製使用）</h2>
+    <span class="badge blue">無需再做任何事</span>
+  </div>
+  <div class="todo-list">
+    <div class="checklist-item"><div class="check-box checked"></div> 31 篇庫存文章（含 SEO Meta）— content/</div>
+    <div class="checklist-item"><div class="check-box checked"></div> 4 套數位商品完整內容 — digital-products/</div>
+    <div class="checklist-item"><div class="check-box checked"></div> 升級版銷售頁面 — landing-page/index.html</div>
+    <div class="checklist-item"><div class="check-box checked"></div> Lead Magnet PDF — freebies/7天AI收入挑戰.pdf</div>
+    <div class="checklist-item"><div class="check-box checked"></div> 4 支 TikTok/YouTube Shorts 腳本 — content/tiktok-youtube-shorts-scripts.md</div>
+    <div class="checklist-item"><div class="check-box checked"></div> YouTube 10分鐘教學腳本 — content/youtube-ai-blog-30day-full-script.md</div>
+    <div class="checklist-item"><div class="check-box checked"></div> 8 封自動化 Email 序列 — scripts/email-nurture-sequence.md</div>
+    <div class="checklist-item"><div class="check-box checked"></div> 社群上市素材 — scripts/social-launch-announcement.md</div>
+    <div class="checklist-item"><div class="check-box checked"></div> Reddit 流量攻略 — scripts/reddit-流量變現攻略.md</div>
+    <div class="checklist-item"><div class="check-box checked"></div> 週末流量行事曆 — content/週末流量衝刺套件-2026-03-27.md</div>
+    <div class="checklist-item"><div class="check-box checked"></div> 48小時變現衝刺套件 — scripts/48小時變現衝刺套件.md</div>
+  </div>
+</div>
+
+<!-- NEXT WEEK -->
+<div class="section">
+  <div class="section-header">
+    <h2>📅 下週可選行動</h2>
+    <span class="badge yellow">非緊急</span>
+  </div>
+  <div class="todo-list">
+    <div class="checklist-item"><div class="check-box"></div> Reddit 帳號創建 + 發布第一篇</div>
+    <div class="checklist-item"><div class="check-box"></div> Twitter 發布第一條線程</div>
+    <div class="checklist-item"><div class="check-box"></div> DEV.to 發布剩餘英文文章（目標：10篇）</div>
+    <div class="checklist-item"><div class="check-box"></div> 申請 ShareASale 聯盟</div>
+    <div class="checklist-item"><div class="check-box"></div> Medium 驗證信確認（linblance@gmail.com）</div>
+  </div>
+</div>
+
+<footer style="text-align:center; padding:2rem 0; color:var(--muted); font-size:0.8rem; border-top:1px solid var(--border); margin-top:2rem;">
+  殺手林每小時迴圈 | Day 2 週五晚間 | 系統 99% 就緒<br>
+  所有檔案：~/projects/ai-income-hub/
+</footer>
+
+</body>
+</html>
+EOF
+echo "Launch dashboard created"

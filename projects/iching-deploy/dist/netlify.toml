@@ -1,0 +1,29 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[redirects]]
+  from = "/"
+  to = "/iching-zht/"
+  status = 302
+
+[[redirects]]
+  from = "/en"
+  to = "/iching-en/"
+  status = 302
+
+[[redirects]]
+  from = "/zh"
+  to = "/iching-zht/"
+  status = 302
+
+[[redirects]]
+  from = "/jp"
+  to = "/iching-ja/"
+  status = 302

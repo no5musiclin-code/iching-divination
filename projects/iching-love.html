@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易經愛情占卜 | 測字問情，洞悉真心</title>
+<meta name="description" content="專為感情問題設計的易經占卜工具。暗戀、暗戀桃花、暗戀復合、暗戀挽回、暗戀婚姻。100%免費AI占卜。">
+<meta property="og:title" content="易經愛情占卜 | 測字問情，洞悉真心">
+<meta property="og:description" content="專為感情問題設計的易經占卜工具，暗戀、暗戀複合、暗戀挽回，一鍵免費測字。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --love: #e91e63;
+  --love-light: #f48fb1;
+  --love-dark: #880e4f;
+  --gold: #d4af37;
+  --dark: #0a0a0f;
+  --card-bg: rgba(233,30,99,0.04);
+  --border: rgba(233,30,99,0.2);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: "Noto Sans TC", sans-serif; min-height: 100vh; overflow-x: hidden; }
+.glow-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(233,30,99,0.07) 0%, transparent 65%); pointer-events: none; }
+.container { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+header { text-align: center; margin-bottom: 2.5rem; }
+.iching-symbol { font-size: 4rem; color: var(--love); text-shadow: 0 0 40px rgba(233,30,99,0.5); line-height: 1; margin-bottom: 0.5rem; }
+h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--love-light), var(--love)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.subtitle { color: #94a3b8; font-size: 1rem; }
+.lang-bar { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.lang-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.8rem; text-decoration: none; transition: all 0.2s; }
+.lang-btn:hover, .lang-btn.active { background: rgba(233,30,99,0.15); border-color: var(--love); color: var(--love-light); }
+.type-bar { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.type-btn { background: rgba(233,30,99,0.08); border: 1px solid rgba(233,30,99,0.2); color: #f48fb1; padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.88rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
+.type-btn:hover, .type-btn.active { background: rgba(233,30,99,0.2); border-color: var(--love); color: #fff; }
+.support-bar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.support-bar span { color: #94a3b8; font-size: 0.9rem; flex: 1; }
+.support-btn { background: linear-gradient(135deg, var(--love-light), var(--love)); color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: transform 0.2s; }
+.support-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(233,30,99,0.4); }
+.love-meter { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.love-meter h2 { color: var(--love-light); font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.meter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+.meter-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(233,30,99,0.2); border-radius: 12px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s; }
+.meter-card:hover, .meter-card.selected { border-color: var(--love); background: rgba(233,30,99,0.12); }
+.meter-card .icon { font-size: 1.6rem; display: block; margin-bottom: 0.4rem; }
+.meter-card .label { color: #94a3b8; font-size: 0.85rem; }
+.meter-card:hover .label, .meter-card.selected .label { color: var(--love-light); }
+.how-to { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.how-to h2 { color: var(--love-light); font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 10px; }
+.step-num { background: rgba(233,30,99,0.15); color: var(--love-light); font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.step p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; }
+.input-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.input-section h2 { color: var(--love-light); font-size: 1.1rem; margin-bottom: 1rem; }
+textarea { width: 100%; height: 120px; background: rgba(0,0,0,0.3); border: 1px solid rgba(233,30,99,0.3); border-radius: 10px; color: #e2e8f0; padding: 1rem; font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.2s; font-family: inherit; }
+textarea:focus { border-color: var(--love); }
+textarea::placeholder { color: #64748b; }
+.hexagram-select { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; }
+.hex-option { background: rgba(0,0,0,0.3); border: 1px solid rgba(233,30,99,0.2); border-radius: 10px; padding: 0.75rem; cursor: pointer; text-align: center; transition: all 0.2s; font-size: 0.85rem; color: #94a3b8; }
+.hex-option:hover, .hex-option.selected { border-color: var(--love); background: rgba(233,30,99,0.1); color: var(--love-light); }
+.hex-option .symbol { font-size: 1.4rem; display: block; margin-bottom: 0.25rem; }
+.primary-btn { width: 100%; background: linear-gradient(135deg, var(--love-light), var(--love)); color: #fff; border: none; padding: 1rem; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 1rem; transition: transform 0.2s, box-shadow 0.2s; }
+.primary-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(233,30,99,0.4); }
+#result { display: none; margin-top: 1.5rem; }
+.result-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; text-align: center; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+.result-symbol { font-size: 4rem; margin-bottom: 0.5rem; }
+.result-name { font-size: 1.6rem; color: var(--love-light); margin-bottom: 0.5rem; }
+.result-type { color: var(--love); font-size: 0.85rem; margin-bottom: 1rem; }
+.result-judgment { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+.result-text { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.5rem; text-align: left; line-height: 1.8; color: #cbd5e1; font-size: 0.95rem; border-left: 3px solid var(--love); }
+.result-advice { margin-top: 1.5rem; text-align: left; }
+.result-advice h3 { color: var(--love-light); font-size: 0.95rem; margin-bottom: 0.75rem; }
+.advice-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.advice-list li { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 0.75rem 1rem; color: #cbd5e1; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+.advice-list li::before { content: "💕"; flex-shrink: 0; }
+.heart-meter { display: flex; justify-content: center; gap: 0.3rem; margin-bottom: 1rem; }
+.heart { font-size: 1.5rem; color: rgba(233,30,99,0.2); transition: color 0.3s; }
+.heart.active { color: var(--love); }
+.share-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.share-section p { color: #64748b; font-size: 0.85rem; margin-bottom: 0.75rem; }
+.share-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.share-btn { padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.85rem; text-decoration: none; border: 1px solid var(--border); color: #94a3b8; transition: all 0.2s; }
+.share-btn:hover { border-color: var(--love); color: var(--love-light); }
+.ko-fi-wall { background: linear-gradient(135deg, rgba(233,30,99,0.08), rgba(233,30,99,0.02)); border: 1px solid rgba(233,30,99,0.25); border-radius: 14px; padding: 1.5rem; margin-top: 1.5rem; text-align: center; }
+.ko-fi-wall h3 { color: var(--love-light); font-size: 1rem; margin-bottom: 0.5rem; }
+.ko-fi-wall p { color: #94a3b8; font-size: 0.88rem; margin-bottom: 1rem; }
+.ko-fi-btn { display: inline-block; background: linear-gradient(135deg, var(--love-light), var(--love)); color: #fff; padding: 0.7rem 1.5rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+footer { text-align: center; margin-top: 3rem; color: #475569; font-size: 0.8rem; }
+footer a { color: var(--love); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="container">
+  <header>
+    <div class="lang-bar">
+      <a href="../iching-zht/index.html" class="lang-btn">繁體中文</a>
+      <a href="../iching-en/index.html" class="lang-btn">English</a>
+      <a href="../iching-ja/index.html" class="lang-btn">日本語</a>
+      <a href="../iching-ko/index.html" class="lang-btn">한국어</a>
+    </div>
+    <div class="iching-symbol">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+    <h1>易經愛情占卜</h1>
+    <p class="subtitle">問情於古易，洞悉真心的每一次跳動 💕</p>
+  </header>
+
+  <div class="type-bar">
+    <div class="type-btn active" data-type="暗戀" onclick="selectType(this)">暗戀</div>
+    <div class="type-btn" data-type="分手/挽回" onclick="selectType(this)">分手/挽回</div>
+    <div class="type-btn" data-type="複合" onclick="selectType(this)">複合</div>
+    <div class="type-btn" data-type="婚姻" onclick="selectType(this)">婚姻</div>
+    <div class="type-btn" data-type="曖昧" onclick="selectType(this)">曖昧</div>
+    <div class="type-btn" data-type="桃花運" onclick="selectType(this)">桃花運</div>
+  </div>
+
+  <div class="support-bar">
+    <span>🙏 這是完全免費的工具。如果對你有幫助，請支持一下創作者！</span>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="support-btn">💛 支持</a>
+  </div>
+
+  <div class="how-to">
+    <h2>✨ 占卜流程</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><p>選擇你的感情類型（暗戀、暗戀複合、暗戀挽回、婚姻等）</p></div>
+      <div class="step"><div class="step-num">2</div><p>輸入你的感情問題，越詳細越好（例如：你喜歡的人是否也喜歡你？）</p></div>
+      <div class="step"><div class="step-num">3</div><p>點擊「開始占卜」，接收易經的愛情智慧和針對性的情感建議</p></div>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <h2>🔮 你的感情問題</h2>
+    <textarea id="questionInput" placeholder="輸入你的感情問題... 例如：我暗戀的人對我有沒有意思？"></textarea>
+    <div class="hexagram-select">
+      <div class="hex-option" data-q="我暗戀的人喜歡我嗎？"><span class="symbol">☰</span>乾（主動追求）</div>
+      <div class="hex-option" data-q="我們應該複合嗎？"><span class="symbol">☷</span>坤（被動等待）</div>
+      <div class="hex-option" data-q="這段感情會順利嗎？"><span class="symbol">䷊</span>泰（感情順遂）</div>
+      <div class="hex-option" data-q="我應該繼續暗戀嗎？"><span class="symbol">☵</span>坎（情感危機）</div>
+      <div class="hex-option" data-q="我的桃花運如何？"><span class="symbol">☴</span>巽（溫柔吸引力）</div>
+      <div class="hex-option" data-q="這個人值得信任嗎？"><span class="symbol">☲</span>離（真誠與試探）</div>
+      <div class="hex-option" data-q="我應該主動表白嗎？"><span class="symbol">☶</span>艮（靜止與審視）</div>
+      <div class="hex-option" data-q="這段關係該怎麼走？"><span class="symbol">䷫</span>隨（自然流動）</div>
+    </div>
+    <button class="primary-btn" onclick="consultIChing()">💕 開始占卜</button>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="ko-fi-wall">
+    <h3>💛 支持創作者</h3>
+    <p>如果你喜歡這個愛情占卜工具，歡迎在 Ko-fi 上支持我們，讓更多人能免費使用！</p>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="ko-fi-btn">💕 Ko-fi 支持</a>
+  </div>
+
+  <footer>
+    <p>☯ 製作：<a href="https://shaishalin.wordpress.com" target="_blank">Shaishalin</a> ｜ <a href="https://ko-fi.com/s/00367ecd74" target="_blank">支持</a></p>
+  </footer>
+</div>
+
+<script>
+var selectedType = '暗戀';
+var selectedHex = '';
+
+var loveHexagrams = {
+  "☰": {
+    name: "第一卦 — 乾（天）",
+    type: "主動追求・創造力",
+    judgment: "乾為天，純陽之卦。代表主動、創造、征服的力量。",
+    reading: "乾卦在感情中代表主動的陽光能量。如果你在暗戀，這是告訴你：勇往直前！天行健，君子以自強不息。在愛情中，乾卦鼓勵你主動表達，但要注意方式——強而有力，但不咄咄逼人。你的真誠會被看見。",
+    interpretation: "你問的是暗戀或主動追求。易經說：去吧，但用智慧而非蠻力。如果你已經在曖昧中，現在是升級關係的時機。對方可能被你的活力和決心所吸引。但記住——真正的征服是贏得心，不是贏得注意。",
+    advice: ["主動表達，但保持真誠", "你的勇氣會吸引對方", "時機已到，不要再等待", "自強不息，幸福自來"]
+  },
+  "☷": {
+    name: "第二卦 — 坤（地）",
+    type: "被動等待・包容・耐心",
+    judgment: "坤為地，純陰之卦。代表接受、滋養、永恆的耐心。",
+    reading: "坤卦在感情中代表女性的、被動的能量。如果你正在暗戀，坤卦說：等一等。讓他來找你。坤不是軟弱，而是最偉大的力量——如同大地承载万物，你的包容和耐心會吸引對方主動靠近。",
+    interpretation: "你問的是等待或被動策略。易經說：停下強迫的行為，讓感情自然流動。你越放鬆，對方越被吸引。坤卦建議你：做好自己，讓自己发光。不要追趕，要吸引。真正的緣分會自己來敲門。",
+    advice: ["停止追逐，讓緣分來找你", "用包容而非控制", "耐心是愛情的催化劑", "大地無言，萬物自歸"]
+  },
+  "䷊": {
+    name: "第十一卦 — 泰（天地交泰）",
+    type: "感情順遂・桃花極盛",
+    judgment: "天地交泰，陰陽和諧。萬物通暢，諸事大吉。",
+    reading: "泰卦是感情中最吉祥的卦象之一！天地交泰，代表陰陽和諧，萬事皆順。如果你正在暗戀或曖昧中，這是最美的時機——感情能量正在上升！不要太低調，這個時機適合表白、確定關係、或進一步發展。",
+    interpretation: "你的感情正處於上升期。易經說：把握這個時機！泰卦意味著你的努力正在見效，環境對你極為有利。無論是暗戀表白，還是曖昧升級，現在都是最佳時機。但記住——泰卦也警告我們不要得意忘形，保持謙遜和感恩。",
+    advice: ["把握時機，勇敢表白", "感情能量正在上升", "順勢而為，事半功倍", "珍惜這份和諧"]
+  },
+  "☵": {
+    name: "第二十九卦 — 坎（習坎）",
+    type: "情感危機・暗流・陷阱",
+    judgment: "坎為水，習坎重險。小心試探，勿輕信表面。",
+    reading: "坎卦在感情中代表危險和陷阱。如果你正在暗戀，坎卦說：睜大眼睛！有什麼不對勁的地方。可能存在你沒看到的暗流，或對方不像表面那樣簡單。愛情中的坎卦警告我們：不要被感覺冲昏頭腦，保持理性判斷。",
+    interpretation: "你問的是感情中的潛在危險。易經說：要小心！這段暗戀可能有隱藏的問題。不是說放棄，而是要更審慎地觀察。不要急於投入，先看清楚再說。坎卦也暗示：或許有更好的人在等著你。",
+    advice: ["睜大眼睛，觀察細節", "不要被表面的甜言蜜語欺騙", "危機中藏著轉機", "退一步看全局"]
+  },
+  "☴": {
+    name: "第五十七卦 — 巽（風）",
+    type: "溫柔吸引・暗戀成功・持久魅力",
+    judgment: "巽為風，無孔不入。溫柔渗透， Little by little.",
+    reading: "巽卦在感情中代表溫柔的吸引力。如果你在暗戀，巽卦說：不要急，慢慢來。像風一樣無聲無息地滲透他的生活——持續地出現在他身邊，用你的價值和溫暖打動他。這是最適合暗戀的卦象之一。",
+    interpretation: "你問的是如何攻略暗戀的人。易經說：風會穿過最小的縫隙。持續的善良和溫柔，終會打動對方。不要急於表白，先讓他習慣你的存在。巽卦告訴我們：有耐心的人，才能得到最深的愛情。",
+    advice: ["溫柔持續，不急於求成", "用你的價值吸引他", "像風一樣無聲無息", "暗戀成功的最佳策略"]
+  },
+  "☲": {
+    name: "第三十卦 — 離（火）",
+    type: "真心試探・誠實・外遇可能",
+    judgment: "離為火，光明洞見。真假立辨，情感沸騰。",
+    reading: "離卦在感情中代表光明和真實。如果你正在試探對方的心意，離卦說：真相即將揭曉。火會照亮一切隱藏的東西——你會看清楚這個人的真面目。離卦也可能暗示：這段感情充滿激情，但火也能焚毀一切。",
+    interpretation: "你問的是對方是否真心。易經說：火會燒盡一切虛假。如果這個人不是真心的，你很快就會發現。如果他是真心的，火卦預示著一段充滿熱情的關係。但要記得：火可以溫暖，也可以灼傷。",
+    advice: ["用真心換真心", "火會照亮真相", "激情中保持清醒", "真心的人，烈火可鑑"]
+  },
+  "☶": {
+    name: "第五十二卦 — 艮（山）",
+    type: "停止暗戀・冷靜審視・暫時止步",
+    judgment: "艮為山，靜止不動。知止而止，審時度勢。",
+    reading: "艮卦在感情中代表停止和冷靜。如果你一直在追趕一個人，艮卦說：停下來。你一直在追，可能說明這段緣分一開始就不太對。山不動，是因為它知道什麼是屬於自己的。不要在不屬於你的人身上浪費時間。",
+    interpretation: "你問的是是否應該繼續暗戀。易經說：也許是時候停止了。艮卦不是說放棄，而是說：停下腳步，重新審視。如果這段感情一直讓你痛苦，也許放手才是最好的選擇。山的力量在於知道何時不動。",
+    advice: ["停下腳步，重新審視", "不是你的，不必強求", "山的智慧在於知道何時止步", "休息是為了下一步"]
+  },
+  "䷫": {
+    name: "第十七卦 — 隨（澤雷隨）",
+    type: "自然發展・跟隨感覺・桃花來臨",
+    judgment: "隨為澤，順時而動。跟隨本心，緣分自至。",
+    reading: "隨卦在感情中代表自然流動和跟隨。如果你在暗戀，隨卦說：順其自然。不要太用力掙扎，也不要太過計算。感情就像流水，你越掙扎，它越遠離你。放輕鬆，跟隨自己的感覺走。",
+    interpretation: "你問的是感情該如何發展。易經說：跟隨那個讓你感到自然的人。如果這段暗戀感覺對了，就順其自然。隨卦預示著改變即將來臨——可能是你暗戀的人開始注意你，或是新的桃花即將出現。保持開放的心態。",
+    advice: ["順其自然，不要太用力", "跟隨讓你感到舒適的人", "改變即將來臨", "緣分到了，一切自然會來"]
+  }
+};
+
+function selectType(el) {
+  document.querySelectorAll('.type-btn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  selectedType = el.getAttribute('data-type');
+}
+
+var hexOpts = document.querySelectorAll('.hex-option');
+for (var i = 0; i < hexOpts.length; i++) {
+  hexOpts[i].addEventListener('click', (function(opt) {
+    return function() {
+      document.querySelectorAll('.hex-option').forEach(function(o){ o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      selectedHex = opt.getAttribute('data-q');
+      document.getElementById('questionInput').value = opt.getAttribute('data-q');
+    };
+  })(hexOpts[i]));
+}
+
+function getRandomHexagram() {
+  var keys = Object.keys(loveHexagrams);
+  return keys[Math.floor(Math.random() * keys.length)];
+}
+
+function consultIChing() {
+  var question = document.getElementById('questionInput').value.trim();
+  if (!question) { alert('請先輸入你的感情問題！'); return; }
+  var hexKey = selectedHex || getRandomHexagram();
+  var hex = loveHexagrams[hexKey] || loveHexagrams["☰"];
+  var resultDiv = document.getElementById('result');
+  var hearts = Math.floor(Math.random() * 3) + 3;
+  var heartHtml = '<div class="heart-meter">';
+  for (var h = 1; h <= 5; h++) {
+    heartHtml += '<span class="heart' + (h <= hearts ? ' active' : '') + '">❤️</span>';
+  }
+  heartHtml += '</div>';
+  var shareUrl = encodeURIComponent(window.location.href);
+  var shareTitle = encodeURIComponent('易經愛情占卜：' + hex.name + ' — ' + selectedType);
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML =
+    '<div class="result-card">' +
+      '<div class="result-symbol">' + hexKey + '</div>' +
+      '<div class="result-name">' + hex.name + '</div>' +
+      heartHtml +
+      '<div class="result-type">📌 感情類型：' + selectedType + '</div>' +
+      '<div class="result-judgment">' + hex.judgment + '</div>' +
+      '<div class="result-text">' + hex.reading + '</div>' +
+      '<div class="result-text" style="margin-top:1rem; border-left-color:#e91e63;">' + hex.interpretation + '</div>' +
+      '<div class="result-advice">' +
+        '<h3>💕 愛情建議</h3>' +
+        '<ul class="advice-list">' +
+          hex.advice.map(function(a){ return '<li>' + a + '</li>'; }).join('') +
+        '</ul>' +
+      '</div>' +
+      '<div class="share-section">' +
+        '<p>把占卜結果分享給朋友：</p>' +
+        '<div class="share-btns">' +
+          '<a href="https://twitter.com/intent/tweet?text=' + shareTitle + '&url=' + shareUrl + '" target="_blank" class="share-btn">𝕏 Twitter</a>' +
+          '<a href="https://www.facebook.com/sharer/sharer.php?u=' + shareUrl + '" target="_blank" class="share-btn">Facebook</a>' +
+          '<a href="https://line.me/R/msg/text/?' + shareTitle + ' ' + shareUrl + '" target="_blank" class="share-btn">LINE</a>' +
+          '<a href="mailto:?subject=' + shareTitle + '&body=' + shareUrl + '" class="share-btn">Email</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  resultDiv.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易經投資占卜 | 測字問勢，趨吉避凶</title>
+<meta name="description" content="專為投資決策設計的易經占卜工具。股票、房地產、加密貨幣、基金、創業投資。含風險評估維度，100%免費。">
+<meta property="og:title" content="易經投資占卜 | 測字問勢，趨吉避凶">
+<meta property="og:description" content="專為投資決策設計的易經占卜工具，股票、房地產、加密貨幣、基金，附風險評估。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #4caf50;
+  --green-light: #81c784;
+  --gold: #d4af37;
+  --dark: #0a0a0f;
+  --card-bg: rgba(76,175,80,0.04);
+  --border: rgba(76,175,80,0.2);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: "Noto Sans TC", sans-serif; min-height: 100vh; overflow-x: hidden; }
+.glow-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(76,175,80,0.06) 0%, transparent 65%); pointer-events: none; }
+.container { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+header { text-align: center; margin-bottom: 2.5rem; }
+.iching-symbol { font-size: 4rem; color: var(--green-light); text-shadow: 0 0 40px rgba(76,175,80,0.4); line-height: 1; margin-bottom: 0.5rem; }
+h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--green-light), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.subtitle { color: #94a3b8; font-size: 1rem; }
+.lang-bar { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.lang-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.8rem; text-decoration: none; transition: all 0.2s; }
+.lang-btn:hover, .lang-btn.active { background: rgba(76,175,80,0.15); border-color: var(--green); color: var(--green-light); }
+.asset-bar { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.asset-btn { background: rgba(76,175,80,0.08); border: 1px solid rgba(76,175,80,0.2); color: #81c784; padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.88rem; text-decoration: none; transition: all 0.2s; cursor: pointer; }
+.asset-btn:hover, .asset-btn.active { background: rgba(76,175,80,0.2); border-color: var(--green); color: #fff; }
+.support-bar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.support-bar span { color: #94a3b8; font-size: 0.9rem; flex: 1; }
+.support-btn { background: linear-gradient(135deg, var(--green-light), var(--green)); color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: transform 0.2s; }
+.support-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(76,175,80,0.4); }
+.how-to { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.how-to h2 { color: var(--green-light); font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 10px; }
+.step-num { background: rgba(76,175,80,0.15); color: var(--green-light); font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.step p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; }
+.risk-meter { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.risk-meter h2 { color: var(--green-light); font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.risk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; }
+.risk-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(76,175,80,0.2); border-radius: 12px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s; }
+.risk-card:hover, .risk-card.selected { border-color: var(--green); background: rgba(76,175,80,0.12); }
+.risk-card .level { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+.risk-card .label { color: #94a3b8; font-size: 0.8rem; }
+.risk-card:hover .label, .risk-card.selected .label { color: var(--green-light); }
+.risk-card.selected .level { color: var(--green-light); }
+.input-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.input-section h2 { color: var(--green-light); font-size: 1.1rem; margin-bottom: 1rem; }
+textarea { width: 100%; height: 120px; background: rgba(0,0,0,0.3); border: 1px solid rgba(76,175,80,0.3); border-radius: 10px; color: #e2e8f0; padding: 1rem; font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.2s; font-family: inherit; }
+textarea:focus { border-color: var(--green); }
+textarea::placeholder { color: #64748b; }
+.hexagram-select { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; }
+.hex-option { background: rgba(0,0,0,0.3); border: 1px solid rgba(76,175,80,0.2); border-radius: 10px; padding: 0.75rem; cursor: pointer; text-align: center; transition: all 0.2s; font-size: 0.85rem; color: #94a3b8; }
+.hex-option:hover, .hex-option.selected { border-color: var(--green); background: rgba(76,175,80,0.1); color: var(--green-light); }
+.hex-option .symbol { font-size: 1.4rem; display: block; margin-bottom: 0.25rem; }
+.primary-btn { width: 100%; background: linear-gradient(135deg, var(--green-light), var(--green)); color: #fff; border: none; padding: 1rem; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 1rem; transition: transform 0.2s, box-shadow 0.2s; }
+.primary-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(76,175,80,0.4); }
+#result { display: none; margin-top: 1.5rem; }
+.result-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; text-align: center; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+.result-symbol { font-size: 4rem; margin-bottom: 0.5rem; }
+.result-name { font-size: 1.6rem; color: var(--green-light); margin-bottom: 0.5rem; }
+.result-asset { color: var(--green); font-size: 0.85rem; margin-bottom: 1rem; }
+.result-risk-badge { display: inline-block; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; }
+.risk-low { background: rgba(76,175,80,0.2); color: #81c784; }
+.risk-medium { background: rgba(255,193,7,0.2); color: #ffc107; }
+.risk-high { background: rgba(244,67,54,0.2); color: #f44336; }
+.result-text { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.5rem; text-align: left; line-height: 1.8; color: #cbd5e1; font-size: 0.95rem; border-left: 3px solid var(--green); }
+.result-advice { margin-top: 1.5rem; text-align: left; }
+.result-advice h3 { color: var(--green-light); font-size: 0.95rem; margin-bottom: 0.75rem; }
+.advice-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.advice-list li { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 0.75rem 1rem; color: #cbd5e1; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+.advice-list li::before { content: "📊"; flex-shrink: 0; }
+.share-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.share-section p { color: #64748b; font-size: 0.85rem; margin-bottom: 0.75rem; }
+.share-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.share-btn { padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.85rem; text-decoration: none; border: 1px solid var(--border); color: #94a3b8; transition: all 0.2s; }
+.share-btn:hover { border-color: var(--green); color: var(--green-light); }
+.ko-fi-wall { background: linear-gradient(135deg, rgba(76,175,80,0.08), rgba(76,175,80,0.02)); border: 1px solid rgba(76,175,80,0.25); border-radius: 14px; padding: 1.5rem; margin-top: 1.5rem; text-align: center; }
+.ko-fi-wall h3 { color: var(--green-light); font-size: 1rem; margin-bottom: 0.5rem; }
+.ko-fi-wall p { color: #94a3b8; font-size: 0.88rem; margin-bottom: 1rem; }
+.ko-fi-btn { display: inline-block; background: linear-gradient(135deg, var(--green-light), var(--green)); color: #fff; padding: 0.7rem 1.5rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+footer { text-align: center; margin-top: 3rem; color: #475569; font-size: 0.8rem; }
+footer a { color: var(--green); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="container">
+  <header>
+    <div class="lang-bar">
+      <a href="../iching-zht/index.html" class="lang-btn">繁體中文</a>
+      <a href="../iching-en/index.html" class="lang-btn">English</a>
+      <a href="../iching-ja/index.html" class="lang-btn">日本語</a>
+    </div>
+    <div class="iching-symbol">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+    <h1>易經投資占卜</h1>
+    <p class="subtitle">問勢於古易，趨吉避凶 — 股票 / 房地產 / 加密貨幣 / 基金 / 創業投資</p>
+  </header>
+
+  <div class="asset-bar">
+    <div class="asset-btn active" data-asset="股票" onclick="selectAsset(this)">📈 股票</div>
+    <div class="asset-btn" data-asset="房地產" onclick="selectAsset(this)">🏠 房地產</div>
+    <div class="asset-btn" data-asset="加密貨幣" onclick="selectAsset(this)">₿ 加密貨幣</div>
+    <div class="asset-btn" data-asset="基金" onclick="selectAsset(this)">💰 基金</div>
+    <div class="asset-btn" data-asset="創業投資" onclick="selectAsset(this)">🚀 創業投資</div>
+  </div>
+
+  <div class="support-bar">
+    <span>🙏 這是完全免費的投資決策參考工具。請理性投資，風險自負！</span>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="support-btn">💚 支持</a>
+  </div>
+
+  <div class="how-to">
+    <h2>✨ 占卜流程</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><p>選擇你的投資類型（股票、房地產、加密貨幣、基金、創業投資）</p></div>
+      <div class="step"><div class="step-num">2</div><p>輸入你的投資問題，越詳細越好（例如：現在適合進場比特幣嗎？）</p></div>
+      <div class="step"><div class="step-num">3</div><p>點擊「開始占卜」，接收易經的投資智慧和風險評估維度</p></div>
+    </div>
+  </div>
+
+  <div class="risk-meter">
+    <h2>⚖️ 你的風險承受度</h2>
+    <div class="risk-grid">
+      <div class="risk-card" data-risk="保守型" onclick="selectRisk(this)">
+        <div class="level">🟢 保守型</div>
+        <div class="label">不虧本金優先</div>
+      </div>
+      <div class="risk-card" data-risk="穩健型" onclick="selectRisk(this)">
+        <div class="level">🟡 穩健型</div>
+        <div class="label">小幅波動可接受</div>
+      </div>
+      <div class="risk-card selected" data-risk="積極型" onclick="selectRisk(this)">
+        <div class="level">🟠 積極型</div>
+        <div class="label">願意承受較高波動</div>
+      </div>
+      <div class="risk-card" data-risk="進取型" onclick="selectRisk(this)">
+        <div class="level">🔴 進取型</div>
+        <div class="label">高風險高回報</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <h2>📊 你的投資問題</h2>
+    <textarea id="questionInput" placeholder="輸入你的投資問題... 例如：現在適合進場特斯拉股票嗎？"></textarea>
+    <div class="hexagram-select">
+      <div class="hex-option" data-q="現在是進場的好時機嗎？"><span class="symbol">☰</span>乾（果斷行動）</div>
+      <div class="hex-option" data-q="應該持有還是觀望？"><span class="symbol">☷</span>坤（觀望等待）</div>
+      <div class="hex-option" data-q="這筆投資會順利嗎？"><span class="symbol">䷊</span>泰（大吉之兆）</div>
+      <div class="hex-option" data-q="市場風險有多高？"><span class="symbol">☵</span>坎（高度風險）</div>
+      <div class="hex-option" data-q="適合長期投資嗎？"><span class="symbol">☴</span>巽（持續積累）</div>
+      <div class="hex-option" data-q="這筆投資是否靠譜？"><span class="symbol">☲</span>離（明辨真偽）</div>
+      <div class="hex-option" data-q="現在應該止損嗎？"><span class="symbol">☶</span>艮（靜止止損）</div>
+      <div class="hex-option" data-q="跟隨趨勢是否明智？"><span class="symbol">䷫</span>隨（順勢而為）</div>
+    </div>
+    <button class="primary-btn" onclick="consultIChing()">📊 開始占卜</button>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="ko-fi-wall">
+    <h3>💚 支持創作者</h3>
+    <p>如果你喜歡這個投資占卜工具，歡迎在 Ko-fi 上支持我們，讓更多人能免費使用！</p>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="ko-fi-btn">💚 Ko-fi 支持</a>
+  </div>
+
+  <footer>
+    <p>☯ 製作：<a href="https://shaishalin.wordpress.com" target="_blank">Shaishalin</a> ｜ <a href="https://ko-fi.com/s/00367ecd74" target="_blank">支持</a></p>
+    <p style="margin-top:0.5rem;color:#e74c3c;font-size:0.75rem;">⚠️ 投資有風險，本工具僅供參考，不構成投資建議</p>
+  </footer>
+</div>
+
+<script>
+var selectedAsset = '股票';
+var selectedRisk = '積極型';
+var selectedHex = '';
+
+var investHexagrams = {
+  "☰": {
+    name: "第一卦 — 乾（天）",
+    asset: "果斷行動・順勢進場",
+    judgment: "乾為天，純陽之卦。果斷行動，天道酬勤。",
+    reading: "乾卦在投資中代表果斷的行動力。如果你問的是進場時機，乾卦說：現在就是行動的時候！天的力量在於自強不息，如果你有足夠的研究和信心，就不要猶豫。但記住——乾卦也警告我們：主動但不要魯莽。先有足夠的功課，才有果斷的行動。",
+    interpretation: "你問的是是否應該行動。易經說：行動吧，但要穩健。乾卦對股票和創業投資尤其有利，預示市場將對你的決策有利。如果你是積極型投資者，這是一個綠燈信號。但如果是保守型，可能需要更多等待。",
+    advice: ["時機已到，果斷行動", "先做功課再進場", "順勢而為，不要逆勢", "天行健，君子自強"]
+  },
+  "☷": {
+    name: "第二卦 — 坤（地）",
+    asset: "觀望等待・保守持有",
+    judgment: "坤為地，純陰之卦。靜待時機，保守操作。",
+    reading: "坤卦在投資中代表觀望和等待。如果你的策略偏向保守，坤卦說：等待是正確的。現在不是冒險的時機。地的力量在於承載和穩定。在投資中，有時候最大的智慧就是什麼都不做。",
+    interpretation: "你問的是是否應該等待。易經說：再等等。坤卦對保守型投資者非常有利，預示持有現金或國債是更好的選擇。對於房地產，坤卦暗示現在不是最好的進場時機。對於股票，等待市場回調後再進場更為穩妥。",
+    advice: ["靜觀其變，等待更好的時機", "保守操作，不宜冒險", "持有現金或穩健資產", "坤厚載物，穩健為先"]
+  },
+  "䷊": {
+    name: "第十一卦 — 泰（天地交泰）",
+    asset: "大吉之兆・積極擴張",
+    judgment: "天地交泰，陰陽和諧。萬事皆順，大吉之兆。",
+    reading: "泰卦是投資中最吉祥的卦象之一！如果你問的是整體投資環境，泰卦說：現在是大吉的時機！無論是股票、房地產還是創業投資，天地和諧的能量都在支持你。這是擴張和增加配置的時機。",
+    interpretation: "你問的是投資的整體時機。易經說：擴張！泰卦預示所有資產類別都有利。這是增加風險資產（如股票和加密貨幣）的好時機。但泰卦也提醒我們：繁榮是脆弱的，不要把所有雞蛋放在一個籃子裡。",
+    advice: ["積極擴張，順勢而為", "增加風險資產配置", "這是難得的順風期", "珍惜繁榮，保持謙遜"]
+  },
+  "☵": {
+    name: "第二十九卦 — 坎（習坎）",
+    asset: "高度風險・謹慎止損",
+    judgment: "坎為水，重險之卦。步步為營，慎防陷阱。",
+    reading: "坎卦在投資中代表危險和陷阱。如果你已經在市場中，坎卦警告你：小心！市場可能存在你沒有預見的風險。加密貨幣和創業投資尤其需要警惕。坎卦建議：設置止損，不要过度杠杆。",
+    interpretation: "你問的是市場的風險程度。易經說：退後一步！坎卦是一個強烈的警告信號。如果你是保守型或穩健型投資者，現在絕對不是增加風險資產的時機。如果已經持有，考慮設置嚴格的止損位。",
+    advice: ["高度警惕，設置止損", "遠離高杠桿投資", "危機中藏著機會，等待才是上策", "習坎重險，步步為營"]
+  },
+  "☴": {
+    name: "第五十七卦 — 巽（風）",
+    asset: "長期積累・定投策略",
+    judgment: "巽為風，無孔不入。持續積累，複利為王。",
+    reading: "巽卦在投資中代表持續和積累。如果你問的是長期投資策略，巽卦說：Dollar-cost averaging（定期定額）是你的答案！不要試圖捕捉市場時機，而是持續地、小額地投入。風會穿過最小的縫隙——複利就是這樣運作的。",
+    interpretation: "你問的是長期投資策略。易經說：持續投入，不要停止。對於基金和退休帳戶，巽卦是最吉利的卦象之一。它預示你的長期堅持會有豐厚的回報。對於房地產，持續繳納房貸也是巽卦的能量。",
+    advice: ["堅持定期定額投資", "不要停止，保持紀律", "時間是你的朋友", "複利如風，無聲無息累積巨大財富"]
+  },
+  "☲": {
+    name: "第三十卦 — 離（火）",
+    asset: "明辨真偽・研究驅動",
+    judgment: "離為火，光明洞見。去偽存真，明智決策。",
+    reading: "離卦在投資中代表光明和真相。如果你問的是某個特定投資機會是否靠譜，離卦說：火會照亮一切！你需要更深入地研究。離卦也可能暗示：你可能會聽到一些誘人的消息——但火也能焚毀，要仔細辨別項目的真實價值。",
+    interpretation: "你問的是某個投資項目的可靠性。易經說：睜大眼睛！離卦建議你：做好功課是前提。無論是股票、加密貨幣還是創業投資，都要深入了解項目本身，而非跟風。離卦對盡職調查非常有幫助。",
+    advice: ["深入研究，不要跟風", "火眼金睛辨別真偽", "長期趨勢比短期消息更重要", "離明繼照，理性決策"]
+  },
+  "☶": {
+    name: "第五十二卦 — 艮（山）",
+    asset: "止損離場・重新審視",
+    judgment: "艮為山，靜止不動。知止即止，重新出發。",
+    reading: "艮卦在投資中代表停止和審視。如果你問的是是否應該止損離場，艮卦說：是的，有時候最大的智慧是止損！山不動，是因為它知道什麼是屬於自己的。如果你持有的資產一直讓你虧損，也許止損是更好的選擇。",
+    interpretation: "你問的是是否應該離場。易經說：停下來，重新審視。艮卦預示你需要暫時離開市場，恢復清晰的判斷力。這不是失敗，而是策略性撤退。止損後的資金可以等待更好的時機。",
+    advice: ["勇於止損，不要執迷", "暫時離場，恢復判斷力", "山的力量在於知道何時不動", "知止即止，東山再起"]
+  },
+  "䷫": {
+    name: "第十七卦 — 隨（澤雷隨）",
+    asset: "順勢而為・跟隨趨勢",
+    judgment: "隨為澤，順時而動。跟隨趨勢，乘勢而為。",
+    reading: "隨卦在投資中代表順勢而為。如果你問的是是否應該跟隨趨勢，隨卦說：是的！順勢而為是投資的智慧之一。河流不會逆流而上，聰明的投資者也不會。但隨卦也警告我們：要識別真正的趨勢，而非暫時的噪音。",
+    interpretation: "你問的是跟隨趨勢是否明智。易經說：趨勢是你的朋友。對於股票和加密貨幣，隨卦預示當前趨勢可能會持續一段時間。但也要記住：當每個人都在買的時候，可能已經接近頂部了。學會識別趨勢反轉的信號。",
+    advice: ["順勢而為，不要逆勢操作", "識別真正的趨勢", "當人人都在買時，警惕頂部", "隨時而動，知機而退"]
+  }
+};
+
+function selectAsset(el) {
+  document.querySelectorAll('.asset-btn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  selectedAsset = el.getAttribute('data-asset');
+}
+
+var riskCards = document.querySelectorAll('.risk-card');
+for (var i = 0; i < riskCards.length; i++) {
+  riskCards[i].addEventListener('click', (function(card) {
+    return function() {
+      document.querySelectorAll('.risk-card').forEach(function(c){ c.classList.remove('selected'); });
+      card.classList.add('selected');
+      selectedRisk = card.getAttribute('data-risk');
+    };
+  })(riskCards[i]));
+}
+
+var hexOpts = document.querySelectorAll('.hex-option');
+for (var i = 0; i < hexOpts.length; i++) {
+  hexOpts[i].addEventListener('click', (function(opt) {
+    return function() {
+      document.querySelectorAll('.hex-option').forEach(function(o){ o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      selectedHex = opt.getAttribute('data-q');
+      document.getElementById('questionInput').value = opt.getAttribute('data-q');
+    };
+  })(hexOpts[i]));
+}
+
+function getRandomHexagram() {
+  var keys = Object.keys(investHexagrams);
+  return keys[Math.floor(Math.random() * keys.length)];
+}
+
+function getRiskLevel(hex) {
+  var riskMap = {
+    "☰": "medium",
+    "☷": "low",
+    "䷊": "medium",
+    "☵": "high",
+    "☴": "low",
+    "☲": "medium",
+    "☶": "high",
+    "䷫": "medium"
+  };
+  return riskMap[hex] || "medium";
+}
+
+function getRiskText(level) {
+  if (level === "low") return "🟢 低風險 — 適合保守型投資者";
+  if (level === "high") return "🔴 高風險 — 適合進取型投資者";
+  return "🟡 中等風險 — 適合穩健型投資者";
+}
+
+function consultIChing() {
+  var question = document.getElementById('questionInput').value.trim();
+  if (!question) { alert('請先輸入你的投資問題！'); return; }
+  var hexKey = selectedHex || getRandomHexagram();
+  var hex = investHexagrams[hexKey] || investHexagrams["☰"];
+  var resultDiv = document.getElementById('result');
+  var riskLevel = getRiskLevel(hexKey);
+  var riskText = getRiskText(riskLevel);
+  var riskBadgeClass = riskLevel === "low" ? "risk-low" : (riskLevel === "high" ? "risk-high" : "risk-medium");
+  var shareUrl = encodeURIComponent(window.location.href);
+  var shareTitle = encodeURIComponent('易經投資占卜：' + hex.name + ' — ' + selectedAsset);
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML =
+    '<div class="result-card">' +
+      '<div class="result-symbol">' + hexKey + '</div>' +
+      '<div class="result-name">' + hex.name + '</div>' +
+      '<div class="result-asset">📌 投資類型：' + selectedAsset + '</div>' +
+      '<div class="result-risk-badge ' + riskBadgeClass + '">' + riskText + '</div>' +
+      '<div class="result-text" style="border-left-color:#4caf50;">' + hex.reading + '</div>' +
+      '<div class="result-text" style="margin-top:1rem; border-left-color:#4caf50;">' + hex.interpretation + '</div>' +
+      '<div class="result-advice">' +
+        '<h3>📊 投資建議</h3>' +
+        '<ul class="advice-list">' +
+          hex.advice.map(function(a){ return '<li>' + a + '</li>'; }).join('') +
+        '</ul>' +
+      '</div>' +
+      '<div class="share-section">' +
+        '<p>把占卜結果分享給朋友：</p>' +
+        '<div class="share-btns">' +
+          '<a href="https://twitter.com/intent/tweet?text=' + shareTitle + '&url=' + shareUrl + '" target="_blank" class="share-btn">𝕏 Twitter</a>' +
+          '<a href="https://www.facebook.com/sharer/sharer.php?u=' + shareUrl + '" target="_blank" class="share-btn">Facebook</a>' +
+          '<a href="https://line.me/R/msg/text/?' + shareTitle + ' ' + shareUrl + '" target="_blank" class="share-btn">LINE</a>' +
+          '<a href="mailto:?subject=' + shareTitle + '&body=' + shareUrl + '" class="share-btn">Email</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  resultDiv.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

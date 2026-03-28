@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抽獎轉盤｜行銷神器</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f0f1a;
+    color: #e2e8f0;
+    font-family: "Noto Sans TC", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  .bg { position: fixed; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(239,68,68,0.06) 0%, transparent 55%); pointer-events: none; }
+  .wrap { position: relative; z-index: 1; width: 100%; max-width: 520px; text-align: center; }
+
+  .tag { font-size: 0.65rem; letter-spacing: 0.5em; color: #ef4444; text-transform: uppercase; margin-bottom: 0.5rem; }
+  h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .subtitle { font-size: 0.8rem; color: #64748b; margin-bottom: 1.5rem; }
+
+  /* Wheel */
+  .wheel-wrap { position: relative; margin: 0 auto 2rem; width: 320px; height: 320px; }
+  canvas { border-radius: 50%; box-shadow: 0 0 40px rgba(239,68,68,0.2), 0 0 0 8px #1a1a2e; }
+  .wheel-pointer {
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 24px solid #ef4444;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+  }
+  .wheel-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px; height: 56px;
+    background: #ef4444;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 20px rgba(239,68,68,0.4);
+    cursor: pointer;
+  }
+  .wheel-center:active { transform: translate(-50%, -50%) scale(0.95); }
+
+  /* Result */
+  .result-display {
+    display: none;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #1a0010, #0f0f1a);
+    border: 1px solid #ef444433;
+    border-radius: 14px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease;
+  }
+  .result-display.show { display: block; }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+  .result-eyebrow { font-size: 0.65rem; letter-spacing: 0.4em; color: #ef4444; margin-bottom: 0.5rem; }
+  .result-winner { font-size: 1.8rem; font-weight: 800; color: #f87171; margin-bottom: 0.5rem; }
+  .result-msg { font-size: 0.85rem; color: #6b7280; }
+  .confetti { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  /* CTA */
+  .cta {
+    background: #13132a;
+    border: 1px solid #1e1e3a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .cta-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .cta-desc { font-size: 0.78rem; color: #64748b; margin-bottom: 1rem; line-height: 1.6; }
+  .cta-btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background: #ef4444;
+    color: white;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .cta-btn:hover { background: #dc2626; transform: translateY(-2px); }
+
+  /* Editor */
+  .editor-toggle {
+    font-size: 0.75rem;
+    color: #4b5563;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.1em;
+    padding: 0.5rem;
+    transition: color 0.3s;
+  }
+  .editor-toggle:hover { color: #ef4444; }
+  .editor-section { display: none; background: #0f0f22; border: 1px solid #1e1e3a; border-radius: 12px; padding: 1.2rem; margin-bottom: 1.2rem; }
+  .editor-section.show { display: block; }
+  .editor-title { font-size: 0.75rem; letter-spacing: 0.2em; color: #ef4444; margin-bottom: 0.8rem; }
+  textarea {
+    width: 100%;
+    min-height: 120px;
+    background: #0a0a18;
+    border: 1px solid #1e1e3a;
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-family: inherit;
+    font-size: 0.8rem;
+    padding: 0.8rem;
+    resize: vertical;
+    outline: none;
+    margin-bottom: 0.6rem;
+    box-sizing: border-box;
+  }
+  textarea:focus { border-color: #ef4444; }
+  .apply-btn {
+    padding: 0.5rem 1.2rem;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+  }
+  .apply-btn:hover { background: #dc2626; }
+
+  /* Ko-fi */
+  .kofi-section { text-align: center; padding: 1rem 0; }
+  .kofi-label { font-size: 0.65rem; letter-spacing: 0.4em; color: #1a1a2e; margin-bottom: 0.5rem; }
+  .kofi-btn { display: inline-block; padding: 0.5rem 1.2rem; font-size: 0.75rem; letter-spacing: 0.2em; color: #ef4444; border: 1px solid #2a1a1a; text-decoration: none; border-radius: 4px; transition: all 0.3s; }
+  .kofi-btn:hover { background: rgba(239,68,68,0.08); }
+
+  .spin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(239,68,68,0.3);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+  }
+  .spin-btn:hover { background: #dc2626; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(239,68,68,0.4); }
+  .spin-btn:active { transform: translateY(0); }
+  .spin-btn:disabled { background: #374151; cursor: not-allowed; transform: none; box-shadow: none; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<div class="wrap">
+  <p class="tag">行銷工具</p>
+  <h1>抽獎轉盤</h1>
+  <p class="subtitle">行銷活動必備，獎品轉出來，氣氛嗨起來</p>
+
+  <div class="wheel-wrap" id="wheelWrap">
+    <canvas id="wheel" width="320" height="320"></canvas>
+    <div class="wheel-pointer"></div>
+    <div class="wheel-center" onclick="spin()">🎯</div>
+  </div>
+
+  <button class="spin-btn" id="spinBtn" onclick="spin()">
+    開 始 轉 動
+  </button>
+
+  <div class="result-display" id="resultDisplay">
+    <div class="confetti">🎉</div>
+    <p class="result-eyebrow">恭喜中獎</p>
+    <p class="result-winner" id="resultWinner">--</p>
+    <p class="result-msg" id="resultMsg">運氣極佳！</p>
+  </div>
+
+  <button class="editor-toggle" onclick="toggleEditor()">⚙️ 自訂獎品</button>
+  <div class="editor-section" id="editorSection">
+    <p class="editor-title">獎品設定（每行一個）</p>
+    <textarea id="prizeEditor">優惠券 9 折
+優惠券 8 折
+免費試用一次
+再抽一次
+精美禮品
+感謝參與
+全店 95 折
+神秘小禮物</textarea>
+    <button class="apply-btn" onclick="applyPrizes()">套 用</button>
+  </div>
+
+  <div class="cta">
+    <p class="cta-title">想要自己的獎品池？</p>
+    <p class="cta-desc">把這個轉盤改成你自己的品牌版本。<br>支援自訂獎品、logo、顏色。</p>
+    <a class="cta-btn" href="https://ko-fi.com/shaishalin" target="_blank">客製化版本</a>
+  </div>
+
+  <div class="kofi-section">
+    <p class="kofi-label">若有所得，隨喜支持</p>
+    <a class="kofi-btn" href="https://ko-fi.com/shaishalin" target="_blank">資 持</a>
+  </div>
+</div>
+
+<script>
+var prizes = ['優惠券 9 折','優惠券 8 折','免費試用一次','再抽一次','精美禮品','感謝參與','全店 95 折','神秘小禮物'];
+var spinning = false;
+var currentRotation = 0;
+
+function drawWheel() {
+  var canvas = document.getElementById('wheel');
+  var ctx = canvas.getContext('2d');
+  var cx = 160, cy = 160;
+  var outerR = 150, innerR = 30;
+  var colors = ['#ef4444','#f97316','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899','#64748b'];
+  ctx.clearRect(0, 0, 320, 320);
+  var sliceAngle = (2 * Math.PI) / prizes.length;
+
+  for (var i = 0; i < prizes.length; i++) {
+    var startAngle = i * sliceAngle - Math.PI/2;
+    var endAngle = (i+1) * sliceAngle - Math.PI/2;
+    var midAngle = (startAngle + endAngle) / 2;
+
+    ctx.beginPath();
+    ctx.moveTo(cx + innerR * Math.cos(startAngle), cy + innerR * Math.sin(startAngle));
+    ctx.arc(cx, cy, outerR, startAngle, endAngle);
+    ctx.lineTo(cx + innerR * Math.cos(endAngle), cy + innerR * Math.sin(endAngle));
+    ctx.arc(cx, cy, innerR, endAngle, startAngle, true);
+    ctx.closePath();
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fill();
+
+    // Text
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(midAngle);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 11px sans-serif';
+    var label = prizes[i].length > 7 ? prizes[i].substring(0, 6) + '…' : prizes[i];
+    ctx.fillText(label, outerR - 12, 4);
+    ctx.restore();
+
+    // Divider
+    ctx.beginPath();
+    ctx.moveTo(cx + innerR * Math.cos(startAngle), cy + innerR * Math.sin(startAngle));
+    ctx.lineTo(cx + outerR * Math.cos(startAngle), cy + outerR * Math.sin(startAngle));
+    ctx.strokeStyle = '#ffffff33';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Center circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, innerR, 0, 2 * Math.PI);
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fill();
+  ctx.strokeStyle = '#2a2a4a';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function spin() {
+  if (spinning) return;
+  spinning = true;
+  document.getElementById('spinBtn').disabled = true;
+  document.getElementById('resultDisplay').classList.remove('show');
+
+  var randomAngle = Math.random() * 360;
+  var extraSpins = 5 * 360;
+  var totalRotation = currentRotation + extraSpins + randomAngle;
+
+  var start = null;
+  var duration = 5000;
+  function animate(timestamp) {
+    if (!start) start = timestamp;
+    var elapsed = timestamp - start;
+    var progress = Math.min(elapsed / duration, 1);
+    // Easing: cubic ease out
+    var ease = 1 - Math.pow(1 - progress, 3);
+    var current = currentRotation + (totalRotation - currentRotation) * ease;
+
+    var canvas = document.getElementById('wheel');
+    canvas.style.transform = 'rotate(' + current + 'deg)';
+    canvas.style.transition = 'none';
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      currentRotation = (totalRotation % 360);
+      // Determine winner (pointer is at top = 0 deg = -90 deg in canvas coords)
+      var normalizedAngle = (360 - currentRotation % 360) % 360;
+      var sliceAngle = 360 / prizes.length;
+      var winnerIdx = Math.floor(normalizedAngle / sliceAngle) % prizes.length;
+      showResult(prizes[winnerIdx]);
+      spinning = false;
+      document.getElementById('spinBtn').disabled = false;
+    }
+  }
+  // Use CSS animation instead
+  var canvas = document.getElementById('wheel');
+  canvas.style.transition = 'transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+  canvas.style.transform = 'rotate(' + totalRotation + 'deg)';
+  currentRotation = totalRotation % 360;
+
+  setTimeout(function() {
+    var normalizedAngle = (360 - currentRotation % 360) % 360;
+    var sliceAngle = 360 / prizes.length;
+    var winnerIdx = Math.floor(normalizedAngle / sliceAngle) % prizes.length;
+    showResult(prizes[winnerIdx]);
+    spinning = false;
+    document.getElementById('spinBtn').disabled = false;
+  }, 5000);
+}
+
+function showResult(winner) {
+  document.getElementById('resultWinner').textContent = winner;
+  document.getElementById('resultDisplay').classList.add('show');
+}
+
+function toggleEditor() {
+  document.getElementById('editorSection').classList.toggle('show');
+}
+
+function applyPrizes() {
+  var text = document.getElementById('prizeEditor').value.trim();
+  var lines = text.split('\n').filter(function(l){ return l.trim().length > 0; });
+  if (lines.length < 2) { alert('至少需要 2 個獎品'); return; }
+  prizes = lines.slice(0, 12);
+  drawWheel();
+  document.getElementById('resultDisplay').classList.remove('show');
+}
+
+window.addEventListener('load', function() {
+  drawWheel();
+});
+</script>
+</body>
+</html>

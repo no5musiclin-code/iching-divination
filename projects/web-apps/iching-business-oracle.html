@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易經商業決策系統｜Business I Ching Oracle</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --gold: #d4af37;
+    --gold2: #f0d060;
+    --gold-dim: rgba(212,175,55,0.15);
+    --gold-border: rgba(212,175,55,0.3);
+    --text: #e8e0cc;
+    --text-dim: #8a8070;
+    --danger: #e05050;
+    --success: #50b080;
+    --font-serif: 'Noto Serif TC', 'Songti SC', 'SimSun', serif;
+    --font-sans: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(212,175,55,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(212,175,55,0.03) 0%, transparent 50%);
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    padding: 48px 20px 32px;
+    border-bottom: 1px solid var(--gold-border);
+    position: relative;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .header-symbol {
+    font-size: 42px;
+    margin-bottom: 12px;
+    letter-spacing: 8px;
+  }
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 4px;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 8px;
+    letter-spacing: 2px;
+  }
+
+  /* ── Container ── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* ── Input Form ── */
+  .form-section {
+    background: var(--bg2);
+    border: 1px solid var(--gold-border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+  }
+  .form-section h2 {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .form-section h2::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold);
+  }
+
+  .field-group {
+    margin-bottom: 18px;
+  }
+  .field-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .field-group input[type="text"],
+  .field-group textarea,
+  .field-group select {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--gold-border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 15px;
+    font-family: var(--font-sans);
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field-group input[type="text"]:focus,
+  .field-group textarea:focus,
+  .field-group select:focus {
+    border-color: var(--gold);
+  }
+  .field-group textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+  .field-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23d4af37' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .btn-oracle {
+    width: 100%;
+    background: linear-gradient(135deg, #c49b30, var(--gold), #e8c84a);
+    color: #0a0a0f;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: var(--font-sans);
+    margin-top: 8px;
+  }
+  .btn-oracle:hover {
+    background: linear-gradient(135deg, #d4af37, #f0d060, #d4af37);
+    box-shadow: 0 0 30px rgba(212,175,55,0.25);
+    transform: translateY(-1px);
+  }
+  .btn-oracle:active { transform: translateY(0); }
+
+  /* ── Loading Animation ── */
+  .loading-wrap {
+    display: none;
+    text-align: center;
+    padding: 48px 0;
+  }
+  .loading-wrap.active { display: block; }
+  .loading-symbols {
+    font-size: 28px;
+    letter-spacing: 12px;
+    animation: pulse 1.5s infinite;
+    margin-bottom: 16px;
+  }
+  .loading-text {
+    color: var(--text-dim);
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  /* ── Report ── */
+  .report { display: none; }
+  .report.visible { display: block; }
+
+  .report-header {
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 1px solid var(--gold-border);
+    margin-bottom: 32px;
+  }
+  .report-header .divider {
+    color: var(--gold);
+    letter-spacing: 6px;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .report-header h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 4vw, 26px);
+    color: var(--gold);
+    letter-spacing: 3px;
+  }
+  .report-header .meta {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  .gua-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: var(--bg2);
+    border: 1px solid var(--gold-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .gua-symbol {
+    font-size: 72px;
+    line-height: 1;
+  }
+  .gua-info h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .gua-info .gua-name {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  .gua-info .gua-sentence {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .report-card {
+    background: var(--bg2);
+    border: 1px solid var(--gold-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .report-card h4 {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .report-card h4 .num {
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-family: var(--font-sans);
+  }
+  .report-card p, .report-card li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .report-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .report-card ul li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+  }
+  .report-card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+  }
+  .verdict-box {
+    background: var(--bg3);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-top: 10px;
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--gold2);
+    line-height: 1.7;
+  }
+
+  .risk-card {
+    background: rgba(224, 80, 80, 0.06);
+    border: 1px solid rgba(224, 80, 80, 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .risk-card h4 {
+    color: var(--danger);
+    font-family: var(--font-serif);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .risk-card p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .risk-card .risk-level {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-left: 8px;
+  }
+  .risk-high { background: rgba(224,80,80,0.2); color: #e07070; }
+  .risk-med  { background: rgba(224,160,80,0.2); color: #e0a050; }
+  .risk-low  { background: rgba(80,176,128,0.2); color: #70c090; }
+
+  /* ── Paywall ── */
+  .paywall-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .paywall-overlay.active { display: flex; }
+  .paywall-box {
+    background: var(--bg2);
+    border: 1px solid var(--gold-border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+  }
+  .paywall-icon { font-size: 48px; margin-bottom: 16px; }
+  .paywall-box h3 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .paywall-box p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .paywall-box .uses-left {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .paywall-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #9b30c4, #d4af37, #9b30c4);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .paywall-btn:hover {
+    box-shadow: 0 0 24px rgba(155,48,196,0.4);
+    transform: translateY(-1px);
+  }
+  .paywall-close {
+    display: block;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--text-dim);
+    cursor: pointer;
+    letter-spacing: 1px;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: var(--font-sans);
+  }
+  .paywall-close:hover { color: var(--text); }
+
+  /* ── Usage Counter ── */
+  .usage-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 16px 0;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .usage-pip {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold-border);
+    transition: background 0.3s;
+  }
+  .usage-pip.used { background: var(--gold); }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-top: 1px solid var(--gold-border);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    .row-2 { grid-template-columns: 1fr; }
+    .gua-display { flex-direction: column; gap: 12px; }
+    .gua-symbol { font-size: 56px; }
+    .form-section { padding: 20px 16px; }
+    .report-card, .risk-card { padding: 18px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-symbol">☰ ☷ ☵ ☲ ☴ ☶ ☳ ☯</div>
+  <h1>易經商業決策系統</h1>
+  <p class="subtitle">BUSINESS I CHING ORACLE · 64 卦商業洞察</p>
+</header>
+
+<div class="container">
+  <!-- Input Form -->
+  <div class="form-section" id="inputSection">
+    <h2>占卜參數</h2>
+
+    <div class="field-group">
+      <label>產業 / 商業領域</label>
+      <input type="text" id="industry" placeholder="例如：科技電子商務、餐飲連鎖、品牌代理…" maxlength="60">
+    </div>
+
+    <div class="field-group">
+      <label>核心問題</label>
+      <textarea id="question" placeholder="例如：是否應該進軍東南亞市場？或：該收購競爭對手嗎？" maxlength="200"></textarea>
+    </div>
+
+    <div class="row-2">
+      <div class="field-group">
+        <label>選項 A</label>
+        <input type="text" id="optionA" placeholder="選項 A 描述…" maxlength="100">
+      </div>
+      <div class="field-group">
+        <label>選項 B</label>
+        <input type="text" id="optionB" placeholder="選項 B 描述…" maxlength="100">
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div class="field-group">
+        <label>資金狀況</label>
+        <select id="funds">
+          <option value="充裕">💰 充裕</option>
+          <option value="一般" selected>💵 一般</option>
+          <option value="緊張">⚠️ 緊張</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>時間壓力</label>
+        <select id="time">
+          <option value="從容">⏳ 從容</option>
+          <option value="一般" selected>⏰ 一般</option>
+          <option value="緊急">🔥 緊急</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="usage-bar" id="usageBar"></div>
+
+    <button class="btn-oracle" id="btnOracle">🔮 啟 動 占 卜</button>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-wrap" id="loadingWrap">
+    <div class="loading-symbols">☰ ☷ ☵ ☲ ☴ ☶</div>
+    <div class="loading-text">天機運算中，請稍候…</div>
+  </div>
+
+  <!-- Report -->
+  <div class="report" id="report"></div>
+</div>
+
+<!-- Paywall -->
+<div class="paywall-overlay" id="paywallOverlay">
+  <div class="paywall-box">
+    <div class="paywall-icon">🔮</div>
+    <h3>占卜次數已用盡</h3>
+    <p>感謝您使用易經商業決策系統。<br>解鎖無限占卜，支援更多功能更新。</p>
+    <div class="uses-left" id="paywallUsesLeft"></div>
+    <a class="paywall-btn" href="https://ko-fi.com/s/00367ecd74" target="_blank" rel="noopener">
+      ☕ 支持開發者 · Ko-fi
+    </a>
+    <button class="paywall-close" id="paywallClose">稍後再說</button>
+  </div>
+</div>
+
+<footer>
+  易經商業決策系統 v2.0 · 僅供參考，不構成商業建議 · © 2025
+</footer>
+
+<script>
+// ─────────────────────────────────────────
+// 8 卦 + 衍生卦資料（部分64卦）
+// ─────────────────────────────────────────
+const GUA_DATA = [
+  {
+    symbol: '☰', name: '乾', fullName: '乾為天',
+    essence: '剛健，自強不息。象徵領袖氣質與頂層視角。',
+    biz: '代表擴張、併購、高風險高回報。適合大膽進取的商業策略。',
+   advice: ['果斷行動，先手必勝', '建立標準化系統鞏固優勢', '警惕過度自信導致資源損耗'],
+    risk: '擴張過快，現金流斷裂。'
+  },
+  {
+    symbol: '☷', name: '坤', fullName: '坤為地',
+    essence: '柔順，厚德載物。象徵穩健、包容與長期耕耘。',
+    biz: '代表穩健經營、深化市場根基、品牌底蘊積累。',
+    advice: ['深挖現有市場，厚植實力', '建立合作夥伴生態系統', '耐心等待，不要急於求成'],
+    risk: '過於保守，錯失市場窗口。'
+  },
+  {
+    symbol: '䷊', name: '泰', fullName: '地天泰',
+    essence: '天地交泰，陰陽和合。象徵溝通順暢、合作共贏。',
+    biz: '代表跨界合作、資源整合、內外溝通暢通的黃金期。',
+    advice: ['積極建立策略聯盟', '打通上下游供應鏈', '以開放心态引進外部人才'],
+    risk: '過度依賴外部合作方，自身核心能力空心化。'
+  },
+  {
+    symbol: '☵', name: '坎', fullName: '坎為水',
+    essence: '險阻重重，水往下流。象徵危機、風險與財務壓力。',
+    biz: '代表需要穿越困境、重視現金流管理、避免盲目擴張。',
+    advice: ['優先確保現金儲備', '建立風險預警機制', '低調務實，避免高調曝光'],
+    risk: '隱性風險爆發，資金鍊斷裂。'
+  },
+  {
+    symbol: '☴', name: '巽', fullName: '巽為風',
+    essence: '風行無孔不入，象徵滲透、傳播與敏銳洞察。',
+    biz: '代表市場渗透、品牌傳播、併購整合、彈性策略。',
+    advice: ['利用渠道優勢快速滲透市場', '建立品牌口碑與社群', '彈性調整，見機行事'],
+    risk: '擴張過度分散，主業被稀釋。'
+  },
+  {
+    symbol: '☲', name: '離', fullName: '離為火',
+    essence: '光明綺麗，照耀四方。象徵創意、品牌與公關形象。',
+    biz: '代表品牌升級、內容行銷、IPO準備、形象公關。',
+    advice: ['投資品牌與內容建設', '打造差異化視覺識別系統', '以專業形象對外發聲'],
+    risk: '過度追求表面名聲，實質產品力不足。'
+  },
+  {
+    symbol: '☶', name: '艮', fullName: '艮為山',
+    essence: '靜止如山，象徵停損、紀律與聚焦核心。',
+    biz: '代表需要喊停、果斷止損、聚焦核心產品線。',
+    advice: ['果斷止損非核心業務', '聚焦高毛利產品線', '建立嚴格的財務紀律'],
+    risk: '該止不止，繼續消耗資源。'
+  },
+  {
+    symbol: '䷫', name: '隨', fullName: '澤雷隨',
+    essence: '澤動雷隨，順勢而從。象徵變革、跟随市場趨勢。',
+    biz: '代表需要變革转型、跟隨趨勢、灵活调整策略。',
+    advice: ['擁抱變革，快速迭代', '跟蹤市場趨勢，及時調整', '組建敏捷應變團隊'],
+    risk: '盲目跟風，失去自身定位。'
+  }
+];
+
+// ─────────────────────────────────────────
+// 產業情境關鍵詞庫（豐富分析用）
+// ─────────────────────────────────────────
+const INDUSTRY_VIBES = {
+ 科技: { keywords: ['創新', '迭代', '護城河', '市佔率', '使用者增長'], tone: 'tech' },
+ 餐飲: { keywords: ['翻桌率', '坪效', '口碑', '季節性', '食品安全'], tone: 'food' },
+ 零售: { keywords: ['通路', '庫存周轉', '體驗', '會員', '促銷'], tone: 'retail' },
+ 金融: { keywords: ['風控', '監管', '流動性', '信用', '資產配置'], tone: 'finance' },
+ 製造: { keywords: ['供應鏈', '良率', '产能', '原料成本', '自動化'], tone: 'manufacture' },
+ 醫療: { keywords: ['法規', '信任', '療效', '通路', '保險'], tone: 'medical' },
+ 教育: { keywords: ['師資', '續報率', '口碑', '政策', '內容'], tone: 'education' },
+ 房地產: { keywords: ['區位', '資金成本', '政策', '租售比', '景氣'], tone: 'realestate' },
+ 顧問: { keywords: ['專業性', '人脈', '案例', '信任', '口碑'], tone: 'consultant' },
+ 電商: { keywords: ['流量', '轉化率', '客單價', '物流', '留存'], tone: 'ecom' },
+ 內容: { keywords: ['流量', '變現', 'IP', '算法', '社群'], tone: 'content' },
+ 遊戲: { keywords: ['留存', 'ARPPU', '版號', 'IP', '平台'], tone: 'game' },
+};
+
+// 默認情境
+const DEFAULT_VIBE = { keywords: ['市場定位', '競爭壁壘', '現金流', '長期價值'], tone: 'default' };
+
+// ─────────────────────────────────────────
+// 付費牆邏輯
+// ─────────────────────────────────────────
+const STORAGE_KEY = 'iching_biz_uses_v2';
+const MAX_FREE = 3;
+
+function getUses() {
+  const v = localStorage.getItem(STORAGE_KEY);
+  return v ? parseInt(v, 10) : 0;
+}
+function incrementUses() {
+  const n = getUses() + 1;
+  localStorage.setItem(STORAGE_KEY, n.toString());
+  return n;
+}
+function isPaywalled() {
+  return getUses() >= MAX_FREE;
+}
+function renderUsageBar() {
+  const bar = document.getElementById('usageBar');
+  const used = getUses();
+  bar.innerHTML = '';
+  for (let i = 0; i < MAX_FREE; i++) {
+    const pip = document.createElement('span');
+    pip.className = 'usage-pip' + (i < used ? ' used' : '');
+    bar.appendChild(pip);
+  }
+  if (used > 0) {
+    const label = document.createElement('span');
+    label.textContent = `已使用 ${used}/${MAX_FREE} 次`;
+    bar.appendChild(label);
+  }
+}
+
+// ─────────────────────────────────────────
+// 占卜引擎
+// ─────────────────────────────────────────
+function generateReport(inputs) {
+  const { industry, question, optionA, optionB, funds, time } = inputs;
+
+  // 選卦
+  const gua = GUA_DATA[Math.floor(Math.random() * GUA_DATA.length)];
+
+  // 產業情境
+  const industryUpper = industry.toUpperCase();
+  let vibe = DEFAULT_VIBE;
+  for (const [key, val] of Object.entries(INDUSTRY_VIBES)) {
+    if (industryUpper.includes(key)) { vibe = val; break; }
+  }
+
+  // 總體建議（結合卦象+產業+資金+時間）
+  const overallAdvice = buildOverallAdvice(gua, vibe, funds, time);
+
+  // 選項分析
+  const optA = buildOptionAnalysis(optionA, gua, 'A', vibe, funds, time);
+  const optB = buildOptionAnalysis(optionB, gua, 'B', vibe, funds, time);
+
+  // 風險評估
+  const riskAssessment = buildRiskAssessment(gua, funds, time, industry);
+
+  // 三步行動
+  const actions = buildActions(gua, funds, time, industry);
+
+  // 警示牌
+  const warning = buildWarning(gua, funds, time, industry);
+
+  return { gua, overallAdvice, optA, optB, riskAssessment, actions, warning, vibe };
+}
+
+function buildOverallAdvice(gua, vibe, funds, time) {
+  const fundMap = { 充裕: '資金充裕，可考慮較積極的策略', 一般: '資源適中，宜穩中求進', 緊張: '資源緊張，優先確保現金流' };
+  const timeMap = { 從容: '時間充裕，可做長期佈局', 一般: '時間適中，保持穩健節奏', 緊急: '時間緊迫，需要快速決策' };
+  const lines = [
+    `產業領域：${vibe.keywords.join('、')}`,
+    `資金狀況：${fundMap[funds]}`,
+    `時間維度：${timeMap[time]}`,
+    '',
+    `本卦 "${gua.fullName}"（${gua.symbol} ${gua.name}）`,
+    `卦象本質：${gua.essence}`,
+    `商業意涵：${gua.biz}`,
+  ];
+  return lines.join('\n');
+}
+
+function buildOptionAnalysis(opt, gua, label, vibe, funds, time) {
+  const strength = ['創新性', '市場潛力', '資源需求', '風險等級', '時機契合'];
+  const score = Math.floor(Math.random() * 3) + 2; // 2-4
+  const scoreStar = '★'.repeat(score) + '☆'.repeat(5 - score);
+  const verdict = score >= 4
+    ? `勝算較高，與當前卦象能量契合`
+    : score === 3
+    ? `勝算中等，需強化執行細節`
+    : `風險較大，建議配套緩衝方案`;
+
+  const lines = [
+    `【選項 ${label}】${opt}`,
+    `評分：${scoreStar}（${score}/5）`,
+    `分析維度：${strength.join(' / ')}`,
+    '',
+    verdict,
+    `針對 "${vibe.keywords[0]}" 維度的建議：重點關注${vibe.keywords.slice(1, 3).join('與')}。`,
+  ];
+  return lines.join('\n');
+}
+
+function buildRiskAssessment(gua, funds, time, industry) {
+  const fundRisk = { 充裕: 1, 一般: 2, 緊張: 3 };
+  const timeRisk = { 從容: 1, 一般: 2, 緊急: 3 };
+  const combined = fundRisk[funds] + timeRisk[time];
+
+  const level = combined >= 5 ? '高風險' : combined >= 3 ? '中風險' : '低風險';
+  const levelClass = combined >= 5 ? 'risk-high' : combined >= 3 ? 'risk-med' : 'risk-low';
+
+  const lines = [
+    `綜合資金狀況（${funds}）× 時間維度（${time}）`,
+    `風險等級：${level}`,
+    '',
+    `資金維度：${funds === '緊張' ? '⚠️ 高危 — 建議推遲非必要支出，確保3個月現金儲備' : funds === '一般' ? '中度 — 維持健康的應收帳款管理' : '低風險 — 可適度使用財務槓桿'}`,
+    `時間維度：${time === '緊急' ? '⚠️ 高危 — 避免長周期投入，選擇快贏策略' : time === '一般' ? '中度 — 按季度複檢進度' : '低風險 — 可佈局長期價值項目'}`,
+    '',
+    `針對 ${industry || "該產業"} 的額外觀察：`,
+    `${gua.name}卦能量提示：${gua.risk}`,
+  ];
+  return { level, levelClass, text: lines.join('\n') };
+}
+
+function buildActions(gua, funds, time, industry) {
+  const baseActions = [...gua.advice];
+  // 根據資金和時間微調
+  if (funds === '緊張') baseActions.unistshift('⚠️ 立即盤點現金儲備，設定資金底線');
+  if (time === '緊急') baseActions.unistshift('🔥 優先完成最小可行方案（MVP），快速驗證假設');
+  return baseActions.slice(0, 3);
+}
+
+function buildWarning(gua, funds, time, industry) {
+  const warnings = [];
+  warnings.push(`卦象警示：${gua.name}卦最大風險是「${gua.risk}」`);
+  if (funds === '緊張') warnings.push('💸 資金緊張：千萬不要墊錢做生意，避免票據危機');
+  if (time === '緊急') warnings.push('⏰ 時間緊迫：避免完美主義情結，搶佔先機比細節更重要');
+  warnings.push(`🌐 產業宏觀：${industry || "該產業"} 需持續關注政策與市場變化`);
+  warnings.push('⚠️ 本系統僅供參考，最終決策請結合專業意見與實際數據');
+  return warnings.join('\n');
+}
+
+// ─────────────────────────────────────────
+// 渲染報告
+// ─────────────────────────────────────────
+function renderReportHTML(data) {
+  const { gua, overallAdvice, optA, optB, riskAssessment, actions, warning } = data;
+  const today = new Date().toLocaleString('zh-TW', { year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' });
+
+  const actionsHTML = actions.map((a, i) => `<li><strong>步驟 ${i+1}：</strong>${a}</li>`).join('');
+
+  return `
+    <div class="report-header">
+      <div class="divider">☰ ☷ ☵ ☲ ☴ ☶ ☳ ☯</div>
+      <h2>商 业 決 策 報 告</h2>
+      <div class="meta">生成時間：${today} ｜ 易經商業決策系統 v2.0</div>
+    </div>
+
+    <div class="gua-display">
+      <div class="gua-symbol">${gua.symbol}</div>
+      <div class="gua-info">
+        <h3>${gua.fullName}</h3>
+        <div class="gua-name">第 ${GUA_DATA.indexOf(gua)+1} 卦 · ${gua.name}卦</div>
+        <div class="gua-sentence">「${gua.essence}」</div>
+      </div>
+    </div>
+
+    <div class="report-card">
+      <h4><span class="num">1</span>總體建議</h4>
+      <div class="verdict-box">${overallAdvice.replace(/\n/g, '<br>')}</div>
+    </div>
+
+    <div class="report-card">
+      <h4><span class="num">2</span>選項 A 分析</h4>
+      <p style="white-space:pre-line">${optA}</p>
+    </div>
+
+    <div class="report-card">
+      <h4><span class="num">3</span>選項 B 分析</h4>
+      <p style="white-space:pre-line">${optB}</p>
+    </div>
+
+    <div class="report-card">
+      <h4><span class="num">4</span>風險評估（資金 × 時間）</h4>
+      <p style="white-space:pre-line">${riskAssessment.text}</p>
+    </div>
+
+    <div class="report-card">
+      <h4><span class="num">5</span>行動建議</h4>
+      <ul>${actionsHTML}</ul>
+    </div>
+
+    <div class="risk-card">
+      <h4>⚠️ 警示牌<span class="risk-level ${riskAssessment.levelClass}">${riskAssessment.level}</span></h4>
+      <p style="white-space:pre-line">${warning}</p>
+    </div>
+  `;
+}
+
+// ─────────────────────────────────────────
+// 事件綁定
+// ─────────────────────────────────────────
+document.getElementById('btnOracle').addEventListener('click', function() {
+  const industry = document.getElementById('industry').value.trim();
+  const question  = document.getElementById('question').value.trim();
+  const optionA   = document.getElementById('optionA').value.trim();
+  const optionB   = document.getElementById('optionB').value.trim();
+  const funds     = document.getElementById('funds').value;
+  const time       = document.getElementById('time').value;
+
+  if (!industry || !question) {
+    alert('請至少填寫「產業領域」與「核心問題」');
+    return;
+  }
+
+  // 付費牆檢查（計數）
+  const currentUses = getUses();
+  if (currentUses >= MAX_FREE) {
+    showPaywall();
+    return;
+  }
+
+  // 顯示載入
+  document.getElementById('inputSection').style.display = 'none';
+  document.getElementById('loadingWrap').classList.add('active');
+  document.getElementById('report').classList.remove('visible');
+
+  // 計數
+  const newUses = incrementUses();
+
+  // 模擬占卜延遲
+  setTimeout(() => {
+    const data = generateReport({ industry, question, optionA, optionB, funds, time });
+    document.getElementById('report').innerHTML = renderReportHTML(data);
+    document.getElementById('loadingWrap').classList.remove('active');
+    document.getElementById('report').classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 第4次觸發付費牆
+    if (newUses >= MAX_FREE) {
+      setTimeout(showPaywall, 2000);
+    } else {
+      renderUsageBar();
+    }
+  }, 1800);
+});
+
+function showPaywall() {
+  const remaining = MAX_FREE - getUses();
+  document.getElementById('paywallUsesLeft').textContent =
+    remaining <= 0 ? '已用盡所有免費占卜次數' : `剩餘免費次數：${remaining}`;
+  document.getElementById('paywallOverlay').classList.add('active');
+}
+document.getElementById('paywallClose').addEventListener('click', function() {
+  document.getElementById('paywallOverlay').classList.remove('active');
+  document.getElementById('inputSection').style.display = 'block';
+  renderUsageBar();
+});
+document.getElementById('paywallOverlay').addEventListener('click', function(e) {
+  if (e.target === this) {
+    this.classList.remove('active');
+    document.getElementById('inputSection').style.display = 'block';
+    renderUsageBar();
+  }
+});
+
+// Init
+renderUsageBar();
+</script>
+</body>
+</html>

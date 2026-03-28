@@ -1,0 +1,8 @@
+# Netlify _redirects — 多語言路由
+/              /zh-hant/
+/en            /iching-en/index.html
+/zh-hans        /iching-zhs/index.html
+/ja            /iching-ja/index.html
+
+# 重定向所有路徑到對應語言
+/*    /iching-zht/index.html   200
