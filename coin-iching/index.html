@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coin I Ching - 殺手林占卜</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a14;
+    color: #d4af37;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-image: radial-gradient(ellipse at center, #12101f 0%, #0a0a14 70%);
+  }
+  h1 { font-size: 2.5em; text-align: center; margin-bottom: 10px; color: #d4af37; text-shadow: 0 0 20px rgba(212,175,55,0.5); }
+  .subtitle { color: #a78b4a; font-size: 1.1em; margin-bottom: 30px; text-align: center; }
+  .question-box { max-width: 500px; width: 100%; margin-bottom: 20px; text-align: center; }
+  textarea {
+    width: 100%;
+    background: #1a1530;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    padding: 14px;
+    font-size: 1em;
+    border-radius: 10px;
+    font-family: 'Georgia', serif;
+    resize: none;
+    height: 80px;
+    box-sizing: border-box;
+  }
+  textarea::placeholder { color: #7a6830; }
+  .coin-area { text-align: center; margin: 30px 0; }
+  .coin-btn {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4af37, #f0d080, #d4af37);
+    border: 4px solid #d4af37;
+    font-size: 1.1em;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: #1a0a2e;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(212,175,55,0.4);
+    position: relative;
+  }
+  .coin-btn:hover { box-shadow: 0 0 50px rgba(212,175,55,0.8); }
+  .coin-btn.tossing {
+    animation: coinToss 0.6s ease-in-out;
+  }
+  @keyframes coinToss {
+    0% { transform: rotateY(0deg) scale(1); }
+    25% { transform: rotateY(90deg) scale(1.1); }
+    50% { transform: rotateY(180deg) scale(1); }
+    75% { transform: rotateY(270deg) scale(1.1); }
+    100% { transform: rotateY(360deg) scale(1); }
+  }
+  .coin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .hexagram-display {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .yao-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .yao {
+    font-size: 2.5em;
+    line-height: 1;
+    letter-spacing: 4px;
+  }
+  .yao-label { font-size: 0.75em; color: #7a6830; }
+  .coin-history {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 15px 0;
+    min-height: 40px;
+  }
+  .coin-result {
+    font-size: 2em;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1530;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+  }
+  .line-result { font-size: 2.5em; }
+  .progress-text { color: #a78b4a; margin-bottom: 10px; font-size: 0.95em; }
+  .result-section { max-width: 600px; width: 100%; text-align: center; display: none; }
+  .hexagram-title { font-size: 2em; color: #d4af37; margin: 20px 0 5px; text-shadow: 0 0 15px rgba(212,175,55,0.5); }
+  .hexagram-aka { color: #a78b4a; font-size: 1.1em; margin-bottom: 5px; }
+  .hexagram-judgement { background: #12101f; border: 2px solid #d4af37; border-radius: 12px; padding: 20px; margin: 15px 0; text-align: left; }
+  .hexagram-judgement h3 { color: #d4af37; margin-bottom: 10px; font-size: 1.1em; }
+  .hexagram-judgement p { color: #c4b5fd; line-height: 1.7; }
+  .reset-btn { background: transparent; border: 2px solid #d4af37; color: #d4af37; padding: 10px 24px; font-size: 1em; border-radius: 8px; cursor: pointer; margin-top: 15px; font-family: 'Georgia', serif; }
+  .reset-btn:hover { background: #d4af37; color: #0a0a14; }
+  .narrative { color: #94a3b8; font-size: 0.9em; margin-top: 20px; font-style: italic; }
+</style>
+</head>
+<body>
+<h1>🪙 Coin I Ching</h1>
+<p class="subtitle">Six Coins, One Truth — Ancient Wisdom for Modern Questions</p>
+
+<div class="question-box">
+  <textarea id="question" placeholder="Ask your question to the I Ching..."></textarea>
+</div>
+
+<div class="coin-area">
+  <button class="coin-btn" id="coinBtn" onclick="tossCoin()">
+    ☰ Toss<br>Coin
+  </button>
+  <p class="progress-text" id="progressText">Click the coin to begin your 6-line reading</p>
+  <div class="coin-history" id="coinHistory"></div>
+  <div class="hexagram-display" id="hexagramDisplay" style="display:none;"></div>
+</div>
+
+<div class="result-section" id="resultSection">
+  <div class="hexagram-title" id="hexName"></div>
+  <div class="hexagram-aka" id="hexAKA"></div>
+  <div class="hexagram-judgement">
+    <h3>📜 Judgement</h3>
+    <p id="hexJudgement"></p>
+  </div>
+  <div class="hexagram-judgement">
+    <h3>🌊 Image</h3>
+    <p id="hexImage"></p>
+  </div>
+  <p class="narrative" id="narrative"></p>
+  <button class="reset-btn" onclick="resetCoin()">🔄 New Question</button>
+</div>
+
+<script>
+const ICHING = {
+  1: {
+    name: "Hexagram 1", aka: "Creative / Qian (乾)",
+    judgement: "CREATIVE. Supreme success furthering through perseverance. The receptive aspect of the Creative — pure yang energy — represents the primordial force that initiates all things. It embodies the principle of light, strength, and unyielding will. This hexagram speaks to the power of focused intention and the reward that comes from aligned, principled action.",
+    image: "The movement of heaven is full of power. Thus the superior man makes himself strong and untiring."
+  },
+  2: {
+    name: "Hexagram 2", aka: "Receptive / Kun (坤)",
+    judgement: "RECEPTIVE. Supreme success coming through receptivity and loyalty. The great womb receives all with patient, enduring devotion. Like the earth that yields to every footstep, true strength lies in the willingness to support and nurture. This hexagram speaks of devotion without seeking recognition — and the power that comes from such selfless service.",
+    image: "The earth's condition is receptive devotion. Thus the superior man who has breadth of character carries things through."
+  },
+  3: {
+    name: "Hexagram 3", aka: "Difficulty at the Beginning / Zhun (屯)",
+    judgement: "DIFFICULTY AT THE BEGINNING. Spring's struggle upward through the earth — chaos giving way to order. Great obstacles block your path, yet within difficulty lies the seed of future success. Learning, gathering strength, and avoiding premature action are the keys here. The tiny shoot will become a mighty tree.",
+    image: "Clouds and thunder: the image of Difficulty at the Beginning. Thus the superior man brings order out of confusion."
+  },
+  4: {
+    name: "Hexagram 4", aka: "Youthful Folly / Meng (蒙)",
+    judgement: "YOUTHFUL FOLLY. A young, undeveloped consciousness needs teaching and discipline to find its way. It is a time of not yet understanding — but the willingness to learn opens all doors. Seek a wise teacher. A closed mind is the only true obstacle.",
+    image: "Spring's early growth: the image of Youth. Thus the superior man educates the people and trains their character."
+  },
+  5: {
+    name: "Hexagram 5", aka: "Waiting / Xu (需)",
+    judgement: "WAITING. Nourishment and needed resources come through patience and correct timing. Do not rush forward into danger — stand at the crossroads with quiet confidence. The rain falls from heaven and will quench your thirst. Cultivate inner stillness while awaiting your moment.",
+    image: "Clouds rise over heaven: the image of Waiting. Thus the superior man eats and drinks, is content and serene."
+  },
+  6: {
+    name: "Hexagram 6", aka: "Conflict / Song (讼)",
+    judgement: "CONFLICT. Strive not — retreat brings good fortune. Legal disputes and sharp disagreements arise; to push forward leads to regret. Seek mediation and reconciliation before the conflict escalates. Sometimes the greatest victory is choosing not to fight.",
+    image: "Heaven and water move away from each other: the image of Conflict. Thus the superior man, before all else, puts things in order."
+  },
+  7: {
+    name: "Hexagram 7", aka: "The Army / Shi (師)",
+    judgement: "THE ARMY. Strength in disciplined unity. An army must have a capable, righteous leader to bring collective strength. Discipline and proper ordering are essential. Victory comes not from numbers but from righteous purpose and unwavering resolve.",
+    image: "The earth contains the mandate: the image of the Army. Thus the superior man enlarges his mind and disciplines his character."
+  },
+  8: {
+    name: "Hexagram 8", aka: "Holding Together / Bi (比)",
+    judgement: "HOLDING TOGETHER. Union and close bonds among people bring supreme success. When individuals come together in shared purpose, no division can harm them. The meaning lies in loyal gathering — like the waves upon the shore that always return to unite.",
+    image: "The earth above the lake: the image of Holding Together. Thus the superior man affixes the good and corrects the shortcomings."
+  },
+  9: {
+    name: "Hexagram 9", aka: "Small Accomplishment / Xiao Chu (小畜)",
+    judgement: "SMALL ACCOMPLISHMENT. Restraint and restraint of the small bring gradual progress. There is potential for building something meaningful, but conditions are not yet fully aligned. Gather your forces quietly, build foundations, and the time for greater action will come.",
+    image: "Wind moves in heaven: the image of Small Accomplishment. Thus the superior man refines the outward appearance of his nature."
+  },
+  10: {
+    name: "Hexagram 10", aka: "Treading / Lü (履)",
+    judgement: "TREADING. Tread upon the tiger's tail without being harmed. Delicate and dangerous situations require the utmost caution and correct conduct. Walk the line between boldness and prudence. Where others see only an opening, the wise see a test of character.",
+    image: "Heaven above, marsh below: the image of Treading. Thus the superior man, mindful of danger, lives quietly and plainly."
+  },
+  11: {
+    name: "Hexagram 11", aka: "Peace / Tai (泰)",
+    judgement: "PEACE. Pervading harmony and great success. The small descends, the great ascends — heaven and earth unite in perfect balance. A time of peace, prosperity, and mutual flourishing. Such periods of grace do not last forever — enjoy them wisely.",
+    image: "Heaven and earth unite: the image of Peace. Thus the ruler manages the four seasons and harmonizes the world."
+  },
+  12: {
+    name: "Hexagram 12", aka: "Stagnation / Pi (否)",
+    judgement: "STAGNATION. Blocked progress and obstruction. The great descends, the small ascends — harmony breaks down and separation reigns. A time when things do not go your way, when effort seems futile. Yet within stagnation lies the seed of future change. The worst of times precedes the best.",
+    image: "Heaven and earth do not unite: the image of Stagnation. Thus the superior man withdraws from the masses and examines his character."
+  },
+  13: {
+    name: "Hexagram 13", aka: "Fellowship with Others / Tong Ren (同人)",
+    judgement: "FELLOWSHIP WITH OTHERS. Unity and shared purpose in the open. True fellowship requires going out to meet others on equal ground — not from the safety of a fortress. Openness, honesty, and genuine connection bring the greatest rewards.",
+    image: "Heaven together with fire: the image of Fellowship. Thus the superior man divides things into groups and distinguishes them."
+  },
+  14: {
+    name: "Hexagram 14", aka: "Great Possession / Da You (大有)",
+    judgement: "GREAT POSSESSION. Supreme success and great wealth. Possession of all under heaven belongs to the sincere and worthy. True riches are not material alone — they include wisdom, virtue, and the loyalty of others. Humility preserves such fortune.",
+    image: "Fire in heaven: the image of Great Possession. Thus the superior man curbs evil and promotes good, thereby obeying the will of heaven."
+  },
+  15: {
+    name: "Hexagram 15", aka: "Modesty / Qian (謙)",
+    judgement: "MODESTY. Success through modesty and the cultivation of virtue. The superior man who carries modesty to extremes is blessed with good fortune. Though great and powerful, he remains humble. This virtue shines brightest precisely because it is so rare.",
+    image: "Within the earth, a mountain: the image of Modesty. Thus the superior man reduces that which is excessive and increases that which is deficient."
+  },
+  16: {
+    name: "Hexagram 16", aka: "Enthusiasm / Yu (豫)",
+    judgement: "ENTHUSIASM. Great success and progress through enthusiasm and collective action. The people are inspired to move forward with joyful purpose. An army must have a leader, but first the leader must inspire. Such times call for decisive, wholehearted action.",
+    image: "Thunder introduces itself with joyful energy: the image of Enthusiasm. Thus the superior man brings the seasons into alignment."
+  },
+  17: {
+    name: "Hexagram 17", aka: "Following / Sui (隨)",
+    judgement: "FOLLOWING. Success through sincere following and adaptability. Times of change require the wisdom to follow what is appropriate — not blind obedience, but intelligent adaptation. Sincerity of heart guides the way. The path forward opens through genuine commitment.",
+    image: "Thunder within the lake: the image of Following. Thus the superior man at nightfall retires to rest, ready to labor at dawn."
+  },
+  18: {
+    name: "Hexagram 18", aka: "Work on What Has Been Spoiled / Gu (蠱)",
+    judgement: "WORK ON WHAT HAS BEEN SPOILED. Correcting corruption and restoring order. Past errors and inherited problems require patient attention. A time for repair and renewal — not for blame, but for constructive action. Great success comes to those who dare to clean up what others have left broken.",
+    image: "The wind blows over the mountain: the image of Decay. Thus the superior man stirs up the people and strengthens their spirit."
+  },
+  19: {
+    name: "Hexagram 19", aka: "Approach / Lin (臨)",
+    judgement: "APPROACH. Gradual advancement and the approach of what is right. The time is favorable for movement and growth — approach your goals with confidence. But be mindful of those who follow. Leadership is tested in how you guide others toward your vision.",
+    image: "The lake rises to meet the mountain: the image of Approach. Thus the superior man gives himself to the people and guides them with goodness."
+  },
+  20: {
+    name: "Hexagram 20", aka: "Contemplation / Guan (觀)",
+    judgement: "CONTEMPLATION. Observing the forms and patterns of the world. A time to step back, observe, and understand before acting. The sacrificed servant who truly sees their lord cannot be lost. Observation without judgment reveals the truth that action requires.",
+    image: "The wind blows over the earth: the image of Contemplation. Thus the superior man examines the world and ponders the nature of things."
+  },
+  21: {
+    name: "Hexagram 21", aka: "Biting Through / Shi Ke (噬嗑)",
+    judgement: "BITING THROUGH. Success through decisive action against obstacles. Chewing through what stands in your way — bold, direct intervention is needed where softer approaches have failed. The enforcement of order requires both strength and fairness.",
+    image: "Thunder and lightning form a strong combination: the image of Biting Through. Thus the kings of old established laws with clarity and severity."
+  },
+  22: {
+    name: "Hexagram 22", aka: "Grace / Bi (賁)",
+    judgement: "GRACE. Beauty and adornment in their proper place. True elegance lies in simplicity — outer beauty should reflect inner worth. A time for finishing touches and matters of style. Yet be cautious not to sacrifice substance for appearance.",
+    image: "Fire blazes over the mountain: the image of Grace. Thus the superior man, in the organization of the world, discriminates between high and low."
+  },
+  23: {
+    name: "Hexagram 23", aka: "Splitting Apart / Bo (剝)",
+    judgement: "SPLITTING APART. Dissolution and the removal of what no longer serves. A time of decline that must be endured rather than reversed. Strip away the unnecessary and superficial — this stripping away, though painful, clears the ground for renewal.",
+    image: "The mountain rests upon the earth: the image of Splitting Apart. Thus those above cannot maintain their positions — only by giving way can they survive."
+  },
+  24: {
+    name: "Hexagram 24", aka: "Return / Fu (復)",
+    judgement: "RETURN. Turning inward and the renewal of life. After the darkest moment comes the dawn — the return of light and warmth. A time of recovery, reflection, and new beginnings. The superior man accumulates small mercies and transforms what is harmful.",
+    image: "Thunder within the earth: the image of Return. Thus the kings of old closed the gates of passes during harsh times and would not travel."
+  },
+  25: {
+    name: "Hexagram 25", aka: "Innocence / Wu Wang (無妄)",
+    judgement: "INNOCENCE. Unexpected great fortune through natural innocence. Without guile or deception, the superior man moves through the world. What could have harmed instead strengthens. Act without ulterior motive and the universe itself conspires in your favor.",
+    image: "Thunder rises from the earth: the image of Innocence. Thus the superior man, when things are not in order, examines himself."
+  },
+  26: {
+    name: "Hexagram 26", aka: "Great Taming / Da Xu (大畜)",
+    judgement: "GREAT TAMING. Great accumulation and the restraint of great forces. The strong and capable must learn restraint — great power is contained for great purpose. A time of learning, gathering strength, and preparing for significant action ahead.",
+    image: "Heaven within the mountain: the image of Great Taming. Thus the superior man studies traditional wisdom to strengthen his character."
+  },
+  27: {
+    name: "Hexagram 27", aka: "Corners of the Mouth / Yi (頤)",
+    judgement: "CORNERS OF THE MOUTH. Nourishment of self and others. We are sustained by what we take in — food, knowledge, relationships. True nourishment requires both receiving and giving in proper measure. The superior man takes thought of nourishment and does what is right.",
+    image: "Thunder and wind act upon each other: the image of Nourishment. Thus the superior man is watchful in adversity and careful in prosperity."
+  },
+  28: {
+    name: "Hexagram 28", aka: "Great Excess / Da Guo (大過)",
+    judgement: "GREAT EXCESS. A time of great strain and great bending — the beam is excessive and about to break. The situation demands extraordinary measures. Bold action is required when normal approaches are insufficient. The key lies in knowing when to act with great force.",
+    image: "The wind blows over the lake: the image of Great Excess. Thus the superior man stands alone without fear and does not shrink from danger."
+  },
+  29: {
+    name: "Hexagram 29", aka: "Dangerous Depths / Kan (坎)",
+    judgement: "DANGEROUS DEPTHS. Double danger — repeated falls into the same pit. A time of constant danger requiring unwavering vigilance. Yet within the most perilous depths lies a heart of sincerity — those who preserve through repeated danger will find their way.",
+    image: "Water flows continuously into a dangerous depth: the image of Danger. Thus the superior man creates order in the world and lives mindfully."
+  },
+  30: {
+    name: "Hexagram 30", aka: "Clinging / Li (離)",
+    judgement: "CLINGING. Brilliant clarity and dependence upon what is right. Like fire that clings to its nature, we must hold fast to what illuminates and sustains. A time when clarity of purpose and clear relationships bring success. The superior man illuminates all he sees.",
+    image: "The light that rises above: the image of Clinging. Thus the superior man is ceaselessly creating, uniting every moment with virtue."
+  },
+  31: {
+    name: "Hexagram 31", aka: "Influence / Xian (咸)",
+    judgement: "INFLUENCE. Mutual attraction and responsive receptiveness. True influence works through gentle, unconscious attraction — not through force or manipulation. The heart responds, and action follows naturally. A time of meaningful connections and responsive relationships.",
+    image: "A lake on a mountain: the image of Influence. Thus the superior man encourages the people to be gentle and refines their character."
+  },
+  32: {
+    name: "Hexagram 32", aka: "Duration / Heng (恆)",
+    judgement: "DURATION. perseverance and enduring constancy. Like the sun and moon that endure forever, true relationships and purposes require constancy through all seasons. Duration does not mean rigidity — it means adapting while remaining true to your core.",
+    image: "Thunder and wind accompany each other: the image of Duration. Thus the superior man stands firm and does not change his direction."
+  },
+  33: {
+    name: "Hexagram 33", aka: "Retreat / Dun (遯)",
+    judgement: "RETREAT. Strategic withdrawal and knowing when to leave. The strong retires before the weak — this is not defeat but wisdom. Knowing when to withdraw protects what matters most. The superior man retreats not from life but to a better position within it.",
+    image: "The mountain rises into heaven: the image of Retreat. Thus the superior man limits his activity and refines his errors."
+  },
+  34: {
+    name: "Hexagram 34", aka: "Power of the Great / Da Zhuang (大壯)",
+    judgement: "POWER OF THE GREAT. Great power and the bold use of strength. But great power must be used with discipline — uncontrolled force becomes its own undoing. A time when power is available, but virtue lies in restraint. The superior man uses strength only for right.",
+    image: "Thunder rolls across the heavens: the image of Power. Thus the superior man is aware of danger and keeps distant from it."
+  },
+  35: {
+    name: "Hexagram 35", aka: "Progress / Jin (晉)",
+    judgement: "PROGRESS. Bright advancement and upward movement. The sun rises over the earth — light expands and pushes back darkness. A time of forward movement, recognition, and growth. The superior man advances the worthy and elevates the good.",
+    image: "The sun rises over the earth: the image of Progress. Thus the superior man brightens his virtue and advances his position."
+  },
+  36: {
+    name: "Hexagram 36", aka: "Wounding of the Light / Ming Yi (明夷)",
+    judgement: "WOUNDING OF THE LIGHT. Dark times that wound the enlightened. When the wise are persecuted and truth is hidden, the path lies in going inward. Endure with quiet strength — the light cannot be extinguished, only temporarily veiled. The superior man, wounded, does not let himself be destroyed.",
+    image: "The light has sunk into the earth: the image of Wounding of the Light. Thus the superior man scrutinizes the hidden nature of people and punishes wrongdoing."
+  },
+  37: {
+    name: "Hexagram 37", aka: "Family / Jia Ren (家人)",
+    judgement: "FAMILY. The order of the family and the power of nurturing. The foundation of all society lies in the proper ordering of the home. Words and deeds must align with truth. The woman maintains the inner harmony while the man governs from without.",
+    image: "Wind comes from the fire: the image of the Family. Thus the superior man speaks words that are sincere and acts that are harmonious."
+  },
+  38: {
+    name: "Hexagram 38", aka: "Opposition / Kui (睽)",
+    judgement: "OPPOSITION. Divided interests and the breakdown of harmony. Small divergences grow into great chasms when left unaddressed. But opposition can also reveal truth — what is truly aligned will shine through what is contrary. The superior man illuminates hidden differences.",
+    image: "Above, fire; below, the lake — two flames that diverge: the image of Opposition. Thus the superior man examines carefully the nature of the people and distinguishes the good from the bad."
+  },
+  39: {
+    name: "Hexagram 39", aka: "Obstruction / Jian (蹇)",
+    judgement: "OBSTRUCTION. Hardship and obstacles block the path. Yet in the midst of obstruction, the superior man turns inward and examines the root causes. Obstruction is not permanent — the solution lies in finding the proper direction and the right allies.",
+    image: "Water on the mountain: the image of Obstruction. Thus the superior man turns inward and examines himself."
+  },
+  40: {
+    name: "Hexagram 40", aka: "Deliverance / Xie (解)",
+    judgement: "DELIVERANCE. Release from obstruction and the resolution of difficulty. After the long tension comes relief — the sky clears after thunder and rain. A time of freedom, renewed energy, and putting things in order. Remove the causes of past conflict.",
+    image: "Thunder and rain have passed: the image of Deliverance. Thus the superior man pardons errors and ceases prosecutions."
+  },
+  41: {
+    name: "Hexagram 41", aka: "Decrease / Sun (損)",
+    judgement: "DECREASE. Voluntary decrease leads to increase elsewhere. When we give up what is excess, what remains grows stronger. A time of giving up attachments, of sacrifice that creates space for something greater. The sincere will gain even through apparent loss.",
+    image: "At the foot of the mountain, the lake: the image of Decrease. Thus the superior man controls his anger and restrains his desires."
+  },
+  42: {
+    name: "Hexagram 42", aka: "Increase / Yi (益)",
+    judgement: "INCREASE. Growth and advancement through constructive action. What is beneficial multiplies — true increase comes from giving and acting in harmony with nature. A time of expansion, but the wise use their increase to benefit others as well.",
+    image: "The wind blows over the mountain: the image of Increase. Thus the superior man, when it is time to act, does not look back at what he has sacrificed."
+  },
+  43: {
+    name: "Hexagram 43", aka: "Breakthrough / Guai (夬)",
+    judgement: "BREAKTHROUGH. Resolution and decisive action against what is corrupt. The time has come to act — what has been building must break forth into the open. Announcement to the realm brings the people together. The strong overthrows what no longer deserves to stand.",
+    image: "The lake has risen to heaven: the image of Breakthrough. Thus the superior man drains what cannot be dried up and increments what cannot be increased."
+  },
+  44: {
+    name: "Hexagram 44", aka: "Coming to Meet / Gou (姤)",
+    judgement: "COMING TO MEET. Unexpected encounter and the danger of the woman who comes too strongly. A time of sudden meetings and potent opportunities — but also hidden dangers. The superior man maintains distance from what is unworthy while remaining alert.",
+    image: "Wind blows under heaven: the image of Coming to Meet. Thus the superior man works early in the morning and ponders his affairs at night."
+  },
+  45: {
+    name: "Hexagram 45", aka: "Gathering Together / Cui (萃)",
+    judgement: "GATHERING TOGETHER. Union and the assembly of worthy people. True gathering occurs when a sincere leader draws others through shared purpose. A time of coming together — but only that which is gathered in good faith endures.",
+    image: "The lake rises to meet the earth: the image of Gathering Together. Thus the superior man, in accordance with the season, creates order and harmonizes the people."
+  },
+  46: {
+    name: "Hexagram 46", aka: "Pushing Upward / Sheng (升)",
+    judgement: "PUSHING UPWARD. Gradual, steady ascent through persistence. Like the bamboo that grows unseen beneath the earth before rising, true advancement is built through quiet, consistent effort. The superior man大地 the earth and accumulates small gains into something great.",
+    image: "Earth receives the growing tree: the image of Pushing Upward. Thus the superior man, by在地, acquires for himself more and more."
+  },
+  47: {
+    name: "Hexagram 47", aka: "Oppression / Kun (困)",
+    judgement: "OPPRESSION. Hardship, exhaustion, and being brought to the brink. Yet within this extremity, integrity cannot be lost — the noble spirit remains unbroken. Oppression tests the quality of character. Those who endure with grace will find deliverance.",
+    image: "The lake has sunk into the earth: the image of Oppression. Thus the superior man maintains his purpose despite physical suffering."
+  },
+  48: {
+    name: "Hexagram 48", aka: "The Well / Jing (井)",
+    judgement: "THE WELL. The wellspring of life and community. A village may change, but the well endures — what truly sustains cannot be replaced. A time of drawing from deep resources. The superior man encourages the people to labor together for the common good.",
+    image: "Water rises to the surface of the well: the image of the Well. Thus the superior man brings comfort to the people and encourages them in their work."
+  },
+  49: {
+    name: "Hexagram 49", aka: "Revolution / Ge (革)",
+    judgement: "REVOLUTION. Transformation and the clearing away of the old. When the time has come, there is no other choice — the old must give way to the new. Successful revolution requires both courage and justice. The superior man brings transformation at precisely the right moment.",
+    image: "Fire in the lake: the image of Revolution. Thus the superior man, in the highest positions, brings about reform through clear principles."
+  },
+  50: {
+    name: "Hexagram 50", aka: "The Cauldron / Ding (鼎)",
+    judgement: "THE CAULDRON. Transformation and the vessel of culture. The cauldron that cooks the offerings is the heart of civilization — nourishment through tradition and innovation together. A time of significant change that affects the foundations of life itself.",
+    image: "Wind over fire: the image of the Cauldron. Thus the superior man, understanding the cycles of change, keeps his position secure."
+  },
+  51: {
+    name: "Hexagram 51", aka: "Arousal / Zhen (震)",
+    judgement: "AROUSAL. Shock and awe that awakens the world. Thunder rolls through heaven — the sudden, the unexpected, the transformative. Yet one is not destroyed by shock if they remain centered within. The superior man is startled by events yet remains unmoved in his core.",
+    image: "Thunder creates shock and awe: the image of Arousal. Thus the superior man fears the shadows and examines himself with scrutiny."
+  },
+  52: {
+    name: "Hexagram 52", aka: "Keeping Still / Gen (艮)",
+    judgement: "KEEPING STILL. Stillness of mind and body amid the storms of life. The mountain that does not move — interior composure regardless of exterior chaos. The superior man does not look back at what has passed, nor forward to what may come — only the present moment.",
+    image: "Mountains standing still: the image of Keeping Still. Thus the superior man does not permit his thoughts to go beyond his place."
+  },
+  53: {
+    name: "Hexagram 53", aka: "Development / Jian (漸)",
+    judgement: "DEVELOPMENT. Gradual, organic growth like a bride's steady advancement to her new life. Progress through proper stages ensures lasting results. The superior man advances along the path of virtue — each step deliberate, each foundation solid.",
+    image: "The wind blows over the mountain: the image of Development. Thus the superior man refines his character and advances in virtue."
+  },
+  54: {
+    name: "Hexagram 54", aka: "The Marrying Maiden / Mei (歸妹)",
+    judgement: "THE MARRYING MAIDEN. The younger sister who gives herself to another. This is a time of yielding — but yielding that must be measured and aware of its consequences. What seems like loss may be gain, and what seems like power may be submission. Discernment is essential.",
+    image: "Thunder at the foot of the mountain: the image of the Marrying Maiden. Thus the superior man understands that excess cannot endure and makes provisions against it."
+  },
+  55: {
+    name: "Hexagram 55", aka: "Abundance / Feng (豐)",
+    judgement: "ABUNDANCE. Great richness and the fullness of the moment. When the sun reaches its peak, everything is illuminated — but from this height, the descent begins. A time of great achievement and recognition. Yet within abundance lies the seed of its own decline.",
+    image: "The sun at its zenith: the image of Abundance. Thus the superior man administers punishment and establishes order."
+  },
+  56: {
+    name: "Hexagram 56", aka: "The Wanderer / Lü (旅)",
+    judgement: "THE WANDERER. The traveler who goes far and returns with little. A time of being far from home, in unfamiliar territory. Success depends on the quality of your character and your ability to adapt. Small but sincere actions in difficult circumstances carry great weight.",
+    image: "Fire on the mountain: the image of the Wanderer. Thus the superior man is watchful in the management of his affairs."
+  },
+  57: {
+    name: "Hexagram 57", aka: "Gentle / Xun (巽)",
+    judgement: "GENTLE. Penetration through gentle, persistent influence. Wind that bends everything without force — this is the power of the truly gentle. Small acts of kindness and consistency penetrate where force cannot reach. The superior man uses gentle means to transform the world.",
+    image: "The wind follows upon the wind: the image of Gentleness. Thus the superior man spreads his commands abroad and carries out his plans."
+  },
+  58: {
+    name: "Hexagram 58", aka: "Joy / Dui (兌)",
+    judgement: "JOY. The lake that reflects peacefully — inner gladness shared with others. True joy comes from harmonious relationships and a sincere heart. A time when openness and pleasure bring good fortune. The superior man delights in what is right and cultivates harmony.",
+    image: "Lakes that laugh at each other: the image of Joy. Thus the superior man, in association with others, stimulates and delights them."
+  },
+  59: {
+    name: "Hexagram 59", aka: "Dispersion / Huan (渙)",
+    judgement: "DISPERSION. Breaking through obstruction and the dissolution of what binds. When barriers fall and people unite, the benefits flow freely. Yet gathering must arise from genuine will, not coercion. The superior man issues announcements and unites the people.",
+    image: "The wind blows over the water: the image of Dispersion. Thus the superior man, in regard to the people, dissolves their gathering and unites them."
+  },
+  60: {
+    name: "Hexagram 60", aka: "Limitation / Jie (節)",
+    judgement: "LIMITATION. The art of knowing boundaries and setting proper limits. Too much freedom leads to chaos — true freedom is found within wise limitation. The superior man creates order through appropriate restraint. Know when enough is enough.",
+    image: "Water fills the lake to its limits: the image of Limitation. Thus the superior man creates order in the world and knows the proper measure."
+  },
+  61: {
+    name: "Hexagram 61", aka: "Inner Truth / Zhong Fu (中孚)",
+    judgement: "INNER TRUTH. Sincere thought and the power of genuine feeling. The heart that is true resonates across all distance — even animals respond to sincere truth. A time when inner conviction matters more than outward appearance. The superior man administers the law with genuine care.",
+    image: "Wind over the lake: the image of Inner Truth. Thus the superior man discusses criminal law and carries out executions with precision."
+  },
+  62: {
+    name: "Hexagram 62", aka: "Small Exceeding / Xiao Guo (小過)",
+    judgement: "SMALL EXCEEDING. Small exceedances and the dominance of the small. A bird's song that is too small is better than one that is too great — wisdom lies in restraint. The superior man accomplishes small things while attending to greater matters in the background.",
+    image: "Thunder on the mountain: the image of Small Exceeding. Thus the superior man, in his conduct of affairs, attends to the small details."
+  },
+  63: {
+    name: "Hexagram 63", aka: "After Completion / Ji Ji (既濟)",
+    judgement: "AFTER COMPLETION. The work is done — but vigilance must remain. After the crossing is completed, caution is still required. The beginning of ease can be the end of careful attention. The superior man considers what is far while attending to what is near.",
+    image: "Fire over water: the image of After Completion. Thus the superior man is aware of the danger of success and knows how to maintain his position."
+  },
+  64: {
+    name: "Hexagram 64", aka: "Before Completion / Wei Ji (未濟)",
+    judgement: "BEFORE COMPLETION. The work is not yet done — approaching the goal but not yet arrived. The fox near the water's edge — if he wets his tail, he cannot complete the crossing. A time of near-completion requiring the last measure of patience and wisdom.",
+    image: "Fire over water: the image of Before Completion. Thus the superior man is careful in the distinction of things and brings affairs to their proper end."
+  }
+};
+
+let lines = [];
+let tossing = false;
+
+function tossCoin() {
+  if (tossing) return;
+  tossing = true;
+  const btn = document.getElementById('coinBtn');
+  btn.classList.add('tossing');
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.classList.remove('tossing');
+    // 3 coins: 3 heads (3) = 7 (old yang), 2 heads+1 tail (2) = 6 (old yin), etc.
+    // For simplicity: count heads (yang)
+    const h = Math.floor(Math.random() * 2) + Math.floor(Math.random() * 2) + Math.floor(Math.random() * 2);
+    // h=3 -> yang (7), h=2 -> yin (8), h=1 -> yin (8), h=0 -> yang (7)
+    const lineValue = (h >= 2) ? 7 : 8; // 7=yang/☰, 8=yin/☷
+    const isYang = lineValue === 7;
+    const symbol = isYang ? '☰' : '☷';
+    const coinFace = h >= 2 ? '☰' : '☷';
+
+    lines.push(lineValue);
+
+    // Show coin result
+    const history = document.getElementById('coinHistory');
+    const div = document.createElement('div');
+    div.className = 'coin-result';
+    div.textContent = coinFace;
+    div.style.animation = 'flipCard 0.4s ease';
+    history.appendChild(div);
+
+    updateHexagram();
+    tossing = false;
+
+    if (lines.length < 6) {
+      btn.disabled = false;
+      document.getElementById('progressText').textContent = `Line ${lines.length}/6 — Toss again!`;
+    } else {
+      document.getElementById('progressText').textContent = 'Reading complete!';
+      btn.disabled = true;
+      showResult();
+    }
+  }, 600);
+}
+
+function getHexagramNumber(yaoValues) {
+  // Lower trigram (lines 1-3 from bottom) and upper trigram (lines 4-6 from bottom)
+  // yaoValues[0] = line 1 (bottom), yaoValues[5] = line 6 (top)
+  const lower = yaoValues.slice(0, 3);
+  const upper = yaoValues.slice(3, 6);
+
+  // Map to trigram numbers: Kun(8)=0, Gen(8)=1,坎(6)=2,巽(8)=3,震(4)=4,乾(7)=5,離(3)=6,坤(2)=7,兌(2)=8
+  // Simple mapping based on binary representation
+  function trigramValue(lines) {
+    // yang=7 -> 1, yin=8 -> 0
+    const bits = lines.map(l => l === 7 ? 1 : 0);
+    // bottom line is bits[0], top is bits[2]
+    return bits[0] * 4 + bits[1] * 2 + bits[2];
+  }
+
+  const lv = trigramValue(lower);
+  const uv = trigramValue(upper);
+  // King Wen sequence
+  const seq = [
+    [1,2,3,4,5,6,7,8], // trigram order: heaven, lake, fire, thunder, wind, water, mountain, earth
+  ];
+
+  // King Wen sequence: 1=Qian(1),2=Kun(2),3=Zhun(3),4=Meng(4),5=Xu(5),6=Song(6),7=Shi(8),8=Bi(9),
+  // 9=Xiaoxu(26),10=Lv(10),11=Tai(11),12=Pi(12),13=Tongren(30),14=Dayu(14),15=Qian(15),16=Yu(16),
+  // 17=Sui(10),18=Gu(26),19=Lin(19),20=Guan(20),21=Shike(21),22=Bi(22),23=Bo(23),24=Fu(24),
+  // 25=Wuwang(52),26=Daxu(41),27=Yi(27),28=Daguo(28),29=Kan(29),30=Li(30),31=Xian(53),32=Heng(32),
+  // 33=Dun(33),34=Dazhuang(34),35=Jin(35),36=Mingyi(36),37=Jiaren(37),38=Kui(38),39=Jian(39),40=Xie(40),
+  // 41=Sun(41),42=Yi(42),43=Guai(43),44=Gou(44),45=Cui(45),46=Sheng(46),47=Kun(47),48=Jing(48),
+  // 49=Ge(49),50=Ding(50),51=Zhen(51),52=Gen(52),53=Jian(53),54=Guimei(54),55=Feng(55),56=Lv(56),
+  // 57=Xun(57),58=Dui(58),59=Huan(59),60=Jie(60),61=Zhongfu(61),62=Xiaoguo(62),63=Jiji(63),64=Weiji(64)
+
+  // Simplified: use binary mapping for hexagram
+  const hexValue = lower.reduce((s, l, i) => s + (l === 7 ? 1 : 0) * Math.pow(2, i), 0) +
+                   upper.reduce((s, l, i) => s + (l === 7 ? 1 : 0) * Math.pow(2, i + 3), 0);
+
+  // Hexagram number = position in King Wen sequence based on hexagram structure
+  // We'll use a lookup-free approach: map structure to number
+  // Lower trigram (0-7) + Upper trigram (0-7)*8 = 0-63
+  // Map to King Wen order 1-64
+  const kingWenOrder = [
+    1,34,5,26,11,9,14,43,  // 0-7
+    25,36,19,46,13,37,44,28,  // 8-15
+    21,51,3,27,42,24,22,41,  // 16-23
+    58,20,63,48,57,18,32,50,  // 24-31
+    54,40,38,55,61,60,53,62,  // 32-39
+    39,52,16,35,45,12,15,47,  // 40-47
+    6,33,31,56,4,29,7,2  // 48-55... actually let me use direct
+  ];
+
+  // Use the actual King Wen arrangement
+  const kw = [
+    [1,43,14,34,9,26,11,5],   // Heaven (1) upper
+    [44,2,23,8,20,16,35,12],  // Lake (2) upper
+    [13,49,30,55,37,36,22,51], // Fire (3) upper
+    [33,31,39,52,56,19,49,38], // Thunder (4) upper
+    [25,53,37,57,61,60,41,42], // Wind (5) upper
+    [6,29,4,40,7,59,47,48],   // Water (6) upper
+    [26,22,18,27,23,24,2,8],   // Mountain (7) upper
+    [10,58,5,32,28,45,12,20]   // Earth (8) upper
+  ];
+
+  // Wait, the mapping is: lower*8 + upper
+  // But trigrams in binary: Qian=111=7, Dui=011=3, Li=101=5, Zhen=001=1, Xun=110=6, Kan=010=2, Gen=100=4, Kun=000=0
+  const trigramMap = {7:0, 3:1, 5:2, 1:3, 6:4, 2:5, 4:6, 8:7}; // value -> index
+  const lowerIdx = trigramMap[lower.reduce((s,l) => s+l, 0)] || 0;
+  const upperIdx = trigramMap[upper.reduce((s,l) => s+l, 0)] || 0;
+
+  const actualKw = [
+    [1,34,5,26,11,9,14,43],
+    [44,2,23,8,20,16,35,12],
+    [13,49,30,55,37,36,22,51],
+    [33,31,39,52,56,19,49,38],
+    [25,53,37,57,61,60,41,42],
+    [6,29,4,40,7,59,47,48],
+    [26,22,18,27,23,24,2,8],
+    [10,58,5,32,28,45,12,20]
+  ];
+
+  return actualKw[upperIdx][lowerIdx];
+}
+
+function updateHexagram() {
+  if (lines.length === 0) return;
+  const display = document.getElementById('hexagramDisplay');
+  display.style.display = 'flex';
+
+  // Show lines from bottom to top
+  let html = '';
+  for (let i = 0; i < 6; i++) {
+    const line = i < lines.length ? (lines[i] === 7 ? '☰' : '☷') : '　';
+    const label = ['初爻','二爻','三爻','四爻','五爻','上爻'][i];
+    html += `<div class="yao-column"><span class="yao line-result">${line}</span><span class="yao-label">${label}</span></div>`;
+  }
+  display.innerHTML = html;
+}
+
+function showResult() {
+  const num = getHexagramNumber(lines);
+  const hex = ICHING[num];
+  if (!hex) { console.error('Hexagram not found:', num); return; }
+
+  const question = document.getElementById('question').value.trim();
+  const narrative = question
+    ? `Your question: "${question}" has been answered by Hexagram ${num} — ${hex.aka}.`
+    : `Hexagram ${num} — ${hex.aka} has revealed itself for you.`;
+
+  document.getElementById('hexName').textContent = hex.name;
+  document.getElementById('hexAKA').textContent = hex.aka;
+  document.getElementById('hexJudgement').textContent = hex.judgement;
+  document.getElementById('hexImage').textContent = hex.image;
+  document.getElementById('narrative').textContent = narrative;
+  document.getElementById('resultSection').style.display = 'block';
+  document.getElementById('coinBtn').style.display = 'none';
+}
+
+function resetCoin() {
+  lines = [];
+  document.getElementById('coinHistory').innerHTML = '';
+  document.getElementById('hexagramDisplay').style.display = 'none';
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('coinBtn').style.display = '';
+  document.getElementById('coinBtn').disabled = false;
+  document.getElementById('progressText').textContent = 'Click the coin to begin your 6-line reading';
+}
+</script>
+</body>
+</html>

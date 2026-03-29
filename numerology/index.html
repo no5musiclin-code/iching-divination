@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numerology - 殺手林占卜</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e1a;
+    color: #e0e8ff;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background-image: radial-gradient(ellipse at top, #0f1a2e 0%, #0a0e1a 70%);
+  }
+  h1 { font-size: 2.5em; text-align: center; margin-bottom: 10px; color: #7eb8f7; text-shadow: 0 0 20px rgba(126,184,247,0.5); }
+  .subtitle { color: #5a7fa8; font-size: 1.1em; margin-bottom: 30px; text-align: center; }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 500px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .form-group { display: flex; flex-direction: column; }
+  .form-group label { color: #7eb8f7; font-size: 0.85em; margin-bottom: 5px; letter-spacing: 1px; text-transform: uppercase; }
+  .form-group input {
+    background: #111827;
+    border: 2px solid #2a3f5f;
+    color: #e0e8ff;
+    padding: 12px;
+    font-size: 1em;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+  }
+  .form-group input:focus { outline: none; border-color: #7eb8f7; }
+  .full-width { grid-column: 1 / -1; }
+  .btn {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(59,130,246,0.4);
+  }
+  .btn:hover { transform: scale(1.03); box-shadow: 0 0 35px rgba(59,130,246,0.7); }
+  .result { max-width: 600px; width: 100%; margin-top: 30px; }
+  .number-card {
+    background: #0f1a2e;
+    border: 2px solid #2a4a7f;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .number-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #7eb8f7);
+  }
+  .number-card h3 { color: #7eb8f7; font-size: 0.9em; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+  .number-card .big-num { font-size: 4em; color: #3b82f6; font-weight: bold; text-shadow: 0 0 30px rgba(59,130,246,0.6); line-height: 1; }
+  .number-card .num-title { color: #93c5fd; font-size: 1.3em; margin: 10px 0; font-weight: bold; }
+  .number-card .num-desc { color: #94a3b8; line-height: 1.7; font-size: 0.95em; margin-top: 10px; }
+  .error { color: #f87171; text-align: center; margin-top: 10px; font-size: 0.95em; }
+  .reset-btn { background: transparent; border: 2px solid #2563eb; color: #7eb8f7; padding: 10px 24px; font-size: 1em; border-radius: 8px; cursor: pointer; margin-top: 20px; font-family: 'Georgia', serif; display: block; margin-left: auto; margin-right: auto; }
+  .reset-btn:hover { background: #2563eb; color: white; }
+</style>
+</head>
+<body>
+<h1>🔢 Numerology</h1>
+<p class="subtitle">Discover Your Life Path, Destiny & Soul Numbers</p>
+
+<div class="form-grid">
+  <div class="form-group">
+    <label>Year of Birth</label>
+    <input type="number" id="year" placeholder="e.g. 1990" min="1900" max="2025">
+  </div>
+  <div class="form-group">
+    <label>Month</label>
+    <input type="number" id="month" placeholder="1-12" min="1" max="12">
+  </div>
+  <div class="form-group">
+    <label>Day</label>
+    <input type="number" id="day" placeholder="1-31" min="1" max="31">
+  </div>
+  <div class="form-group">
+    <label>Your Name</label>
+    <input type="text" id="fullName" placeholder="Full Birth Name">
+  </div>
+</div>
+
+<div style="text-align:center;">
+  <button class="btn" onclick="calculate()">✨ Reveal Your Numbers ✨</button>
+  <p class="error" id="errorMsg"></p>
+</div>
+
+<div class="result" id="resultSection" style="display:none;"></div>
+
+<script>
+const NUMEROLOGY = {
+  1: {
+    title: "The Leader",
+    desc: "You are independent, pioneering, and ambitious. Your path calls for originality, self-reliance, and the courage to forge your own way. You possess natural leadership abilities and a strong sense of purpose. Embrace your individuality and don't be afraid to stand out from the crowd."
+  },
+  2: {
+    title: "The Peacemaker",
+    desc: "Harmony, cooperation, and partnerships define your journey. You are diplomatic, sensitive, and intuitive — a natural mediator who brings people together. Your path is one of balance and relationships. Value collaboration over competition, and trust your emotional wisdom."
+  },
+  3: {
+    title: "The Creator",
+    desc: "Creativity, self-expression, and joy flow through you naturally. You are sociable, communicative, and inspire others with your optimism and artistic talents. Your path is about expressing your true self through creative endeavors. Don't hold back — share your light with the world."
+  },
+  4: {
+    title: "The Builder",
+    desc: "Discipline, practicality, and hard work are your foundations. You build lasting structures in life — whether in career, family, or personal goals. Your path is one of steadfast determination. Lay solid foundations now and you will create something that truly endures."
+  },
+  5: {
+    title: "The Adventurer",
+    desc: "Freedom, change, and variety energize your spirit. You crave new experiences, travel, and intellectual stimulation. Your path is one of constant evolution — embrace unexpected changes as opportunities for growth. Be the wind of change others can feel."
+  },
+  6: {
+    title: "The Nurturer",
+    desc: "Responsibility, home, and community are central to your life. You are caring, compassionate, and often put others' needs before your own. Your path is one of unconditional love and service. Finding balance between giving and receiving is your key lesson."
+  },
+  7: {
+    title: "The Seeker",
+    desc: "Inner wisdom, introspection, and spiritual truth guide your journey. You are analytical, introspective, and drawn to the mysteries of life. Your path is one of deep inner exploration. Take time for solitude and contemplation — the answers you seek are within."
+  },
+  8: {
+    title: "The Achiever",
+    desc: "Ambition, power, and material success define your outer world. You are confident, business-minded, and attract abundance when you align power with integrity. Your path is one of achievement and recognition. Use your strength wisely and share your prosperity."
+  },
+  9: {
+    title: "The Humanitarian",
+    desc: "Compassion, wisdom, and universal love are your gifts. You are selfless, idealistic, and here to serve humanity in broad ways. Your path is one of completion and letting go. Release what no longer serves you — endings create space for profound new beginnings."
+  }
+};
+
+function reduceToOne(num) {
+  while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+    num = String(num).split('').reduce((s, d) => s + parseInt(d), 0);
+  }
+  return num;
+}
+
+function nameToNumber(name) {
+  const map = { a:1,b:2,c:3,d:4,e:5,f:6,g:7,h:8,i:9,j:1,k:2,l:3,m:4,n:5,o:6,p:7,q:8,r:9,s:1,t:2,u:3,v:4,w:5,x:6,y:7,z:8,
+    A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8 };
+  return String(name).split('').reduce((s, c) => s + (map[c] || 0), 0);
+}
+
+function calculate() {
+  const year = parseInt(document.getElementById('year').value);
+  const month = parseInt(document.getElementById('month').value);
+  const day = parseInt(document.getElementById('day').value);
+  const name = document.getElementById('fullName').value.trim();
+  const error = document.getElementById('errorMsg');
+  error.textContent = '';
+
+  if (!year || !month || !day) { error.textContent = 'Please enter a complete birth date.'; return; }
+  if (month < 1 || month > 12 || day < 1 || day > 31) { error.textContent = 'Please enter a valid date.'; return; }
+
+  const lifePath = reduceToOne(year + month + day);
+  const destiny = reduceToOne(nameToNumber(name));
+  const soul = reduceToOne(nameToNumber(name.replace(/[aeiou]/gi, ''))); // consonants only
+  const personality = reduceToOne(nameToNumber(name.replace(/[^aeiou]/gi, ''))); // vowels only
+
+  const resultHTML = `
+    <div class="number-card">
+      <h3>Life Path Number</h3>
+      <div class="big-num">${lifePath}</div>
+      <div class="num-title">${NUMEROLOGY[lifePath]?.title || NUMEROLOGY[lifePath % 9 + 1].title}</div>
+      <div class="num-desc">${NUMEROLOGY[lifePath]?.desc || ''} Your Life Path reveals your core purpose and the journey your soul chose before incarnating into this life.</div>
+    </div>
+
+    <div class="number-card">
+      <h3>Destiny Number</h3>
+      <div class="big-num">${destiny}</div>
+      <div class="num-title">${NUMEROLOGY[destiny]?.title || NUMEROLOGY[destiny % 9 + 1].title}</div>
+      <div class="num-desc">${NUMEROLOGY[destiny]?.desc || ''} Your Destiny Number reveals what you are meant to achieve in this lifetime — your external goals and the person you are becoming.</div>
+    </div>
+
+    <div class="number-card">
+      <h3>Soul Number</h3>
+      <div class="big-num">${soul}</div>
+      <div class="num-title">${NUMEROLOGY[soul]?.title || NUMEROLOGY[soul % 9 + 1].title}</div>
+      <div class="num-desc">${NUMEROLOGY[soul]?.desc || ''} Your Soul Number reveals your inner self — your deepest desires, motivations, and the essence of who you truly are when no one is watching.</div>
+    </div>
+
+    <div class="number-card">
+      <h3>Personality Number</h3>
+      <div class="big-num">${personality}</div>
+      <div class="num-title">${NUMEROLOGY[personality]?.title || NUMEROLOGY[personality % 9 + 1].title}</div>
+      <div class="num-desc">Your Personality Number shows how others perceive you — the mask you wear in the outer world and the impression you leave on people you meet.</div>
+    </div>
+
+    <button class="reset-btn" onclick="resetCalc()">🔄 New Calculation</button>
+  `;
+
+  document.getElementById('resultSection').innerHTML = resultHTML;
+  document.getElementById('resultSection').style.display = 'block';
+}
+
+function resetCalc() {
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('year').value = '';
+  document.getElementById('month').value = '';
+  document.getElementById('day').value = '';
+  document.getElementById('fullName').value = '';
+}
+</script>
+</body>
+</html>

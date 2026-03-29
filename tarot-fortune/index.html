@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarot Fortune - 殺手林占卜</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a0a2e;
+    color: #d4af37;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  h1 { font-size: 2.5em; text-align: center; margin-bottom: 10px; text-shadow: 0 0 20px #d4af37; }
+  .subtitle { color: #a78bfa; font-size: 1.1em; margin-bottom: 30px; text-align: center; }
+  .input-section { text-align: center; margin-bottom: 30px; }
+  input[type="text"] {
+    background: #2d1b4e;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    font-family: 'Georgia', serif;
+  }
+  input[type="text"]::placeholder { color: #8b6fc0; }
+  .btn {
+    display: block;
+    margin: 30px auto;
+    background: linear-gradient(135deg, #d4af37, #f0d080);
+    color: #1a0a2e;
+    border: none;
+    padding: 16px 48px;
+    font-size: 1.3em;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(212,175,55,0.4);
+  }
+  .btn:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(212,175,55,0.7); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .cards-container { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+  .card-slot {
+    width: 200px;
+    height: 320px;
+    border: 3px solid #d4af37;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #2d1b4e;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s;
+    box-shadow: 0 0 20px rgba(212,175,55,0.2);
+  }
+  .card-slot.revealed { background: #120826; border-color: #d4af37; }
+  .card-slot .card-symbol { font-size: 5em; margin-bottom: 10px; }
+  .card-slot .card-name { color: #d4af37; font-size: 1.1em; text-align: center; padding: 0 10px; font-weight: bold; }
+  .card-slot .card-position { color: #a78bfa; font-size: 0.85em; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px; }
+  .card-slot .card-meaning { color: #c4b5fd; font-size: 0.8em; text-align: center; padding: 10px; line-height: 1.4; margin-top: 8px; }
+  .card-flip {
+    animation: flipCard 0.6s ease-in-out;
+  }
+  @keyframes flipCard {
+    0% { transform: rotateY(180deg) scale(0.5); opacity: 0; }
+    50% { transform: rotateY(90deg) scale(0.8); opacity: 0.5; }
+    100% { transform: rotateY(0deg) scale(1); opacity: 1; }
+  }
+  .reading { max-width: 700px; margin: 30px auto; text-align: center; }
+  .reading h3 { color: #d4af37; font-size: 1.3em; margin: 20px 0 10px; }
+  .reading p { color: #c4b5fd; line-height: 1.7; font-size: 1em; }
+  .count-display { color: #a78bfa; font-size: 0.95em; margin-bottom: 10px; }
+  .paywall { display: none; background: linear-gradient(135deg, #2d1b4e, #1a0a2e); border: 2px solid #d4af37; border-radius: 16px; padding: 40px; text-align: center; max-width: 500px; margin: 20px auto; }
+  .paywall h2 { color: #d4af37; margin-bottom: 15px; }
+  .paywall p { color: #c4b5fd; margin-bottom: 20px; }
+  .paywall a { background: #d4af37; color: #1a0a2e; padding: 12px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; }
+  .reset-btn { background: transparent; border: 2px solid #d4af37; color: #d4af37; padding: 10px 24px; font-size: 1em; border-radius: 8px; cursor: pointer; margin-top: 20px; font-family: 'Georgia', serif; }
+  .reset-btn:hover { background: #d4af37; color: #1a0a2e; }
+</style>
+</head>
+<body>
+<h1>🔮 Tarot Fortune</h1>
+<p class="subtitle">Draw 3 Cards — Past · Present · Future</p>
+
+<div class="input-section">
+  <input type="text" id="userName" placeholder="Enter your name (optional)">
+</div>
+
+<p class="count-display" id="countDisplay">Free readings remaining: 3</p>
+
+<div class="cards-container" id="cardsContainer">
+  <div class="card-slot" id="slot0">
+    <div class="card-symbol">?</div>
+    <div class="card-name">Click Draw</div>
+    <div class="card-position">Past</div>
+  </div>
+  <div class="card-slot" id="slot1">
+    <div class="card-symbol">?</div>
+    <div class="card-name">Click Draw</div>
+    <div class="card-position">Present</div>
+  </div>
+  <div class="card-slot" id="slot2">
+    <div class="card-symbol">?</div>
+    <div class="card-name">Click Draw</div>
+    <div class="card-position">Future</div>
+  </div>
+</div>
+
+<button class="btn" id="drawBtn" onclick="drawCards()">✨ Draw 3 Cards ✨</button>
+
+<div class="reading" id="readingSection" style="display:none;">
+  <h3>📜 Your Reading</h3>
+  <p id="readingText"></p>
+  <button class="reset-btn" onclick="resetReading()">🔄 New Reading</button>
+</div>
+
+<div class="paywall" id="paywall">
+  <h2>🌟 Unlock Unlimited Readings</h2>
+  <p>You've used all 3 free readings. Support 殺手林 on Ko-fi to unlock unlimited tarot guidance!</p>
+  <a href="https://ko-fi.com/s/00367ecd74" target="_blank">☕ Support on Ko-fi</a>
+</div>
+
+<script>
+const TAROT_CARDS = [
+  {
+    name: "The Fool",
+    symbol: "0",
+    meaning: "A new beginning, innocence, spontaneity, free spirit. But also recklessness and risk-taking. Trust in the journey ahead.",
+    upright: "New beginnings, innocence, spontaneity, free spirit"
+  },
+  {
+    name: "The Magician",
+    symbol: "I",
+    meaning: "Manifestation, resourcefulness, power, inspired action. You have all the tools needed to achieve your desires.",
+    upright: "Manifestation, resourcefulness, power, inspired action"
+  },
+  {
+    name: "The High Priestess",
+    symbol: "II",
+    meaning: "Intuition, sacred knowledge, divine feminine, the subconscious mind. Trust your inner voice and hidden wisdom.",
+    upright: "Intuition, sacred knowledge, divine feminine, subconscious"
+  },
+  {
+    name: "The Empress",
+    symbol: "III",
+    meaning: "Femininity, beauty, nature, nurturing, abundance. A time of growth, prosperity, and creative expression.",
+    upright: "Femininity, beauty, nature, nurturing, abundance"
+  },
+  {
+    name: "The Emperor",
+    symbol: "IV",
+    meaning: "Authority, structure, control, fatherhood, stability. Take charge and establish firm foundations in your life.",
+    upright: "Authority, structure, control, fatherhood, stability"
+  },
+  {
+    name: "The Hierophant",
+    symbol: "V",
+    meaning: "Spiritual wisdom, tradition, conformity, morality, ethics. Seek guidance from established institutions and teachers.",
+    upright: "Spiritual wisdom, tradition, conformity, morality, ethics"
+  },
+  {
+    name: "The Lovers",
+    symbol: "VI",
+    meaning: "Love, harmony, relationships, values alignment, choices. A significant decision about partnerships and deep connections.",
+    upright: "Love, harmony, relationships, values alignment, choices"
+  },
+  {
+    name: "The Chariot",
+    symbol: "VII",
+    meaning: "Control, willpower, success, action, determination. Victory through confidence and maintaining focus on goals.",
+    upright: "Control, willpower, success, action, determination"
+  },
+  {
+    name: "Strength",
+    symbol: "VIII",
+    meaning: "Courage, persuasion, influence, compassion, inner strength. True power comes from compassion rather than force.",
+    upright: "Courage, persuasion, influence, compassion, inner strength"
+  },
+  {
+    name: "The Hermit",
+    symbol: "IX",
+    meaning: "Soul-searching, introspection, inner guidance, solitude. Take time alone to find your own answers within.",
+    upright: "Soul-searching, introspection, inner guidance, solitude"
+  },
+  {
+    name: "Wheel of Fortune",
+    symbol: "X",
+    meaning: "Good luck, karma, life cycles, destiny, turning point. The wheel of fate is turning in your favor.",
+    upright: "Good luck, karma, life cycles, destiny, turning point"
+  },
+  {
+    name: "Justice",
+    symbol: "XI",
+    meaning: "Justice, fairness, truth, cause and effect, law. Your actions have consequences — truth will be revealed.",
+    upright: "Justice, fairness, truth, cause and effect, law"
+  },
+  {
+    name: "The Hanged Man",
+    symbol: "XII",
+    meaning: "Pause, surrender, letting go, new perspectives. Sometimes we must surrender to gain a completely new viewpoint.",
+    upright: "Pause, surrender, letting go, new perspectives"
+  },
+  {
+    name: "Death",
+    symbol: "XIII",
+    meaning: "Endings, change, transformation, transition, cycles. Profound transformation through endings — release the old to embrace the new.",
+    upright: "Endings, change, transformation, transition, cycles"
+  },
+  {
+    name: "Temperance",
+    symbol: "XIV",
+    meaning: "Balance, moderation, patience, purpose, meaning. Find middle ground and blend opposing forces harmoniously.",
+    upright: "Balance, moderation, patience, purpose, meaning"
+  },
+  {
+    name: "The Devil",
+    symbol: "XV",
+    meaning: "Shadow self, attachment, addiction, restriction, materialism. Breaking free from chains that bind you — even self-imposed ones.",
+    upright: "Shadow self, attachment, addiction, restriction, materialism"
+  },
+  {
+    name: "The Tower",
+    symbol: "XVI",
+    meaning: "Sudden change, upheaval, chaos, revelation, awakening. Destruction of false structures — what crumbles makes room for the real.",
+    upright: "Sudden change, upheaval, chaos, revelation, awakening"
+  },
+  {
+    name: "The Star",
+    symbol: "XVII",
+    meaning: "Hope, faith, purpose, renewal, spirituality. After the storm comes serenity — a guiding light leads you forward.",
+    upright: "Hope, faith, purpose, renewal, spirituality"
+  },
+  {
+    name: "The Moon",
+    symbol: "XVIII",
+    meaning: "Illusion, fear, anxiety, subconscious, intuition. Navigate through uncertainty — trust that things are not always as they seem.",
+    upright: "Illusion, fear, anxiety, subconscious, intuition"
+  },
+  {
+    name: "The Sun",
+    symbol: "XIX",
+    meaning: "Positivity, fun, warmth, success, vitality, optimism. Pure joy and success — embrace the light and Radiant energy.",
+    upright: "Positivity, fun, warmth, success, vitality, optimism"
+  },
+  {
+    name: "Judgement",
+    symbol: "XX",
+    meaning: "Judgement, rebirth, inner calling, absolution, redemption. A spiritual awakening calls you to fulfill your true purpose.",
+    upright: "Judgement, rebirth, inner calling, absolution, redemption"
+  },
+  {
+    name: "The World",
+    symbol: "XXI",
+    meaning: "Completion, integration, accomplishment, travel, achievement. A major cycle completes — achievement and fulfillment are yours.",
+    upright: "Completion, integration, accomplishment, travel, achievement"
+  }
+];
+
+const POSITIONS = ["Past", "Present", "Future"];
+const POSITION_MEANINGS = [
+  " reflects what has already happened and shapes who you are today.",
+  " represents your current situation and the energies you are experiencing right now.",
+  " reveals what is approaching and the direction your path is heading toward."
+];
+
+let freeReads = parseInt(localStorage.getItem('tarotReads') || '0');
+let readingsLeft = Math.max(0, 3 - freeReads);
+
+function updateCount() {
+  document.getElementById('countDisplay').textContent = `Free readings remaining: ${readingsLeft}`;
+}
+
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function drawCards() {
+  if (readingsLeft <= 0) {
+    document.getElementById('paywall').style.display = 'block';
+    document.getElementById('drawBtn').disabled = true;
+    return;
+  }
+
+  const shuffled = shuffle(TAROT_CARDS);
+  const selected = shuffled.slice(0, 3);
+  const userName = document.getElementById('userName').value.trim();
+
+  freeReads++;
+  localStorage.setItem('tarotReads', freeReads);
+  readingsLeft = Math.max(0, 3 - freeReads);
+  updateCount();
+
+  selected.forEach((card, i) => {
+    const slot = document.getElementById(`slot${i}`);
+    slot.classList.add('card-flip', 'revealed');
+    slot.innerHTML = `
+      <div class="card-symbol">${card.symbol}</div>
+      <div class="card-name">${card.name}</div>
+      <div class="card-position">${POSITIONS[i]}</div>
+      <div class="card-meaning">${card.meaning}</div>
+    `;
+  });
+
+  // Build reading text
+  let readingText = userName
+    ? `Dear ${userName}, your three-card reading reveals:\n\n`
+    : `Your three-card reading reveals:\n\n`;
+
+  selected.forEach((card, i) => {
+    readingText += `🔸 ${POSITIONS[i]}: ${card.name}\n   ${card.meaning}\n\n`;
+  });
+
+  readingText += `The cards urge you to reflect on your journey — from the foundations of your past, through the energy you carry now, toward the possibilities ahead.`;
+
+  document.getElementById('readingText').textContent = readingText;
+  document.getElementById('readingSection').style.display = 'block';
+  document.getElementById('drawBtn').disabled = readingsLeft <= 0;
+  if (readingsLeft <= 0) {
+    document.getElementById('paywall').style.display = 'block';
+  }
+}
+
+function resetReading() {
+  document.getElementById('readingSection').style.display = 'none';
+  document.getElementById('paywall').style.display = 'none';
+  document.getElementById('drawBtn').disabled = false;
+  for (let i = 0; i < 3; i++) {
+    const slot = document.getElementById(`slot${i}`);
+    slot.classList.remove('card-flip', 'revealed');
+    slot.innerHTML = `
+      <div class="card-symbol">?</div>
+      <div class="card-name">Click Draw</div>
+      <div class="card-position">${POSITIONS[i]}</div>
+    `;
+  }
+  updateCount();
+}
+
+updateCount();
+</script>
+</body>
+</html>

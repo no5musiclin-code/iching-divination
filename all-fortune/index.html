@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免費線上占卜工具全集｜殺手林占卜</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #080612;
+    color: #e8dff5;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .hero {
+    width: 100%;
+    min-height: 50vh;
+    background: linear-gradient(135deg, #0d0820 0%, #1a0a3e 50%, #0d0820 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(ellipse at center, rgba(139,92,246,0.08) 0%, transparent 60%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+  .hero-emoji { font-size: 4em; margin-bottom: 10px; }
+  .hero h1 {
+    font-size: clamp(2em, 6vw, 3.5em);
+    background: linear-gradient(135deg, #d4af37, #f0d080, #d4af37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  .hero p { color: #a78bfa; font-size: 1.2em; max-width: 600px; position: relative; line-height: 1.6; }
+  .tagline { color: #7c6aa0; font-size: 0.95em; margin-top: 8px; font-style: italic; }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    width: 100%;
+    padding: 50px 20px;
+  }
+  .tool-card {
+    background: linear-gradient(135deg, #130d2e, #0a0618);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 20px;
+    padding: 30px;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .tool-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .tool-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212,175,55,0.6);
+    box-shadow: 0 20px 60px rgba(212,175,55,0.15);
+  }
+  .tool-card:hover::after { opacity: 1; }
+  .tool-icon { font-size: 3em; margin-bottom: 15px; }
+  .tool-name { color: #d4af37; font-size: 1.4em; margin-bottom: 8px; font-weight: bold; }
+  .tool-desc { color: #a78bfa; font-size: 0.9em; line-height: 1.6; margin-bottom: 15px; }
+  .tool-tag {
+    display: inline-block;
+    background: rgba(139,92,246,0.15);
+    color: #a78bfa;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    border: 1px solid rgba(139,92,246,0.3);
+  }
+  .tool-cta {
+    display: inline-block;
+    margin-top: 15px;
+    color: #d4af37;
+    font-size: 0.9em;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .tool-card:hover .tool-cta { opacity: 1; transform: translateY(0); }
+
+  .divider { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, #d4af37, transparent); margin: 20px auto; }
+
+  .kofi-section {
+    width: 100%;
+    background: linear-gradient(135deg, #0d0820, #1a0a3e);
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(212,175,55,0.1);
+  }
+  .kofi-section h2 { color: #d4af37; font-size: 1.8em; margin-bottom: 10px; }
+  .kofi-section p { color: #a78bfa; max-width: 500px; margin: 0 auto 25px; line-height: 1.7; }
+  .kofi-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #d4af37;
+    color: #0a0618;
+    padding: 14px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 25px rgba(212,175,55,0.4);
+  }
+  .kofi-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(212,175,55,0.7); }
+
+  .footer { width: 100%; padding: 25px; text-align: center; color: #4a3a6a; font-size: 0.85em; border-top: 1px solid rgba(212,175,55,0.05); }
+
+  .coming-soon {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .coming-soon .tool-tag { background: rgba(100,100,100,0.1); color: #666; border-color: rgba(100,100,100,0.2); }
+
+  @media (max-width: 600px) {
+    .hero { min-height: 40vh; padding: 40px 20px 30px; }
+    .hero-emoji { font-size: 3em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-emoji">🔮</div>
+  <h1>免費線上占卜工具全集</h1>
+  <p>探索古老智慧的現代工具——易經、塔羅、命運數、硬幣占卜，從不同維度為你揭示生命的指引。</p>
+  <p class="tagline">Free Divination Tools · by 殺手林</p>
+</div>
+
+<div class="tools-grid">
+
+  <!-- I Ching Divination -->
+  <a class="tool-card" href="../iching-divination/">
+    <div class="tool-icon">☯️</div>
+    <div class="tool-name">易經測字</div>
+    <div class="tool-desc">輸入任意中文字，透過易經六十四卦象為你解讀字義與人生方向。結合古典易學與現代解讀，探索文字背後的宇宙訊息。</div>
+    <span class="tool-tag">易經 · I Ching</span>
+    <div class="tool-cta">免費使用 →</div>
+  </a>
+
+  <!-- Tarot -->
+  <a class="tool-card" href="../tarot-fortune/">
+    <div class="tool-icon">🌙</div>
+    <div class="tool-name">塔羅牌占卜</div>
+    <div class="tool-desc">抽三張牌——過去、現在、未來。二十二張大阿爾卡納完整解讀，附翻牌動畫與付費牆機制。探索你的意識深處與生命課題。</div>
+    <span class="tool-tag">塔羅 · Tarot · Major Arcana</span>
+    <div class="tool-cta">免費使用 →</div>
+  </a>
+
+  <!-- Numerology -->
+  <a class="tool-card" href="../numerology/">
+    <div class="tool-icon">🔢</div>
+    <div class="tool-name">數字命運學</div>
+    <div class="tool-desc">輸入生日與姓名，計算生命路徑數、命運數、靈魂數與人格數。數字蘊含宇宙密碼，揭示你的天賦使命與人生課題。</div>
+    <span class="tool-tag">命運數 · Numerology</span>
+    <div class="tool-cta">免費使用 →</div>
+  </a>
+
+  <!-- Coin I Ching -->
+  <a class="tool-card" href="../coin-iching/">
+    <div class="tool-icon">🪙</div>
+    <div class="tool-name">硬幣易經占卜</div>
+    <div class="tool-desc">擲六次硬幣，生成六爻卦象。輸入你的問題，讓易經六十四卦揭示局勢並給出完整判辭與象義。古老占法，現代詮釋。</div>
+    <span class="tool-tag">易經 · 硬幣 · I Ching</span>
+    <div class="tool-cta">免費使用 →</div>
+  </a>
+
+  <!-- Dream Interpretation - Coming Soon -->
+  <div class="tool-card coming-soon">
+    <div class="tool-icon">💭</div>
+    <div class="tool-name">夢境解讀</div>
+    <div class="tool-desc">記錄你的夢境，透過象徵系統與心理學框架解讀潛意識的訊息。從弗洛伊德到容格，從埃及到中國，夢是通往靈魂的橋樑。</div>
+    <span class="tool-tag">夢境 · Dream · 敬請期待</span>
+    <div class="tool-cta">即將上線 →</div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="kofi-section">
+  <h2>☕ 支持殺手林</h2>
+  <p>這些占卜工具完全免費使用。如果這些工具對你有幫助，歡迎用一杯咖啡支持作者的創作與維護！</p>
+  <a class="kofi-btn" href="https://ko-fi.com/s/00367ecd74" target="_blank">
+    <svg height="24" width="24" viewBox="0 0 156 156" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M78 0C34.9 0 0 34.9 0 78s34.9 78 78 78 78-34.9 78-78S121.1 0 78 0z" fill="#00b900"/><path d="M40.3 108.7c-1.8 3.2-5.5 4.3-8.7 2.5-3.2-1.8-4.3-5.5-2.5-8.7l25.2-44.8c1.8-3.2 5.5-4.3 8.7-2.5 3.2 1.8 4.3 5.5 2.5 8.7L40.3 108.7zM65.8 90.3c-2.6 1.5-5.9.5-7.4-2.1-1.5-2.6-.5-5.9 2.1-7.4l38.2-21.5c2.6-1.5 5.9-.5 7.4 2.1 1.5 2.6.5 5.9-2.1 7.4L65.8 90.3z" fill="#fff"/></svg>
+    在 Ko-fi 上支持
+  </a>
+</div>
+
+<div class="footer">
+  <p>© 2024–2026 殺手林占卜工具全集 · 免費提供 · <a href="https://ko-fi.com/s/00367ecd74" target="_blank" style="color:#a78bfa;">支持 Ko-fi</a></p>
+</div>
+
+</body>
+</html>
