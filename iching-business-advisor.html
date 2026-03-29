@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Ching Business Advisor | AI-Powered Ancient Wisdom for Modern Decisions</title>
+<meta name="description" content="Get AI-powered I Ching divination for your business decisions. Startup strategy, investment choices, partnership analysis. Try free or subscribe for unlimited access.">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #C9A84C; --gold-light: #E8D48B; --gold-dark: #8B6914; --dark: #0D0D0D; --purple: #1A0A2E; --card: rgba(255,255,255,0.04); --border: rgba(201,168,76,0.2); }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden; }
+.gradient-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, rgba(26,10,46,0.3) 40%, transparent 65%); pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* NAV */
+nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+.logo { font-size: 1.1rem; font-weight: 700; color: var(--gold); text-decoration: none; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero { text-align: center; padding: 5rem 0 4rem; }
+.hero-symbol { font-size: 4rem; margin-bottom: 2rem; letter-spacing: 0.5rem; }
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2.5rem, 6vw, 3.8rem); font-weight: 700; color: var(--gold); line-height: 1.15; margin-bottom: 1.5rem; }
+.hero h1 span { color: #fff; }
+.hero p { font-size: 1.15rem; color: #94a3b8; max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; }
+.hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0D0D0D; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 1.05rem; transition: all 0.2s; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(201,168,76,0.4); }
+.btn-secondary { background: transparent; border: 1px solid rgba(201,168,76,0.4); color: var(--gold-light); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-size: 1rem; transition: all 0.2s; }
+.btn-secondary:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+/* PROOF */
+.proof { display: flex; justify-content: center; gap: 3rem; margin-top: 3rem; flex-wrap: wrap; }
+.proof-item { text-align: center; }
+.proof-num { font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+.proof-label { font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; }
+
+/* DIVIDER */
+.divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+/* WHAT */
+.section { padding: 3rem 0; }
+.section-label { font-size: 0.75rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.75rem; }
+.section h2 { font-family: 'Crimson Pro', serif; font-size: 2rem; color: #fff; margin-bottom: 1.5rem; }
+.section p { color: #94a3b8; line-height: 1.8; max-width: 700px; margin-bottom: 2rem; }
+
+/* FEATURES GRID */
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: all 0.2s; }
+.feature-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+.feature-card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 0.5rem; }
+.feature-card p { color: #94a3b8; font-size: 0.88rem; line-height: 1.6; margin: 0; }
+
+/* USE CASES */
+.cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.case-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; }
+.case-card h3 { color: var(--gold-light); font-size: 1rem; margin-bottom: 0.5rem; }
+.case-card p { color: #94a3b8; font-size: 0.88rem; line-height: 1.6; margin: 0; }
+
+/* PRICING */
+.pricing { background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.15); border-radius: 24px; padding: 3rem; text-align: center; }
+.pricing h2 { color: var(--gold); margin-bottom: 0.5rem; }
+.pricing-sub { color: #94a3b8; margin-bottom: 2.5rem; }
+.plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 750px; margin: 0 auto; }
+.plan { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 1.5rem; text-align: left; position: relative; }
+.plan.featured { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+.plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #0D0D0D; font-size: 0.75rem; font-weight: 700; padding: 0.25rem 1rem; border-radius: 20px; white-space: nowrap; }
+.plan h3 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.plan-price { font-size: 2.2rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
+.plan-price span { font-size: 0.9rem; color: #64748b; font-weight: 400; }
+.plan ul { list-style: none; margin-bottom: 1.5rem; }
+.plan li { color: #cbd5e1; font-size: 0.88rem; padding: 0.4rem 0; display: flex; gap: 0.5rem; }
+.plan li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+.plan-btn { width: 100%; text-align: center; padding: 0.8rem; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 0.95rem; display: block; transition: all 0.2s; }
+.plan-btn.primary { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0D0D0D; }
+.plan-btn.primary:hover { transform: translateY(-2px); }
+.plan-btn.outline { border: 1px solid var(--border); color: var(--gold-light); }
+.plan-btn.outline:hover { border-color: var(--gold); }
+
+/* TESTIMONIALS */
+.testimonial { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; margin-bottom: 1rem; }
+.testimonial p { color: #e2e8f0; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+.testimonial .author { color: #64748b; font-size: 0.85rem; }
+
+/* CTA */
+.cta-section { text-align: center; padding: 4rem 0; }
+.cta-section h2 { font-family: 'Crimson Pro', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 1rem; }
+.cta-section p { color: #94a3b8; max-width: 550px; margin: 0 auto 2rem; line-height: 1.7; }
+
+/* FOOTER */
+footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
+
+/* FLOATING CTA */
+.floating-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; }
+.floating-cta a { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0D0D0D; padding: 0.9rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; box-shadow: 0 8px 30px rgba(201,168,76,0.4); transition: all 0.2s; display: block; }
+.floating-cta a:hover { transform: translateY(-3px); }
+
+@media(max-width: 600px) { .nav-links { display: none; } .hero { padding: 3rem 0 2rem; } .proof { gap: 1.5rem; } }
+</style>
+</head>
+<body>
+<div class="gradient-bg"></div>
+<div class="container">
+
+<nav>
+  <a href="#" class="logo">殺手林 Shaishalin</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#cases">Use Cases</a>
+    <a href="#pricing">Pricing</a>
+    <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank">Free Tool</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-symbol">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+  <h1>I Ching Business Advisor<br><span>Ancient Wisdom Meets AI</span></h1>
+  <p>Stop guessing. Start knowing. Get AI-powered I Ching divination specifically designed for entrepreneurs, investors, and business leaders. 3,000 years of wisdom — on your side of every major decision.</p>
+  <div class="hero-cta">
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn-primary">💛 Try Free — Get Your Reading</a>
+    <a href="#pricing" class="btn-secondary">View Pricing</a>
+  </div>
+  <div class="proof">
+    <div class="proof-item"><div class="proof-num">6</div><div class="proof-label">Languages Supported</div></div>
+    <div class="proof-item"><div class="proof-num">64</div><div class="proof-label">Hexagrams</div></div>
+    <div class="proof-item"><div class="proof-num">100%</div><div class="proof-label">Free to Try</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="features">
+  <div class="section-label">What You Get</div>
+  <h2>More Than Fortune Telling</h2>
+  <p>I Ching isn't fortune telling — it's decision support. Every hexagram represents a strategic situation. Combined with AI analysis, it gives you frameworks for the hardest business decisions.</p>
+  
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Business Decision Oracle</h3>
+      <p>Input your industry, two options (A vs B), funding status, and timeline pressure. Get a full decision report with hexagram analysis, risk assessment, and specific action steps.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Investment Hexagram</h3>
+      <p>Get I Ching guidance for your investment decisions. Supports stocks, real estate, crypto, funds, and startup equity. Risk tolerance scales included.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <h3>Partnership Analysis</h3>
+      <p>Should you partner with this person? Is this deal good? Get an objective hexagram-based analysis that cuts through emotional bias.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💼</div>
+      <h3>Career & Startup Guidance</h3>
+      <p>Should you make the jump? Is now the right time? I Ching gives you timing wisdom for career moves and startup decisions.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌅</div>
+      <h3>Daily Entrepreneur Brief</h3>
+      <p>Every day, a new hexagram with energy level, action recommendations, risk alerts, and daily affirmation. Your morning ritual for better decisions.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎴</div>
+      <h3>68 Hexagrams Decision Cards</h3>
+      <p>Complete 69-page PDF deck. Print it, carry it, reference it in meetings. Each card is a strategic situation mapped to practical business advice.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="cases">
+  <div class="section-label">Use Cases</div>
+  <h2>What Decisions Can I Ching Help With?</h2>
+  
+  <div class="cases-grid">
+    <div class="case-card">
+      <h3>🏃 Should I Quit My Job to Start a Company?</h3>
+      <p>The classic leap. I Ching gives you timing analysis, readiness assessment, and the honest risks you might be overlooking.</p>
+    </div>
+    <div class="case-card">
+      <h3>💰 Should I Invest in This Deal?</h3>
+      <p>Due diligence meets ancient wisdom. Get a hexagram analysis of the deal's energy, your risk tolerance, and whether the timing is right.</p>
+    </div>
+    <div class="case-card">
+      <h3>🤝 Should I Take This Partner?</h3>
+      <p>Partnerships make or break businesses. I Ching cuts through the charm to show you the true nature of a potential collaboration.</p>
+    </div>
+    <div class="case-card">
+      <h3>🚀 Should I Launch This Product Now?</h3>
+      <p>Launch timing is everything. Get a hexagram reading on your product, market conditions, and the energy of your team.</p>
+    </div>
+    <div class="case-card">
+      <h3>🌏 Should I Expand to This Market?</h3>
+      <p>Geographic expansion decisions. I Ching analyzes the hexagram energy of your current position vs the target market.</p>
+    </div>
+    <div class="case-card">
+      <h3>💬 Should I Fire This Employee?</h3>
+      <p>Difficult people decisions. Get objective hexagram guidance on team dynamics and the true source of the problem.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2>Simple, Transparent Pricing</h2>
+  
+  <div class="pricing">
+    <div class="plans">
+      <div class="plan">
+        <h3>🆓 Free</h3>
+        <div class="plan-price">$0 <span>/ forever</span></div>
+        <ul>
+          <li>3 free divination readings/month</li>
+          <li>Access to all 8 core hexagrams</li>
+          <li>Basic interpretation</li>
+          <li>All 6 language versions</li>
+        </ul>
+        <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank" class="plan-btn outline">Try Free</a>
+      </div>
+      
+      <div class="plan featured">
+        <div class="plan-badge">⭐ Most Popular</div>
+        <h3>📦 Decision Bundle</h3>
+        <div class="plan-price">$19.90 <span>/ one-time</span></div>
+        <ul>
+          <li>68 Hexagrams Business Cards (PDF)</li>
+          <li>AI Business Oracle Tool (lifetime access)</li>
+          <li>30-Day Startup Blueprint</li>
+          <li>Daily I Ching Brief (30 days)</li>
+          <li>All future updates free</li>
+        </ul>
+        <a href="https://linblance.gumroad.com/l/wvcvok" target="_blank" class="plan-btn primary">Get the Bundle</a>
+      </div>
+      
+      <div class="plan">
+        <div class="plan-badge">🚀 Power User</div>
+        <h3>💎 Pro Access</h3>
+        <div class="plan-price">$29 <span>/ month</span></div>
+        <ul>
+          <li>Unlimited divination readings</li>
+          <li>Advanced hexagram analysis</li>
+          <li>Weekly business decision reports</li>
+          <li>Priority support</li>
+          <li>All future tools included</li>
+        </ul>
+        <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="plan-btn outline">Coming Soon</a>
+      </div>
+    </div>
+    <p style="color:#64748b;font-size:0.8rem;margin-top:1.5rem;">All payments via Gumroad or Ko-fi. Secure checkout. Instant digital delivery.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section">
+  <div class="section-label">About</div>
+  <h2>Why I Ching for Business?</h2>
+  <p>For 3,000 years, Chinese emperors used I Ching (易經) for major state decisions. Military generals used it for battle strategy. Today, entrepreneurs in Asia and Silicon Valley use it for business decisions.</p>
+  <p>I Ching isn't magic — it's pattern recognition. The 64 hexagrams represent 64 archetypal situations that appear repeatedly in business, relationships, and life. When you get a reading, you're not getting fortune-telling — you're getting a structured analysis of your situation mapped against 3,000 years of strategic wisdom.</p>
+  <p><strong style="color:var(--gold)">Combined with AI, you get analysis that is both ancient AND intelligent.</strong></p>
+</section>
+
+<section class="cta-section">
+  <h2>Your Next Business Decision Starts Here</h2>
+  <p>Try the free divination tool right now. No signup, no payment — just answers to your most pressing question.</p>
+  <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank" class="btn-primary" style="display:inline-block;">🔮 Get Your Free Reading</a>
+</section>
+
+<footer>
+  <p>Made with ☯ by <a href="https://shaishalin.wordpress.com" target="_blank">Shaishalin</a> | <a href="https://ko-fi.com/s/00367ecd74" target="_blank">Support</a></p>
+</footer>
+
+</div>
+
+<div class="floating-cta">
+  <a href="https://ko-fi.com/s/00367ecd74" target="_blank">💛 Try Free</a>
+</div>
+
+</body>
+</html>
