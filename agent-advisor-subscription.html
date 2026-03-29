@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>殺手林 AI 商業決策顧問｜你的私人易經創業導師</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(212,175,55,0.3);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: #b8b8b8;
+            margin-bottom: 30px;
+        }
+        
+        .hero .tagline {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #0d0d0d;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        /* Services Section */
+        .services {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+        
+        .service-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            background: rgba(212,175,55,0.1);
+            border-color: #d4af37;
+            transform: translateY(-3px);
+        }
+        
+        .service-card h3 {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .service-card .day {
+            display: inline-block;
+            background: #d4af37;
+            color: #0d0d0d;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .feature-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: rgba(212,175,55,0.05);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .price-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(212,175,55,0.5);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .price-card.featured {
+            border-color: #d4af37;
+            box-shadow: 0 0 30px rgba(212,175,55,0.2);
+        }
+        
+        .price-card .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4af37;
+            color: #0d0d0d;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .price-card h4 {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .price-card .price {
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .price-card .period {
+            color: #888;
+            margin-bottom: 20px;
+        }
+        
+        .price-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .price-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .price-card li::before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%);
+            color: #0d0d0d;
+            padding: 18px 50px;
+            border-radius: 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(212,175,55,0.4);
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(212,175,55,0.6);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+        }
+        
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+        
+        /* I Ching Animation */
+        .hexagram-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='10' y='50' font-size='40' fill='%23d4af37'%3E☰☰☰☰☰☰%3C/text%3E%3C/svg%3E");
+            background-size: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hexagram-bg"></div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>殺手林 AI 商業決策顧問</h1>
+            <p class="subtitle">你的私人易經創業導師</p>
+            <p>每週 3 次 AI + 易經 商業決策分析，協助你做出更好的決定</p>
+            <br>
+            <span class="tagline">🔥 限量開放訂閱中</span>
+        </section>
+        
+        <!-- Weekly Services -->
+        <section class="services">
+            <h2 class="section-title">📅 每週服務內容</h2>
+            
+            <div class="service-card">
+                <span class="day">每週一</span>
+                <h3>🌟 易經本週創業能量預測</h3>
+                <p>根據易經八卦為你分析本週創業能量，涵蓋：</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>💼 商業機會提示</li>
+                    <li>⚠️ 潛在風險預警</li>
+                    <li>🎯 行動建議指引</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <span class="day">每週三</span>
+                <h3>🔮 商業決策深度分析</h3>
+                <p>你可以提交一個商業問題，殺手林結合易經智慧為你深度分析，提供：</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>📊 局勢分析</li>
+                    <li>💡 策略建議</li>
+                    <li>⏰ 時機判斷</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <span class="day">每週五</span>
+                <h3>📈 本週複盤 + 下週行動建議</h3>
+                <p>每週五進行完整複盤，並提前佈局下週：</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>✅ 本週成果驗收</li>
+                    <li>📝 改進方向優化</li>
+                    <li>🚀 下週重點行動</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Extra Value -->
+        <section class="services">
+            <h2 class="section-title">🎁 附加價值</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h4>優先訪問新工具</h4>
+                    <p>優先體驗殺手林開發的所有新工具和技能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💡</div>
+                    <h4>每日創業洞察</h4>
+                    <p>殺手林每日分享創業乾貨、思維模型、商業洞察</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💬</div>
+                    <h4>私密交流群</h4>
+                    <p>加入 Telegram 創業者私密交流群，與同路人互相激勵</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pricing -->
+        <section class="pricing">
+            <h2 class="section-title">💰 定價方案</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h4>單次咨詢</h4>
+                    <div class="price">$9.9</div>
+                    <div class="period">一次性</div>
+                    <ul>
+                        <li>一次深度分析</li>
+                        <li>易經卦象解讀</li>
+                        <li>商業建議回覆</li>
+                    </ul>
+                    <a href="#subscribe" class="cta-btn" style="padding: 12px 30px; font-size: 1rem;">立即購買</a>
+                </div>
+                
+                <div class="price-card featured">
+                    <span class="badge">最划算</span>
+                    <h4>月度訂閱</h4>
+                    <div class="price">$19</div>
+                    <div class="period">每月</div>
+                    <ul>
+                        <li>每週 3 次分析</li>
+                        <li>每月完整顧問服務</li>
+                        <li>所有附加價值</li>
+                        <li>隨時提問優先</li>
+                    </ul>
+                    <a href="#subscribe" class="cta-btn">立即訂閱</a>
+                </div>
+                
+                <div class="price-card">
+                    <h4>半年方案</h4>
+                    <div class="price">$99</div>
+                    <div class="period">6 個月</div>
+                    <ul>
+                        <li>相當於 8.7 折</li>
+                        <li>完整半年顧問</li>
+                        <li>所有附加價值</li>
+                        <li>優先新功能體驗</li>
+                    </ul>
+                    <a href="#subscribe" class="cta-btn" style="padding: 12px 30px; font-size: 1rem;">立即訂閱</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Subscribe Form -->
+        <section id="subscribe" class="services">
+            <h2 class="section-title">📝 立即訂閱</h2>
+            <div class="service-card" style="max-width: 500px; margin: 0 auto;">
+                <form id="subscribeForm">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #d4af37;">電子郵件 *</label>
+                        <input type="email" name="email" required placeholder="your@email.com" 
+                            style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.5); background: rgba(0,0,0,0.3); color: #fff; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #d4af37;">Telegram ID *</label>
+                        <input type="text" name="telegram" required placeholder="@your_telegram_id" 
+                            style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.5); background: rgba(0,0,0,0.3); color: #fff; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #d4af37;">選擇方案 *</label>
+                        <select name="plan" required 
+                            style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(212,175,55,0.5); background: rgba(0,0,0,0.3); color: #fff; font-size: 1rem;">
+                            <option value="">請選擇方案</option>
+                            <option value="monthly">月度訂閱 $19/月</option>
+                            <option value="halfyear">半年方案 $99/6個月</option>
+                            <option value="single">單次咨詢 $9.9</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="cta-btn" style="width: 100%;">提交訂閱申請</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; color: #888; font-size: 0.9rem;">
+                    提交後，殺手林會透過 Telegram 聯繫你確認付款方式
+                </p>
+            </div>
+        </section>
+        
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2 style="color: #d4af37; margin-bottom: 20px;">準備好提升你的商業決策能力了嗎？</h2>
+            <p style="color: #888; margin-bottom: 30px;">讓易經智慧 + AI 力量，成為你創業路上最可靠的導師</p>
+            <a href="#subscribe" class="cta-btn">立即開始</a>
+        </section>
+        
+        <footer>
+            <p>殺手林 AI 商業決策顧問 © 2026</p>
+            <p style="margin-top: 10px;">
+                <a href="https://ko-fi.com/shaishalin" target="_blank">Ko-fi</a> | 
+                <a href="https://t.me/shaishalin_advisor_bot" target="_blank">Telegram Bot</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // 顯示感謝訊息
+            alert('感謝你的訂閱申請！\n\n殺手林會儘快透過 Telegram 聯繫你確認付款方式。\n\n請確保你的 Telegram ID 正確，以便我們找到你。');
+            
+            // 清空表單
+            this.reset();
+        });
+    </script>
+</body>
+</html>
