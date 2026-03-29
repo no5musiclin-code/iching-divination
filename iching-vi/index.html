@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Ching Trái Đắt | Đoán Bói Tương Lai Bằng Trí Tuệ Phương Đông</title>
+<meta name="description" content="Hỏi ý kinh Dịch cổ đại về tình yêu, sự nghiệp, đầu tư, kinh doanh. Đọc quẻ AI hoàn toàn miễn phí.">
+<meta property="og:title" content="I Ching Trái Đắt | Đoán Bói Tương Lai">
+<meta property="og:description" content="Hỏi ý kinh Dịch cổ đại về tình yêu, sự nghiệp, đầu tư, kinh doanh.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #d4af37; --gold-light: #f0d78c; --dark: #0a0a0f; --card-bg: rgba(255,255,255,0.04); --border: rgba(212,175,55,0.2); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: "Noto Sans SC", "Noto Sans TC", sans-serif; min-height: 100vh; overflow-x: hidden; }
+.glow-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 65%); pointer-events: none; }
+.container { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+header { text-align: center; margin-bottom: 2.5rem; }
+.iching-symbol { font-size: 4.5rem; color: var(--gold); text-shadow: 0 0 40px rgba(212,175,55,0.4); line-height: 1; margin-bottom: 0.5rem; }
+h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.subtitle { color: #94a3b8; font-size: 1rem; }
+.lang-bar { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.lang-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.8rem; text-decoration: none; transition: all 0.2s; }
+.lang-btn:hover, .lang-btn.active { background: rgba(212,175,55,0.15); border-color: var(--gold); color: var(--gold); }
+.support-bar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.support-bar span { color: #94a3b8; font-size: 0.9rem; flex: 1; }
+.support-btn { background: linear-gradient(135deg, #d4af37, #b8962e); color: #0a0a0f; border: none; padding: 0.6rem 1.4rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: transform 0.2s; }
+.support-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(212,175,55,0.4); }
+.how-to { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.how-to h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.step { display: flex; gap: 1rem; align-items: flex-start; padding: 0.75rem; background: rgba(255,255,255,0.02); border-radius: 10px; }
+.step-num { background: rgba(212,175,55,0.15); color: var(--gold); font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.step p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; }
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+.topic-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s; }
+.topic-card:hover, .topic-card.selected { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+.topic-card .icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
+.topic-card .label { color: #94a3b8; font-size: 0.88rem; }
+.topic-card:hover .label, .topic-card.selected .label { color: var(--gold-light); }
+.input-section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.input-section h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; }
+textarea { width: 100%; height: 120px; background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; color: #e2e8f0; padding: 1rem; font-size: 1rem; resize: vertical; outline: none; transition: border-color 0.2s; font-family: inherit; }
+textarea:focus { border-color: var(--gold); }
+textarea::placeholder { color: #64748b; }
+.hexagram-select { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.75rem; }
+.hex-option { background: rgba(0,0,0,0.3); border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; padding: 0.75rem; cursor: pointer; text-align: center; transition: all 0.2s; font-size: 0.85rem; color: #94a3b8; }
+.hex-option:hover, .hex-option.selected { border-color: var(--gold); background: rgba(212,175,55,0.1); color: var(--gold-light); }
+.hex-option .symbol { font-size: 1.4rem; display: block; margin-bottom: 0.25rem; }
+.primary-btn { width: 100%; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0a0a0f; border: none; padding: 1rem; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 1rem; transition: transform 0.2s, box-shadow 0.2s; }
+.primary-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,175,55,0.4); }
+#result { display: none; margin-top: 1.5rem; }
+.result-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; text-align: center; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+.result-symbol { font-size: 4rem; margin-bottom: 0.5rem; }
+.result-name { font-size: 1.6rem; color: var(--gold); margin-bottom: 0.5rem; }
+.result-topic { color: #d4af37; font-size: 0.85rem; margin-bottom: 1rem; }
+.result-judgment { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+.result-text { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.5rem; text-align: left; line-height: 1.8; color: #cbd5e1; font-size: 0.95rem; border-left: 3px solid var(--gold); }
+.result-advice { margin-top: 1.5rem; text-align: left; }
+.result-advice h3 { color: var(--gold); font-size: 0.95rem; margin-bottom: 0.75rem; }
+.advice-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.advice-list li { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 0.75rem 1rem; color: #cbd5e1; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+.advice-list li::before { content: "✦"; color: var(--gold); flex-shrink: 0; }
+.share-section { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.share-section p { color: #64748b; font-size: 0.85rem; margin-bottom: 0.75rem; }
+.share-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.share-btn { padding: 0.5rem 1.2rem; border-radius: 20px; font-size: 0.85rem; text-decoration: none; border: 1px solid var(--border); color: #94a3b8; transition: all 0.2s; }
+.share-btn:hover { border-color: var(--gold); color: var(--gold); }
+.ko-fi-wall { background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02)); border: 1px solid rgba(212,175,55,0.25); border-radius: 14px; padding: 1.5rem; margin-top: 1.5rem; text-align: center; }
+.ko-fi-wall h3 { color: var(--gold); font-size: 1rem; margin-bottom: 0.5rem; }
+.ko-fi-wall p { color: #94a3b8; font-size: 0.88rem; margin-bottom: 1rem; }
+.ko-fi-btn { display: inline-block; background: linear-gradient(135deg, #d4af37, #b8962e); color: #0a0a0f; padding: 0.7rem 1.5rem; border-radius: 30px; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+footer { text-align: center; margin-top: 3rem; color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="container">
+  <header>
+    <div class="lang-bar">
+      <a href="../iching-zht/index.html" class="lang-btn">繁體中文</a>
+      <a href="../iching-zhs/index.html" class="lang-btn">简体中文</a>
+      <a href="../iching-en/index.html" class="lang-btn">English</a>
+      <a href="../iching-ja/index.html" class="lang-btn">日本語</a>
+      <a href="../iching-ko/index.html" class="lang-btn">한국어</a>
+      <a href="index.html" class="lang-btn active">Tiếng Việt</a>
+    </div>
+    <div class="iching-symbol">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+    <h1>I Ching Trái Đắt</h1>
+    <p class="subtitle">Đoán bói tương lai bằng trí tuệ phương Đông — Tình Yêu / Sự Nghiệp / Đầu Tư / Kinh Doanh</p>
+  </header>
+
+  <div class="support-bar">
+    <span>🙏 Công cụ này hoàn toàn miễn phí. Nếu hữu ích, hãy ủng hộ tác giả nhé!</span>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="support-btn">💛 Ủng hộ</a>
+  </div>
+
+  <div class="how-to">
+    <h2>✨ Cách Hoạt Động</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><p>Chọn lĩnh vực bạn muốn hỏi (Tình Yêu, Sự Nghiệp, Đầu Tư, Kinh Doanh)</p></div>
+      <div class="step"><div class="step-num">2</div><p>Viết câu hỏi của bạn càng cụ thể càng tốt. Câu hỏi càng rõ, quẻ càng chính xác.</p></div>
+      <div class="step"><div class="step-num">3</div><p>Nhấn "Xin Quẻ" để nhận lời giải đáp từ Kinh Dịch cổ xưa kết hợp với trí tuệ hiện đại.</p></div>
+    </div>
+  </div>
+
+  <div class="topic-grid">
+    <div class="topic-card" data-topic="Tình Yêu" onclick="selectTopic(this)">
+      <span class="icon">💕</span>
+      <span class="label">Tình Yêu</span>
+    </div>
+    <div class="topic-card" data-topic="Sự Nghiệp" onclick="selectTopic(this)">
+      <span class="icon">💼</span>
+      <span class="label">Sự Nghiệp</span>
+    </div>
+    <div class="topic-card" data-topic="Đầu Tư" onclick="selectTopic(this)">
+      <span class="icon">📈</span>
+      <span class="label">Đầu Tư</span>
+    </div>
+    <div class="topic-card" data-topic="Kinh Doanh" onclick="selectTopic(this)">
+      <span class="icon">🏢</span>
+      <span class="label">Kinh Doanh</span>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <h2>🔮 Câu Hỏi Của Bạn</h2>
+    <textarea id="questionInput" placeholder="Nhập câu hỏi của bạn... ví dụ: Tôi có nên chuyển công việc bây giờ không?"></textarea>
+    <div class="hexagram-select">
+      <div class="hex-option" data-q="Tôi có nên chuyển việc không?"><span class="symbol">☰</span>Càn (Trời)</div>
+      <div class="hex-option" data-q="Tình yêu này có tương lai không?"><span class="symbol">☷</span>Khôn (Đất)</div>
+      <div class="hex-option" data-q="Đầu tư này có lợi nhuận không?"><span class="symbol">䷊</span>Thái (Bình)</div>
+      <div class="hex-option" data-q="Tôi có đang gặp rủi ro không?"><span class="symbol">☵</span>Khảm (Nước)</div>
+      <div class="hex-option" data-q="Có nên mở rộng kinh doanh?"><span class="symbol">☴</span>Tốn (Gió)</div>
+      <div class="hex-option" data-q="Người này có đáng tin cậy?"><span class="symbol">☲</span>Ly (Hỏa)</div>
+      <div class="hex-option" data-q="Nên chấm dứt mối quan hệ này?"><span class="symbol">☶</span>Cấn (Núi)</div>
+      <div class="hex-option" data-q="Bước tiếp theo của tôi là gì?"><span class="symbol">䷫</span>Tuỳ (Theo)</div>
+    </div>
+    <button class="primary-btn" onclick="consultIChing()">🔮 Xin Quẻ</button>
+  </div>
+
+  <div id="result"></div>
+
+  <div class="ko-fi-wall">
+    <h3>💛 Ủng Hộ Tác Giả</h3>
+    <p>Nếu công cụ này hữu ích với bạn, hãy ủng hộ qua Ko-fi để duy trì dịch vụ miễn phí nhé!</p>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="ko-fi-btn">💛 Ủng hộ trên Ko-fi</a>
+  </div>
+
+  <footer>
+    <p>☯ Tạo bởi <a href="https://shaishalin.wordpress.com" target="_blank">Shaishalin</a> ｜ <a href="https://ko-fi.com/s/00367ecd74" target="_blank">Ủng hộ</a></p>
+  </footer>
+</div>
+
+<script>
+var selectedTopic = '';
+var selectedHex = '';
+
+var hexagrams = {
+  "Càn ☰": {
+    name: "Quẻ 1 — Càn (Trời, Sáng Tạo)",
+    topic: "Sáng tạo, Khởi đầu mới, Lãnh đạo",
+    judgment: "Càn: Trời. Toàn dương. Sức mạnh thuần khiết. Nền tảng của vạn vật.",
+    reading: "Càn đại diện cho Sáng Tạo — năng lượng dương thuần khiết, sức mạnh và bầu trời. Nó nói về sức mạnh của quyết tâm kiên định và bước đi đầu tiên. Nếu bạn đang do dự, quẻ này nói: HÃY BẮT ĐẦU. Năng lượng đang ủng hộ bạn. Hành động với tự tin nhưng không kiêu ngạo. Trong kinh doanh: THỜI ĐIỂM để bắt đầu là BÂY GIỜ. Tin vào nội lực của bạn.",
+    interpretation: "Bạn hỏi về một khởi đầu mới. Kinh Dịch nói: TIẾN LÊN. Nhưng hãy nhớ — Sáng Tạo phải được dẫn dắt bằng trí tuệ, không chỉ sức mạnh. Đặt ý định rõ ràng, hành động chính trực và thành công sẽ đến. Trong tình yêu: bước đi đầu tiên một cách chân thành. Trong sự nghiệp: chiếm lĩnh không gian của bạn. Trong đầu tư: thị trường ủng hộ người táo bạo ngay bây giờ.",
+    advice: ["Bắt đầu ngay — thời điểm đã chín muồi", "Hành động với tự tin và chính trực", "Trở thành lãnh đạo mà bạn muốn theo", "May mắn đang đến với bạn hôm nay"]
+  },
+  "Khôn ☷": {
+    name: "Quẻ 2 — Khôn (Đất, Tiếp Nhận)",
+    topic: "Kiên nhẫn, Tích lũy, Rút lui chiến lược",
+    judgment: "Khôn: Đất. Toàn âm. Sự tiếp nhận thuần khiết. Buông bỏ để nhận lấy.",
+    reading: "Khôn là Sự Tiếp Nhận — người mẹ vĩ đại, đất, vòng ôm của vạn vật. Nó nói về sức mạnh của kiên nhẫn, chịu đựng và rút lui một cách chiến lược. Đây không phải là sự yếu đuối — đó là trí tuệ. Nếu bạn đang cố gắng quá sức, quẻ nói: HÃY DỊU xuống. Đừng cưỡng ép. Hãy để mọi thứ đến với bạn. Trong kinh doanh: củng cố, đừng mở rộng. Chờ thời cơ đúng.",
+    interpretation: "Bạn hỏi về sự kiên nhẫn hoặc tiếp nhận. Kinh Dịch nói: ĐIỀU BẠN ĐANG CHỜ SẼ ĐẾN, nhưng không phải bằng sức mạnh. Hãy làm dịu cách tiếp cận. Hãy để sông khoét đá, không phải ngược lại. Trong tình yêu: xuất hiện đều đặn, không kịch tính. Trong sự nghiệp: làm chủ tay nghề trong yên lặng. Trong đầu tư: giữ vị thế, đừng vội.",
+    advice: ["Kiên nhẫn là sức mạnh của bạn lúc này", "Hãy như đất — vững vàng và tiếp nhận", "Điều đến với bạn là của bạn", "Nghỉ ngơi, củng cố, chuẩn bị"]
+  },
+  "Thái ䷊": {
+    name: "Quẻ 11 — Thái (Bình An)",
+    topic: "Vận may lên, Mở rộng, Ổn định",
+    judgment: "Thái: Trời trên, đất dưới. Bình an. Hài hòa. Mọi thứ đang trôi chảy.",
+    reading: "Thái là Bình An — trời và đất trong sự hài hòa hoàn hảo. Đây là một trong những quẻ may mắn nhất. Khi Thái xuất hiện, vận may ĐANG CHẢY về phía bạn. Thời điểm tuyệt vời cho các dự án mới, mối quan hệ và quyết định. Nhưng hãy cảnh báo: bình an rất mong manh. Đừng lấy làm đương nhiên. Tiếp tục những hành động tạo ra sự hài hòa này.",
+    interpretation: "Câu hỏi của bạn chạm vào thời kỳ may mắn. Kinh Dịch nói: TẬN HƯỞNG khoảnh khắc này nhưng hãy khiêm nhường. Thủy triều sẽ quay lại — hãy sẵn sàng. Đừng lãng phí năng lượng này vào xung đột. Hãy dùng nó để XÂY DỰNG. Trong tình yêu: đây là lúc để sâu sắc hóa. Trong sự nghiệp: bạn đã kiếm được thành công này. Trong đầu tư: cứ ride the wave thêm một chút.",
+    advice: ["Đây là thời điểm may mắn lớn", "Mở rộng nhẹ nhàng và biết ơn", "Thời điểm tuyệt vời", "Xây dựng trên nền tảng hài hòa này"]
+  },
+  "Khảm ☵": {
+    name: "Quẻ 29 — Khảm (Vực Thẳm)",
+    topic: "Nguy hiểm, Thận trọng, Rút lui",
+    judgment: "Khảm: Nước. Nguy hiểm. Vực thẳm lặp lại. Rút lui và thận trọng.",
+    reading: "Khảm là Vực Thẳm — nước chảy vào chính nó, nguy hiểm bao quanh. Quẻ này nói về nguy hiểm của tự tin quá mức và vực thẳm tự tạo. Lời khuyên rõ ràng: CHẬM LẠI. Dừng lại, đánh giá lại, đừng lao tới mù quáng. Nước chảy quá nhanh sẽ phá bờ đê. Nếu bạn cảm thấy kẹt giữa các nguy hiểm, câu trả lời không phải là cố gắng hơn — mà là tìm một con đường mới.",
+    interpretation: "Câu hỏi của bạn chạm vào nguy hiểm hoặc rủi ro. Quẻ nói: CẨN THẬN là điều cần thiết. Đừng hành động theo xung lực. Vực thẳm xuất hiện khi chúng ta overextend. Hãy lùi một bước. Trong kinh doanh: chậm lại việc mở rộng. Trong tình yêu: giải quyết vấn đề ngầm trước khi quá muộn. Trong đầu tư: bạn có thể đang quá leverage.",
+    advice: ["Nguy hiểm bao quanh — hãy thận trọng", "Rút lui để tìm đường mới", "Dừng cưỡng ép — hãy tìm đường đi của nước", "Hãy thận trọng trong mọi quyết định"]
+  },
+  "Tốn ☴": {
+    name: "Quẻ 57 — Tốn (Gió)",
+    topic: "Kiên trì, Bền bỉ, Thấm đẫm",
+    judgment: "Tốn: Gió. Thấm đẫm. Sự bền bỉ nhẹ nhàng. Từ từ, mọi thứ đều được chuyển dời.",
+    reading: "Tốn là Gió — thấm đẫm, sự bền bỉ nhẹ nhàng, cái mềm chiến thắng cái cứng. Như gió làm mòn đá, nỗ lực nhẹ nhàng kiên trì sẽ chinh phục mọi rào cản. Đây không phải về sức mạnh — mà là THẤM ĐẨM. Đừng loan báo kế hoạch. Đừng cố gắng. Cứ KIÊN TRÌ xuất hiện. Trong kinh doanh: cứ tiếp tục xuất hiện, tiếp tục sản xuất.",
+    interpretation: "Câu hỏi của bạn đòi hỏi sự kiên trì và bền bỉ. Quẻ nói: HÃY LÀ GIÓ, đừng là lửa. Tiếp tục đi. Dòng suối nhỏ nhất trở thành sông lớn. Mỗi ngày nỗ lực đều đặn đều tích lũy. Đừng tìm kiếm sự kịch tính — hãy tìm điều đơn giản và lặp lại nó.",
+    advice: ["Sự bền bỉ nhẹ nhàng chiến thắng", "Thấm đẫm, đừng cưỡng ép", "Những nỗ lực nhỏ tích lũy thành điều kỳ diệu", "Hãy như gió, không phải lửa"]
+  },
+  "Ly ☲": {
+    name: "Quẻ 30 — Ly (Hỏa)",
+    topic: "Rõ ràng, Chân lý, Sự phơi bày",
+    judgment: "Ly: Hỏa. Sự gắn bó. Bám vào ánh sáng. Ánh sáng chiếu rọi.",
+    reading: "Ly là Hỏa — độ sáng, sự gắn bó, ngọn lửa vĩ đại. Quẻ này nói về SỰ RÕ RÀNG qua lửa: những gì được phơi bày không thể giấu, những gì rỗng sẽ bị đốt cháy. Trong tình huống của bạn, chân lý sẽ được phơi bày. Bạn có thể thấy rõ hơn bây giờ về điều gì đó — hoặc ai đó.",
+    interpretation: "Câu hỏi của bạn chạm vào sự rõ ràng hoặc sự phơi bày. Quẻ nói: LỬA sẽ soi sáng những gì bị giấu. ĐIỀU BẠN ĐANG TÌM KIẾM đang được PHƠI BÀY NGAY BÂY GIỜ. Nhưng hãy nhớ: lửa có thể truyền cảm hứng hoặc phá hủy. Hãy để được sưởi ấm, đừng bị đốt cháy.",
+    advice: ["Chân lý đang được phơi bày", "Lửa chiếu rọi — hãy nhìn rõ ngay bây giờ", "Hãy là ánh sáng, đừng là ngọn lửa", "Những gì bị đốt cháy không bao giờ là của bạn"]
+  },
+  "Cấn ☶": {
+    name: "Quẻ 52 — Cấn (Núi)",
+    topic: "Dừng lại, Nghỉ ngơi, Tĩnh lặng",
+    judgment: "Cấn: Núi. Sự tĩnh lặng. Dừng. Biết khi nào nghỉ, khi nào hành động.",
+    reading: "Cấn là Núi — sự tĩnh lặng, dừng lại, khoảng dừng giữa những hơi thở. Lời khuyên cổ xưa: HÃY BIẾT KHI NÀO DỪNG LẠI. Đây không phải là lười biếng — đó là trí tuệ. Nếu bạn đã chạy không ngừng, quẻ nói: HÃY DỪNG LẠI. Núi không di chuyển, và đó là sức mạnh của nó.",
+    interpretation: "Câu hỏi của bạn hỏi về việc dừng lại hoặc tạm dừng. Quẻ nói: DỪNG cũng là một hướng đi. Ngọn núi là thứ mạnh nhất vì nó KHÔNG DI CHUYỂN. Đôi khi hành động khôn ngoan nhất là không hành động. Bạn có thể cảm thấy nên làm gì đó — nhưng ở đây trí tuệ là NGHỈ NGƠI, suy ngẫm và chuẩn bị cho bước lớn tiếp theo.",
+    advice: ["Dừng lại và tĩnh lặng", "Sự tĩnh lặng là sức mạnh của bạn lúc này", "Nghỉ ngơi trước bước lớn tiếp theo", "Núi không di chuyển — và đó là trí tuệ"]
+  },
+  "Tuỳ ䷫": {
+    name: "Quẻ 17 — Tuỳ (Theo)",
+    topic: "Linh hoạt, Thích nghi, Thay đổi",
+    judgment: "Tuỳ: Theo. Sự linh hoạt. Sức mạnh thực sự biết khi nào nhượng bộ.",
+    reading: "Tuỳ là Theo — sự sẵn sàng theo đúng con đường, dù điều đó có nghĩa là thay đổi. Quẻ này nói về trí tuệ của SỰ LINH HOẠT. Con sông không chống lại đá — nó chảy xung quanh nó. Nếu bạn đã quá cứng nhắc, đây là dấu hiệu của bạn: HÃY THÍCH NGHI. Theo không có nghĩa là yếu đuối — nó có nghĩa là đủ trí tuệ để nhận ra con đường đúng và đủ can đảm để đi theo nó.",
+    interpretation: "Câu hỏi của bạn chạm vào sự thay đổi hoặc tính linh hoạt. Quẻ nói: HÃY THEO con sông. Nước không đẩy — nó đơn giản tìm con đường ít sức cản nhất và đến biển. Nếu điều gì đó không hiệu quả, HÃY THAY ĐỔI. Không phải vì yếu đuối mà vì trí tuệ. Trong tình yêu: dòng chảy tự nhiên, hãy tin tưởng nó. Trong sự nghiệp: thích nghi hoặc tiến hóa. Trong đầu tư: xu hướng là bạn của bạn.",
+    advice: ["Hãy theo dòng chảy tự nhiên", "Thích nghi khôn ngoan, đừng cưỡng ép", "Nhượng bộ cũng là sức mạnh", "Con sông luôn đến được biển"]
+  }
+};
+
+function selectTopic(el) {
+  document.querySelectorAll('.topic-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedTopic = el.getAttribute('data-topic');
+  var textarea = document.getElementById('questionInput');
+  var topicPlaceholders = {
+    'Tình Yêu': 'Nhập câu hỏi về tình yêu... ví dụ: Người ấy có thích tôi không?',
+    'Sự Nghiệp': 'Nhập câu hỏi về sự nghiệp... ví dụ: Tôi có nên nghỉ việc ở công ty này không?',
+    'Đầu Tư': 'Nhập câu hỏi về đầu tư... ví dụ: Tôi có nên đầu tư vào Bitcoin bây giờ không?',
+    'Kinh Doanh': 'Nhập câu hỏi về kinh doanh... ví dụ: Tôi có nên bắt đầu kinh doanh riêng không?'
+  };
+  textarea.placeholder = topicPlaceholders[selectedTopic] || 'Nhập câu hỏi của bạn...';
+}
+
+var hexOpts = document.querySelectorAll('.hex-option');
+for (var i = 0; i < hexOpts.length; i++) {
+  hexOpts[i].addEventListener('click', (function(opt) {
+    return function() {
+      document.querySelectorAll('.hex-option').forEach(function(o){ o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      selectedHex = opt.getAttribute('data-q');
+      document.getElementById('questionInput').value = opt.getAttribute('data-q');
+    };
+  })(hexOpts[i]));
+}
+
+function getRandomHexagram() {
+  var keys = Object.keys(hexagrams);
+  return keys[Math.floor(Math.random() * keys.length)];
+}
+
+function consultIChing() {
+  var question = document.getElementById('questionInput').value.trim();
+  if (!question) { alert('Vui lòng nhập câu hỏi trước!'); return; }
+  var hexKey = selectedHex || getRandomHexagram();
+  var hex = hexagrams[hexKey];
+  var resultDiv = document.getElementById('result');
+  var shareUrl = encodeURIComponent(window.location.href);
+  var shareTitle = encodeURIComponent('Quẻ I Ching: ' + hex.name + ' — ' + (selectedTopic || 'Câu hỏi chung'));
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML =
+    '<div class="result-card">' +
+      '<div class="result-symbol">' + hexKey.split(' ')[0] + '</div>' +
+      '<div class="result-name">' + hex.name + '</div>' +
+      (selectedTopic ? '<div class="result-topic">📌 Liên quan: ' + selectedTopic + '</div>' : '') +
+      '<div class="result-judgment">' + hex.judgment + '</div>' +
+      '<div class="result-text">' + hex.reading + '</div>' +
+      '<div class="result-text" style="margin-top:1rem; border-left-color:#d4af37;">' + hex.interpretation + '</div>' +
+      '<div class="result-advice">' +
+        '<h3>🔮 4 Lời Khuyên Hôm Nay</h3>' +
+        '<ul class="advice-list">' +
+          hex.advice.map(function(a){ return '<li>' + a + '</li>'; }).join('') +
+        '</ul>' +
+      '</div>' +
+      '<div class="share-section">' +
+        '<p>Chia sẻ quẻ này với bạn bè:</p>' +
+        '<div class="share-btns">' +
+          '<a href="https://twitter.com/intent/tweet?text=' + shareTitle + '&url=' + shareUrl + '" target="_blank" class="share-btn">𝕏 Twitter</a>' +
+          '<a href="https://www.facebook.com/sharer/sharer.php?u=' + shareUrl + '" target="_blank" class="share-btn">Facebook</a>' +
+          '<a href="https://zalo.me" target="_blank" class="share-btn">Zalo</a>' +
+          '<a href="mailto:?subject=' + shareTitle + '&body=' + shareUrl + '" class="share-btn">Email</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  resultDiv.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
