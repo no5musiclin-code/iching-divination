@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日易經創業簡報｜殺手林</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #d4af37; --gold-light: #f0d78c; --dark: #0a0a0f; --card-bg: rgba(255,255,255,0.04); --border: rgba(212,175,55,0.2); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: "Noto Sans TC", sans-serif; min-height: 100vh; padding: 2rem 1rem; }
+.glow-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 65%); pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+header { text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.iching-symbol { font-size: 3rem; color: var(--gold); text-shadow: 0 0 30px rgba(212,175,55,0.4); margin-bottom: 0.5rem; }
+h1 { font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+.subtitle { color: #94a3b8; font-size: 0.9rem; }
+.date-line { color: #64748b; font-size: 0.8rem; margin-top: 0.5rem; }
+main { display: flex; flex-direction: column; gap: 1.5rem; }
+section { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+.section-label { font-size: 0.75rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.energy-card { text-align: center; padding: 1.5rem; background: rgba(0,0,0,0.3); border-radius: 12px; margin-bottom: 1rem; }
+.energy-symbol { font-size: 3.5rem; margin-bottom: 0.5rem; }
+.energy-name { font-size: 1.5rem; color: var(--gold); font-weight: 700; margin-bottom: 0.25rem; }
+.energy-en { color: #64748b; font-size: 0.85rem; margin-bottom: 0.75rem; }
+.energy-nature { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; }
+insight-box { display: block; background: rgba(212,175,55,0.08); border-left: 3px solid var(--gold); padding: 1rem; border-radius: 0 10px 10px 0; margin: 1rem 0; }
+insight-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.7; }
+.action-items { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.action-item { display: flex; gap: 0.75rem; align-items: flex-start; }
+.action-num { background: rgba(212,175,55,0.15); color: var(--gold); font-weight: 700; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; }
+.action-text { color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; }
+.keyword-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.keyword { background: rgba(212,175,55,0.12); border: 1px solid rgba(212,175,55,0.3); color: var(--gold-light); padding: 0.35rem 0.8rem; border-radius: 20px; font-size: 0.82rem; }
+.warning-box { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; padding: 1rem; }
+.warning-label { color: #f87171; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.warning-text { color: #fca5a5; font-size: 0.88rem; line-height: 1.5; }
+.affirm { color: #86efac; font-size: 1.05rem; font-weight: 500; text-align: center; padding: 1rem; background: rgba(134,239,172,0.08); border-radius: 10px; line-height: 1.7; }
+.quote-box { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 1.25rem; text-align: center; }
+.quote-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.7; font-style: italic; margin-bottom: 0.5rem; }
+.quote-author { color: #64748b; font-size: 0.8rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+.stat-box { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 1rem; text-align: center; }
+.stat-num { font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+.stat-label { color: #64748b; font-size: 0.75rem; margin-top: 0.25rem; }
+.cta-section { text-align: center; padding: 2rem; background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.05)); border: 1px solid rgba(212,175,55,0.3); border-radius: 16px; }
+.cta-section h2 { color: var(--gold); font-size: 1.2rem; margin-bottom: 0.75rem; }
+.cta-section p { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
+.cta-price { font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; }
+.cta-price span { font-size: 1rem; font-weight: 400; color: #64748b; }
+.ko-fi-btn { display: inline-block; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0a0a0f; padding: 0.9rem 2rem; border-radius: 30px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: transform 0.2s; }
+.ko-fi-btn:hover { transform: translateY(-2px); }
+footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
+@media(max-width: 480px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="glow-bg"></div>
+<div class="container">
+  <header>
+    <div class="iching-symbol">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+    <h1>每日易經創業簡報</h1>
+    <p class="subtitle">AI 驅動的易經創業指導｜每日更新</p>
+    <p class="date-line" id="todayDate"></p>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-label">🌟 今日能量卦象</div>
+      <div class="energy-card">
+        <div class="energy-symbol" id="hexSymbol">☰</div>
+        <div class="energy-name" id="hexName">乾為天</div>
+        <div class="energy-en" id="hexEn">Qian / Heaven</div>
+        <div class="energy-nature" id="hexNature">純陽刚健，創造與開始的能量。今日萬事俱備，東風已至。这是你採取主動、迈出第一步的時刻。天道運行不息，你的行動將得到宇宙的支持。</div>
+      </div>
+      <div class="insight-box">
+        <div class="insight-text" id="dailyInsight">🚀 今日創業洞察：今天適合啟動新項目或做出重大決定。你的能量正值高峰，果斷的行動將為你贏得先機。避免過度分析——先行動，在運動中調整。</div>
+      </div>
+      <div class="keyword-tags" id="keywords">
+        <span class="keyword">創新</span>
+        <span class="keyword">果斷</span>
+        <span class="keyword">行動</span>
+        <span class="keyword">領導</span>
+        <span class="keyword">開始</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">🎯 今日行動建議</div>
+      <ul class="action-items" id="actions">
+        <li class="action-item"><span class="action-num">1</span><span class="action-text">今天處理那個你一直在推遲的重要決定——卦象顯示這是行動的時机。</span></li>
+        <li class="action-item"><span class="action-num">2</span><span class="action-text">聯繫一位潛在投資者或合作夥伴，主動介紹你的項目。</span></li>
+        <li class="action-item"><span class="action-num">3</span><span class="action-text">完成並發布你產品的 MVP——好的開始是成功的一半。</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="section-label">⚡ 今日創業能量指數</div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num" id="energyLevel">92%</div><div class="stat-label">行動能量</div></div>
+        <div class="stat-box"><div class="stat-num" id="riskLevel">中等</div><div class="stat-label">風險等級</div></div>
+        <div class="stat-box"><div class="stat-num" id="luckyNum" id="luckyNum">7</div><div class="stat-label">幸運數字</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">💬 創業者每日肯定</div>
+      <div class="affirm" id="affirmation">「今天我迈出勇敢的一步。我的行動與天道同步，我的事業在正確的軌道上前進。」</div>
+    </section>
+
+    <section>
+      <div class="section-label">⚠️ 今日警示</div>
+      <div class="warning-box">
+        <div class="warning-label">🚨 需要注意</div>
+        <div class="warning-text" id="warning">避免固執己見——今日的運勢雖然支持行動，但也要倾听團隊意見。特別注意與合夥人的溝通，避免過於強勢。</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">📖 易經智慧語錄</div>
+      <div class="quote-box">
+        <div class="quote-text" id="quote">「天行健，君子以自強不息。」</div>
+        <div class="quote-author">— 《易經·乾卦》</div>
+      </div>
+    </section>
+
+    <div class="cta-section">
+      <h2>💼 想要更深入的創業指導？</h2>
+      <p>獲取完整的「AI 創業工具包｜6合1數位商品套組」<br>包含：創業藍圖、提示詞大全、易經創業指南等</p>
+      <div class="cta-price">$6.99 <span>USD</span></div>
+      <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="ko-fi-btn">💛 立即獲取</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>由 <a href="https://shaishalin.wordpress.com" target="_blank">殺手林</a> 製作 ｜ <a href="https://ko-fi.com/s/00367ecd74" target="_blank">支持作者</a></p>
+  </footer>
+</div>
+
+<script>
+// 8 核心卦象數據庫
+const hexagrams = [
+  {
+    symbol: "☰", name: "乾為天", en: "Qian / Heaven",
+    nature: "純陽刚健，創造與開始的能量。今日萬事俱備，東風已至。這是你採取主動、迈出第一步的時刻。天道運行不息，你的行動將得到宇宙的支持。",
+    keywords: ["創新", "果斷", "行動", "領導", "開始"],
+    insight: "今天適合啟動新項目或做出重大決定。你的能量正值高峰，果斷的行動將為你贏得先機。避免過度分析——先行動，在運動中調整。",
+    actions: ["今天處理那個你一直在推遲的重要決定——卦象顯示這是行動的時机", "聯繫一位潛在投資者或合作夥伴，主動介紹你的項目", "完成並發布你產品的 MVP——好的開始是成功的一半"],
+    warning: "避免固執己見——今日的運勢雖然支持行動，但也要倾听團隊意見。特別注意與合夥人的溝通，避免過於強勢。",
+    affirmation: "「今天我迈出勇敢的一步。我的行動與天道同步，我的事業在正確的軌道上前進。」",
+    quote: "「天行健，君子以自強不息。」",
+    energy: "92%", risk: "中等", lucky: 7
+  },
+  {
+    symbol: "☷", name: "坤為地", en: "Kun / Earth",
+    nature: "純陰柔順，承載與等待的力量。今日宜靜不宜動。停下脚步，蓄積能量，等待更好的時機。大地養育萬物，你的耐心將在未來得到豐厚的回報。",
+    keywords: ["耐心", "累積", "等待", "孕育", "穩健"],
+    insight: "今天不適合做出重大改變，而是鞏固現有的基礎。回顧你的商業計劃，尋找漏洞，強化團隊。播種的時節，耐心是最大的美德。",
+    actions: ["整理並歸檔所有客戶資料和合同", "規划下半年的財務目標", "與現有客戶深化關係，而非開發新客戶"],
+    warning: "避免過度等待而錯過時機——如果有一個決定已經成熟，果斷做出。",
+    affirmation: "「我有無比的耐心。我的根基越穩，未來的成就就越大。」",
+    quote: "「地勢坤，君子以厚德載物。」",
+    energy: "65%", risk: "低", lucky: 2
+  },
+  {
+    symbol: "䷊", name: "地天泰", en: "Tai / Peace & Harmony",
+    nature: "天地交泰，萬物通達。這是易經中最吉利的卦象之一，代表內外和諧、事業順遂。今日適合擴張、签約、建立合作關係。",
+    keywords: ["和諧", "擴張", "合作", "幸運", "通達"],
+    insight: "今天迎來了事業的黃金期——障礙消除，機會之門大開。勇敢追求你想要的東西，成功近在咫尺。但切記：順境中保持謙逊。",
+    actions: ["開始談判那個擱置已久的合作", "擴大團隊——今天的面試將帶來寶貴的人才", "推出新產品或服務——時機已到"],
+    warning: "順境中容易過度擴張——确保你的基礎設施能支撐增長。",
+    affirmation: "「今天萬事皆順。我在和諧中前進，在平衡中成長。」",
+    quote: "「天地交，泰。」",
+    energy: "95%", risk: "低", lucky: 5
+  },
+  {
+    symbol: "☵", name: "坎為水", en: "Kan / Water / Danger",
+    nature: "水代表危險、陷阱、財務風險。今日宜守不宜攻。睜大眼睛，避開那些看起來太好的交易。你的面前有險，但你有足夠的智慧繞過。",
+    keywords: ["警戒", "審慎", "理財", "危機意識", "智慧"],
+    insight: "今天不是冒險的時候——任何看起來像「快速獲利」的機會都值得懷疑。集中精力保護現有的成果，穩扎穩打。",
+    actions: ["審計你的財務報表，檢查任何異常支出", "與律師或財務顧問複查合同", "推遲任何重大投資決策"],
+    warning: "⚠️ 高風險警告：今天千萬不要 all-in 任何項目。注意現金流，避免超支。",
+    affirmation: "「我有足夠的智慧在水中暢游。危險面前，我選擇冷靜與謹慎。」",
+    quote: "「水洊至，習坎。」",
+    energy: "45%", risk: "高", lucky: 1
+  },
+  {
+    symbol: "☴", name: "巽為風", en: "Xun / Wind / Penetration",
+    nature: "風雖無形，卻能撼大樹。這是關於渗透、持續性、長期主義的力量。今天不靠蠻力，而是靠持續不斷的小努力獲得成功。",
+    keywords: ["持續", "渗透", "長期主義", "策略", "耐心"],
+    insight: "成功的關鍵不是爆發力，而是持久力。今天開始一個微小的習慣，每天堅持。90 天後，你將看到巨大的不同。",
+    actions: ["開始一個每日習慣：無論多忙，每天投入 30 分鐘在核心項目上", "渗入一個你之前忽視的市場角落", "與一位行業導師建立聯繫"],
+    warning: "不要低估微小行動的力量——每一天都在累积。",
+    affirmation: "「我像風一樣無形卻無處不在。持續的努力是我最大的武器。」",
+    quote: "「風行天下，巽。」",
+    energy: "78%", risk: "中", lucky: 3
+  },
+  {
+    symbol: "☲", name: "離為火", en: "Li / Fire / Clarity",
+    nature: "火带來光明、清晰、創造力。今天你將清楚地看到問題的核心，也將成為别人追隨的光。是你閃耀的時刻。",
+    keywords: ["光明", "創造力", "清晰", "領導力", "可見性"],
+    insight: "今天適合公開發言、展示你的作品、讓你的品牌被看見。你的光茫吸引正確的機會和合作夥伴。",
+    actions: ["發布內容到社交媒體或你的部落格", "安排一個公開演講或網路研討會", "更新你的個人品牌——讓大家看到你的成長"],
+    warning: "火能照亮，但也能焚毁——注意你的言論和承諾的尺度。",
+    affirmation: "「我如火焰般照亮黑暗。我吸引正確的人來到我的世界。」",
+    quote: "「明兩作，離。」",
+    energy: "88%", risk: "中", lucky: 9
+  },
+  {
+    symbol: "☶", name: "艮為山", en: "Gen / Mountain / Stillness",
+    nature: "山象徵靜止、停止、紀律。今天考驗你的自制力——什麼都不做，有時比做什麼更需要勇氣。學會在高鐵上緊急剎車。",
+    keywords: ["停止", "自制", "紀律", "休息", "評估"],
+    insight: "有時候最好的決定是「不接受那個項目」或「不回复那封郵件」。今天，靜止是你的超能力。停下來評估，而非衝動反應。",
+    actions: ["列一個「拒絕清單」——今天要堅定拒絕的事情", "遠離社交媒體，給自己一段「無屏幕」時間", "評估目前所有項目的優先順序，砍掉那些無效的"],
+    warning: "靜止不是逃避——而是有意識的選擇。今天避免逃避現實的誘惑。",
+    affirmation: "「我有紀律說不。我的停止，與我的行動同樣強大。」",
+    quote: "「兼山，艮。」",
+    energy: "55%", risk: "低", lucky: 4
+  },
+  {
+    symbol: "䷫", name: "澤雷隨", en: "Sui / Following & Change",
+    nature: "澤雷隨，順時而動。水在石上流的時候，不與石爭，而是繞過障礙繼續前進。今天灵活勝過固执。",
+    keywords: ["靈活", "適應", "變通", "顺势", "開放"],
+    insight: "今天的關鍵字是「跟着感覺走」——不是盲目，而是對變化的開放。水是最好的老師：不爭，故天下莫能與之爭。",
+    actions: ["如果原来的计划不起作用，快速調整方向", "接受一個你之前沒有考慮過的合作機會", "更新你的商業模式中一個僵化的環節"],
+    warning: "靈活不等於沒有原則——改變方法，不是改變目標。",
+    affirmation: "「我如水一般灵活。水善利萬物而不爭，故無尤。」",
+    quote: "「澤中有雷，隨。」",
+    energy: "82%", risk: "中", lucky: 6
+  }
+];
+
+// 根據日期選擇卦象（每天不同）
+var today = new Date();
+var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+var hex = hexagrams[dayOfYear % hexagrams.length];
+
+// 填充內容
+document.getElementById('todayDate').textContent = today.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+document.getElementById('hexSymbol').textContent = hex.symbol;
+document.getElementById('hexName').textContent = hex.name;
+document.getElementById('hexEn').textContent = hex.en;
+document.getElementById('hexNature').textContent = hex.nature;
+document.getElementById('dailyInsight').textContent = '🚀 今日創業洞察：' + hex.insight;
+
+// 關鍵詞標籤
+var keywordsHTML = hex.keywords.map(function(k) { return '<span class="keyword">' + k + '</span>'; }).join('');
+document.getElementById('keywords').innerHTML = keywordsHTML;
+
+// 行動建議
+var actionsHTML = hex.actions.map(function(a, i) {
+  return '<li class="action-item"><span class="action-num">' + (i+1) + '</span><span class="action-text">' + a + '</span></li>';
+}).join('');
+document.getElementById('actions').innerHTML = actionsHTML;
+
+// 能量指數
+document.getElementById('energyLevel').textContent = hex.energy;
+document.getElementById('riskLevel').textContent = hex.risk;
+document.getElementById('luckyNum').textContent = hex.lucky;
+
+// 肯定語
+document.getElementById('affirmation').textContent = hex.affirmation;
+
+// 警示
+document.getElementById('warning').textContent = '🚨 需要注意：' + hex.warning;
+
+// 語錄
+document.getElementById('quote').textContent = '「' + hex.quote.replace('」', '').replace('「', '') + '」';
+</script>
+</body>
+</html>

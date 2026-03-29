@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 創業者的 30 天起動套組｜殺手林</title>
+<style>
+:root {
+  --gold: #D4A017;
+  --gold-light: #F0C850;
+  --gold-dark: #A07810;
+  --bg: #0D0D0D;
+  --bg2: #1A1A1A;
+  --bg3: #242424;
+  --text: #E8E8E8;
+  --text-dim: #999;
+  --border: #333;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif; line-height: 1.7; font-size: 15px; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg,#0D0D0D 0%,#1a1500 50%,#0D0D0D 100%);
+  border-bottom: 2px solid var(--gold);
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content:''; position:absolute; top:-50%; left:-50%;
+  width:200%; height:200%;
+  background: radial-gradient(ellipse at center, rgba(212,160,23,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-eyebrow { color: var(--gold); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 16px; }
+.hero h1 { font-size: 2.4em; font-weight: 900; color: var(--gold-light); text-shadow: 0 0 40px rgba(212,160,23,0.3); margin-bottom: 12px; line-height: 1.2; }
+.hero-sub { font-size: 1.1em; color: var(--text-dim); margin-bottom: 32px; }
+.price-tag {
+  display: inline-block;
+  background: linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color: #000; font-weight: 900; font-size: 1.5em;
+  padding: 14px 40px; border-radius: 50px; text-decoration: none;
+  margin-bottom: 16px; box-shadow: 0 4px 24px rgba(212,160,23,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.price-tag:hover { transform: translateY(-2px); box-shadow: 0 6px 32px rgba(212,160,23,0.6); }
+.hero-note { font-size: 12px; color: var(--text-dim); }
+.bonus-banner {
+  background: var(--bg3); border: 1px solid var(--gold-dark);
+  border-radius: 8px; padding: 16px 24px; margin-top: 28px; display: inline-block;
+}
+.bonus-banner span { color: var(--gold-light); font-weight: 700; }
+
+/* TOC */
+.toc-section { max-width: 900px; margin: 50px auto; padding: 0 20px; }
+.toc-section h2 { color: var(--gold); font-size: 1.4em; margin-bottom: 24px; border-left: 4px solid var(--gold); padding-left: 16px; }
+.week-block { margin-bottom: 32px; }
+.week-title { background: var(--bg3); color: var(--gold-light); padding: 10px 18px; border-radius: 6px; font-weight: 700; font-size: 1.05em; margin-bottom: 12px; border-left: 3px solid var(--gold); }
+.week-links { display: grid; grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap: 8px; }
+.week-links a { color: var(--text-dim); text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 13px; transition: all 0.2s; border: 1px solid transparent; }
+.week-links a:hover { color: var(--gold-light); background: var(--bg3); border-color: var(--gold-dark); }
+
+/* DIVIDER */
+.divider { border: none; border-top: 1px solid var(--border); margin: 50px auto; max-width: 900px; }
+
+/* DAY CARDS */
+.days-container { max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
+.day-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 40px; overflow: hidden; transition: border-color 0.3s; }
+.day-card:hover { border-color: var(--gold-dark); }
+.day-header { background: linear-gradient(90deg,#1a1500,var(--bg2)); padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 20px; }
+.day-num { background: linear-gradient(135deg,var(--gold-dark),var(--gold)); color: #000; font-weight: 900; font-size: 0.85em; padding: 6px 14px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+.day-title-wrap h3 { color: var(--gold-light); font-size: 1.15em; font-weight: 700; }
+.day-title-wrap .week-tag { color: var(--text-dim); font-size: 12px; margin-top: 2px; }
+.day-body { padding: 24px 28px; }
+.day-goal { background: rgba(212,160,23,0.08); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 20px; font-size: 14px; color: var(--gold-light); }
+.day-goal strong { color: var(--gold); }
+
+.section-label { color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; margin-top: 20px; }
+.section-label:first-of-type { margin-top: 0; }
+
+.steps-list { list-style: none; counter-reset: steps; }
+.steps-list li { counter-increment: steps; padding: 8px 0 8px 40px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px; }
+.steps-list li::before { content: counter(steps,decimal-leading-zero); position: absolute; left: 0; top: 8px; color: var(--gold-dark); font-weight: 700; font-size: 12px; }
+
+.tasks-list { list-style: none; }
+.tasks-list li { padding: 6px 0; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
+.task-check { width: 18px; height: 18px; border: 2px solid var(--gold-dark); border-radius: 4px; flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: background 0.2s; }
+.task-check:hover { background: rgba(212,160,23,0.2); }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 10px; }
+.metric-item { background: var(--bg3); border-radius: 6px; padding: 10px 14px; font-size: 13px; }
+.metric-item .m-label { color: var(--text-dim); font-size: 11px; }
+.metric-item .m-value { color: var(--gold-light); font-weight: 700; margin-top: 2px; }
+
+.hexagram-block { display: flex; align-items: flex-start; gap: 16px; background: var(--bg3); border-radius: 8px; padding: 14px 18px; margin-top: 16px; }
+.hexagram-symbol { font-size: 2.4em; color: var(--gold); text-shadow: 0 0 20px rgba(212,160,23,0.5); flex-shrink: 0; width: 60px; text-align: center; line-height: 1.2; }
+.hexagram-info .h-name { color: var(--gold-light); font-weight: 700; font-size: 1.05em; }
+.hexagram-info .h-meaning { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
+.hexagram-info .h-tip { color: var(--text); font-size: 13px; margin-top: 4px; line-height: 1.5; }
+
+/* BONUS */
+.bonus-section { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+.bonus-card { background: var(--bg2); border: 2px solid var(--gold-dark); border-radius: 16px; padding: 40px; text-align: center; }
+.bonus-card h2 { color: var(--gold-light); font-size: 1.6em; margin-bottom: 12px; }
+.bonus-card p { color: var(--text-dim); max-width: 600px; margin: 0 auto 24px; }
+.bonus-card .ko-fi-btn {
+  display: inline-block;
+  background: linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color: #000; font-weight: 900; font-size: 1.1em;
+  padding: 14px 36px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(212,160,23,0.4); transition: transform 0.2s;
+}
+.bonus-card .ko-fi-btn:hover { transform: translateY(-2px); }
+
+/* TRACKING */
+.tracking-section { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+.tracking-section h2 { color: var(--gold); font-size: 1.4em; margin-bottom: 24px; border-left: 4px solid var(--gold); padding-left: 16px; }
+.tracking-table { width: 100%; border-collapse: collapse; background: var(--bg2); border-radius: 8px; overflow: hidden; }
+.tracking-table th { background: var(--bg3); color: var(--gold); padding: 10px 12px; text-align: left; font-size: 12px; border-bottom: 1px solid var(--border); }
+.tracking-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; }
+.tracking-table tr:last-child td { border-bottom: none; }
+.track-checkbox { width: 20px; height: 20px; accent-color: var(--gold); }
+
+/* FOOTER */
+footer { text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+/* PRINT */
+@media print {
+  .hero .price-tag,.bonus-card .ko-fi-btn,footer { display: none !important; }
+  body { background: #fff !important; color: #000 !important; font-size: 12px !important; }
+  .hero { background: #f5f0e0 !important; border-bottom: 2px solid #B8860B !important; }
+  .hero h1 { color: #8B6914 !important; text-shadow: none !important; }
+  .hero-eyebrow { color: #8B6914 !important; }
+  .day-card { background: #fff !important; border: 1px solid #ccc !important; break-inside: avoid; }
+  .day-header { background: #f5f0e0 !important; border-bottom: 1px solid #ccc !important; }
+  .day-num { background: #B8860B !important; color: #fff !important; }
+  .day-title-wrap h3 { color: #8B6914 !important; }
+  .day-goal { background: rgba(184,134,11,0.1) !important; border-left-color: #B8860B !important; }
+  .section-label { color: #8B6914 !important; }
+  .steps-list li { color: #000 !important; }
+  .hexagram-block { background: #f5f0e0 !important; }
+  .hexagram-symbol { color: #8B6914 !important; text-shadow: none !important; }
+  .hexagram-info .h-name { color: #8B6914 !important; }
+  .hexagram-info .h-meaning,.hexagram-info .h-tip { color: #555 !important; }
+  .bonus-card { background: #f5f0e0 !important; border-color: #B8860B !important; }
+  .bonus-card h2 { color: #8B6914 !important; }
+  .tracking-table { background: #fff !important; }
+  .tracking-table th { background: #f5f0e0 !important; color: #8B6914 !important; }
+  .tracking-table td { color: #000 !important; border-color: #ccc !important; }
+  .tracking-section h2 { color: #8B6914 !important; }
+  .divider { border-color: #ccc !important; }
+  .task-check,.track-checkbox { accent-color: #8B6914; }
+  a[href]::after { content: none !important; }
+}
+
+/* RESPONSIVE */
+@media(max-width:600px) {
+  .hero h1 { font-size: 1.7em; }
+  .week-links { grid-template-columns: repeat(auto-fill,minmax(110px,1fr)); }
+  .day-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .day-body { padding: 20px; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .hexagram-block { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">殺手林數位商品 #3</div>
+  <h1>🤖 AI 創業者的<br>30 天起動套組</h1>
+  <p class="hero-sub">從零到 $1,000 被動收入的完整作戰地圖</p>
+  <a class="price-tag" href="https://ko-fi.com/s/00367ecd74" target="_blank">💰 NT$599 / US$19.9 — 立即購買</a>
+  <p class="hero-note">一次購買，終身使用。直接下載，無限期存取。</p>
+  <div class="bonus-banner">
+    🎁 <span>Bonus 禮包：</span>附贈「殺手林創業工具箱 PDF」+ 30 天進度跟踪表（可列印）
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc-section">
+  <h2>📋 目錄導覽</h2>
+  <div class="week-block">
+    <div class="week-title">第一週：基礎建設（Day 1–7）</div>
+    <div class="week-links">
+      <a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a>
+      <a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#day7">Day 7</a>
+    </div>
+  </div>
+  <div class="week-block">
+    <div class="week-title">第二週：產品開發（Day 8–14）</div>
+    <div class="week-links">
+      <a href="#day8">Day 8</a><a href="#day9">Day 9</a><a href="#day10">Day 10</a>
+      <a href="#day11">Day 11</a><a href="#day12">Day 12</a><a href="#day13">Day 13</a><a href="#day14">Day 14</a>
+    </div>
+  </div>
+  <div class="week-block">
+    <div class="week-title">第三週：流量與增長（Day 15–21）</div>
+    <div class="week-links">
+      <a href="#day15">Day 15</a><a href="#day16">Day 16</a><a href="#day17">Day 17</a>
+      <a href="#day18">Day 18</a><a href="#day19">Day 19</a><a href="#day20">Day 20</a><a href="#day21">Day 21</a>
+    </div>
+  </div>
+  <div class="week-block">
+    <div class="week-title">第四週：變現與擴張（Day 22–30）</div>
+    <div class="week-links">
+      <a href="#day22">Day 22</a><a href="#day23">Day 23</a><a href="#day24">Day 24</a>
+      <a href="#day25">Day 25</a><a href="#day26">Day 26</a><a href="#day27">Day 27</a>
+      <a href="#day28">Day 28</a><a href="#day29">Day 29</a><a href="#day30">Day 30</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DAYS CONTAINER -->
+<div class="days-container">
+
+<!-- DAY 1 -->
+<div class="day-card" id="day1">
+  <div class="day-header">
+    <span class="day-num">Day 1</span>
+    <div class="day-title-wrap">
+      <h3>建立你的第一個被動收入系統</h3>
+      <div class="week-tag">第一週 · 基礎建設</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>理解被動收入的底層邏輯，並建立你的第一份收入藍圖</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>先做心態リセット：被動收入不是「不工作」，是「一次建立，長期收割」</li>
+      <li>列出你現有的技能、知識、資源清單（任何東西都可以貨幣化）</li>
+      <li>研究 3 種你感興趣的被動收入模式：數位商品、聯盟行銷、訂閱制</li>
+      <li>選擇一個最小可行產品（MVP）方向，別貪多，先選一個</li>
+      <li>計算你的「被動收入目標」：月收入目標 ÷ 0.05 = 需要多少 email 訂閱者</li>
+      <li>建立一個簡單的著陸頁（Notion / Carrd / WordPress 都可以）</li>
+      <li>把這個頁面連結到 Ko-fi 或 Gumroad，開通收款功能</li>
+      <li>在社交媒體或任何你有受眾的地方 announce 你的產品即將推出</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>完成技能清單（至少列出 5 項）</li>
+      <li><div class="task-check"></div>選擇一個 MVP 方向</li>
+      <li><div class="task-check"></div>開通 Ko-fi/Gumroad 帳戶（如果還沒有）</li>
+      <li><div class="task-check"></div>建立一個簡單的著陸頁</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">完成著陸頁</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">已開通收款</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">技能清單項目</div><div class="m-value">≥ 5 項</div></div>
+      <div class="metric-item"><div class="m-label">MVP 方向確定</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☰</div>
+      <div class="hexagram-info">
+        <div class="h-name">乾卦 · 天（強創）</div>
+        <div class="h-meaning">象曰：天行健，君子以自強不息。</div>
+        <div class="h-tip">天行剛健，萬物起始。今日的你，要有果斷行動的勇氣。設定方向後，立刻執行，不要等待完美時機——完美時機就是現在。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="day-card" id="day2">
+  <div class="day-header">
+    <span class="day-num">Day 2</span>
+    <div class="day-title-wrap">
+      <h3>選擇你的利基市場：7 個測試問題</h3>
+      <div class="week-tag">第一週 · 基礎建設</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>用 7 個關鍵問題鎖定你的利基市場，不再徘徊猶豫</div>
+
+    <div class="section-label">7 個測試問題</div>
+    <ol class="steps-list">
+      <li><strong>我熱衷解決什麼問題？</strong>（不是「什麼領域」，而是「什麼人的什麼痛苦」）</li>
+      <li><strong>這群人現在在哪裡聚集？</strong>（FB 社團、Discord、Substack、Reddit？）</li>
+      <li><strong>他們目前怎麼解決這個問題？</strong>（免費工具？用手動？忍耐？）</li>
+      <li><strong>他們願意付多少錢？</strong>（$9 / $29 / $99？）</li>
+      <li><strong>我能用 AI 加速哪個環節？</strong>（內容生成、客服、自動化？）</li>
+      <li><strong>這個市場夠不夠小到能贏？</strong>（「線上課程」太泛，「AI 寫作課程 for 電商文案」才精準）</li>
+      <li><strong>我能持續產出這個領域的內容 30 天嗎？</strong>（不能就換）</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>回答全部 7 個問題，寫下來</li>
+      <li><div class="task-check"></div>找 3 個同領域的競爭者，分析他們的定價與內容</li>
+      <li><div class="task-check"></div>確認你的利基方向，寫下來公開宣告</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">利基市場確定</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">競爭者分析數</div><div class="m-value">≥ 3 個</div></div>
+      <div class="metric-item"><div class="m-label">7 個問題全回答</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">公開社群宣告</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☷</div>
+      <div class="hexagram-info">
+        <div class="h-name">坤卦 · 地（厚德）</div>
+        <div class="h-meaning">象曰：地勢坤，君子以厚德載物。</div>
+        <div class="h-tip">今日不是衝刺，是沉澱。選擇利基如同播種，要順勢而為。聆聽市場的聲音，用大地般寬廣的胸懷接納反饋，然後做出決定。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="day-card" id="day3">
+  <div class="day-header">
+    <span class="day-num">Day 3</span>
+    <div class="day-title-wrap">
+      <h3>設定你的在線存在：網站 + 社群媒體</h3>
+      <div class="week-tag">第一週 · 基礎建設</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立清晰的線上身份，讓目標客戶能夠找到你</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>選擇一個主要平台（一個就夠，不要分散）：Twitter/X、LinkedIn、或 Instagram</li>
+      <li>設計你的個人檔案：頭像（清晰專業）、Bio（3 行：你是誰 + 你做什麼 + CTA）</li>
+      <li>如果你打算做網站：推薦 Carrd.co（免費 / $19/年的 Pro 版），一個頁面綽綽有餘</li>
+      <li>建立一個簡單的著陸頁：標題 + 你的故事 + 產品連結 + Email 訂閱框</li>
+      <li>設定你的「Link in Bio」工具，推薦 Taplink 或 Carrd</li>
+      <li>同步更新你所有平台的形象，保持一致（名字、照片、風格）</li>
+      <li>發布第一條與你的利基相關的內容（不要等完美，現在就發）</li>
+      <li>在 Google Trends 或 Ubersuggest 查你利基的關鍵字，了解搜尋量</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>設定或更新主要社群檔案</li>
+      <li><div class="task-check"></div>建立 Carrd 免費著陸頁</li>
+      <li><div class="task-check"></div>發布第一條利基相關內容</li>
+      <li><div class="task-check"></div>確認所有平台形象一致</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">著陸頁上線</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">社群檔案完整</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">第一篇內容發布</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">關鍵字研究完成</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☳</div>
+      <div class="hexagram-info">
+        <div class="h-name">屯卦 · 雷（萌芽）</div>
+        <div class="h-meaning">象曰：雲雷，屯。君子以經綸。</div>
+        <div class="h-tip">萬物初生，必經艱難。你的線上身份正在破土。現在播下的種子——一篇貼文、一個頁面——都會在未來為你帶來流量。困難只是暫時的，持續行動就對了。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 4 -->
+<div class="day-card" id="day4">
+  <div class="day-header">
+    <span class="day-num">Day 4</span>
+    <div class="day-title-wrap">
+      <h3>建立你的 Email 清單策略</h3>
+      <div class="week-tag">第一週 · 基礎建設</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>開始收集 Email，建立你最重要的商業資產</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>選擇 Email 行銷平台：Mailchimp（免費最多 500 人）、ConvertKit（付費但功能完整）、Brevo（免費 9,000 人）</li>
+      <li>建立帳戶後，設計一個「免費贈品」（Lead Magnet）：電子書、模板、清單、mini 課程都可以</li>
+      <li>在你的著陸頁上加入 Email 訂閱表單（標題要強：「免費獲得 XXX，立刻領取」）</li>
+      <li>在你的社群帳號 Bio 連結中加入訂閱連結</li>
+      <li>撰寫你的第一封歡迎郵件序列（至少 3 封）：Welcome + 價值內容 + 產品預告</li>
+      <li>設定「歡迎自動化序列」：新訂閱者一加入就觸發</li>
+      <li>把這個訂閱連結放在你所有內容的結尾（每篇文、每個影片）</li>
+      <li>設定每週固定時間發送一封 Email（建議：週三或週六早上）</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>選擇並開通 Email 行銷平台</li>
+      <li><div class="task-check"></div>設計一個 Lead Magnet（免費贈品）</li>
+      <li><div class="task-check"></div>在著陸頁加入訂閱表單</li>
+      <li><div class="task-check"></div>撰寫 3 封歡迎郵件</li>
+      <li><div class="task-check"></div>設定自動化序列</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">Email 平台開通</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">Lead Magnet 完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">歡迎序列設定</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">首日 Email 訂閱數</div><div class="m-value">0 →</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☵</div>
+      <div class="hexagram-info">
+        <div class="h-name">蒙卦 · 水（啟蒙）</div>
+        <div class="h-meaning">象曰：山下出泉，蒙。君子以果行育德。</div>
+        <div class="h-tip">你的 Email 清單就像山下的泉水，需要先找到源頭。今天的播種，是未來沛然莫之能禦的湧泉。行動要果斷，持之以恆才能見效。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 5 -->
+<div class="day-card" id="day5">
+  <div class="day-header">
+    <span class="day-num">Day 5</span>
+    <div class="day-title-wrap">
+      <h3>創建你的第一個數位商品</h3>
+      <div class="week-tag">第一週 · 基礎建設</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>在今天結束前，你的數位商品頁面必須上線</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>確定商品形式：PDF 電子書（最簡單）、模板套件、檢查清單、mini 課程、錄音套組</li>
+      <li>用 AI 加速創作：ChatGPT / Claude 幫你寫內容，你負責組織和潤飾</li>
+      <li>設計商品頁面：在 Canva 或 Google Docs 製作專業外觀</li>
+      <li>設定定價：建議第一次從 $9–$19.9 開始，不要高估自己的定價能力</li>
+      <li>在 Ko-fi 建立商品頁面：標題、描述、封面圖、價格、付款方式全設定好</li>
+      <li>連結你的 Email 平台：新購買者自動加入你的清單</li>
+      <li>撰寫推廣文案：3 個版本的銷售文案（長版 + 短版 + 社群版）</li>
+      <li>上線！向你的 Email 清單和社群宣告：你的商品開始銷售了</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>完成第一個數位商品（初版即可）</li>
+      <li><div class="task-check"></div>Ko-fi 商品頁設定完成</li>
+      <li><div class="task-check"></div>撰寫 3 個版本推廣文案</li>
+      <li><div class="task-check"></div>正式對外宣布開賣</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">數位商品完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">Ko-fi 頁面上線</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">推廣文案完成</div><div class="m-value">3 版本</div></div>
+      <div class="metric-item"><div class="m-label">商品正式發布</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☶</div>
+      <div class="hexagram-info">
+        <div class="h-name">需卦 · 雨（等待）</div>
+        <div class="h-meaning">象曰：雲上於天，需。君子以飲食宴樂。</div>
+        <div class="h-tip">有時候停下來等待是必要的。今天不是衝刺日，是沉澱日。你的商品已經完成，等待的是適合的時機推廣。耐心，但不要被動——等待不等於停滯。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 6 -->
+<div class="day-card" id="day6">
+  <div class="day-header">
+    <span class="day-num">Day 6</span>
+    <div class="day-title-wrap">
+      <h3>設定付款系統：Ko-fi / Gumroad</h3>
+      <div class="week-tag">第一週 · 基礎建設</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>讓你的客戶能夠順暢付款，你才能真正收到錢</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>確認你有 PayPal 帳戶（台灣用戶必備）或 Stripe 帳戶</li>
+      <li>Ko-fi 設定：完成商家註冊、填入銀行或 PayPal 資訊、驗證身份</li>
+      <li>Gumroad 設定：如果你想做訂閱制，Gumroad 的 Subscription 功能比 Ko-fi 更完整</li>
+      <li>設定貨幣：USD 是首選（全球通用），但如果你主要服務台灣市場，可以也開放 TWD</li>
+      <li>測試一次完整購買流程：用自己測試，確認 Email 發送、檔案下載、收據都正常</li>
+      <li>設定退款政策：清楚告知「數位商品一經購買不退款」或設定 14 天期限</li>
+      <li>在商品頁面清楚標示：價格、貨幣、交付方式（立即下載 or Email 發送）</li>
+      <li>建立一個簡單的「客戶 FAQ」頁面，減少客服負擔</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>PayPal / Stripe 帳戶確認正常</li>
+      <li><div class="task-check"></div>Ko-fi 或 Gumroad 商家設定完成</li>
+      <li><div class="task-check"></div>完整測試一次購買流程</li>
+      <li><div class="task-check"></div>退款政策 & FAQ 頁面建立</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">付款系統設定</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">測試購買完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">FAQ 頁面完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">退款政策明確</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☱</div>
+      <div class="hexagram-info">
+        <div class="h-name">讼卦 · 天（爭執）</div>
+        <div class="h-meaning">象曰：天與水違行，讼。君子以做事謀始。</div>
+        <div class="h-tip">今日有糾纏之事，正是考驗你系統是否健全的時候。在問題發生前就把流程設計好，可以避免日後大部分的爭執。付款系統的每一個細節都要事先想清楚。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 7 -->
+<div class="day-card" id="day7">
+  <div class="day-header">
+    <span class="day-num">Day 7</span>
+    <div class="day-title-wrap">
+      <h3>建立你的推廣漏斗</h3>
+      <div class="week-tag">第一週 · 基礎建設</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立一條自動化的客戶旅程，讓流量變成收入</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>畫出你的漏斗：Aware（認知）→ Interest（興趣）→ Desire（慾望）→ Action（行動）</li>
+      <li>Awareness 層：免費內容（部落格文、Twitter thread、YouTube 短片）</li>
+      <li>Interest 層：Lead Magnet（免費贈品）換 Email</li>
+      <li>Desire 層：Email 序列教育 + 社會證明（見證推薦）</li>
+      <li>Action 層：直接購買連結 + 限時優惠（如果適用）</li>
+      <li>設定你的「流量來源」：今天先選一個主要渠道（不要同時做所有平台）</li>
+      <li>建立一個簡單的追蹤系統：記錄每個渠道帶來多少訪客、訂閱者、購買</li>
+      <li>算清楚你的「客戶取得成本（CAC）」：花了多少時間/金錢得到一個付費客戶</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>畫出你的四層漏斗圖</li>
+      <li><div class="task-check"></div>確認每層的內容和行動</li>
+      <li><div class="task-check"></div>選擇一個主力流量渠道</li>
+      <li><div class="task-check"></div>建立簡單的追蹤表</li>
+      <li><div class="task-check"></div>計算目前 CAC</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">漏斗圖完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">主力流量渠道</div><div class="m-value">確定</div></div>
+      <div class="metric-item"><div class="m-label">追蹤系統建立</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">第一週完成度</div><div class="m-value">_%</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☷</div>
+      <div class="hexagram-info">
+        <div class="h-name">師卦 · 地（率眾）</div>
+        <div class="h-meaning">象曰：地中有水，師。君子以容民畜眾。</div>
+        <div class="h-tip">你現在是元帥，率領你的流量大軍征戰市場。好的將領了解每一支部隊的動向。今天的任務是建立全局視角，讓每個環節都為你效力。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DAY 8 -->
+<div class="day-card" id="day8">
+  <div class="day-header">
+    <span class="day-num">Day 8</span>
+    <div class="day-title-wrap">
+      <h3>產品功能開發：核心價值論證</h3>
+      <div class="week-tag">第二週 · 產品開發</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>定義你的數位商品提供什麼具體、可測量的結果</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>回答這個問題：「購買我的商品後，客戶 30 天內會有什麼具體改變？」</li>
+      <li>把這個改變寫成一個「成果宣言」：「本商品幫助你 ___ 在 ___ 天內 ___」</li>
+      <li>把成果拆解成 5-8 個具體模組（章節、章節、工具）</li>
+      <li>每個模組設定一個「完成標誌」：客戶做了什麼就算完成</li>
+      <li>檢查：你的商品是否真的能兌現這個成果？如果不行，調整商品內容</li>
+      <li>寫下「客戶常見疑慮」並預先回答（FAQ 基礎）</li>
+      <li>建立一個「使用手冊」或「快速入門指南」PDF</li>
+      <li>把商品更新上傳到 Ko-fi/Gumroad</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>完成成果宣言</li>
+      <li><div class="task-check"></div>拆解 5-8 個模組</li>
+      <li><div class="task-check"></div>建立快速入門指南</li>
+      <li><div class="task-check"></div>更新商品版本</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">成果宣言完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">模組數量</div><div class="m-value">≥ 5</div></div>
+      <div class="metric-item"><div class="m-label">快速入門完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">商品版本更新</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☰</div>
+      <div class="hexagram-info">
+        <div class="h-name">比卦 · 水（親比）</div>
+        <div class="h-meaning">象曰：地上有水，比。先王以建萬國，親諸侯。</div>
+        <div class="h-tip">產品與客戶的關係就像諸侯與君王——需要親近與信任。今天你要做的是讓產品真正「懂」你的客戶，提供他們需要的價值，而非你認為他們需要的。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 9 -->
+<div class="day-card" id="day9">
+  <div class="day-header">
+    <span class="day-num">Day 9</span>
+    <div class="day-title-wrap">
+      <h3>AI 輔助內容創作系統建立</h3>
+      <div class="week-tag">第二週 · 產品開發</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立你的 AI 內容工廠，大幅提升產出速度</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>選擇你的 AI 工具主力：ChatGPT、Claude、Gemini（建議主力一個，備用一個）</li>
+      <li>建立你的「內容創作 Prompt 庫」：針對你的利基寫 5-10 個常用 Prompt</li>
+      <li>設定工作流程：選題 → AI 草稿 → 人工潤飾 → 發布</li>
+      <li>建立一個「內容日曆」：規劃未來 2 週的內容主題</li>
+      <li>用 AI 幫你生成 3 個不同格式的內容（Twitter thread、LinkedIn post、Email）</li>
+      <li>建立「內容模板」：每次創作時不用從零開始</li>
+      <li>設定一個「品質把關」清單：AI 草稿必須通過你的 5 個檢查點</li>
+      <li>今天至少產出並發布 1 篇內容</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>建立 Prompt 庫（≥ 5 個）</li>
+      <li><div class="task-check"></div>建立內容日曆（2 週）</li>
+      <li><div class="task-check"></div>用 AI 產出並發布 1 篇內容</li>
+      <li><div class="task-check"></div>建立內容模板</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">Prompt 庫建立</div><div class="m-value">≥ 5 個</div></div>
+      <div class="metric-item"><div class="m-label">內容日曆完成</div><div class="m-value">2 週</div></div>
+      <div class="metric-item"><div class="m-label">今日內容發布</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">內容模板建立</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☳</div>
+      <div class="hexagram-info">
+        <div class="h-name">小畜卦 · 風（積累）</div>
+        <div class="h-meaning">象曰：風行天上，小畜。君子以懿文德。</div>
+        <div class="h-tip">小畜是小規模的積蓄。你的 AI 工具是助力，但累積仍需時間。天天灌溉，則風行天上，德業自昭。別急著看到大結果，先把系統跑順。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 10 -->
+<div class="day-card" id="day10">
+  <div class="day-header">
+    <span class="day-num">Day 10</span>
+    <div class="day-title-wrap">
+      <h3>客戶見證與社會證明收集</h3>
+      <div class="week-tag">第二週 · 產品開發</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立你的社會證明武器庫，讓新客戶無法拒絕</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>聯繫你現有的客戶（Email 或 DM），請求見證（Testimonial）</li>
+      <li>設計一個「見證收集模板」：提供具體問題引導，而非讓客戶自由發揮</li>
+      <li>問題範本：「這個商品對你最有價值的是什麼？」、「你使用後有什麼具體改變？」</li>
+      <li>如果你還沒有付費客戶：提供搶先測試換取見證的方案</li>
+      <li>收集至少 3 個見證（文字、截圖、錄音都可以）</li>
+      <li>建立「見證檔案庫」：每個見證配圖、配使用情境</li>
+      <li>把見證放在你的 Ko-fi 商品頁、著陸頁、Email 簽名檔</li>
+      <li>向每個給予見證的人表達感謝（個人化訊息）</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>撰寫見證收集模板</li>
+      <li><div class="task-check"></div>聯繫至少 5 位現有/潛在客戶</li>
+      <li><div class="task-check"></div>收集至少 3 個見證</li>
+      <li><div class="task-check"></div>見證上架到所有頁面</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">見證收集數</div><div class="m-value">≥ 3</div></div>
+      <div class="metric-item"><div class="m-label">見證上架完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">見證模板建立</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">感謝訊息發送</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☵</div>
+      <div class="hexagram-info">
+        <div class="h-name">履卦 · 天（履行）</div>
+        <div class="h-meaning">象曰：上天下澤，履。君子以辨上下，定民志。</div>
+        <div class="h-tip">履是踩著階梯前行，也代表履行承諾。見證是你兌現承諾的證明。今天要真誠請求，真心感謝——虛假的見證終究會被看穿。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 11 -->
+<div class="day-card" id="day11">
+  <div class="day-header">
+    <span class="day-num">Day 11</span>
+    <div class="day-title-wrap">
+      <h3>售價策略與包裝優化</h3>
+      <div class="week-tag">第二週 · 產品開發</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>重新檢視你的定價，最大化收入而不流失客戶</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>研究競爭對手的定價：同類商品在市場上賣多少？</li>
+      <li>計算你的「提供價值比」：你提供的價值 vs 你的定價</li>
+      <li>測試「錨點定價」：放一個高價版本（如 $49）襯托你的主流價位（如 $19.9）</li>
+      <li>設計「套餐方案」：基礎版 $19.9 / 完整版 $39.9 / 超值版 $69 含個人諮詢</li>
+      <li>加入「早鳥優惠」機制：限量時間降價，製造緊迫感</li>
+      <li>計算你的邊際成本：每多賣一份，你需要付出多少額外時間？</li>
+      <li>更新 Ko-fi 商品頁的定價和套餐</li>
+      <li>撰寫新的銷售文案，強調套餐價值差異</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>完成競爭對手定價分析</li>
+      <li><div class="task-check"></div>設計 2-3 個套餐方案</li>
+      <li><div class="task-check"></div>更新 Ko-fi 頁面</li>
+      <li><div class="task-check"></div>撰寫新銷售文案</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">定價分析完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">套餐方案數</div><div class="m-value">≥ 2</div></div>
+      <div class="metric-item"><div class="m-label">頁面更新完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">文案更新完成</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☶</div>
+      <div class="hexagram-info">
+        <div class="h-name">泰卦 · 天地（通泰）</div>
+        <div class="h-meaning">象曰：天地交，泰。後以財成天地之道，輔相天地之宜。</div>
+        <div class="h-tip">天地之氣相交，萬物通暢。今天是優化日，讓你的產品定價與市場節奏合拍。定價是藝術，太高流失客戶，太低浪費價值，找到那個甜蜜點。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 12 -->
+<div class="day-card" id="day12">
+  <div class="day-header">
+    <span class="day-num">Day 12</span>
+    <div class="day-title-wrap">
+      <h3>客戶成功案例深度訪談</h3>
+      <div class="week-tag">第二週 · 產品開發</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>深度了解一個客戶的成功故事，轉化為說服力極強的行銷素材</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>選擇一個最滿意的客戶，請求 30 分鐘的深度訪談</li>
+      <li>訪談前準備問題：「你購買前的狀態」→「使用後的改變」→「最具體的例子」</li>
+      <li>進行訪談，錄音（或詳細筆記）</li>
+      <li>把訪談內容整理成「客戶成功故事文章」：起承轉合，800-1500字</li>
+      <li>設計成「案例研究」（Case Study）格式：背景→挑戰→方案→結果→數據</li>
+      <li>製作 3 個版本：長文（部落格）、短文（社群）、精華語錄（圖文）</li>
+      <li>取得客戶書面授權後上架</li>
+      <li>這個案例研究同時加入你的 Email 序列教育環節</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>安排客戶訪談時間</li>
+      <li><div class="task-check"></div>完成深度訪談</li>
+      <li><div class="task-check"></div>整理訪談內容</li>
+      <li><div class="task-check"></div>完成案例研究初稿</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">訪談完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">案例研究完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">三版本製作</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">客戶授權取得</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☲</div>
+      <div class="hexagram-info">
+        <div class="h-name">同人卦 · 火（同心）</div>
+        <div class="h-meaning">象曰：天與火，同人。君子以類族辨物。</div>
+        <div class="h-tip">同人是會合眾人的卦。真正的行銷不是你在說，而是讓客戶替你說。今天的深度訪談，是找到那個「同路人」，讓他的故事為你發聲。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 13 -->
+<div class="day-card" id="day13">
+  <div class="day-header">
+    <span class="day-num">Day 13</span>
+    <div class="day-title-wrap">
+      <h3>產品包裝與品牌視覺升級</h3>
+      <div class="week-tag">第二週 · 產品開發</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>讓你的產品看起來就值那個價——視覺就是信任</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>整理你目前的視覺素材：封面圖、Logo、色調、字體</li>
+      <li>在 Canva 建立一個「品牌套組」：字體搭配、顏色代碼（3-5 個顏色）</li>
+      <li>重新設計商品封面圖：標題 + 副標 + 視覺元素（參考暢銷商品的設計）</li>
+      <li>設計一個統一的「書籍內頁模板」：章節標題、正文、圖片區塊的標準格式</li>
+      <li>製作一個「品牌使用指南」（1 頁 PDF）：標誌、顏色、字體、禁用事項</li>
+      <li>更新所有平台的視覺形象（Bio 圖、封面圖、統一色調）</li>
+      <li>建立一個「品牌素材庫」：資料夾結構包含原始檔、輸出檔、使用範例</li>
+      <li>用新視覺重新製作 3 個行銷素材（社群圖、Email 圖、網站橫幅）</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>建立品牌套組（顏色+字體）</li>
+      <li><div class="task-check"></div>重新設計商品封面</li>
+      <li><div class="task-check"></div>製作內頁模板</li>
+      <li><div class="task-check"></div>發布 3 個新視覺行銷素材</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">品牌套組完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">商品封面更新</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">新行銷素材</div><div class="m-value">≥ 3</div></div>
+      <div class="metric-item"><div class="m-label">品牌指南完成</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☱</div>
+      <div class="hexagram-info">
+        <div class="h-name">大有卦 · 火（豐收）</div>
+        <div class="h-meaning">象曰：火在天上，大有。君子以遏惡揚善，順天休命。</div>
+        <div class="h-tip">大有是豐盛充滿的象徵。你的努力正在累積成果，今天的視覺升級就像為豐收準備倉庫。好的包裝讓好產品如虎添翼。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 14 -->
+<div class="day-card" id="day14">
+  <div class="day-header">
+    <span class="day-num">Day 14</span>
+    <div class="day-title-wrap">
+      <h3>第二週複習：產品 V2.0 發布</h3>
+      <div class="week-tag">第二週 · 產品開發</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>把過去一週的所有優化集大成，發布升級版產品</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>整理第二週的產出：Prompt 庫、內容模板、見證、案例研究、品牌素材</li>
+      <li>把這些新素材加入數位商品，更新版本到 V2.0</li>
+      <li>重新計算你的商品定價：現在的版本比第一週強多少？考慮是否調價</li>
+      <li>撰寫「升級公告」：向舊客戶說明新版本（如果已購買可以免費升級）</li>
+      <li>向所有訂閱者發送「產品 V2.0 發布公告」Email</li>
+      <li>在所有社群平台同步發布升級消息</li>
+      <li>向 5 個 KOL 或相關社團推薦你的商品（附上升級版本截圖）</li>
+      <li>第二週數據複盤：瀏覽量、Email 訂閱、銷售數、轉化率</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>產品 V2.0 完成並上線</li>
+      <li><div class="task-check"></div>向舊客戶發送升級通知</li>
+      <li><div class="task-check"></div>發布 V2.0 公告</li>
+      <li><div class="task-check"></div>完成第二週數據複盤</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">產品 V2.0 發布</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">第二週總銷售</div><div class="m-value">$_</div></div>
+      <div class="metric-item"><div class="m-label">Email 淨增</div><div class="m-value">+_</div></div>
+      <div class="metric-item"><div class="m-label">第二週完成度</div><div class="m-value">_%</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☰</div>
+      <div class="hexagram-info">
+        <div class="h-name">謙卦 · 山（謙遜）</div>
+        <div class="h-meaning">象曰：地中有山，謙。君子以裒多益寡，稱物平施。</div>
+        <div class="h-tip">謙卦提醒你：豐收之際更要保持謙遜。第二週的成果是基於第一週的基礎。不要得意，繼續前進。最困難的往往是最後一哩路。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DAY 15 -->
+<div class="day-card" id="day15">
+  <div class="day-header">
+    <span class="day-num">Day 15</span>
+    <div class="day-title-wrap">
+      <h3>SEO 基礎：讓搜尋引擎為你工作</h3>
+      <div class="week-tag">第三週 · 流量與增長</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>讓有需求的潛在客戶透過 Google 找到你</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>用 Ubersuggest 或 Google Trends 找出你利基的「高搜尋量、低競爭」關鍵字</li>
+      <li>選擇 5 個核心關鍵字（目標：每月 100+ 搜尋量）</li>
+      <li>針對每個關鍵字，寫一篇 800-1500 字的部落格文章（用 AI 加速）</li>
+      <li>在文章中加入內部連結（連結到你其他的文章）和外部連結（權威網站）</li>
+      <li>優化 SEO 基本要素：Title Tag、Meta Description、H1 標題都包含關鍵字</li>
+      <li>在你的文章底部加入 Email 訂閱呼籲（CTA）</li>
+      <li>提交 sitemap 到 Google Search Console</li>
+      <li>設定 Google Analytics 4 追蹤，確認流量數據有在收集</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>完成關鍵字研究（5 個核心關鍵字）</li>
+      <li><div class="task-check"></div>撰寫並發布第一篇 SEO 文章</li>
+      <li><div class="task-check"></div>設定 Google Analytics 4</li>
+      <li><div class="task-check"></div>提交 sitemap 到 Search Console</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">核心關鍵字數</div><div class="m-value">≥ 5</div></div>
+      <div class="metric-item"><div class="m-label">SEO 文章發布</div><div class="m-value">≥ 1 篇</div></div>
+      <div class="metric-item"><div class="m-label">GA4 設定完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">Search Console 提交</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☷</div>
+      <div class="hexagram-info">
+        <div class="h-name">豫卦 · 雷（豫悅）</div>
+        <div class="h-meaning">象曰：雷出地奮，豫。先王以作樂崇德，殷荐之上帝，以配祖考。</div>
+        <div class="h-tip">豫是歡樂的準備動作。當搜尋流量開始流入那刻，就是你的豐收季節到來。今天是播種日，不要急著看到流量，先把土壤（SEO 基礎）準備好。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 16 -->
+<div class="day-card" id="day16">
+  <div class="day-header">
+    <span class="day-num">Day 16</span>
+    <div class="day-title-wrap">
+      <h3>社群媒體流量：建立你的內容工廠</h3>
+      <div class="week-tag">第三週 · 流量與增長</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>找到你主力社群平台，建立穩定的內容產出節奏</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>選擇一個主力社群平台（Twitter/X、LinkedIn、或 Threads），不要多個同時做</li>
+      <li>研究這個平台上你的利基領域的 Top 10 帳號，分析他們的內容格式</li>
+      <li>建立一個「內容模板庫」：每個模板包含標題格式、內文結構、Hashtag 策略</li>
+      <li>設定每週內容行事曆：規劃未來 7 天的帖子主題和格式</li>
+      <li>用 AI 批量產出 7 篇草稿，用你的模板快速填充</li>
+      <li>設計視覺模板（Canva）：統一的配色和字體，讓你的內容一眼可認</li>
+      <li>今天發布至少 2 篇高質量內容</li>
+      <li>分析前 30 分鐘的互動數據，快速調整明天策略</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>完成 Top 10 帳號分析</li>
+      <li><div class="task-check"></div>建立內容模板庫（≥ 3 個模板）</li>
+      <li><div class="task-check"></div>完成每週內容行事曆</li>
+      <li><div class="task-check"></div>發布 2 篇社群內容</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">主力平台確定</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">內容模板數</div><div class="m-value">≥ 3</div></div>
+      <div class="metric-item"><div class="m-label">每週行事曆完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">今日內容發布</div><div class="m-value">≥ 2</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☳</div>
+      <div class="hexagram-info">
+        <div class="h-name">隨卦 · 澤（隨時）</div>
+        <div class="h-meaning">象曰：澤中有雷，隨。君子以嚮晦入宴息。</div>
+        <div class="h-tip">隨是順勢而動的意思。社群演算法每天都在變，你的策略也要跟著調整。不要死守一個方法，觀察數據，順勢而為。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 17 -->
+<div class="day-card" id="day17">
+  <div class="day-header">
+    <span class="day-num">Day 17</span>
+    <div class="day-title-wrap">
+      <h3>Email 行銷入門：建立你的自動收入機器</h3>
+      <div class="week-tag">第三週 · 流量與增長</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立一個自動化的 Email 序列，把訂閱者變成付費客戶</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>設計你的 Email 序列結構：Welcome（1封）→ 教育（3封）→ 價值展示（2封）→ 銷售（1封）</li>
+      <li>撰寫第一封歡迎郵件：自我介紹 + 你能幫他們解決什麼 + 他們下一步該做什麼</li>
+      <li>設計你的「教育序列」：分享你最棒的 3 個內容或技巧</li>
+      <li>撰寫銷售郵件：不要硬銷，要描述 Transformation（轉變）</li>
+      <li>設定延遲：在第一封後 2 天發第二封，以此類推</li>
+      <li>加入「追蹤標籤」：記錄每個訂閱者是從哪個渠道來的</li>
+      <li>A/B 測試：準備兩個不同標題，測試哪個開信率高</li>
+      <li>每封郵件結尾都有 CTA（不只是最後一封）</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>設計完整 Email 序列結構</li>
+      <li><div class="task-check"></div>撰寫 7 封郵件草稿</li>
+      <li><div class="task-check"></div>設定自動化序列</li>
+      <li><div class="task-check"></div>設定 A/B 測試</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">Email 序列設計</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">郵件數量</div><div class="m-value">≥ 7</div></div>
+      <div class="metric-item"><div class="m-label">自動化設定</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">開信率基準</div><div class="m-value">_%</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☵</div>
+      <div class="hexagram-info">
+        <div class="h-name">蠱卦 · 風（革新）</div>
+        <div class="h-meaning">象曰：山下有風，蠱。君子以振民育德。</div>
+        <div class="h-tip">蠱是腐敗之後重新整頓的象徵。你的 Email 序列需要時不時更新和測試，別讓它們「發霉」。每季審視一次你的序列，移除無效內容，替換新的案例。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 18 -->
+<div class="day-card" id="day18">
+  <div class="day-header">
+    <span class="day-num">Day 18</span>
+    <div class="day-title-wrap">
+      <h3>付費廣告評估：什麼時候該開始砸錢</h3>
+      <div class="week-tag">第三週 · 流量與增長</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>了解付費廣告的時機與風險，不要亂燒錢</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>確認你的付費廣告前提：你有至少 100 個 Email 訂閱者嗎？你有至少 3 個見證嗎？</li>
+      <li>如果都還沒有，先專注免費流量。如果有了，繼續</li>
+      <li>選擇廣告平台：Meta Ads（Facebook/Instagram）、Google Ads、TikTok Ads</li>
+      <li>設定廣告目標：不要選「品牌曝光」，選「流量」或「轉換」</li>
+      <li>設定預算：從每天 $5-$10 開始，不要一開始就砸大錢</li>
+      <li>撰寫廣告文案：標題要鉤人、描述要具體、CTA 要清晰</li>
+      <li>設定轉換追蹤：像素（Pixel）或 GA4 事件追蹤</li>
+      <li>讓廣告跑 3-5 天後再判斷數據，不要第一天就關廣告</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>確認付費廣告前提（訂閱者≥100？見證≥3？）</li>
+      <li><div class="task-check"></div>選擇廣告平台</li>
+      <li><div class="task-check"></div>設定每日預算（$5-$10）</li>
+      <li><div class="task-check"></div>撰寫廣告文案</li>
+      <li><div class="task-check"></div>設定轉換追蹤</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">廣告前提確認</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">廣告平台選擇</div><div class="m-value">確定</div></div>
+      <div class="metric-item"><div class="m-label">每日預算</div><div class="m-value">$_</div></div>
+      <div class="metric-item"><div class="m-label">轉換追蹤設定</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☶</div>
+      <div class="hexagram-info">
+        <div class="h-name">臨卦 · 地（臨民）</div>
+        <div class="h-meaning">象曰：澤上有地，臨。君子以教思无窮，容保民无疆。</div>
+        <div class="h-tip">臨是居高臨下、洞悉全貌的意思。在投入廣告預算前，先要有全局視角。了解你的客戶從哪裡來、會往哪裡去，才能精準投放。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 19 -->
+<div class="day-card" id="day19">
+  <div class="day-header">
+    <span class="day-num">Day 19</span>
+    <div class="day-title-wrap">
+      <h3>聯盟行銷介紹：讓別e為你推廣</h3>
+      <div class="week-tag">第三週 · 流量與增長</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立聯盟行銷計劃，讓有受眾的人幫你賣</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>設定聯盟行銷佣金結構：建議 30%-50% 的銷售額作為佣金（比一般電商高）</li>
+      <li>在 Gumroad 或 Ko-fi 開通聯盟功能（附屬連結）</li>
+      <li>撰寫「聯盟行銷指南」：告訴潛在聯盟夥伴你的產品、他們該怎麼推廣、他們能賺多少</li>
+      <li>列出 10 個你認為適合推廣你產品的 KOL 或內容創作者</li>
+      <li>撰寫個人化的推廣邀請訊息（不是copy-paste，要個人化）</li>
+      <li>建立聯盟夥伴專屬的素材包：橫幅廣告、產品介紹、推廣範本</li>
+      <li>設定聯盟佣金支付方式（PayPal 或 Ko-fi 自帶功能）</li>
+      <li>追蹤每個聯盟夥伴的推廣成效，表現好的可以給額外獎金</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>設定佣金結構</li>
+      <li><div class="task-check"></div>開通聯盟功能</li>
+      <li><div class="task-check"></div>撰寫聯盟指南</li>
+      <li><div class="task-check"></div>聯繫 10 個潛在夥伴</li>
+      <li><div class="task-check"></div>建立素材包</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">佣金結構設定</div><div class="m-value">_%</div></div>
+      <div class="metric-item"><div class="m-label">聯盟功能開通</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">潛在夥伴聯繫</div><div class="m-value">≥ 10</div></div>
+      <div class="metric-item"><div class="m-label">素材包建立</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☰</div>
+      <div class="hexagram-info">
+        <div class="h-name">觀卦 · 風（觀望）</div>
+        <div class="h-meaning">象曰：風行地上，觀。先王以省方觀民設教。</div>
+        <div class="h-tip">觀是仔細觀察的意思。在尋找聯盟夥伴時，要睜大眼睛看清楚——找到真正與你價值觀一致的夥伴，遠比數量重要。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 20 -->
+<div class="day-card" id="day20">
+  <div class="day-header">
+    <span class="day-num">Day 20</span>
+    <div class="day-title-wrap">
+      <h3>內容行銷策略：持續產出有價值的內容</h3>
+      <div class="week-tag">第三週 · 流量與增長</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立一個可持續的內容行銷引擎</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>定義你的內容支柱（Content Pillars）：3-5 個你會持續談的主題</li>
+      <li>建立「內容再利用」系統：一篇長文 → Twitter thread → LinkedIn post → Email 摘要 → YouTube 腳本</li>
+      <li>制定每週內容行事曆：固定哪天發長文、哪天發短文、哪天發多媒體</li>
+      <li>用 AI 工具批量產出 10 個下週的內容標題</li>
+      <li>每週至少一個「深度內容」：2,000+ 字的文章或 10+ 分鐘的影片</li>
+      <li>每週一個「引流內容」：專門設計來收集 Email 的內容（Lead Magnet）</li>
+      <li>建立「已發布內容庫」：記錄每篇內容的表現，作為未來參考</li>
+      <li>每週一回顧：哪些內容表現好？為什麼？然後複製成功模式</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>定義 3-5 個內容支柱</li>
+      <li><div class="task-check"></div>建立內容再利用流程圖</li>
+      <li><div class="task-check"></div>制定每週行事曆</li>
+      <li><div class="task-check"></div>用 AI 產出 10 個下週標題</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">內容支柱數</div><div class="m-value">≥ 3</div></div>
+      <div class="metric-item"><div class="m-label">再利用流程建立</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">每週行事曆完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">下週標題庫</div><div class="m-value">≥ 10</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☲</div>
+      <div class="hexagram-info">
+        <div class="h-name">噬嗑卦 · 火（咀嚼）</div>
+        <div class="h-meaning">象曰：雷電，噬嗑。先王以明罰敕法。</div>
+        <div class="h-tip">噬嗑是咀嚼消化的意思。今天要慢下來，好好消化你過去幾週累積的內容和數據。不是產出，是整理——讓你的知識真正被吸收和系統化。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 21 -->
+<div class="day-card" id="day21">
+  <div class="day-header">
+    <span class="day-num">Day 21</span>
+    <div class="day-title-wrap">
+      <h3>流量渠道評估：第三週數據大複盤</h3>
+      <div class="week-tag">第三週 · 流量與增長</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>全面檢視所有流量渠道的成效，集中資源在最高ROI的地方</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>整理所有流量數據：Google Analytics、平台內建分析、Email 開信率</li>
+      <li>計算每個渠道的「流量佔比」和「轉換率」</li>
+      <li>找出 Top 3 流量來源：哪些渠道帶來最多的訪客？哪些帶來最多的購買？</li>
+      <li>砍掉或暫停表現最差的渠道（不要同時維持太多平台）</li>
+      <li>重新分配時間和資源：80% 的努力放在 Top 2 渠道</li>
+      <li>向 Top 渠道的受眾提供更多價值，進一步深化</li>
+      <li>設定第四週的流量目標：明確的數字，不是模糊的「要更多」</li>
+      <li>向 Email 訂閱者發送第三週成果報告（建立信任和透明）</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>整理所有流量數據</li>
+      <li><div class="task-check"></div>完成流量渠道分析</li>
+      <li><div class="task-check"></div>重新分配資源</li>
+      <li><div class="task-check"></div>發送第三週成果報告</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">總流量（第三週）</div><div class="m-value">_ UV</div></div>
+      <div class="metric-item"><div class="m-label">Top 渠道確定</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">轉換率</div><div class="m-value">_%</div></div>
+      <div class="metric-item"><div class="m-label">第三週完成度</div><div class="m-value">_%</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☷</div>
+      <div class="hexagram-info">
+        <div class="h-name">賁卦 · 山（文飾）</div>
+        <div class="h-meaning">象曰：山下有火，賁。君子以明庶政，无敢折獄。</div>
+        <div class="h-tip">賁是裝飾美化之意。三週的努力已經建立了基礎，今天是「裝飾」你的系統的時候——讓它看起來更專業，更值得信賴。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DAY 22 -->
+<div class="day-card" id="day22">
+  <div class="day-header">
+    <span class="day-num">Day 22</span>
+    <div class="day-title-wrap">
+      <h3>第一筆銷售：讓鈔票開始流動</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>如果在之前還沒有銷售，今天必須要突破零的記錄</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>如果你還沒有銷售：聯繫你清單上前 20 個訂閱者，主動詢問他們的想法</li>
+      <li>提供一個「限定優惠」：只給 Email 清單的獨家折扣（20%-30%  off）</li>
+      <li>撰寫一封「緊急銷售郵件」：不是催迫，而是真誠分享你產品現在的價值</li>
+      <li>在所有社群平台發布「解鎖成就」：宣布你的產品已經幫助了第一批真實用戶</li>
+      <li>如果你已經有銷售：請求客戶留下評論和見證</li>
+      <li>分析你第一筆銷售的來源：是哪个渠道？是哪篇內容？是哪個 CTA？</li>
+      <li>複製成功路徑：在那個渠道投入更多資源</li>
+      <li>慶祝！你的第一筆銷售是整個旅程中最大的一步</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>聯繫前 20 位訂閱者</li>
+      <li><div class="task-check"></div>發送限定優惠郵件</li>
+      <li><div class="task-check"></div>分析銷售來源</li>
+      <li><div class="task-check"></div>複製成功路徑</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">第一筆/新銷售</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">銷售來源</div><div class="m-value">_渠道</div></div>
+      <div class="metric-item"><div class="m-label">見證收集</div><div class="m-value">≥ 1</div></div>
+      <div class="metric-item"><div class="m-label">當日總銷售</div><div class="m-value">$_</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☰</div>
+      <div class="hexagram-info">
+        <div class="h-name">復卦 · 地（復甦）</div>
+        <div class="h-meaning">象曰：雷在地中，復。先王以至日閉關，商旅不行，後不省方。</div>
+        <div class="h-tip">復是反復來臨的意思。今天你的生意即將「復甦」——第一筆銷售會帶來信心，信心會帶來更多銷售。這是良性循環的起點。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 23 -->
+<div class="day-card" id="day23">
+  <div class="day-header">
+    <span class="day-num">Day 23</span>
+    <div class="day-title-wrap">
+      <h3>客戶服務系統化：從手忙腳亂到從容優雅</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>建立客戶服務流程，讓你不用一個一個回覆</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>整理你到目前為止收到的所有客戶問題</li>
+      <li>建立 FAQ 文檔：把所有常見問題和答案寫下來</li>
+      <li>如果你收到同一個問題 3 次以上，就值得系統化</li>
+      <li>設定「回覆模板」：常見問題的回覆先寫好，需要時copy-paste</li>
+      <li>使用客服工具：Helpscout、Intercom、或簡單的 Zendesk（根據客戶量選擇）</li>
+      <li>設定「服務時間」：不要 24/7，即時回覆不是必須的，24 小時內回覆就很好</li>
+      <li>建立「售後引導 Email 序列」：購買後自動發送 3 封郵件，引導客戶成功使用你的商品</li>
+      <li>每週抽出 30 分鐘回顧客戶問題，更新 FAQ 和模板</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>整理所有客戶問題</li>
+      <li><div class="task-check"></div>建立 FAQ 文檔</li>
+      <li><div class="task-check"></div>建立回覆模板</li>
+      <li><div class="task-check"></div>設定售後引導序列</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">FAQ 文檔建立</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">回覆模板數</div><div class="m-value">≥ 5</div></div>
+      <div class="metric-item"><div class="m-label">平均回覆時間</div><div class="m-value">_ 小時</div></div>
+      <div class="metric-item"><div class="m-label">售後序列設定</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☷</div>
+      <div class="hexagram-info">
+        <div class="h-name">无妄卦 · 天（不妄）</div>
+        <div class="h-meaning">象曰：天下雷行，物与无妄。先王以茂對時，育萬物。</div>
+        <div class="h-tip">无妄是「不虛妄、務實」的意思。客戶服務的核心是誠實和及時。不要承諾你做不到的事，做得到的就做到最好。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 24 -->
+<div class="day-card" id="day24">
+  <div class="day-header">
+    <span class="day-num">Day 24</span>
+    <div class="day-title-wrap">
+      <h3>產品線擴張：從一個產品到一個帝國</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>根據客戶反饋，開始規劃你的第二、第三個產品</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>分析現有產品的客戶反饋：他們最喜歡什麼？最抱怨什麼？還想要什麼？</li>
+      <li>列出 3 個潛在新產品方向（可以與現有產品互補）</li>
+      <li>評估每個方向的市場潛力：有多大？競爭多激烈？你擅長嗎？</li>
+      <li>選擇一個最高潛力的方向作為下一個產品</li>
+      <li>撰寫「產品概念說明書」（1 頁）：目標客戶、核心價值、定價範圍</li>
+      <li>向現有客戶進行「需求驗證」：直接問他們這個新產品他們會想要嗎</li>
+      <li>建立新產品的著陸頁（預告頁）：收集「我有興趣」的 Email</li>
+      <li>根據興趣人數決定是否真的要開發這個產品</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>分析客戶反饋</li>
+      <li><div class="task-check"></div>列出 3 個新產品方向</li>
+      <li><div class="task-check"></div>撰寫產品概念說明書</li>
+      <li><div class="task-check"></div>建立預告著陸頁</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">新產品方向</div><div class="m-value">≥ 3</div></div>
+      <div class="metric-item"><div class="m-label">概念說明書完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">需求驗證完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">預告頁 Email 數</div><div class="m-value">_</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☳</div>
+      <div class="hexagram-info">
+        <div class="h-name">大畜卦 · 山（廣畜）</div>
+        <div class="h-meaning">象曰：天在山中，大畜。君子以多識前言往行，以畜其德。</div>
+        <div class="h-tip">大畜是大的積蓄。今天的擴張不是冒進，而是建立在已有成果的基礎上。你的第一個產品是你的倉庫，裡面裝的是經驗和客戶信任。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 25 -->
+<div class="day-card" id="day25">
+  <div class="day-header">
+    <span class="day-num">Day 25</span>
+    <div class="day-title-wrap">
+      <h3>被動收入優化：提升你的每小時價值</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>提高你的變現效率，讓同樣的時間帶來更多收入</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>計算你目前的「時薪」：月收入 ÷ 工作時數</li>
+      <li>列出你每週做的所有任務：每個任務、耗時、是否必要</li>
+      <li>找出可以委託出去的工作：重複性高、專業度低的任務優先外包</li>
+      <li>在 Fiverr 或 104 外包俠 找 freelancer：設計、文案、客服、資料整理</li>
+      <li>建立外包 SOP（標準作業程序）：每個任務的交付標準和流程</li>
+      <li>計算每個外包任務的「產出價值 vs 外包成本」，確認ROI</li>
+      <li>把你的時間重新分配：把省下來的時間用在「高槓桿」活動（產品開發、內容策略）</li>
+      <li>每週檢查一次外包成效，持續優化</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>計算目前時薪</li>
+      <li><div class="task-check"></div>完成任務審計</li>
+      <li><div class="task-check"></div>識別可外包任務（≥ 3 個）</li>
+      <li><div class="task-check"></div>建立第一個外包 SOP</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">目前時薪</div><div class="m-value">$_/hr</div></div>
+      <div class="metric-item"><div class="m-label">外包任務識別</div><div class="m-value">≥ 3</div></div>
+      <div class="metric-item"><div class="m-label">SOP 建立</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">節省時間</div><div class="m-value">_ hrs/wk</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☵</div>
+      <div class="hexagram-info">
+        <div class="h-name">頤卦 · 雷（頤養）</div>
+        <div class="h-meaning">象曰：山下有雷，頤。君子以慎言語，節飲食。</div>
+        <div class="h-tip">頤是保養、養生的意思。今天要養的不是身體，而是你的系統。好的創業者知道何時該休息，何時該擴張。別把自己當燃料燃燒，把自己當機器保養。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 26 -->
+<div class="day-card" id="day26">
+  <div class="day-header">
+    <span class="day-num">Day 26</span>
+    <div class="day-title-wrap">
+      <h3>自動化系統：讓系統幫你工作</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>把可以自動化的事情全部自動化，你專注在策略和創意</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>列出你每天/每週重複做的所有事情（這就是自動化的目標）</li>
+      <li>Email 自動化：歡迎序列、購買後引導、復購提醒（你應該已經做了）</li>
+      <li>社群自動化：Buffer 或 Publer 排程你的社群內容</li>
+      <li>CRM 設定：如果客戶量增加，用 HubSpot CRM（免費版）管理客戶關係</li>
+      <li>整合 Zapier 或 Make（原 Integromat）：把不同工具串在一起</li>
+      <li>常見整合：新客戶購買 → 自動加入 Email 清單 → 發送歡迎郵件 → 7天後跟進</li>
+      <li>設定「觸發條件」：當某事件發生，自動執行某個行動</li>
+      <li>每季審視一次你的自動化流程，移除無效環節</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>完成重複任務清單</li>
+      <li><div class="task-check"></div>設定 Buffer/Publer 排程</li>
+      <li><div class="task-check"></div>設定一個 Zapier/Make 整合</li>
+      <li><div class="task-check"></div>建立觸發條件流程圖</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">重複任務清單</div><div class="m-value">≥ 5</div></div>
+      <div class="metric-item"><div class="m-label">社群排程設定</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">自動化整合數</div><div class="m-value">≥ 1</div></div>
+      <div class="metric-item"><div class="m-label">每日手動任務減少</div><div class="m-value">_%</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☶</div>
+      <div class="hexagram-info">
+        <div class="h-name">大過卦 · 澤（超越）</div>
+        <div class="h-meaning">象曰：澤滅木，大過。君子以獨立不懼，遯世无悶。</div>
+        <div class="h-tip">大過是超越常規的意思。自動化難免會遇到問題和意外，但不要因為害怕出錯就放棄。建立系統、測試它、修正它——這就是成長的路徑。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 27 -->
+<div class="day-card" id="day27">
+  <div class="day-header">
+    <span class="day-num">Day 27</span>
+    <div class="day-title-wrap">
+      <h3>擴大團隊：從一人公司到有小幫手</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>識別你需要第一個全職員工或承包商的信號，並開始準備</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>確認你真的需要幫手：你有穩定的收入嗎？你有太多任務無法親自完成嗎？</li>
+      <li>如果是，先從承包商開始，不要一開始就雇全職</li>
+      <li>定義第一個角色的 JD（工作說明書）：他/她要做什麼？要具備什麼技能？</li>
+      <li>選擇招募管道：104、Yourator、CakeResume、或 Fiverr（國際）</li>
+      <li>撰寫招募文案：清楚說明工作內容、文化、報酬範圍</li>
+      <li>設定試用期目標：90天內他/她應該達成什麼？</li>
+      <li>建立第一個 SOP：把重複性高的任務寫成標準作業程序，讓新人不會 無所適從</li>
+      <li>開始招募，就算只是實習或兼職，先讓系統有人操作</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>確認是否需要幫手</li>
+      <li><div class="task-check"></div>撰寫第一個 JD</li>
+      <li><div class="task-check"></div>選擇招募管道</li>
+      <li><div class="task-check"></div>撰寫招募文案</li>
+      <li><div class="task-check"></div>建立第一個 SOP</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">需要幫手確認</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">JD 完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">招募文案完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">SOP 建立</div><div class="m-value">≥ 1</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☰</div>
+      <div class="hexagram-info">
+        <div class="h-name">坎卦 · 水（危險）</div>
+        <div class="h-meaning">象曰：水洊至，習坎。君子以常德行，習教事。</div>
+        <div class="h-tip">坎是危險和挑戰的意思。擴大團隊伴隨著風險：管理成本、溝通成本、方向不一致。但成功跨越這些危險，你就進入了一個新的層次。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 28 -->
+<div class="day-card" id="day28">
+  <div class="day-header">
+    <span class="day-num">Day 28</span>
+    <div class="day-title-wrap">
+      <h3>品牌建立：讓人們因為品牌而購買</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>把你的生意從「賣產品」升級到「經營品牌」</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>定義你的品牌使命（Mission）：你的公司為什麼存在？不是賺錢，賺錢是結果</li>
+      <li>定義你的品牌價值（Values）：3-5 個你堅持的核心原則</li>
+      <li>定義你的品牌個性（Personality）：如果品牌是一個人，他會怎麼說話？穿什麼？</li>
+      <li>撰寫你的品牌故事（Brand Story）：一個引人入勝的敘事，關於你為什麼開始</li>
+      <li>設計品牌視覺語言：顏色、字體、圖案、整體感覺全部統一</li>
+      <li>把你的品牌元素應用在所有接觸點：網站、社群、Email 包裝、客服話術</li>
+      <li>建立「品牌指南文件」（1 頁 PDF），確保未來任何外包或合作都遵循品牌規範</li>
+      <li>註冊你的品牌名稱和域名（如果還沒有）</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>定義品牌使命</li>
+      <li><div class="task-check"></div>定義品牌價值（3-5 個）</li>
+      <li><div class="task-check"></div>撰寫品牌故事</li>
+      <li><div class="task-check"></div>完成品牌指南文件</li>
+      <li><div class="task-check"></div>確認域名已註冊</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">品牌使命完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">品牌價值數</div><div class="m-value">3-5</div></div>
+      <div class="metric-item"><div class="m-label">品牌故事完成</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">品牌指南完成</div><div class="m-value">✅ 是 / 否</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☲</div>
+      <div class="hexagram-info">
+        <div class="h-name">離卦 · 火（光明）</div>
+        <div class="h-meaning">象曰：明兩作，離。大人以繼明照于四方。</div>
+        <div class="h-tip">離是光明的意思。好的品牌像燈塔一樣，讓黑暗中的人找到方向。你的品牌使命就是那盞燈——讓它在所有地方都保持一致的光芒。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 29 -->
+<div class="day-card" id="day29">
+  <div class="day-header">
+    <span class="day-num">Day 29</span>
+    <div class="day-title-wrap">
+      <h3>退出策略：你的長期目標是什麼？</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>思考你的長期目標，不只是「做產品」而是「建立一個有價值的資產」</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>定義你的「退出」是什麼：收購（Acquisition）？IPO？家族傳承？還是永遠自己做？</li>
+      <li>如果是併購：什麼樣的公司可能會收購你？你的客戶清單？你的系統？你的品牌？</li>
+      <li>建立「Buyout Ready」清單：併購方會看的關鍵文件，你是否齊備？</li>
+      <li>財務清晰：把你的財務記錄整理清楚，月報、季報、年報都建立起來</li>
+      <li>系統化：讓你的生意不依賴你這個人，這是提高估值最關鍵的一點</li>
+      <li>建立長期客戶合約：如果你的客戶有長期合約，這會大幅提高併購估值</li>
+      <li>擴展收入來源：單一產品依賴太高，多元化才能降低風險、提高吸引力</li>
+      <li>即使你不想退出，這個練習也會幫助你建立一個更健康的企業</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>定義你的長期目標</li>
+      <li><div class="task-check"></div>建立 Buyout Ready 清單</li>
+      <li><div class="task-check"></div>整理財務記錄</li>
+      <li><div class="task-check"></div>識別系統化缺口</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">長期目標定義</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">Buyout Ready 清單</div><div class="m-value">≥ 5 項</div></div>
+      <div class="metric-item"><div class="m-label">財務記錄整理</div><div class="m-value">✅ 是 / 否</div></div>
+      <div class="metric-item"><div class="m-label">系統化評估</div><div class="m-value">_%</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☷</div>
+      <div class="hexagram-info">
+        <div class="h-name">咸卦 · 澤（感應）</div>
+        <div class="h-meaning">象曰：山上有澤，咸。君子以虛受人。</div>
+        <div class="h-tip">咸是感應的意思。企業的最終價值不是你有多少產品，而是你與多少人的需求建立了感應。今天的規劃，是為了明天能走得更高更遠。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY 30 -->
+<div class="day-card" id="day30">
+  <div class="day-header">
+    <span class="day-num">Day 30</span>
+    <div class="day-title-wrap">
+      <h3>你的第一個 $1,000：回顧、慶祝、繼續前進</h3>
+      <div class="week-tag">第四週 · 變現與擴張</div>
+    </div>
+  </div>
+  <div class="day-body">
+    <div class="day-goal"><strong>核心目標：</strong>完成 30 天旅程，回顧所有成就，慶祝你走了這麼遠</div>
+
+    <div class="section-label">詳細步驟</div>
+    <ol class="steps-list">
+      <li>計算你的月收入：如果還沒有 $1,000，計算你距離目標還有多遠</li>
+      <li>列出 30 天內的所有成就（不管大小，全部列出來）</li>
+      <li>向你的 Email 訂閱者發送「第 30 天公開信」：分享你的旅程和未來計劃</li>
+      <li>公開慶祝：在社群媒體發布你的里程碑（這是最好的行銷）</li>
+      <li>向所有支持你的人（早期客戶、見證提供者、聯盟夥伴）發送感謝信</li>
+      <li>建立「第三十一天的計劃」：不要讓 momentum 中斷</li>
+      <li>規劃未來 90 天：設定下一個里程碑（$5,000？建立團隊？新產品？）</li>
+      <li>最後一次自我提醒：你已經證明了自己可以從零到有，$1,000 只是開始</li>
+    </ol>
+
+    <div class="section-label">每日小任務</div>
+    <ul class="tasks-list">
+      <li><div class="task-check"></div>計算月收入</li>
+      <li><div class="task-check"></div>列出 30 天所有成就</li>
+      <li><div class="task-check"></div>發送第 30 天公開信</li>
+      <li><div class="task-check"></div>發布社群慶祝貼文</li>
+      <li><div class="task-check"></div>發送感謝信</li>
+      <li><div class="task-check"></div>規劃未來 90 天目標</li>
+    </ul>
+
+    <div class="section-label">成功指標</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">月收入</div><div class="m-value">$_</div></div>
+      <div class="metric-item"><div class="m-label">30 天成就數</div><div class="m-value">_ 項</div></div>
+      <div class="metric-item"><div class="m-label">Email 訂閱者</div><div class="m-value">_ 人</div></div>
+      <div class="metric-item"><div class="m-label">下一步目標</div><div class="m-value">$_</div></div>
+    </div>
+
+    <div class="hexagram-block">
+      <div class="hexagram-symbol">☰</div>
+      <div class="hexagram-info">
+        <div class="h-name">乾卦 · 天（圓滿）</div>
+        <div class="h-meaning">象曰：用九，天德不可為首也。</div>
+        <div class="h-tip">三十天只是一個階段的結束，不是終點。乾卦回到圓滿的位置，萬物始終終始。你的旅程才剛剛開始。第一個 $1,000 是證明你可以做到。下一個目標，是讓它變成被動收入。繼續前進！</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- END DAYS CONTAINER -->
+
+<hr class="divider">
+
+<!-- BONUS SECTION -->
+<div class="bonus-section" id="bonus">
+  <div class="bonus-card">
+    <h2>🎁 Bonus 禮包：殺手林創業工具箱 PDF</h2>
+    <p>購買本套裝即附贈「殺手林創業工具箱 PDF」，包含：50+ 創業工具清單、定價策略工作表、Email 行銷模板、銷售文案範本、SEO 檢查清單、以及更多。</p>
+    <p style="margin-top:12px; color:var(--gold-light); font-weight:700;">這個工具箱價值超過 NT$1,000，但購買 30 天套裝就送！</p>
+    <a class="ko-fi-btn" href="https://ko-fi.com/s/00367ecd74" target="_blank">💰 NT$599 / US$19.9 — 立即解鎖全部內容</a>
+    <p style="margin-top:16px; font-size:12px; color:var(--text-dim);">支援 PayPal、信用卡。付款後立即下載，永久存取。</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- TRACKING TABLE -->
+<div class="tracking-section" id="tracking">
+  <h2>📊 30 天進度跟踪表（可列印）</h2>
+  <p style="color:var(--text-dim); font-size:13px; margin-bottom:20px;">每完成一天，就在該格打勾。30 天後計算你的完成率。</p>
+  <table class="tracking-table">
+    <thead>
+      <tr>
+        <th style="width:60px;">Day</th>
+        <th>主題</th>
+        <th>週次</th>
+        <th style="width:60px;">完成</th>
+        <th style="width:120px;">備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>建立第一個被動收入系統</td><td>第一週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>2</td><td>選擇利基市場：7個測試問題</td><td>第一週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>3</td><td>設定在線存在</td><td>第一週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>4</td><td>Email 清單策略</td><td>第一週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>5</td><td>創建第一個數位商品</td><td>第一週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>6</td><td>設定付款系統</td><td>第一週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>7</td><td>建立推廣漏斗</td><td>第一週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>8</td><td>產品功能開發：核心價值論證</td><td>第二週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>9</td><td>AI 輔助內容創作系統</td><td>第二週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>10</td><td>客戶見證與社會證明收集</td><td>第二週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>11</td><td>售價策略與包裝優化</td><td>第二週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>12</td><td>客戶成功案例深度訪談</td><td>第二週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>13</td><td>產品包裝與品牌視覺升級</td><td>第二週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>14</td><td>第二週複習：V2.0 發布</td><td>第二週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>15</td><td>SEO 基礎</td><td>第三週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>16</td><td>社群媒體流量</td><td>第三週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>17</td><td>Email 行銷入門</td><td>第三週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>18</td><td>付費廣告評估</td><td>第三週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>19</td><td>聯盟行銷介紹</td><td>第三週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>20</td><td>內容行銷策略</td><td>第三週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>21</td><td>流量渠道評估</td><td>第三週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>22</td><td>第一筆銷售</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>23</td><td>客戶服務系統化</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>24</td><td>產品線擴張</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>25</td><td>被動收入優化</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>26</td><td>自動化系統</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>27</td><td>擴大團隊</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>28</td><td>品牌建立</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>29</td><td>退出策略</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+      <tr><td>30</td><td>你的第一個 $1,000</td><td>第四週</td><td><input type="checkbox" class="track-checkbox"></td><td></td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:16px; text-align:right; color:var(--text-dim); font-size:13px;">
+    完成率：<span style="color:var(--gold); font-weight:700;">___ / 30 天 = ___%</span>
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>🤖 <strong>殺手林 AI 創業者的 30 天起動套組</strong></p>
+  <p style="margin-top:6px;">建議售價：US$19.9 | NT$599</p>
+  <p style="margin-top:6px;">👇 直接向殺手林購買：<a href="https://ko-fi.com/s/00367ecd74" target="_blank" style="color:var(--gold);">ko-fi.com/s/00367ecd74</a></p>
+  <p style="margin-top:12px;">© 2026 殺手林工作室 · 保留所有權利</p>
+</footer>
+
+</body>
+</html>
