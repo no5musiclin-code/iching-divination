@@ -1,244 +1,405 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>殺手林商店｜AI 創業數位商品全集</title>
-<meta name="description" content="AI創業提示詞、創業藍圖、易經創業指南、社群內容套組、財務追蹤器，熱銷數位商品全集。">
+<title>All Products | 殺手林 Shaishalin — AI Divination & Entrepreneur Tools</title>
+<meta name="description" content="Complete catalog: I Ching tools, Tarot, Numerology, Business Decision Cards, Startup Blueprints, Meditation Guides, and more. 25+ products for entrepreneurs.">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root { --gold: #C9A84C; --gold-light: #E8D48B; --gold-dark: #8B6914; --dark: #0A0A0F; --card: rgba(255,255,255,0.04); --border: rgba(201,168,76,0.18); --green: #22c55e; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: #0a0a14; color: #e2e8f0; font-family: "Noto Sans TC", -apple-system, sans-serif; min-height: 100vh; }
-header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); }
-header .logo { font-weight: 700; font-size: 1.1rem; color: #e2e8f0; }
-header .logo span { color: #a78bfa; }
-header a { color: #a78bfa; text-decoration: none; font-size: 0.85rem; }
-.hero { background: linear-gradient(135deg, #0f0f2a 0%, #1a1a2e 50%, #0d1b3e 100%); padding: 3.5rem 1.5rem; text-align: center; }
-.hero h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); background: linear-gradient(135deg, #e2e8f0, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.75rem; line-height: 1.3; }
-.hero p { color: #94a3b8; max-width: 640px; margin: 0 auto 1rem; font-size: 1rem; }
-.hero .price-tag { background: linear-gradient(135deg, #d4af37, #b8962e); color: #0a0a14; font-weight: 700; padding: 0.5rem 1.5rem; border-radius: 30px; display: inline-block; font-size: 1.1rem; }
-.hero .original-price { color: #64748b; text-decoration: line-through; margin-left: 0.5rem; }
-.container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 4rem; }
-.section-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: #a78bfa; font-weight: 700; margin: 2rem 0 0.75rem; }
-.products-grid { display: flex; flex-direction: column; gap: 1.25rem; }
-.product-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: all 0.25s; }
-.product-card:hover { border-color: rgba(167,139,250,0.4); transform: translateY(-2px); }
-.product-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
-.product-icon { font-size: 2rem; flex-shrink: 0; }
-.product-meta { flex: 1; }
-.product-name { font-weight: 700; font-size: 1.05rem; color: #e2e8f0; margin-bottom: 0.2rem; }
-.product-desc { color: #94a3b8; font-size: 0.85rem; }
-.product-value { font-size: 0.78rem; color: #64748b; margin-top: 0.2rem; }
-.product-contents { background: rgba(0,0,0,0.2); padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
-.product-contents h4 { color: #a78bfa; font-size: 0.8rem; margin-bottom: 0.5rem; }
-.product-contents ul { display: flex; flex-direction: column; gap: 0.3rem; }
-.product-contents li { color: #94a3b8; font-size: 0.82rem; padding-left: 1rem; position: relative; }
-.product-contents li::before { content: '✓'; position: absolute; left: 0; color: #4ade80; font-size: 0.7rem; top: 0.05rem; }
-.cta-section { background: linear-gradient(135deg, #1e1b4b, #312e81, #1e1b4b); border: 1px solid rgba(167,139,250,0.3); border-radius: 20px; padding: 2.5rem 2rem; text-align: center; margin: 2.5rem 0; }
-.cta-section h2 { font-size: 1.6rem; margin-bottom: 0.75rem; }
-.cta-section p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem; }
-.cta-section .total { color: #64748b; text-decoration: line-through; margin-left: 0.5rem; }
-.cta-section .savings { color: #4ade80; font-size: 0.9rem; margin-top: 0.5rem; }
-.buy-btn { background: linear-gradient(135deg, #a78bfa, #7c3aed); color: #fff; padding: 1rem 2.5rem; border-radius: 30px; font-weight: 700; text-decoration: none; display: inline-block; font-size: 1.1rem; transition: all 0.2s; }
-.buy-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(167,139,250,0.4); }
-.note { font-size: 0.8rem; color: #64748b; margin-top: 0.75rem; }
-.trust { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
-.trust span { color: #64748b; font-size: 0.82rem; display: flex; align-items: center; gap: 0.4rem; }
-footer { text-align: center; padding: 2rem; color: #475569; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
-footer a { color: #a78bfa; text-decoration: none; }
+body { background: var(--dark); color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+.gradient-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, rgba(10,5,20,0.5) 50%, transparent 70%); pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* HEADER */
+header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+.logo { font-family: 'Crimson Pro', serif; font-size: 1.3rem; color: var(--gold); font-weight: 700; text-decoration: none; }
+.logo span { color: #fff; }
+.header-links { display: flex; gap: 1.5rem; align-items: center; }
+.header-links a { color: #94a3b8; text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.header-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero { padding: 3rem 0 2rem; }
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2rem, 6vw, 3.5rem); color: var(--gold); margin-bottom: 1rem; line-height: 1.15; }
+.hero h1 span { color: #fff; }
+.hero p { font-size: 1.1rem; color: #94a3b8; max-width: 650px; line-height: 1.8; margin-bottom: 1.5rem; }
+.hero .stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+.hero .stat { }
+.hero .stat .num { font-size: 1.6rem; font-weight: 700; color: var(--gold); }
+.hero .stat .label { font-size: 0.78rem; color: #64748b; }
+
+/* FILTER */
+.filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.filter-btn { background: var(--card); border: 1px solid var(--border); color: #94a3b8; padding: 0.45rem 1rem; border-radius: 30px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.filter-btn:hover, .filter-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+/* GRID */
+.section-title { font-family: 'Crimson Pro', serif; font-size: 1.6rem; color: #fff; margin-bottom: 1.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.section-title:first-of-type { border-top: none; padding-top: 0; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+
+.prod-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: all 0.2s; display: flex; flex-direction: column; }
+.prod-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.prod-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.prod-card h3 { color: #fff; font-size: 1rem; margin-bottom: 0.4rem; font-weight: 600; }
+.prod-card .desc { color: #94a3b8; font-size: 0.83rem; line-height: 1.6; flex: 1; margin-bottom: 0.75rem; }
+.prod-card .tags { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.tag { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); color: var(--gold-light); padding: 0.15rem 0.5rem; border-radius: 6px; font-size: 0.7rem; }
+.tag.free { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: #86efac; }
+.tag.new { background: rgba(201,168,76,0.2); border-color: var(--gold); color: var(--gold-light); }
+.prod-card .footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+.prod-card .price { color: var(--gold); font-weight: 700; font-size: 1rem; }
+.prod-card .price span { font-size: 0.75rem; color: #64748b; font-weight: 400; text-decoration: line-through; margin-left: 0.3rem; }
+.prod-card .btn { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-size: 0.82rem; font-weight: 700; transition: all 0.2s; }
+.prod-card .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(201,168,76,0.3); }
+.prod-card .btn.free-btn { background: transparent; border: 1px solid var(--green); color: var(--green); }
+.prod-card .btn.free-btn:hover { background: rgba(34,197,94,0.1); }
+
+/* FREE SECTION */
+.free-section { background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(10,46,26,0.3)); border: 1px solid rgba(34,197,94,0.25); border-radius: 20px; padding: 2.5rem; margin-bottom: 3rem; }
+.free-section h2 { font-family: 'Crimson Pro', serif; font-size: 1.8rem; color: #86efac; margin-bottom: 0.5rem; }
+.free-section > p { color: #94a3b8; margin-bottom: 2rem; }
+.free-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.free-card { background: rgba(0,0,0,0.3); border: 1px solid rgba(34,197,94,0.2); border-radius: 12px; padding: 1.25rem; }
+.free-card h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.free-card p { color: #94a3b8; font-size: 0.82rem; line-height: 1.5; margin-bottom: 0.5rem; }
+.free-card a { color: var(--green); font-size: 0.82rem; text-decoration: none; font-weight: 600; }
+.free-card a:hover { text-decoration: underline; }
+
+/* BUNDLE */
+.bundle-banner { background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(26,10,46,0.5)); border: 2px solid rgba(201,168,76,0.35); border-radius: 20px; padding: 2.5rem; text-align: center; margin-bottom: 3rem; }
+.bundle-banner h2 { font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--gold); margin-bottom: 0.75rem; }
+.bundle-banner p { color: #94a3b8; max-width: 550px; margin: 0 auto 1.5rem; line-height: 1.7; }
+.bundle-banner .price-row { font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 1.5rem; }
+.bundle-banner .price-row span { font-size: 1rem; color: #64748b; font-weight: 400; text-decoration: line-through; margin-left: 0.5rem; }
+.bundle-banner .btn { display: inline-block; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 1rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.05rem; transition: all 0.2s; }
+.bundle-banner .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(201,168,76,0.4); }
+
+/* STORES */
+.stores { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
+.store-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; text-align: center; }
+.store-card h4 { color: #fff; font-size: 1rem; margin-bottom: 0.3rem; }
+.store-card p { color: #64748b; font-size: 0.8rem; margin-bottom: 0.75rem; }
+.store-card a { display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold-light); padding: 0.5rem 1.5rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+.store-card a:hover { border-color: var(--gold); background: rgba(201,168,76,0.25); }
+
+/* FOOTER */
+footer { text-align: center; padding: 2.5rem 0; border-top: 1px solid var(--border); color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
 </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">殺手林<span>.</span>AI</div>
-  <a href="https://shaishalin.wordpress.com">返回網站</a>
-</header>
-
-<div class="hero">
-  <h1>殺手林 AI 創業數位商品全集</h1>
-  <p>從零到一建立網路事業，你需要的所有工具、知識、模板，全部在這裡。精心整理，直接可用。</p>
-  <div class="price-tag">全套 $5 <span class="original-price">總價值 $42</span></div>
-</div>
-
+<div class="gradient-bg"></div>
 <div class="container">
 
-  <div class="section-label">—— 商品一 ——</div>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-header">
-        <span class="product-icon">📋</span>
-        <div class="product-meta">
-          <div class="product-name">AI 創業提示詞大全｜50+ 實戰模板</div>
-          <div class="product-desc">涵蓋商業計劃、聯盟行銷、SEO、銷售漏斗、社群內容的完整提示詞庫</div>
-          <div class="product-value">價值 $5</div>
-        </div>
-      </div>
-      <div class="product-contents">
-        <h4>包含內容：</h4>
-        <ul>
-          <li>SOSTAC 商業計劃教練提示詞</li>
-          <li>商業模式 Canvas 分析提示詞</li>
-          <li>聯盟行銷文案生成器（3種風格）</li>
-          <li>10 分鐘 SEO 文章架構生成器</li>
-          <li>長尾關鍵字挖掘提示詞</li>
-          <li>5 封自動化 Email 序列</li>
-          <li>Landing Page 高轉化文案框架</li>
-          <li>一個月社群內容日曆生成器</li>
-          <li>短影音 60 秒腳本格式</li>
-          <li>變現瓶頸診斷提示詞</li>
-        </ul>
-      </div>
+<header>
+  <a href="https://shaishalin.wordpress.com" target="_blank" class="logo">殺手林 <span>Shaishalin</span></a>
+  <nav class="header-links">
+    <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank">🔮 Free Tools</a>
+    <a href="https://linblance.gumroad.com" target="_blank">🛒 Gumroad Store</a>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank">☕ Ko-fi</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Complete Product Catalog<br><span>for Entrepreneurs & Seekers</span></h1>
+  <p>25+ digital products: AI divination tools, business decision frameworks, meditation guides, affirmation cards, startup blueprints, and more. Mix of free tools and premium bundles.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">25+</div><div class="label">Products</div></div>
+    <div class="stat"><div class="num">7</div><div class="label">Free Tools</div></div>
+    <div class="stat"><div class="num">6</div><div class="label">Languages</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Digital Delivery</div></div>
+  </div>
+</section>
+
+<!-- FREE TOOLS -->
+<section>
+<h2 class="section-title">🆓 Always Free Tools</h2>
+<div class="free-section">
+  <h2>Try Before You Buy</h2>
+  <p>All these tools are 100% free to use. No signup required.</p>
+  <div class="free-grid">
+    <div class="free-card">
+      <h4>🔮 I Ching Business Oracle</h4>
+      <p>Input industry + options A/B → AI hexagram analysis with risk assessment</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank">Open Tool →</a>
+    </div>
+    <div class="free-card">
+      <h4>🪙 Coin I Ching</h4>
+      <p>Traditional 6-coin method. Authentic ancient experience + AI guidance</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/coin-iching/" target="_blank">Open Tool →</a>
+    </div>
+    <div class="free-card">
+      <h4>🌙 AI Tarot Divination</h4>
+      <p>Draw 3 cards: Past / Present / Future. 22 Major Arcana interpretations</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/tarot-fortune/" target="_blank">Open Tool →</a>
+    </div>
+    <div class="free-card">
+      <h4>💰 Investment Hexagram</h4>
+      <p>Stocks, crypto, real estate, startup equity. Risk tolerance analysis</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/products/iching-invest.html" target="_blank">Open Tool →</a>
+    </div>
+    <div class="free-card">
+      <h4>❤️ I Ching Love Oracle</h4>
+      <p>6 relationship types: 暗恋/分手/复合/婚姻/暧昧/桃花运</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/products/iching-love.html" target="_blank">Open Tool →</a>
+    </div>
+    <div class="free-card">
+      <h4>🔢 Numerology Calculator</h4>
+      <p>Birth date + name = Life Path, Destiny, Soul & Personality numbers</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/numerology/" target="_blank">Open Tool →</a>
+    </div>
+    <div class="free-card">
+      <h4>📬 Daily I Ching Brief</h4>
+      <p>Daily hexagram + energy level + action + risk alerts + affirmations</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/daily-brief.html" target="_blank">Open Tool →</a>
+    </div>
+    <div class="free-card">
+      <h4>☯️ 8 Trigrams Explorer</h4>
+      <p>Learn the building blocks of I Ching with interactive explanations</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/trigrams/" target="_blank">Open Tool →</a>
     </div>
   </div>
+</div>
+</section>
 
-  <div class="section-label">—— 商品二 ——</div>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-header">
-        <span class="product-icon">📘</span>
-        <div class="product-meta">
-          <div class="product-name">AI 創業藍圖｜從零到月收 $500</div>
-          <div class="product-desc">完整的實戰手冊，50+ 頁，涵蓋商業模式選擇、變現策略、用工具型</div>
-          <div class="product-value">價值 $9</div>
-        </div>
-      </div>
-      <div class="product-contents">
-        <h4>包含內容：</h4>
-        <ul>
-          <li>5 種最適合新手的 AI 商業模式詳解</li>
-          <li>3 步法找到藍海利基市場</li>
-          <li>AI 工具武裝清單（免費到付費）</li>
-          <li>聯盟行銷變現路線圖（12個月）</li>
-          <li>數位商品變現路線圖</li>
-          <li>SEO + 社群免費流量策略</li>
-          <li>聯盟行銷收入計算公式</li>
-          <li>數位商品定價策略</li>
-        </ul>
-      </div>
-    </div>
+<!-- BUNDLE -->
+<div class="bundle-banner">
+  <h2>🎴 Complete Entrepreneur's Toolkit</h2>
+  <p>Get ALL premium products in one package. One-time payment, lifetime access, all future updates included. Save $170+ vs buying individually.</p>
+  <div class="price-row">$29.90 <span>was $199.90</span></div>
+  <a href="https://linblance.gumroad.com" target="_blank" class="btn">💛 Get the Complete Bundle</a>
+</div>
+
+<!-- PREMIUM PRODUCTS -->
+<h2 class="section-title">💎 Premium Products</h2>
+<div class="products-grid">
+
+<div class="prod-card" data-category="divination">
+  <div class="icon">🎴</div>
+  <h3>68 Hexagrams Business Decision Cards</h3>
+  <p class="desc">69-page PDF deck. Each hexagram card includes: imagery description, core meaning, business interpretation, action steps, and timing guidance. Print or use digitally.</p>
+  <div class="tags">
+    <span class="tag">I Ching</span><span class="tag">Business</span><span class="tag">PDF</span><span class="tag new">Bestseller</span>
   </div>
-
-  <div class="section-label">—— 商品三 ——</div>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-header">
-        <span class="product-icon">☰</span>
-        <div class="product-meta">
-          <div class="product-name">易經創業指南｜64 卦中的商業智慧</div>
-          <div class="product-desc">傳統智慧與現代商業結合，10 個核心卦象的商業解讀與決策框架</div>
-          <div class="product-value">價值 $7</div>
-        </div>
-      </div>
-      <div class="product-contents">
-        <h4>包含內容：</h4>
-        <ul>
-          <li>乾為天 — 領導者的自強之道</li>
-          <li>坤為地 — 團隊合作的厚德</li>
-          <li>地天泰 — 合作的黃金時機</li>
-          <li>天地否 — 逆境中的保守策略</li>
-          <li>坎為水 — 危機中的脫困智慧</li>
-          <li>巽為風 — 市場渗透策略</li>
-          <li>離為火 — 品牌建立的藝術</li>
-          <li>艮為山 — 適時止損的哲學</li>
-          <li>兌為澤 — 談判與說服的藝術</li>
-          <li>澤雷隨 — 順勢而為的智慧</li>
-        </ul>
-      </div>
-    </div>
+  <div class="footer">
+    <div class="price">$19.90</div>
+    <a href="https://linblance.gumroad.com/l/wvcvok" target="_blank" class="btn">Buy on Gumroad →</a>
   </div>
+</div>
 
-  <div class="section-label">—— 商品四 ——</div>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-header">
-        <span class="product-icon">🔥</span>
-        <div class="product-meta">
-          <div class="product-name">AI 社群內容創作套組｜90 天內容日曆</div>
-          <div class="product-desc">60 篇原創帖文範本（X/Twitter、Threads、IG、FB）+ 完整發布行事曆</div>
-          <div class="product-value">價值 $7</div>
-        </div>
-      </div>
-      <div class="product-contents">
-        <h4>包含內容：</h4>
-        <ul>
-          <li>X/Twitter 帖文 20 篇（教育型）</li>
-          <li>Threads 長文 20 篇（觀點輸出型）</li>
-          <li>Instagram Caption 10 篇</li>
-          <li>Facebook 帖文 10 篇</li>
-          <li>90 天完整內容行事曆</li>
-          <li>Bonus：30 個高互動標題鉤子</li>
-        </ul>
-      </div>
-    </div>
+<div class="prod-card" data-category="ai-tool">
+  <div class="icon">🤖</div>
+  <h3>AI Business Decision Oracle</h3>
+  <p class="desc">Full AI-powered business decision tool. Input industry + specific question or compare options A vs B. Includes risk assessment, timing guidance, and actionable next steps. Lifetime access.</p>
+  <div class="tags">
+    <span class="tag">AI</span><span class="tag">Business</span><span class="tag">决策</span>
   </div>
-
-  <div class="section-label">—— 商品五 ——</div>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-header">
-        <span class="product-icon">💵</span>
-        <div class="product-meta">
-          <div class="product-name">新創業者萬用手冊｜商業計劃 + 追蹤表</div>
-          <div class="product-desc">商業模式圖 + 12週里程碑追蹤 + Startup 財務預測計算機</div>
-          <div class="product-value">價值 $8</div>
-        </div>
-      </div>
-      <div class="product-contents">
-        <h4>包含內容：</h4>
-        <ul>
-          <li>CBM 商業模式圖（九宮格）</li>
-          <li>SOSTAC 90 天行動計劃框架</li>
-          <li>12 週里程碑追蹤表</li>
-          <li>Startup 財務預測計算機</li>
-          <li>12 個月現金流追蹤表</li>
-          <li>Bonus：創業焦慮緩解清單</li>
-        </ul>
-      </div>
-    </div>
+  <div class="footer">
+    <div class="price">$14.90</div>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" target="_blank" class="btn">Buy on Gumroad →</a>
   </div>
+</div>
 
-  <div class="section-label">—— 商品六 ——</div>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-header">
-        <span class="product-icon">💰</span>
-        <div class="product-meta">
-          <div class="product-name">財務自由追蹤器｜Excel/Sheets 格式</div>
-          <div class="product-desc">AI 財務顧問級試算表套組，含收入追蹤、支出分類、FI 進度、被動收入儀表板</div>
-          <div class="product-value">價值 $6</div>
-        </div>
-      </div>
-      <div class="product-contents">
-        <h4>包含內容：</h4>
-        <ul>
-          <li>月收入追蹤表（含被動/主動分類）</li>
-          <li>支出管理表（預算 vs 實際對比）</li>
-          <li>FI 進度追蹤表（視覺化里程碑）</li>
-          <li>被動收入儀表板（季度趨勢圖）</li>
-          <li>自動化公式（自動計算總計、差額、進度）</li>
-        </ul>
-      </div>
-    </div>
+<div class="prod-card" data-category="blueprint">
+  <div class="icon">🚀</div>
+  <h3>AI Startup Blueprint Pro</h3>
+  <p class="desc">1,842-line comprehensive guide. 30-day program covering: niche selection, minimum viable product, SEO strategy, content marketing, passive income systems, and AI automation. Built by an AI agent for AI entrepreneurs.</p>
+  <div class="tags">
+    <span class="tag">Startup</span><span class="tag">Blueprint</span><span class="tag">AI</span><span class="tag new">Updated</span>
   </div>
-
-  <div class="cta-section">
-    <h2>🎁 全部 6 個商品，一次帶走</h2>
-    <p>總價值 $42 → <strong style="color:#a78bfa;">限時 $5 USD</strong></p>
-    <p class="savings">相當於 88% 折扣，越早買越划算</p>
-    <a href="https://ko-fi.com/s/00367ecd74" class="buy-btn">🚀 前往 Ko-fi 取得全套</a>
-    <p class="note">一次購買，永久使用。持續更新版本。</p>
-    <div class="trust">
-      <span>🔒 安全的支付平台</span>
-      <span>📧 購買後即時取貨</span>
-      <span>♻️ 持續更新版本</span>
-    </div>
+  <div class="footer">
+    <div class="price">$19.90</div>
+    <a href="https://linblance.gumroad.com/l/ai-startup-blueprint" target="_blank" class="btn">Buy on Gumroad →</a>
   </div>
+</div>
 
+<div class="prod-card" data-category="subscription">
+  <div class="icon">📬</div>
+  <h3>Daily I Ching Brief Subscription</h3>
+  <p class="desc">Monthly subscription. Every day: new hexagram + energy level + business actions + risk alerts + morning affirmations. Delivered to your inbox. Cancel anytime.</p>
+  <div class="tags">
+    <span class="tag">Subscription</span><span class="tag">Daily</span><span class="tag">Email</span>
+  </div>
+  <div class="footer">
+    <div class="price">$5<span>/month</span></div>
+    <a href="https://linblance.gumroad.com/l/daily-iching-brief" target="_blank" class="btn">Subscribe →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="cards">
+  <div class="icon">🃏</div>
+  <h3>Daily Affirmation Card Deck</h3>
+  <p class="desc">31 printable cards: 15 Entrepreneur affirmations + 8 Wealth affirmations + 8 Health affirmations. Beautiful dark + gold design. Print at home or use digitally.</p>
+  <div class="tags">
+    <span class="tag">Affirmations</span><span class="tag">Cards</span><span class="tag">Printable</span>
+  </div>
+  <div class="footer">
+    <div class="price">$5.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="framework">
+  <div class="icon">📋</div>
+  <h3>Startup Decision Framework Kit</h3>
+  <p class="desc">10 printable decision templates: SWOT, Business Model Canvas, Decision Tree, Risk Matrix, Product Roadmap. Dark/gold theme, entrepreneur-focused.</p>
+  <div class="tags">
+    <span class="tag">Framework</span><span class="tag">Templates</span><span class="tag">Printable</span>
+  </div>
+  <div class="footer">
+    <div class="price">$14.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="meditation">
+  <div class="icon">🧘</div>
+  <h3>30-Day I Ching Meditation Guide</h3>
+  <p class="desc">30-day program. Each day: hexagram meditation script + body scan + entrepreneur-specific visualization. Printable daily tracker + completion certificate.</p>
+  <div class="tags">
+    <span class="tag">Meditation</span><span class="tag">Mindfulness</span><span class="tag">30 Days</span>
+  </div>
+  <div class="footer">
+    <div class="price">$7.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="routine">
+  <div class="icon">🌅</div>
+  <h3>Entrepreneur Morning Routine System</h3>
+  <p class="desc">Complete morning routine with I Ching ritual. Includes: 5:30-7:30 schedule blocks, daily hexagram ritual, exercise/meditation tracking, weekly review template. Printable.</p>
+  <div class="tags">
+    <span class="tag">Routine</span><span class="tag">Morning</span><span class="tag">Productivity</span>
+  </div>
+  <div class="footer">
+    <div class="price">$4.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="journal">
+  <div class="icon">📓</div>
+  <h3>Investment Journal — 52 Weeks</h3>
+  <p class="desc">52-week investment diary. Each week: hexagram forecast + investment goals + actual trades + weekly review + risk management tracking. Built for stock/crypto/equity investors.</p>
+  <div class="tags">
+    <span class="tag">Journal</span><span class="tag">Investing</span><span class="tag">52 Weeks</span>
+  </div>
+  <div class="footer">
+    <div class="price">$12.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="guide">
+  <div class="icon">💘</div>
+  <h3>I Ching for Relationships</h3>
+  <p class="desc">8 core relationship hexagrams with detailed analysis. Covers: 暗恋/分手/复合/婚姻/暧昧/桃花运. Each includes: interpretation, suggested actions, timing. Printable divination log.</p>
+  <div class="tags">
+    <span class="tag">Love</span><span class="tag">Relationships</span><span class="tag">Guide</span>
+  </div>
+  <div class="footer">
+    <div class="price">$8.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="guide">
+  <div class="icon">📖</div>
+  <h3>Ultimate Reading List for Founders</h3>
+  <p class="desc">50 curated books with 1-minute summaries + key takeaways. Categories: Business Strategy, Personal Development, Finance, Leadership, Tech. Includes reading tracker.</p>
+  <div class="tags">
+    <span class="tag">Books</span><span class="tag">Reading</span><span class="tag">Education</span>
+  </div>
+  <div class="footer">
+    <div class="price">$6.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="minimalism">
+  <div class="icon">📵</div>
+  <h3>Digital Minimalism for Entrepreneurs</h3>
+  <p class="desc">30-day challenge to reclaim focus. Each day: specific action to reduce digital distraction. Includes: challenge tracker, recommended tools, reflection prompts. Printable.</p>
+  <div class="tags">
+    <span class="tag">Minimalism</span><span class="tag">Focus</span><span class="tag">30 Days</span>
+  </div>
+  <div class="footer">
+    <div class="price">$5.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="launch">
+  <div class="icon">⚔️</div>
+  <h3>8-Week Business Launch Plan</h3>
+  <p class="desc">8-week project plan with weekly milestones, key tasks, I Ching guidance for each phase, progress tracker, and completion celebration ritual. Printable.</p>
+  <div class="tags">
+    <span class="tag">Launch</span><span class="tag">Planning</span><span class="tag">8 Weeks</span>
+  </div>
+  <div class="footer">
+    <div class="price">$9.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="naming">
+  <div class="icon">✨</div>
+  <h3>Spiritual Business Name Generator</h3>
+  <p class="desc">Enter birth year + industry → get 5 name suggestions with: meaning, Five Elements, best industries, simple URL format. 500+ name combinations database.</p>
+  <div class="tags">
+    <span class="tag">Naming</span><span class="tag">Branding</span><span class="tag">五行</span>
+  </div>
+  <div class="footer">
+    <div class="price">$9.90</div>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="btn">Buy on Ko-fi →</a>
+  </div>
+</div>
+
+<div class="prod-card" data-category="prompts">
+  <div class="icon">💡</div>
+  <h3>AI Prompts Power Pack</h3>
+  <p class="desc">50+ curated AI prompts for entrepreneurs: business planning, content creation, market research, email writing, social media. Compatible with ChatGPT/Claude/Gemini.</p>
+  <div class="tags">
+    <span class="tag">AI</span><span class="tag">Prompts</span><span class="tag">Content</span>
+  </div>
+  <div class="footer">
+    <div class="price">$6.90</div>
+    <a href="https://linblance.gumroad.com" target="_blank" class="btn">Buy on Gumroad →</a>
+  </div>
+</div>
+
+</div>
+
+<!-- STORES -->
+<h2 class="section-title">🛒 Where to Buy</h2>
+<div class="stores">
+  <div class="store-card">
+    <h4>📦 Gumroad</h4>
+    <p>One-time purchases. Instant download. 30-day refund.</p>
+    <a href="https://linblance.gumroad.com" target="_blank">Visit Store →</a>
+  </div>
+  <div class="store-card">
+    <h4>☕ Ko-fi</h4>
+    <p>Support + buy products. Monthly subscriptions available.</p>
+    <a href="https://ko-fi.com/s/00367ecd74" target="_blank">Visit Store →</a>
+  </div>
+  <div class="store-card">
+    <h4>🌐 WordPress</h4>
+    <p>Blog posts, SEO content, and free resources.</p>
+    <a href="https://shaishalin.wordpress.com" target="_blank">Visit Blog →</a>
+  </div>
 </div>
 
 <footer>
-  <p>由 <a href="https://shaishalin.wordpress.com">殺手林</a> 製作 ｜ <a href="https://ko-fi.com/shaishalin">支持更多創作</a></p>
+  <p>☯️ <a href="https://shaishalin.wordpress.com" target="_blank">殺手林 Shaishalin</a> | AI Divination & Entrepreneurship Tools</p>
+  <p style="margin-top:0.5rem;">All products are digital. All sales are final.</p>
 </footer>
 
+</div>
 </body>
 </html>
