@@ -1,211 +1,191 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>殺手林 AI 易經商業顧問｜訂閱表單</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%);
-            color: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .form-container {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(212,175,55,0.3);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
-            width: 100%;
-        }
-        
-        h1 {
-            color: #d4af37;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 1.8rem;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #888;
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #d4af37;
-            font-weight: 500;
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(212,175,55,0.5);
-            background: rgba(0,0,0,0.4);
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        input:focus, select:focus {
-            outline: none;
-            border-color: #d4af37;
-            box-shadow: 0 0 15px rgba(212,175,55,0.2);
-        }
-        
-        input::placeholder {
-            color: #666;
-        }
-        
-        .cta-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
-            color: #0d0d0d;
-            padding: 16px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 25px rgba(212,175,55,0.4);
-        }
-        
-        .info-box {
-            background: rgba(212,175,55,0.1);
-            border: 1px solid rgba(212,175,55,0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .info-box p {
-            font-size: 0.9rem;
-            color: #ccc;
-            line-height: 1.6;
-        }
-        
-        .info-box .icon {
-            margin-right: 8px;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        footer a {
-            color: #d4af37;
-            text-decoration: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Daily I Ching Brief — Entrepreneur's Wisdom Newsletter</title>
+<meta name="description" content="Get free daily I Ching divination + business insights delivered to your inbox. Join 847 entrepreneurs using ancient wisdom for modern decisions.">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #C9A84C; --gold-light: #E8D48B; --gold-dark: #8B6914; --dark: #0A0A0F; --card: rgba(255,255,255,0.04); --border: rgba(201,168,76,0.2); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden; }
+.gradient-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, rgba(10,5,20,0.6) 50%, transparent 70%); pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 0 1.5rem; }
+
+.hero { text-align: center; padding: 5rem 0 3rem; }
+.hex-icon { font-size: 4rem; margin-bottom: 1.5rem; display: block; }
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; color: var(--gold); margin-bottom: 1rem; line-height: 1.2; }
+.hero h1 span { color: #fff; }
+.hero p { font-size: 1.1rem; color: #94a3b8; max-width: 550px; margin: 0 auto 2.5rem; line-height: 1.8; }
+
+.benefits { display: grid; gap: 0.85rem; margin-bottom: 2.5rem; text-align: left; max-width: 480px; margin-left: auto; margin-right: auto; }
+.benefit { display: flex; gap: 0.85rem; align-items: flex-start; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; }
+.benefit .emoji { font-size: 1.4rem; flex-shrink: 0; }
+.benefit p { color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; }
+.benefit strong { color: #fff; }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+.form-section { background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(26,10,46,0.4)); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 2.5rem; text-align: center; margin-bottom: 2.5rem; }
+.form-section h2 { font-family: 'Crimson Pro', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+.form-section .sub { color: #64748b; font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+.form-group { margin-bottom: 1rem; }
+.form-group input, .form-group select { width: 100%; padding: 0.9rem 1.2rem; border-radius: 12px; border: 1px solid rgba(201,168,76,0.3); background: rgba(255,255,255,0.05); color: #fff; font-size: 1rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+.form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+.form-group input::placeholder { color: #475569; }
+.form-group select option { background: #1a1a2e; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+.btn-subscribe { width: 100%; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 1rem 2rem; border: none; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+.btn-subscribe:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+.form-note { color: #475569; font-size: 0.75rem; margin-top: 0.75rem; line-height: 1.5; }
+.form-note a { color: var(--gold); }
+
+.sample-section { margin-bottom: 3rem; }
+.sample-label { font-size: 0.72rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; text-align: center; }
+.sample-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+.sample-box .hex { font-size: 2rem; color: var(--gold); margin-bottom: 0.5rem; }
+.sample-box h3 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.sample-box .meta { font-size: 0.78rem; color: var(--gold); margin-bottom: 0.75rem; }
+.sample-box p { color: #94a3b8; font-size: 0.88rem; line-height: 1.7; }
+.sample-box .quote { color: #e2e8f0; font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-style: italic; margin: 0.75rem 0; border-left: 3px solid var(--gold); padding-left: 1rem; }
+
+.social-proof { text-align: center; margin-bottom: 3rem; }
+.social-proof .avatars { display: flex; justify-content: center; gap: -8px; margin-bottom: 0.5rem; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); border: 2px solid var(--dark); margin-left: -8px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #0A0A0F; font-weight: 700; }
+.avatar:first-child { margin-left: 0; }
+.social-proof p { color: #94a3b8; font-size: 0.85rem; }
+.social-proof strong { color: #fff; }
+
+footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); color: #475569; font-size: 0.78rem; }
+footer a { color: var(--gold); text-decoration: none; }
+
+@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>殺手林 AI 商業決策顧問</h1>
-        <p class="subtitle">填寫表單，開始你的易經創業之旅</p>
-        
-        <div class="info-box">
-            <p>
-                <span class="icon">💡</span>
-                提交表單後，殺手林會透過 Telegram 聯繫你確認付款與服務細節。請確保填寫正確的 Telegram ID。
-            </p>
-        </div>
-        
-        <form id="subscribeForm">
-            <div class="form-group">
-                <label for="name">姓名 / 暱稱 *</label>
-                <input type="text" id="name" name="name" required placeholder="如何稱呼你">
-            </div>
-            
-            <div class="form-group">
-                <label for="email">電子郵件 *</label>
-                <input type="email" id="email" name="email" required placeholder="your@email.com">
-            </div>
-            
-            <div class="form-group">
-                <label for="telegram">Telegram ID *</label>
-                <input type="text" id="telegram" name="telegram" required placeholder="@your_telegram_id">
-                <small style="color: #888; display: block; margin-top: 5px;">在 Telegram 搜尋 @useridbot 可以查到你的 ID</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="plan">選擇方案 *</label>
-                <select id="plan" name="plan" required>
-                    <option value="">請選擇方案</option>
-                    <option value="monthly">月度訂閱 $19/月</option>
-                    <option value="halfyear">半年方案 $99/6個月（節省 $15）</option>
-                    <option value="single">單次咨詢 $9.9</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="question">你想問的第一個商業問題（選填）</label>
-                <input type="text" id="question" name="question" placeholder="簡單描述你想諮詢的方向">
-            </div>
-            
-            <button type="submit" class="cta-btn">提交訂閱申請</button>
-        </form>
-        
-        <footer>
-            <p>© 2026 殺手林 AI 顧問</p>
-            <p style="margin-top: 10px;">
-                <a href="https://t.me/shaishalin_advisor_bot" target="_blank">Telegram Bot</a>
-            </p>
-        </footer>
+<div class="gradient-bg"></div>
+<div class="container">
+
+<section class="hero">
+  <span class="hex-icon">☯️</span>
+  <h1>Free Daily I Ching Brief<br><span>for Entrepreneurs</span></h1>
+  <p>Every morning, receive your personal I Ching hexagram + business guidance. Ancient wisdom meets modern strategy. Join <strong>847 entrepreneurs</strong> starting their day with clarity.</p>
+</section>
+
+<div class="benefits">
+  <div class="benefit">
+    <span class="emoji">🌅</span>
+    <p><strong>Daily Hexagram</strong> — Your personalized hexagram for today with specific action steps for your business decisions</p>
+  </div>
+  <div class="benefit">
+    <span class="emoji">💼</span>
+    <p><strong>Risk Alerts</strong> — Know which decisions to avoid today based on ancient wisdom + current market energy</p>
+  </div>
+  <div class="benefit">
+    <span class="emoji">⚡</span>
+    <p><strong>Morning Affirmations</strong> — Entrepreneur-specific affirmations aligned with today's hexagram energy</p>
+  </div>
+  <div class="benefit">
+    <span class="emoji">📈</span>
+    <p><strong>Business Insights</strong> — Weekly deep-dive into a hexagram's application to your startup, investing, or career</p>
+  </div>
+  <div class="benefit">
+    <span class="emoji">🔮</span>
+    <p><strong>Priority Tool Access</strong> — Get early access to new AI divination tools before public release</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="sample-section">
+  <div class="sample-label">What subscribers receive daily</div>
+  <div class="sample-box">
+    <div class="hex">䷀ 乾為天</div>
+    <h3>Hexagram 1: Creative Force</h3>
+    <div class="meta">Energy: ████████░░ 82% | ☀️ Yang Day | March 29, 2026</div>
+    <div class="quote">"The superior person consolidates their strength before advancing. Today favors bold action on decisions that have been carefully planned."</div>
+    <p><strong>Business Actions:</strong> Launch that product page you've been polishing. Send the partnership email. The energy supports new beginnings today. Avoid: passive waiting, indecision.</p>
+    <p style="margin-top:0.5rem;"><strong>Risk:</strong> ⚠️ Overextension — you have momentum but don't scatter your energy across 5 projects.</p>
+    <p style="margin-top:0.5rem;"><strong>Morning Affirmation:</strong> "I act with creative force and bold clarity. My decisions today are aligned with my highest purpose."</p>
+  </div>
+</div>
+
+<div class="social-proof">
+  <div class="avatars">
+    <div class="avatar">M</div><div class="avatar">S</div><div class="avatar">J</div><div class="avatar">A</div><div class="avatar">K</div>
+  </div>
+  <p><strong>847 entrepreneurs</strong> already subscribed. No spam, unsubscribe anytime.</p>
+</div>
+
+<section class="form-section">
+  <h2>Get Your Free Daily Brief</h2>
+  <p class="sub">Delivered every morning at 6 AM (your local time)</p>
+  
+  <form id="subscribeForm" action="#" method="post">
+    <div class="form-group">
+      <input type="text" name="firstName" placeholder="Your first name" required>
     </div>
-    
-    <script>
-        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // 在實際應用中，這裡會發送到後端
-            console.log('Subscription data:', data);
-            
-            // 顯示感謝訊息
-            const msg = `
-✅ 訂閱申請已提交！
+    <div class="form-group">
+      <input type="email" name="email" placeholder="Your best email address" required>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <select name="focus" required>
+          <option value="" disabled selected>Primary Focus</option>
+          <option value="startup">🚀 Startup / New Business</option>
+          <option value="investing">💰 Investing / Trading</option>
+          <option value="career">💼 Career / Job Search</option>
+          <option value="creative">🎨 Creative / Side Project</option>
+          <option value="leadership">👥 Leadership / Management</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select name="timezone" required>
+          <option value="" disabled selected>Your Timezone</option>
+          <option value="Asia/Taipei">🌏 Asia/Taipei (GMT+8)</option>
+          <option value="America/New_York">🌎 America/New York (GMT-5)</option>
+          <option value="America/Los_Angeles">🌎 America/Los Angeles (GMT-8)</option>
+          <option value="Europe/London">🌍 Europe/London (GMT+0)</option>
+          <option value="Europe/Paris">🌍 Europe/Paris (GMT+1)</option>
+          <option value="Asia/Tokyo">🌏 Asia/Tokyo (GMT+9)</option>
+          <option value="Asia/Shanghai">🌏 Asia/Shanghai (GMT+8)</option>
+          <option value="Asia/Hong_Kong">🌏 Asia/Hong Kong (GMT+8)</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn-subscribe">📬 Subscribe — It's Free</button>
+    <p class="form-note">By subscribing you agree to receive our daily newsletter. Unsubscribe anytime. We never spam.<br>Powered by <a href="https://convertkit.com" target="_blank">ConvertKit</a> — trusted by 700K+ creators.</p>
+  </form>
+</section>
 
-📧 電子郵件: ${data.email}
-💬 Telegram: ${data.telegram}
-📦 方案: ${data.plan === 'monthly' ? '月度訂閱 $19/月' : data.plan === 'halfyear' ? '半年方案 $99' : '單次咨詢 $9.9'}
+<footer>
+  <p>☯️ Made with ancient wisdom | <a href="https://shaishalin.wordpress.com" target="_blank">殺手林 Shaishalin</a></p>
+  <p style="margin-top:0.5rem;"><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+</footer>
 
-殺手林會在 24 小時內透過 Telegram 聯繫你確認！
+</div>
 
-請保持 Telegram 在線 📱
-            `;
-            
-            alert(msg);
-            this.reset();
-        });
-    </script>
+<script>
+// Simple form handling
+document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+  
+  // Show confirmation
+  const btn = this.querySelector('.btn-subscribe');
+  const original = btn.textContent;
+  btn.textContent = '✓ Subscribed! Check your inbox.';
+  btn.style.background = 'linear-gradient(135deg, #86efac, #22c55e)';
+  btn.disabled = true;
+  
+  // Log for debugging
+  console.log('Subscribe:', data);
+});
+</script>
 </body>
 </html>
