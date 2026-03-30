@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily I Ching Horoscope — Free Daily Hexagram Reading</title>
+<meta name="description" content="Get your free daily I Ching horoscope based on your zodiac sign. Updated daily. Ancient wisdom meets modern astrology. 100% free, no signup.">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #C9A84C; --gold-light: #E8D48B; --dark: #0A0A0F; --card: rgba(255,255,255,0.04); --border: rgba(201,168,76,0.18); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+.gradient-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, rgba(10,5,20,0.5) 50%, transparent 70%); pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* HEADER */
+header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+.logo { font-family: 'Crimson Pro', serif; font-size: 1.2rem; color: var(--gold); text-decoration: none; font-weight: 700; }
+.logo span { color: #fff; }
+.header-links { display: flex; gap: 1rem; }
+.header-links a { color: #94a3b8; text-decoration: none; font-size: 0.82rem; }
+.header-links a:hover { color: var(--gold); }
+
+/* TOOL */
+.tool-section { text-align: center; padding: 2rem 0; }
+.tool-section h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2rem, 6vw, 3rem); color: var(--gold); margin-bottom: 0.75rem; }
+.tool-section p { color: #94a3b8; max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+
+.sign-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 2rem; }
+.sign-btn { background: var(--card); border: 1px solid var(--border); color: #94a3b8; padding: 0.75rem 0.5rem; border-radius: 12px; cursor: pointer; font-size: 0.8rem; text-align: center; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.sign-btn:hover { border-color: var(--gold); color: var(--gold-light); background: rgba(201,168,76,0.08); }
+.sign-btn .icon { display: block; font-size: 1.5rem; margin-bottom: 0.3rem; }
+.sign-btn.selected { border-color: var(--gold); background: rgba(201,168,76,0.15); color: var(--gold-light); }
+
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 500px; margin: 0 auto 1.5rem; }
+.input-row input, .input-row select { width: 100%; padding: 0.85rem 1rem; border-radius: 12px; border: 1px solid rgba(201,168,76,0.3); background: rgba(255,255,255,0.05); color: #fff; font-size: 0.95rem; font-family: 'Inter', sans-serif; outline: none; }
+.input-row input::placeholder { color: #475569; }
+.input-row select option { background: #1a1a2e; color: #fff; }
+
+.btn-get { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 1rem 3rem; border: none; border-radius: 50px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.btn-get:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+
+/* RESULT */
+#result { display: none; margin-top: 3rem; }
+.result-card { background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(26,10,46,0.5)); border: 2px solid rgba(201,168,76,0.35); border-radius: 24px; padding: 2.5rem; text-align: center; }
+.result-date { color: var(--gold); font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 2px; }
+.result-hex { font-size: 4rem; margin-bottom: 0.5rem; }
+.result-name { font-family: 'Crimson Pro', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 0.3rem; }
+.result-name-en { color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem; }
+.result-energy { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+.result-energy .bar { width: 30px; height: 6px; border-radius: 3px; background: rgba(201,168,76,0.2); }
+.result-energy .bar.active { background: var(--gold); }
+.result-quote { color: #e2e8f0; font-family: 'Crimson Pro', serif; font-size: 1.2rem; font-style: italic; border-left: 3px solid var(--gold); padding-left: 1.25rem; margin: 1.5rem 0; text-align: left; line-height: 1.7; }
+.result-sections { text-align: left; margin-top: 1.5rem; }
+.result-section { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+.result-section h4 { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+.result-section p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; }
+.result-section.risk { border: 1px solid rgba(239,68,68,0.3); background: rgba(239,68,68,0.05); }
+.result-section.risk h4 { color: #f87171; }
+.result-section.action { border: 1px solid rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
+.result-section.action h4 { color: #86efac; }
+
+.share-row { display: flex; justify-content: center; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; }
+.share-btn { display: flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #e2e8f0; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+.share-btn:hover { background: rgba(255,255,255,0.15); }
+
+/* SHARING CARDS */
+.result-card.share-mode { position: relative; }
+.share-preview { display: none; }
+
+.cta-box { text-align: center; margin-top: 2rem; padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 16px; }
+.cta-box p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem; }
+.cta-box a { display: inline-block; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 0.75rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; }
+
+/* ZODIAC INFO */
+.zodiac-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 2rem; }
+.zodiac-match { background: rgba(0,0,0,0.3); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 0.75rem; text-align: center; }
+.zodiac-match .icon { font-size: 1.3rem; }
+.zodiac-match .name { color: #fff; font-size: 0.8rem; margin: 0.2rem 0; }
+.zodiac-match .hex { color: var(--gold); font-size: 0.75rem; }
+
+/* FOOTER */
+footer { text-align: center; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid var(--border); color: #475569; font-size: 0.78rem; }
+footer a { color: var(--gold); text-decoration: none; }
+
+@media(max-width: 500px) { .sign-grid { grid-template-columns: repeat(3, 1fr); } .input-row { grid-template-columns: 1fr; } .zodiac-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="gradient-bg"></div>
+<div class="container">
+
+<header>
+  <a href="https://shaishalin.wordpress.com" target="_blank" class="logo">殺手林 <span>Shaishalin</span></a>
+  <nav class="header-links">
+    <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/">🔮 Oracle</a>
+    <a href="https://no5musiclin-code.github.io/iching-divination/tarot-fortune/">🌙 Tarot</a>
+  </nav>
+</header>
+
+<section class="tool-section">
+  <h1>☯️ Daily I Ching Horoscope</h1>
+  <p>Enter your zodiac sign and birth year to get your personalized daily hexagram reading. Ancient wisdom updated daily, completely free.</p>
+  
+  <div class="sign-grid" id="signGrid">
+    <button class="sign-btn" data-sign="aries"><span class="icon">♈</span>Aries</button>
+    <button class="sign-btn" data-sign="taurus"><span class="icon">♉</span>Taurus</button>
+    <button class="sign-btn" data-sign="gemini"><span class="icon">♊</span>Gemini</button>
+    <button class="sign-btn" data-sign="cancer"><span class="icon">♋</span>Cancer</button>
+    <button class="sign-btn" data-sign="leo"><span class="icon">♌</span>Leo</button>
+    <button class="sign-btn" data-sign="virgo"><span class="icon">♍</span>Virgo</button>
+    <button class="sign-btn" data-sign="libra"><span class="icon">♎</span>Libra</button>
+    <button class="sign-btn" data-sign="scorpio"><span class="icon">♏</span>Scorpio</button>
+    <button class="sign-btn" data-sign="sagittarius"><span class="icon">♐</span>Sagittarius</button>
+    <button class="sign-btn" data-sign="capricorn"><span class="icon">♑</span>Capricorn</button>
+    <button class="sign-btn" data-sign="aquarius"><span class="icon">♒</span>Aquarius</button>
+    <button class="sign-btn" data-sign="pisces"><span class="icon">♓</span>Pisces</button>
+  </div>
+  
+  <div class="input-row">
+    <input type="text" id="nameInput" placeholder="Your name (optional)">
+    <input type="number" id="birthYear" placeholder="Birth year" min="1930" max="2015">
+  </div>
+  
+  <button class="btn-get" onclick="getHoroscope()">🔮 Get My Daily Reading</button>
+</section>
+
+<div id="result"></div>
+
+<footer>
+  <p>☯️ <a href="https://shaishalin.wordpress.com" target="_blank">殺手林 Shaishalin</a> | <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank">Full I Ching Oracle</a></p>
+</footer>
+
+</div>
+
+<script>
+// 12 zodiac signs × possible hexagrams
+const hexagrams = [
+  { name: '乾為天', en: 'Creative Force', emoji: '䷀', meaning: 'Pure yang energy. A day for bold action and new beginnings. Your creativity is at its peak.', action: 'Launch that idea you\'ve been thinking about. Make the call. Send the email. The energy supports initiative.', risk: '⚠️ Avoid overextension. Don\'t start 5 things at once — pick ONE and commit.', quote: 'The superior person advances in virtue and consolidates their position through proper timing.' },
+  { name: '坤為地', en: 'Earth Mother', emoji: '䷁', meaning: 'Receptive, introspective energy. A good day for planning, organizing, and receiving guidance. Patience is your ally.', action: 'Focus on groundwork and foundation. Review plans. Meditate. Listen more than you speak today.', risk: '⚠️ Avoid major commitments or confrontations. Not the best day for pushing forward aggressively.', quote: 'The superior person uses stillness to nourish wisdom. Patience now yields strength later.' },
+  { name: '水雷屯', en: 'Difficult Beginning', emoji: '䷂', meaning: 'Forming and struggling. Like a seed sprouting — growth is happening but it\'s not easy yet. Push through the difficulty.', action: 'Take small consistent steps. Don\'t expect big results yet — just keep moving forward. Any progress is good progress.', risk: '⚠️ Don\'t make major decisions today. Your judgment may be clouded by the struggle itself.', quote: 'Heaven creates difficult beginnings. The superior person stands firm in the face of chaos.' },
+  { name: '山水蒙', en: 'Youthful Folly', emoji: '䷃', meaning: 'A day of learning and asking questions. You may not have all the answers — and that\'s okay. Seek guidance.', action: 'Ask for help. Read that article you\'ve been avoiding. Enroll in that course. Education pays dividends today.', risk: '⚠️ Beware of bad advice from well-meaning but uninformed people. Verify before acting.', quote: 'The superior person educates the mind and sharpens the axe of intellect.' },
+  { name: '水天需', en: 'Waiting', emoji: '䷄', meaning: 'Patience required. You have the resources and clarity, but the timing isn\'t quite right yet. Wait with purpose.', action: 'Use this time to prepare. Refine your plan. Build your reserves. When the moment comes, you\'ll be ready.', risk: '⚠️ Don\'t force things today. Rushing will only create obstacles where there were none.', quote: 'Without a road, the superior person stands still and waits. When the time comes, action is swift.' },
+  { name: '天水讼', en: 'Conflict', emoji: '䷅', meaning: 'Tension and opposing forces. Today may bring disagreements or competitive energy. Navigate carefully.', action: 'Choose your battles wisely. If conflict arises, address it calmly. Legal or financial matters need extra caution.', risk: '⚠️ High conflict day. Avoid signing contracts, making deals with competitors, or engaging in arguments.', quote: 'In times of conflict, the superior person retreats to examine their own actions first.' },
+  { name: '地水師', en: 'Army', emoji: '䷆', meaning: 'Strength in organization. A day for decisive leadership and clear command. Align your team around a common goal.', action: 'Take charge when needed. Be clear with instructions. Rally others around a shared mission. Discipline wins today.', risk: '⚠️ Beware of rigidity. A military mindset can miss creative opportunities. Balance strength with flexibility.', quote: 'The army advances under righteous leadership. Order from leadership brings victory.' },
+  { name: '水地比', en: 'Close Bonds', emoji: '䷇', meaning: 'Harmony through close relationships. A day for connection, trust, and mutual support. Build your inner circle.', action: 'Reach out to close allies. Strengthen existing relationships. Collaboration produces better results than solo effort today.', risk: '⚠️ Beware of cliques or exclusive groups. Openness attracts the right people to your circle.', quote: 'The good leader attracts loyal followers through genuine care, not through control.' },
+  { name: '風天小畜', en: 'Small Accumulation', emoji: '䷈', meaning: 'Building slowly. Your efforts are accumulating but haven\'t reached critical mass yet. Keep going — you\'re making progress.', action: 'Every small step counts. Keep saving, keep building, keep learning. The compound effect is real.', risk: '⚠️ Don\'t expect overnight results. Small is beautiful — don\'t abandon your process for flashier options.', quote: 'Even a small wind can travel across the sky. Steady accumulation wins over time.' },
+  { name: '天澤履', en: 'Cautious Advance', emoji: '䷉', meaning: 'Walking a careful path. You know where you want to go, but the terrain is tricky. Tread carefully.', action: 'Follow the rules. Meet expectations. Be punctual and professional. Small courtesies open big doors today.', risk: '⚠️ Pride goes before a fall. Respect hierarchy and conventions, or face consequences.', quote: 'Walking with awareness of danger, the wise person proceeds with caution and succeeds.' },
+  { name: '地天泰', en: 'Peace & Harmony', emoji: '䷊', meaning: 'Harmony and prosperity. Everything flows. The inner and outer worlds align in your favor today.', action: 'This is a good day for relationships, celebrations, signing agreements, and enjoying your hard-earned success.', risk: '⚠️ Don\'t become complacent. Good times are for building reserves, not just enjoying them.', quote: 'When heaven and earth unite, all things find their proper place. Peace is the reward for virtue.' },
+  { name: '天地否', en: 'Obstruction', emoji: '䷋', meaning: 'Things are blocked or stagnant. The outer and inner are not in harmony. Patience and perspective needed.', action: 'Consolidate internally. Recharge. Work on yourself rather than pushing against external walls. This too shall pass.', risk: '⚠️ High risk of frustration or feeling misunderstood. Don\'t take disagreements personally today.', quote: 'When heaven descends and earth ascends, all things are separated. The wise person retreats to reflect.' },
+  { name: '天火同人', en: 'Peoples Unity', emoji: '䷌', meaning: 'Alignment and shared purpose. You and your people are on the same wavelength. Great day for teamwork.', action: 'Collaborate openly. Share your vision. Let others see your authentic self. Like-minded people will be drawn to you.', risk: '⚠️ Beware of groupthink. Unity doesn\'t mean conformity — maintain your unique perspective.', quote: 'The wise person opens their door to the world and shares their vision without prejudice.' },
+  { name: '火天大有', en: 'Great Harvest', emoji: '䷍', meaning: 'Abundance and recognition. Your efforts are bearing fruit and being seen. Enjoy success while staying humble.', action: 'This is your day to shine. Share your wins. Network broadly. Celebrate with your team. Abundance attracts more abundance.', risk: '⚠️ Pride can sour success. Share credit generously. Remember those who helped you along the way.', quote: 'Abundance without pride is the mark of a superior person. Share your light with the world.' },
+  { name: '地山謙', en: 'Humility', emoji: '䷎', meaning: 'Modesty and hidden strength. You have more capability than you let show. Quiet confidence wins today.', action: 'Listen more, talk less. Let others take credit. The reward for humility is respect and opportunity.', risk: '⚠️ Don\'t let humility become self-doubt. Your quiet strength is your asset — use it.', quote: 'The superior person is humble without fanfare, yet their virtue shines through naturally.' },
+  { name: '雷地豫', en: 'Enthusiasm', emoji: '䷏', meaning: 'Joy and eager anticipation. Things are in motion and energy is high. Ride the wave of enthusiasm.', action: 'Start new projects with energy. Be the cheerleader. Organize, create, inspire. Your enthusiasm is contagious today.', risk: '⚠️ Enthusiasm without structure leads to chaos. Channel energy into productive outlets or risk burnout.', quote: 'Enthusiasm without discipline is like fireworks — spectacular but brief. Combine joy with wisdom.' },
+  { name: '澤雷隨', en: 'Following', emoji: '䷐', meaning: 'Willing compliance and adaptation. Sometimes following is the smartest strategy. Choose your models wisely.', action: 'Follow a mentor. Learn from the best. Model proven success. Following is not weakness — it\'s strategy.', risk: '⚠️ Don\'t follow blindly. Make sure whoever you\'re following has earned your trust.', quote: 'The superior person follows with an open heart, adapting to circumstances without losing themselves.' },
+  { name: '山風蠱', en: 'Corruption', emoji: '䷑', meaning: 'Things have gone wrong and need correction. Old patterns are breaking down. This is a day for healing and restructuring.', action: 'Identify what\'s broken and fix it. Clear out old habits. Clean your workspace. Regenerate from within.', risk: '⚠️ Don\'t blame others for the mess. Own your part in creating it, then focus on solutions.', quote: 'When corruption sets in, the superior person takes responsibility and initiates reform.' },
+  { name: '地澤臨', en: 'Influence', emoji: '䷒', meaning: 'Supervision and leadership. You have oversight and responsibility. Lead by example and watch things flourish.', action: 'Take charge of your domain. Be present, attentive, and directive. Your leadership directly impacts results today.', risk: '⚠️ Micromanagement backfires. Balance oversight with trust. Let people own their work.', quote: 'The superior person governs by example, not by force. Influence through presence.' },
+  { name: '風地觀', en: 'Contemplation', emoji: '䷓', meaning: 'Observation and awareness. You\'re in a good position to see the big picture. Watch before acting.', action: 'Step back and observe. Gather information. What you see now will inform better decisions tomorrow.', risk: '⚠️ Don\'t get stuck in observation mode. At some point, you need to act on what you\'ve learned.', quote: 'The wise person contemplates the world with open eyes and an open heart.' },
+  { name: '火雷噬嗑', en: 'Justice', emoji: '䷔', meaning: 'Law and order prevail. Justice is being served. A day for clear consequences and fair judgments.', action: 'Set boundaries clearly. Enforce agreements. Make the call that\'s been pending. Fairness wins today.', risk: '⚠️ Harshness backfires. Balance justice with mercy. Firm but compassionate is the winning formula.', quote: 'Bite through obstacles with wisdom. The superior person brings order through fair judgment.' },
+  { name: '山地剝', en: 'Decline', emoji: '䷕', meaning: 'Stripping away what\'s unnecessary. Things are being stripped down to essentials. Let go of what no longer serves.', action: 'Declutter. Simplify. Remove what\'s broken. The core of what remains is more valuable than the whole was.', risk: '⚠️ Decline is natural — don\'t panic. Conserve energy, preserve what matters, wait for the turning tide.', quote: 'When things are stripped to their essence, the superior person focuses on what remains.' },
+  { name: '地雷復', en: 'Return', emoji: '䷖', meaning: 'A new cycle begins. What was lost returns. Good news comes after difficulty. Hope is renewed.', action: 'Start again with what you\'ve learned. Reconnect with people you\'ve been distant from. The tide has turned in your favor.', risk: '⚠️ New beginnings can be fragile. Don\'t overextend immediately — ease back into action gradually.', quote: 'The superior person returns to the correct path, correcting past mistakes. Redemption is always possible.' },
+  { name: '天雷无妄', en: 'Innocence', emoji: '䷗', meaning: 'Natural, uncomplicated action. Do what\'s right without ulterior motives. Simplicity cuts through complexity.', action: 'Act from your genuine intentions. Say what you mean. No games today — directness opens doors.', risk: '⚠️ Naivety is not innocence. Trust but verify. Not everyone shares your pure intentions.', quote: 'Acting without ulterior motives brings the superior person back to their essential nature.' },
+  { name: '山天大畜', en: 'Great Accumulation', emoji: '䷘', meaning: 'Major storage of energy and resources. You\'ve been preparing — now the reservoir is filling. Big things are coming.', action: 'Keep saving, keep learning, keep building. Your reserves are reaching critical mass. Patience + consistency = abundance.', risk: '⚠️ Accumulation takes time. Don\'t get jealous of others\' apparent overnight success — they spent years building.', quote: 'The great person accumulates virtue and resources, storing them for when they are truly needed.' },
+  { name: '山澤損', en: 'Decrease', emoji: '䷙', meaning: 'Voluntary reduction for greater gain. Sometimes giving up a little brings much more in return. Let go to receive.', action: 'Cut unnecessary expenses. Reduce commitments that drain you. Simplify your offer. Less truly is more today.', risk: '⚠️ Strategic reduction ≠ self-deprivation. Don\'t cut essential investments in yourself or your business.', quote: 'The superior person reduces self-interest to benefit the greater whole. Giving creates receiving.' },
+  { name: '火澤睽', en: 'Separation', emoji: '䷚', meaning: 'Diverging paths and misunderstandings. Not everyone sees eye-to-eye today. Different doesn\'t mean wrong.', action: 'Accept differences. Give people space to go their own way. Sometimes the best move is graceful separation.', risk: '⚠️ Misunderstandings escalate quickly. Communicate clearly and don\'t assume you know what others mean.', quote: 'When paths diverge, the wise person respects the separation without resentment.' },
+  { name: '雷水解', en: 'Release', emoji: '䷛', meaning: 'Liberation and relief. Problems are dissolving. Solutions are appearing. It\'s okay to relax a little.', action: 'Let go of what\'s been weighing you down. Forgive. Release. Move forward lighter. New opportunities become visible now.', risk: '⚠️ Sudden relief can lead to carelessness. Stay grounded even when things improve — don\'t get reckless.', quote: 'Release the bonds of old problems. The superior person moves freely once again.' },
+  { name: '山雷頤', en: 'Nourishment', emoji: '䷜', meaning: 'Taking in and giving out. What you feed yourself — mentally, physically, spiritually — determines your power. Nourish wisely.', action: 'Eat well. Rest. Read inspiring content. Surround yourself with good people. Self-care is investment, not luxury.', risk: '⚠️ Toxic inputs give toxic outputs. Audit what you\'re consuming — food, media, conversations. Quality matters.', quote: 'The superior person nourishes their own character, and in doing so, nourishes the world.' },
+  { name: '風澤中孚', en: 'Sincere', emoji: '䷝', meaning: 'Inner truth and heartfelt communication. Your words carry weight today. Speak from the heart and be believed.', action: 'Communicate honestly. Follow through on promises. Your reputation for integrity is being built with every interaction.', risk: '⚠️ Words spoken in sincerity cannot be taken back. Think before you speak — today your words matter more.', quote: 'Sincere speech and honest action build the trust that no amount of talent can replace.' },
+  { name: '雷山小過', en: 'Small Exceedance', emoji: '䷞', meaning: 'Slightly going beyond what\'s expected. A little extra effort or slight deviation from convention produces excellent results.', action: 'Push just a bit beyond your comfort zone. A small stretch produces disproportionate returns. Go for it.', risk: '⚠️ Small exceedance ≠ huge leap. Don\'t overdo it. Small steps are still the order of the day.', quote: 'The wise person exceeds expectations in small ways, producing excellence through consistent small efforts.' },
+  { name: '水火既濟', en: 'Completion', emoji: '䷟', meaning: 'A cycle completes. The river is crossed. Celebrate what\'s accomplished — you\'ve reached an important milestone.', action: 'Acknowledge completion. Wrap up loose ends. Take stock of lessons learned. Rest before the next cycle begins.', risk: '⚠️ Completion can breed complacency. The wise person begins preparing for the next challenge immediately.', quote: 'Completion is not the end — it\'s the foundation for the next beginning. Rest, then rise again.' },
+  { name: '火水未濟', en: 'Incompletion', emoji: '䷿', meaning: 'River not yet crossed. You\'re not at the end yet — you\'re still in process. That\'s okay. Progress is happening even when invisible.', action: 'Keep going. You\'re closer than you think. Make one more call, write one more line, take one more step. The crossing is near.', risk: '⚠️ Don\'t compare your incomplete chapter to someone else\'s completed one. You\'re exactly where you need to be.', quote: 'The wise person knows that not yet crossed is not the same as lost. Keep moving forward.' }
+];
+
+const zodiacSignMap = {
+  aries: 0,       // 乾為天 - Aries is pure initiative
+  taurus: 4,      // 水天需 - Taurus patient waiting
+  gemini: 20,     // 火雷噬嗑 - Gemini justice/communication
+  cancer: 1,      // 坤為地 - Cancer receptive
+  leo: 13,        // 火天大有 - Leo abundance/fire
+  virgo: 3,       // 山水蒙 - Virgo learning/refinement
+  libra: 18,      // 地澤臨 - Libra influence/balance
+  scorpio: 21,    // 山地剝 - Scorpio deep transformation
+  sagittarius: 8, // 風天小畜 - Sagittarius expansion
+  capricorn: 6,  // 地水師 - Capricorn discipline/army
+  aquarius: 19,  // 風地觀 - Aquarius observation/change
+  pisces: 31     // 火水未濟 - Pisces dreams/incompletion
+};
+
+let selectedSign = null;
+
+document.querySelectorAll('.sign-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('selected'));
+    this.classList.add('selected');
+    selectedSign = this.dataset.sign;
+  });
+});
+
+function getHoroscope() {
+  if (!selectedSign) { alert('Please select your zodiac sign first!'); return; }
+  const year = document.getElementById('birthYear').value || 1990;
+  const name = document.getElementById('nameInput').value || 'Seeker';
+  
+  // Generate deterministic but varied reading based on date + sign + year
+  const today = new Date();
+  const seed = today.getFullYear() * 10000 + (today.getMonth()+1) * 100 + today.getDate();
+  const yearOffset = (year - 1900) % hexagrams.length;
+  const signIndex = zodiacSignMap[selectedSign];
+  const hexIndex = (seed + signIndex + yearOffset) % hexagrams.length;
+  
+  const hex = hexagrams[hexIndex];
+  const energyLevel = 50 + ((seed * hexIndex) % 50);
+  const energyBars = Math.round(energyLevel / 10);
+  
+  const todayStr = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `
+    <div class="result-card">
+      <div class="result-date">☯️ ${todayStr} — ${name}'s Reading</div>
+      <div class="result-hex">${hex.emoji}</div>
+      <div class="result-name">${hex.name}</div>
+      <div class="result-name-en">${hex.en}</div>
+      <div class="result-energy">
+        ${Array(10).fill(0).map((_, i) => `<div class="bar ${i < energyBars ? 'active' : ''}"></div>`).join('')}
+        <span style="color:#64748b;font-size:0.78rem;margin-left:0.5rem;">${energyLevel}% energy</span>
+      </div>
+      <div class="result-quote">"${hex.quote}"</div>
+      <div class="result-sections">
+        <div class="result-section">
+          <h4>📖 Today's Meaning for ${name}</h4>
+          <p>${hex.meaning}</p>
+        </div>
+        <div class="result-section action">
+          <h4>✅ Recommended Actions</h4>
+          <p>${hex.action}</p>
+        </div>
+        <div class="result-section risk">
+          <h4>⚠️ Risk Alert</h4>
+          <p>${hex.risk}</p>
+        </div>
+      </div>
+      <div class="share-row">
+        <button class="share-btn" onclick="alert('Share feature: Copy the text above and share on your favorite platform!')">📋 Copy</button>
+        <a class="share-btn" href="https://twitter.com/intent/tweet?text=My%20daily%20I%20Ching%20horoscope%20for%20${selectedSign}%3A%20${encodeURIComponent(hex.name)}%20${hex.emoji}%20Check%20yours%20at%20https%3A%2F%2Fno5musiclin-code.github.io%2Fiching-divination%2Fdaily-horoscope" target="_blank">𝕏 Share on X</a>
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fno5musiclin-code.github.io%2Fiching-divination%2Fdaily-horoscope" target="_blank">📘 Facebook</a>
+      </div>
+      <div class="cta-box">
+        <p>Want a more detailed business decision reading?</p>
+        <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank">🔮 Try the Full AI I Ching Oracle →</a>
+      </div>
+    </div>
+  `;
+  
+  window.scrollTo({ top: resultDiv.offsetTop - 100, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

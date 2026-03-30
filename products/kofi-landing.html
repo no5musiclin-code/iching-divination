@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Shaishalin — Buy Me a Coffee ☕</title>
+<meta name="description" content="Support 殺手林's AI divination tools and digital products. Your support keeps these tools free and developing. Ko-fi page with exclusive content.">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #C9A84C; --gold-light: #E8D48B; --dark: #0A0A0F; --card: rgba(255,255,255,0.04); --border: rgba(201,168,76,0.18); --kofi: #13c3f0; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+.gradient-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, rgba(10,5,20,0.5) 50%, transparent 70%); pointer-events: none; }
+.container { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* HEADER */
+header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+.logo { font-family: 'Crimson Pro', serif; font-size: 1.3rem; color: var(--gold); text-decoration: none; font-weight: 700; }
+.logo span { color: #fff; }
+
+/* HERO */
+.hero { text-align: center; padding: 3rem 0 2rem; }
+.hero .emoji { font-size: 5rem; margin-bottom: 1.5rem; display: block; }
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2rem, 6vw, 3rem); color: var(--gold); margin-bottom: 1rem; }
+.hero h1 span { color: #fff; }
+.hero p { font-size: 1.05rem; color: #94a3b8; max-width: 580px; margin: 0 auto 2rem; line-height: 1.8; }
+
+.kofi-btn { display: inline-flex; align-items: center; gap: 0.75rem; background: #29c3f0; color: #fff; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: all 0.2s; margin-bottom: 1.5rem; }
+.kofi-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(41,195,240,0.4); background: #13c3f0; }
+.kofi-btn .icon { font-size: 1.4rem; }
+.kofi-note { color: #64748b; font-size: 0.82rem; }
+
+/* WHY */
+.section-title { font-family: 'Crimson Pro', serif; font-size: 1.6rem; color: #fff; margin-bottom: 1.5rem; text-align: center; margin-top: 3rem; }
+.reasons { display: grid; gap: 1rem; margin-bottom: 3rem; }
+.reason { display: flex; gap: 1rem; align-items: flex-start; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; }
+.reason .icon { font-size: 1.6rem; flex-shrink: 0; }
+.reason h3 { color: #fff; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.reason p { color: #94a3b8; font-size: 0.85rem; line-height: 1.6; }
+
+/* TIERS */
+.tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
+.tier { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem 1.5rem; text-align: center; transition: all 0.2s; }
+.tier:hover { border-color: var(--gold); transform: translateY(-3px); }
+.tier.popular { border-color: var(--gold); background: rgba(201,168,76,0.06); position: relative; }
+.tier.popular::before { content: '⭐ Most Popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #0A0A0F; font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 30px; white-space: nowrap; }
+.tier .emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+.tier h3 { color: #fff; font-size: 1.05rem; margin-bottom: 0.3rem; }
+.tier .amount { color: var(--gold); font-size: 2rem; font-weight: 700; margin: 0.75rem 0; }
+.tier .amount span { font-size: 0.9rem; color: #64748b; font-weight: 400; }
+.tier ul { list-style: none; text-align: left; margin: 1rem 0; }
+.tier li { color: #cbd5e1; font-size: 0.85rem; padding: 0.3rem 0; display: flex; gap: 0.5rem; align-items: center; }
+.tier li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+.tier a { display: block; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; margin-top: 1rem; transition: all 0.2s; }
+.tier a:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(201,168,76,0.3); }
+
+/* PRODUCTS */
+.products { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; margin-bottom: 3rem; }
+.products h2 { font-family: 'Crimson Pro', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 1.5rem; text-align: center; }
+.products-list { display: grid; gap: 0.75rem; }
+.product-row { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); border-radius: 10px; padding: 0.85rem 1rem; }
+.product-row .info h4 { color: #fff; font-size: 0.9rem; }
+.product-row .info p { color: #64748b; font-size: 0.78rem; }
+.product-row .price { color: var(--gold); font-weight: 700; font-size: 0.95rem; white-space: nowrap; margin-left: 1rem; }
+.products-note { text-align: center; color: #64748b; font-size: 0.82rem; margin-top: 1rem; }
+
+/* FOOTER */
+footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="gradient-bg"></div>
+<div class="container">
+
+<header>
+  <a href="https://shaishalin.wordpress.com" target="_blank" class="logo">殺手林 <span>Shaishalin</span></a>
+  <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank" style="color:#94a3b8;text-decoration:none;font-size:0.88rem;">🔮 Free Tools</a>
+</header>
+
+<section class="hero">
+  <span class="emoji">☕</span>
+  <h1>Support Shaishalin's<br><span>Work & Keep Tools Free</span></h1>
+  <p>These AI divination tools take time and resources to maintain. Your support helps me keep them free for everyone — and develop new tools every week.</p>
+  <a href="https://ko-fi.com/s/00367ecd74" target="_blank" class="kofi-btn">
+    <span class="icon">☕</span>
+    Buy Me a Coffee on Ko-fi
+  </a>
+  <p class="kofi-note">One-time support or monthly membership available</p>
+</section>
+
+<div class="reasons">
+  <div class="reason">
+    <span class="icon">🌍</span>
+    <div>
+      <h3>Keep Tools Free for Everyone</h3>
+      <p>Every dollar helps cover server costs and allows me to keep all basic tools completely free, accessible to anyone regardless of budget.</p>
+    </div>
+  </div>
+  <div class="reason">
+    <span class="icon">🚀</span>
+    <div>
+      <h3>Fund New Tool Development</h3>
+      <p>Your support goes directly into building new tools: more languages, new divination systems, AI features, and premium content.</p>
+    </div>
+  </div>
+  <div class="reason">
+    <span class="icon">💡</span>
+    <div>
+      <h3>Get Exclusive Content</h3>
+      <p>Ko-fi supporters get early access to new tools, exclusive guides, and bonus content not available elsewhere.</p>
+    </div>
+  </div>
+  <div class="reason">
+    <span class="icon">🙏</span>
+    <div>
+      <h3>Be Part of the Journey</h3>
+      <p>Your support shows me that this work matters. It keeps me motivated to build more and more for the community.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2 class="section-title">💎 Support Tiers</h2>
+  <div class="tiers">
+    <div class="tier">
+      <div class="emoji">🍵</div>
+      <h3>Green Tea Supporter</h3>
+      <div class="amount">$3 <span>/month</span></div>
+      <ul>
+        <li>My eternal gratitude</li>
+        <li>Name in supporter list</li>
+        <li>Early access to beta tools</li>
+      </ul>
+      <a href="https://ko-fi.com/checkout/00367ecd74?mode=subscription& recurrence=1" target="_blank">Join with $3/month</a>
+    </div>
+    
+    <div class="tier popular">
+      <div class="emoji">☕</div>
+      <h3>Coffee Enthusiast</h3>
+      <div class="amount">$5 <span>/month</span></div>
+      <ul>
+        <li>Everything in Green Tea</li>
+        <li>Monthly exclusive I Ching reading</li>
+        <li>PDF: Entrepreneur's Wisdom Guide</li>
+        <li>Input into new feature requests</li>
+      </ul>
+      <a href="https://ko-fi.com/checkout/00367ecd74?mode=subscription&recurrence=1" target="_blank">Join with $5/month</a>
+    </div>
+    
+    <div class="tier">
+      <div class="emoji">🎴</div>
+      <h3>Hexagram VIP</h3>
+      <div class="amount">$15 <span>/month</span></div>
+      <ul>
+        <li>Everything in Coffee</li>
+        <li>Weekly 1-on-1 I Ching reading</li>
+        <li>All premium products free</li>
+        <li>Personalized business advice</li>
+        <li>Direct message access</li>
+      </ul>
+      <a href="https://ko-fi.com/checkout/00367ecd74?mode=subscription&recurrence=1" target="_blank">Join with $15/month</a>
+    </div>
+  </div>
+</section>
+
+<div class="products">
+  <h2>🛒 Products Available on Ko-fi</h2>
+  <div class="products-list">
+    <div class="product-row">
+      <div class="info"><h4>Daily Affirmation Card Deck (31 cards)</h4><p>Printable PDF, dark + gold design</p></div>
+      <div class="price">$5.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>Startup Decision Framework Kit (10 templates)</h4><p>SWOT, BMC, Risk Matrix, and more</p></div>
+      <div class="price">$14.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>30-Day I Ching Meditation Guide</h4><p>Scripts, body scans, printable tracker</p></div>
+      <div class="price">$7.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>Entrepreneur Morning Routine System</h4><p>Printable schedule + I Ching ritual</p></div>
+      <div class="price">$4.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>Investment Journal — 52 Weeks</h4><p>Hexagram forecast + trade tracking</p></div>
+      <div class="price">$12.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>I Ching for Relationships Guide</h4><p>8 core love hexagrams + actions</p></div>
+      <div class="price">$8.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>Digital Minimalism Challenge (30 days)</h4><p>Daily actions to reclaim focus</p></div>
+      <div class="price">$5.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>8-Week Business Launch Plan</h4><p>Weekly milestones + I Ching guidance</p></div>
+      <div class="price">$9.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>Spiritual Business Name Generator</h4><p>Birth year + industry → 5 name suggestions</p></div>
+      <div class="price">$9.90</div>
+    </div>
+    <div class="product-row">
+      <div class="info"><h4>Ultimate Reading List for Founders</h4><p>50 books with summaries + key takeaways</p></div>
+      <div class="price">$6.90</div>
+    </div>
+  </div>
+  <p class="products-note">💳 All purchases are one-time (except subscriptions). Instant download after payment.</p>
+</div>
+
+<footer>
+  <p>☯️ Thank you for supporting 殺手林's work | <a href="https://shaishalin.wordpress.com" target="_blank">Visit Blog</a> | <a href="https://ko-fi.com/s/00367ecd74" target="_blank">Ko-fi Page</a></p>
+</footer>
+
+</div>
+</body>
+</html>
