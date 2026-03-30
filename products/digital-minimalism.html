@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Minimalism for Entrepreneurs | 企業家數位極簡主義</title>
+<style>
+:root { --bg-dark: #0a0a0f; --bg-card: #111118; --gold: #d4a843; --gold-light: #e8c675; --gold-dark: #a07828; --text: #e8e4dc; --text-muted: #8a8578; --border: #2a2a35; --green: #4a9c6d; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-dark); color: var(--text); font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; min-height: 100vh; background-image: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.03) 0%, transparent 40%); }
+.container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
+header { text-align: center; margin-bottom: 50px; }
+header .logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+.price-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; padding: 8px 24px; border-radius: 30px; font-size: 1.1rem; margin: 20px 0; }
+.hero-section { text-align: center; padding: 50px 30px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg-card); margin-bottom: 40px; }
+.hero-section h2 { font-size: 1.5rem; color: var(--gold-light); margin-bottom: 15px; }
+.hero-section p { color: var(--text-muted); line-height: 1.8; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+.feature-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; text-align: center; }
+.feature-box .icon { font-size: 2.2rem; margin-bottom: 12px; }
+.feature-box h5 { color: var(--gold); margin-bottom: 8px; }
+.feature-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.intro-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 30px 0; }
+.intro-box h3 { color: var(--gold); margin-bottom: 20px; }
+.intro-box p { color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; }
+.challenge-section { margin: 40px 0; }
+.challenge-section h3 { color: var(--gold); text-align: center; margin-bottom: 25px; }
+.day-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 20px; overflow: hidden; }
+.day-header { display: flex; align-items: center; gap: 15px; padding: 20px 25px; cursor: pointer; transition: background 0.3s; }
+.day-header:hover { background: var(--bg-card-hover); }
+.day-number { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; flex-shrink: 0; }
+.day-info h4 { color: var(--gold-light); font-size: 1.1rem; margin-bottom: 4px; }
+.day-info p { color: var(--text-muted); font-size: 0.85rem; }
+.completed-badge { margin-left: auto; background: rgba(74,156,109,0.1); color: var(--green); padding: 5px 14px; border-radius: 15px; font-size: 0.8rem; }
+.day-body { padding: 25px; border-top: 1px solid var(--border); display: none; }
+.day-body.active { display: block; }
+.step-list { list-style: none; }
+.step-list li { display: flex; align-items: flex-start; gap: 15px; padding: 15px 0; border-bottom: 1px solid var(--border); }
+.step-list li:last-child { border-bottom: none; }
+.step-num { background: rgba(212,168,67,0.1); color: var(--gold); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; flex-shrink: 0; }
+.step-content h5 { color: var(--gold-light); margin-bottom: 5px; font-size: 0.95rem; }
+.step-content p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.toggle-btn { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 0.9rem; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+.toggle-btn:hover { background: rgba(212,168,67,0.1); }
+.focus-tracker { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 40px 0; }
+.focus-tracker h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
+.focus-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-bottom: 25px; }
+.focus-cell { background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; padding: 15px 8px; text-align: center; }
+.focus-cell .date { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 8px; }
+.focus-cell .score { font-size: 1.5rem; font-weight: 700; }
+.focus-cell.low { border-color: rgba(192,57,43,0.3); }
+.focus-cell.medium { border-color: rgba(212,168,67,0.3); }
+.focus-cell.high { border-color: rgba(74,156,109,0.3); }
+.focus-cell.low .score { color: #c0392b; }
+.focus-cell.medium .score { color: var(--gold); }
+.focus-cell.high .score { color: var(--green); }
+.tools-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 40px 0; }
+.tools-section h3 { color: var(--gold); margin-bottom: 20px; }
+.tool-category { margin-bottom: 25px; }
+.tool-category h5 { color: var(--gold-light); margin-bottom: 12px; font-size: 1rem; }
+.tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.tool-card { background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 15px; text-align: center; }
+.tool-card h6 { color: var(--gold); font-size: 0.9rem; margin-bottom: 5px; }
+.tool-card p { color: var(--text-muted); font-size: 0.75rem; }
+.print-btn { display: block; width: 100%; padding: 18px; background: var(--bg-card); border: 2px solid var(--gold); color: var(--gold); border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; text-align: center; margin: 30px 0; }
+.print-btn:hover { background: var(--gold); color: var(--bg-dark); }
+.cta-section { text-align: center; padding: 60px 30px; background: linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border: 1px solid var(--border); border-radius: 20px; margin: 60px 0; }
+.cta-section h2 { font-size: 2rem; color: var(--gold-light); margin-bottom: 15px; }
+.cta-section p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+.cta-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; font-size: 1.1rem; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(212,168,67,0.35); }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 768px) { .tool-grid { grid-template-columns: 1fr 1fr; } .focus-grid { grid-template-columns: repeat(4, 1fr); } }
+@media print { body { background: white; color: #1a1a1a; } .cta-section, .print-btn, header .logo, .price-badge { display: none !important; } .day-card { background: white; border: 1px solid #d4a843; page-break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">☰ Killer Lin Farm</div>
+    <h1>企業家數位極簡主義</h1>
+    <p>30 天挑戰，幫助創業者重建與科技的關係。每天減少一個數位干擾，收回你最大的資產——注意力。讓你重新掌控自己的時間與思緒。</p>
+    <div class="price-badge">💰 定價：$5.9 美元 | 終身使用</div>
+  </header>
+
+  <div class="hero-section">
+    <h2>🎯 為什麼企業家需要數位極簡主義？</h2>
+    <p>研究顯示，創業者每天因為手機、郵件、社交媒體分心而損失平均 2-3 小時的深度工作時間。30 天數位極簡主義挑戰幫助你：重新獲得專注力、提高決策質量、增加實際工作時間、改善睡眠與心理健康。</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-box"><div class="icon">📅</div><h5>30 天挑戰清單</h5><p>每天一個具體任務，循序漸進重建數位習慣</p></div>
+    <div class="feature-box"><div class="icon">📊</div><h5>專注追蹤表</h5><p>視覺化你的專注度變化，見證改變</p></div>
+    <div class="feature-box"><div class="icon">🛠️</div><h5>推薦工具清單</h5><p>精選的極簡主義工具，幫助你更高效</p></div>
+    <div class="feature-box"><div class="icon">🧠</div><h5>深度工作指南</h5><p>如何進入心流狀態的實用技巧</p></div>
+    <div class="feature-box"><div class="icon">😴</div><h5>睡眠改善方案</h5><p>如何擺脫睡前滑手機的習慣</p></div>
+    <div class="feature-box"><div class="icon">🖨️</div><h5>可列印版本</h5><p>挑戰表可直接列印使用</p></div>
+  </div>
+
+  <div class="intro-box">
+    <h3>⚡ 數位極簡主義的核心原則</h3>
+    <p><strong style="color:var(--gold-light)">1. 注意力是最寶貴的資源</strong></p>
+    <p>你的注意力在哪里，你的時間就流向哪里。每一個通知、每一個彈出視窗，都在偷偷消耗你最稀缺的資源。</p>
+    <p style="margin-top:15px"><strong style="color:var(--gold-light)">2. 不是不用科技，是有意識地使用</strong></p>
+    <p>數位極簡主義不是要你成為盥人，回到沒有網路的時代。而是要你有意識地選擇何時、如何使用科技，而不是被科技操控。</p>
+    <p style="margin-top:15px"><strong style="color:var(--gold-light)">3. 少即是多</strong></p>
+    <p>當你減少了分心的來源，你會發現：完成同樣的工作只需要原來一半的時間。專注創造的價值遠遠超過多任務處理的假效率。</p>
+  </div>
+
+  <div class="focus-tracker">
+    <h3>📊 每週專注度追蹤（1-10 分）</h3>
+    <p style="color:var(--text-muted);text-align:center;margin-bottom:20px;font-size:0.9rem">每天結束時為自己的專注度打分，記錄你的進步</p>
+    <div class="focus-grid">
+      <div class="focus-cell"><div class="date">週一</div><div class="score">—</div></div>
+      <div class="focus-cell"><div class="date">週二</div><div class="score">—</div></div>
+      <div class="focus-cell"><div class="date">週三</div><div class="score">—</div></div>
+      <div class="focus-cell"><div class="date">週四</div><div class="score">—</div></div>
+      <div class="focus-cell"><div class="date">週五</div><div class="score">—</div></div>
+      <div class="focus-cell"><div class="date">週六</div><div class="score">—</div></div>
+      <div class="focus-cell"><div class="date">週日</div><div class="score">—</div></div>
+    </div>
+    <p style="color:var(--text-muted);font-size:0.85rem;text-align:center">評分標準：1=完全分心，10=深度心流状態</p>
+  </div>
+
+  <div class="challenge-section">
+    <h3>📅 30 天挑戰清單</h3>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-number">1</div>
+        <div class="day-info">
+          <h4>第 1 天：通知清理</h4>
+          <p>目標：消滅所有非必要的通知</p>
+        </div>
+        <span class="completed-badge">Day 1</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="day-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><h5>打開手機設置</h5><p>進入設定 > 通知，找出所有會發送通知的應用程序</p></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><h5>關閉社交媒體通知</h5><p>保留私信通知，關閉點贊、評論、@ 等 group 通知</p></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><h5>關閉郵件推送</h5><p>把郵件改為手動檢查，或者每天固定時間查看</p></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><h5>遊戲和娛樂應用全部靜音</h5><p>這些應用不需要任何通知權限</p></div></li>
+          <li><div class="step-num">5</div><div class="step-content"><h5>記錄改變</h5><p>今天你關閉了多少通知？感覺如何？</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-number">2</div>
+        <div class="day-info">
+          <h4>第 2 天：手機應用審計</h4>
+          <p>目標：刪除過去一個月沒用過的應用</p>
+        </div>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="day-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><h5>查看螢幕使用時間</h5><p>設定 > 螢幕使用時間，查看每個應用的使用統計</p></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><h5>找出沉默的應用</h5><p>過去 30 天沒打開過的應用，全部刪除</p></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><h5>評估「偶爾使用」的應用</h5><p>問自己：這個應用真的有必要嗎？能否用網頁版代替？</p></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><h5>建立你的「精簡首頁」</h5><p>只保留每天都會用的 10-15 個應用</p></div></li>
+          <li><div class="step-num">5</div><div class="step-content"><h5>今天刪除了多少應用？</h5><p>記錄下來，感受清理的成就感</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-number">3</div>
+        <div class="day-info">
+          <h4>第 3 天：郵件「零收件箱」</h4>
+          <p>目標：建立處理郵件的新系統</p>
+        </div>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="day-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><h5>處理所有舊郵件</h5><p>今天把郵箱清空，該回覆的回覆，該歸檔的歸檔，該刪除的刪除</p></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><h5>建立四個文件夾</h5><p>待回覆、等待中、參考資料、歸檔</p></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><h5>設定固定檢查時間</h5><p>每天只在上午 9-10 點和下午 3-4 點檢查郵件</p></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><h5>使用两分钟规则</h5><p>任何能在两分钟内處理的郵件，立即處理，不要拖延</p></div></li>
+          <li><div class="step-num">5</div><div class="step-content"><h5>取消所有推廣郵件訂閱</h5><p>從此不再被促銷郵件打擾</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-number">4</div>
+        <div class="day-info">
+          <h4>第 4 天：社群媒體「排毒」</h4>
+          <p>目標：刪除所有社群媒體應用</p>
+        </div>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="day-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><h5>刪除所有社群媒體 App</h5><p>Facebook、Instagram、Twitter、LinkedIn、TikTok——全部從手機移除</p></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><h5>電腦上登出這些平台</h5><p>不再方便訪問，減少無意識滑動</p></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><h5>找一個替代活動</h5><p>當你想滑手機時，去做什麼？準備好替代選項</p></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><h5>記錄你的感受</h5><p>每當想打開社群媒體時，觀察那個衝動，寫下來</p></div></li>
+          <li><div class="step-num">5</div><div class="step-content"><h5>今晚體驗：睡前不滑手機</h5><p>第一天挑戰：睡前 30 分鐘不看任何螢幕</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-number">5</div>
+        <div class="day-info">
+          <h4>第 5 天：設定「無手機區域」</h4>
+          <p>目標：創造讓大腦休息的物理空間</p>
+        </div>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="day-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div class="step-content"><h5>選擇你的無手機區域</h5><p>臥室、餐桌、衛生間——至少選擇一個地方</p></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><h5>創建「停車位」</h5><p>為手機設立一個專用的「停車位」，回家後就放在那裡</p></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><h5>臥室必須是無手機區</h5><p>不再在床上滑手機，改用實體鬧鐘</p></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><h5>吃飯時手機放另一個房間</h5><p>和家庭成員或朋友真正交流的開始</p></div></li>
+          <li><div class="step-num">5</div><div class="step-content"><h5>觀察改變</h5><p>今天你的注意力有提升嗎？感覺更平靜嗎？</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 精簡顯示其餘天 -->
+    <div class="day-card">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div class="day-number" style="background:var(--bg-dark);color:var(--gold)">6-30</div>
+        <div class="day-info">
+          <h4>第 6-30 天：完整挑戰內容</h4>
+          <p>深度工作設定、習慣追蹤、每週回顧模板 | 完整版包含所有 30 天</p>
+        </div>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="day-body">
+        <div style="text-align:center;padding:40px">
+          <p style="color:var(--text-muted);font-size:1rem;margin-bottom:20px">完整版包含所有 30 天的詳細挑戰內容：</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 第 6-10 天：深度工作習慣建立</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 第 11-15 天：時間區塊管理系統</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 第 16-20 天：數位斷舍離實踐</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 第 21-25 天：睡眠與能量管理</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 第 26-30 天：建立可持續的極簡系統</p>
+          <p style="color:var(--text-muted);margin-top:15px">每天包含：詳細步驟、引導問題、習慣追蹤、回顧提示</p>
+          <div style="margin-top:30px">
+            <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn" style="font-size:1rem;padding:14px 40px">獲取完整版 $5.9</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-section">
+    <h3>🛠️ 推薦極簡主義工具</h3>
+    <div class="tool-category">
+      <h5>📵 阻擋分心</h5>
+      <div class="tool-grid">
+        <div class="tool-card"><h6>Freedom</h6><p>跨平台網站阻擋</p></div>
+        <div class="tool-card"><h6>Cold Turkey</h6><p>嚴格網站阻擋</p></div>
+        <div class="tool-card"><h6>StayFocusd</h6><p>Chrome 擴展</p></div>
+        <div class="tool-card"><h6>Forest</h6><p>專注計時遊戲</p></div>
+        <div class="tool-card"><h6>Focusmate</h6><p>配對專注夥伴</p></div>
+        <div class="tool-card"><h6>SelfControl</h6><p>Mac 專用阻擋</p></div>
+      </div>
+    </div>
+    <div class="tool-category">
+      <h5>⏰ 時間管理</h5>
+      <div class="tool-grid">
+        <div class="tool-card"><h6>Toggl Track</h6><p>時間追蹤</p></div>
+        <div class="tool-card"><h6>RescueTime</h6><p>自動使用分析</p></div>
+        <div class="tool-card"><h6>Notion</h6><p>整合任務管理</p></div>
+        <div class="tool-card"><h6>Todoist</h6><p>簡潔任務清單</p></div>
+        <div class="tool-card"><h6>Linear</h6><p>極簡項目管理</p></div>
+        <div class="tool-card"><h6>Things 3</h6><p>優雅任務應用</p></div>
+      </div>
+    </div>
+    <div class="tool-category">
+      <h5>🧘 健康監測</h5>
+      <div class="tool-grid">
+        <div class="tool-card"><h6>Screen Time</h6><p>内置螢幕時間</p></div>
+        <div class="tool-card"><h6>QualityTime</h6><p>Android 監控</p></div>
+        <div class="tool-card"><h6>Flipd</h6><p>專注競賽</p></div>
+        <div class="tool-card"><h6>Be Present</h6><p>冥想計時器</p></div>
+        <div class="tool-card"><h6>Sleep Cycle</h6><p>睡眠質量追蹤</p></div>
+        <div class="tool-card"><h6>Noisli</h6><p>白噪音專注</p></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨️ 列印挑戰表（列印當前視圖即可）</button>
+
+  <div class="cta-section">
+    <h2>🌟 開始你的數位極簡之旅</h2>
+    <p>完整版包含所有 30 天的詳細挑戰、可列印版本、每週回顧模板。</p>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn">立即獲取完整版 $5.9</a>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px;">一次購買，終身使用 | 包含 PDF 版本</p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 25px;">
+      <span style="font-size: 1.8rem;">🛡️</span>
+      <div style="text-align: left;">
+        <strong style="color: var(--gold-light); display: block;">30 天滿意保證</strong>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">不滿意可全額退款</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Killer Lin Farm | <a href="https://linblance.gumroad.com">linblance.gumroad.com</a></p>
+    <p style="margin-top: 10px;">30 天，收回你最大的資產——注意力</p>
+  </footer>
+</div>
+
+<script>
+function toggleDay(el) {
+  const body = el.nextElementSibling;
+  const btn = el.querySelector('.toggle-btn');
+  if (body.classList.contains('active')) {
+    body.classList.remove('active');
+    btn.textContent = '展開 ▼';
+  } else {
+    body.classList.add('active');
+    btn.textContent = '收合 ▲';
+  }
+}
+</script>
+</body>
+</html>

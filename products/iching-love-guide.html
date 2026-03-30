@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Ching for Relationships | 易經感情占卜指南</title>
+<style>
+:root { --bg-dark: #0a0a0f; --bg-card: #111118; --gold: #d4a843; --gold-light: #e8c675; --gold-dark: #a07828; --text: #e8e4dc; --text-muted: #8a8578; --border: #2a2a35; --pink: #c0392b; --rose: #e8919f; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-dark); color: var(--text); font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; min-height: 100vh; background-image: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.03) 0%, transparent 40%); }
+.container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
+header { text-align: center; margin-bottom: 50px; }
+header .logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+.price-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; padding: 8px 24px; border-radius: 30px; font-size: 1.1rem; margin: 20px 0; }
+.hero-section { text-align: center; padding: 50px 30px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg-card); margin-bottom: 40px; }
+.hero-section h2 { font-size: 1.5rem; color: var(--gold-light); margin-bottom: 15px; }
+.hero-section p { color: var(--text-muted); line-height: 1.8; }
+.intro-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 30px 0; }
+.intro-box h3 { color: var(--gold); margin-bottom: 20px; font-size: 1.3rem; }
+.intro-box p { color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+.feature-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; text-align: center; }
+.feature-box .icon { font-size: 2.2rem; margin-bottom: 12px; }
+.feature-box h5 { color: var(--gold); margin-bottom: 8px; }
+.feature-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.hexagram-section { margin: 40px 0; }
+.hexagram-section h3 { color: var(--gold); text-align: center; margin-bottom: 25px; font-size: 1.4rem; }
+.hex-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 25px; overflow: hidden; }
+.hex-header { display: flex; align-items: center; gap: 20px; padding: 25px; cursor: pointer; transition: background 0.3s; }
+.hex-header:hover { background: var(--bg-card-hover); }
+.hex-icon-large { font-size: 3rem; color: var(--gold); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: rgba(212,168,67,0.1); border-radius: 50%; flex-shrink: 0; }
+.hex-info h4 { color: var(--gold-light); font-size: 1.3rem; margin-bottom: 5px; }
+.hex-info p { color: var(--text-muted); font-size: 0.9rem; }
+.hex-badge { margin-left: auto; background: rgba(212,168,67,0.1); color: var(--gold); padding: 5px 14px; border-radius: 15px; font-size: 0.8rem; }
+.hex-body { padding: 25px; border-top: 1px solid var(--border); display: none; }
+.hex-body.active { display: block; }
+.toggle-btn { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 0.9rem; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+.toggle-btn:hover { background: rgba(212,168,67,0.1); }
+.hex-meaning { background: rgba(212,168,67,0.05); border: 1px solid rgba(212,168,67,0.15); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.hex-meaning h5 { color: var(--gold); margin-bottom: 12px; }
+.hex-meaning p { color: var(--text-muted); line-height: 1.8; }
+.scenario-block { margin-bottom: 20px; }
+.scenario-block h5 { color: var(--gold-light); font-size: 1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.scenario-block p { color: var(--text-muted); line-height: 1.8; font-size: 0.95rem; }
+.action-list { list-style: none; margin: 15px 0; }
+.action-list li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.action-list li:last-child { border-bottom: none; }
+.action-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
+.action-text { font-size: 0.95rem; color: var(--text); }
+.situation-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 30px 0; }
+.situation-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 25px; text-align: center; }
+.situation-card .icon { font-size: 2.5rem; margin-bottom: 12px; }
+.situation-card h5 { color: var(--gold-light); margin-bottom: 8px; }
+.situation-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.divination-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 40px 0; }
+.divination-form h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
+.divination-form label { color: var(--gold-light); font-size: 0.95rem; display: block; margin-bottom: 8px; }
+.divination-form select, .divination-form textarea { width: 100%; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: var(--text); font-size: 0.9rem; outline: none; margin-bottom: 15px; }
+.divination-form textarea { min-height: 80px; resize: vertical; }
+.divination-form button { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); border: none; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+.divination-form button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,168,67,0.3); }
+.result-display { display: none; margin-top: 20px; padding: 25px; background: rgba(212,168,67,0.05); border: 1px solid rgba(212,168,67,0.15); border-radius: 12px; }
+.result-display.active { display: block; }
+.result-display h4 { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
+.cta-section { text-align: center; padding: 60px 30px; background: linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border: 1px solid var(--border); border-radius: 20px; margin: 60px 0; }
+.cta-section h2 { font-size: 2rem; color: var(--gold-light); margin-bottom: 15px; }
+.cta-section p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+.cta-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; font-size: 1.1rem; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(212,168,67,0.35); }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 768px) { .situation-grid { grid-template-columns: 1fr; } .hex-header { flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">☰ Killer Lin Farm</div>
+    <h1>易經感情占卜指南</h1>
+    <p>專為感情困惑設計的易經占卜系統。暗戀、分離、複合、婚姻——用五千年智慧指引你的感情方向。包含 8 個核心感情卦象的詳細解讀與行動建議。</p>
+    <div class="price-badge">💰 定價：$8.9 美元 | 終身使用</div>
+  </header>
+
+  <div class="hero-section">
+    <h2>💕 為什麼要用易經來占卜感情？</h2>
+    <p>易經不只是占卜工具，更是中國五千年智慧的結晶。每一個卦象都代表了一種能量狀態，用於感情時，可以幫助你了解當前關係的本質、未來的發展方向，以及你可以採取的最佳行動。</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-box"><div class="icon">🔮</div><h5>8 個感情核心卦象</h5><p>涵蓋所有主要感情狀況的卦象解讀</p></div>
+    <div class="feature-box"><div class="icon">💘</div><h5>暗戀分析</h5><p>單戀的走向與如何行動</p></div>
+    <div class="feature-box"><div class="icon">🔀</div><h5>分手諮詢</h5><p>分離的原因與未來可能</p></div>
+    <div class="feature-box"><div class="icon">💞</div><h5>複合指引</h5><p>是否有複合可能？如何努力？</p></div>
+    <div class="feature-box"><div class="icon">💍</div><h5>婚姻占卜</h5><p>關係的長期發展與建議</p></div>
+    <div class="feature-box"><div class="icon">📋</div><h5>占卜記錄表</h5><p>可列印的記錄，追踪你的感情軌跡</p></div>
+  </div>
+
+  <div class="situation-grid">
+    <div class="situation-card">
+      <div class="icon">💭</div>
+      <h5>我暗戀一個人</h5>
+      <p>想知道對方是否有意思？這段感情會如何發展？我應該主動嗎？</p>
+    </div>
+    <div class="situation-card">
+      <div class="icon">💔</div>
+      <h5>我剛分手</h5>
+      <p>想知道分手的原因？還有複合的可能嗎？我該如何走出傷痛？</p>
+    </div>
+    <div class="situation-card">
+      <div class="icon">🔄</div>
+      <h5>我想復合</h5>
+      <p>我還愛著前任。復合有可能嗎？我應該做什麼去挽回？</p>
+    </div>
+    <div class="situation-card">
+      <div class="icon">💒</div>
+      <h5>我在考慮結婚</h5>
+      <p>這段婚姻會幸福嗎？我們適合結婚嗎？如何經營婚姻？</p>
+    </div>
+  </div>
+
+  <div class="divination-form">
+    <h3>🔮 感情占卜（陰陽擲卦法）</h3>
+    <p style="color:var(--text-muted);text-align:center;margin-bottom:20px;font-size:0.9rem">傳統易經占卜需要擲銅錢三次。這裡提供引導問題幫助你思考。</p>
+    <label>選擇你的感情處境</label>
+    <select id="situation">
+      <option value="">請選擇...</option>
+      <option value="secret">我暗戀一個人，不知道對方心意</option>
+      <option value="breakup">我剛分手，想要理解原因</option>
+      <option value="reconcile">我想復合，不知道有沒有機會</option>
+      <option value="marriage">我在考慮結婚，想要評估這段關係</option>
+      <option value="dating">我正在交往，想要了解未來走向</option>
+      <option value="single">我是單身，想要知道何時會遇到對的人</option>
+    </select>
+    <label>你心中最困擾的問題是什麼？（越具體越好）</label>
+    <textarea id="question" placeholder="例如：我和暗戀的對象最近聊天變少了，他是不是對我沒興趣了？"></textarea>
+    <label>你對這段感情的直覺感受是什麼？</label>
+    <select id="intuition">
+      <option value="">請選擇...</option>
+      <option value="hope">我充滿希望，感覺會有好結果</option>
+      <option value="confused">我很迷茫，不知道該怎麼做</option>
+      <option value="anxious">我感到焦慮和不安</option>
+      <option value="peaceful">我內心平靜，順其自然</option>
+      <option value="sad">我感到悲傷和失落</option>
+    </select>
+    <button onclick="doDivination()">✨ 開始占卜 ✨</button>
+    <div id="resultDisplay" class="result-display">
+      <h4>🔮 占卜結果</h4>
+      <div id="resultContent"></div>
+    </div>
+  </div>
+
+  <div class="hexagram-section">
+    <h3>📖 8 個核心感情卦象</h3>
+
+    <!-- 咸卦 -->
+    <div class="hex-card">
+      <div class="hex-header" onclick="toggleHex(this)">
+        <div class="hex-icon-large">咸</div>
+        <div class="hex-info">
+          <h4>咸卦 — 感應人心</h4>
+          <p>兑上艮下 | 情感觸動、愛戀萌芽 | 適用：暗戀、初戀、心動</p>
+        </div>
+        <span class="hex-badge">暗戀專用</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="hex-body">
+        <div class="hex-meaning">
+          <h5>💫 卦象解讀</h5>
+          <p>咸卦象徵少男少女的純真情愫，如同肌膚相觸時的敏感反應。此卦代表愛情最初的悸動——那種心跳加速、魂牽夢縈的感覺。</p>
+          <p style="margin-top:10px">如果你問的是暗戀，咸卦通常是好兆頭：對方可能對你有好感，但雙方都還在試探階段。這個卦提醒你：真誠是最重要的武器，不要玩太多心機。</p>
+        </div>
+        <div class="scenario-block">
+          <h5>💭 暗戀情境</h5>
+          <p>你們之間有微妙的氛圍，但還沒有明確的信號。咸卦說：這是正常的，愛情本來就是從感應開始。注意對方的肢體語言和小動作——一個眼神、一個微笑都可能是暗示。</p>
+        </div>
+        <div class="scenario-block">
+          <h5>🔀 分手情境</h5>
+          <p>如果分手後問復合，咸卦提醒：先檢視你們之間是否還有「感應」——一種心靈相通的默契。如果沒有了，強求只會傷人傷己。</p>
+        </div>
+        <h5 style="color:var(--gold);margin:15px 0 10px">✅ 建議行動</h5>
+        <ul class="action-list">
+          <li><span class="action-icon">👉</span><span class="action-text">主動創造互動機會，但不要過於明顯</span></li>
+          <li><span class="action-icon">👀</span><span class="action-text">觀察對方的肢體語言，感受細微的變化</span></li>
+          <li><span class="action-icon">💬</span><span class="action-text">用真誠的態度與對方交流，不要假裝</span></li>
+          <li><span class="action-icon">🌱</span><span class="action-text">保持耐心，讓感情自然發展</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 恆卦 -->
+    <div class="hex-card">
+      <div class="hex-header" onclick="toggleHex(this)">
+        <div class="hex-icon-large">恆</div>
+        <div class="hex-info">
+          <h4>恆卦 — 持久穩定</h4>
+          <p>震上巽下 | 長久持續、恆心堅守 | 適用：穩定關係、婚姻經營</p>
+        </div>
+        <span class="hex-badge">婚姻專用</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="hex-body">
+        <div class="hex-meaning">
+          <h5>💫 卦象解讀</h5>
+          <p>恆卦代表持久的關係，如日月運行恆久不變。此卦強調：真正的愛情需要時間和耐心來培養，需要雙方共同堅守承諾。</p>
+          <p style="margin-top:10px">如果你正在考慮結婚，恆卦問：你準備好長期投入了嗎？婚姻不是一時的激情，而是日復一日的相互扶持與包容。</p>
+        </div>
+        <div class="scenario-block">
+          <h5>💒 婚姻情境</h5>
+          <p>恆卦對婚姻非常有利。它暗示這段關係有穩定的基礎，只要雙方願意付出，就能長久美滿。提醒：遇到困難時不要輕易放棄，恆久是需要兩人一起努力的。</p>
+        </div>
+        <h5 style="color:var(--gold);margin:15px 0 10px">✅ 建議行動</h5>
+        <ul class="action-list">
+          <li><span class="action-icon">🗓️</span><span class="action-text">建立固定的「關係時間」：每週约会、每月旅行</span></li>
+          <li><span class="action-icon">💬</span><span class="action-text">保持開放的溝通，不要把所有話都悶在心裡</span></li>
+          <li><span class="action-icon">🙏</span><span class="action-text">學會感激，不要把对方的付出視為理所當然</span></li>
+          <li><span class="action-icon">🔧</span><span class="action-text">遇到問題時一起解決，不要逃避</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 歸妹卦 -->
+    <div class="hex-card">
+      <div class="hex-header" onclick="toggleHex(this)">
+        <div class="hex-icon-large">歸妹</div>
+        <div class="hex-info">
+          <h4>歸妹卦 — 以柔克剛</h4>
+          <p>震上兑下 | 婚姻之路、情感歸宿 | 適用：結婚、複合</p>
+        </div>
+        <span class="hex-badge">複合專用</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="hex-body">
+        <div class="hex-meaning">
+          <h5>💫 卦象解讀</h5>
+          <p>歸妹描述的是一種以柔克剛的力量——年輕女子以温柔與智慧贏得愛情。此卦提醒：有時候退一步反而能前進更多。</p>
+          <p style="margin-top:10px">如果分手後問復合，歸妹卦說：有機會，但需要你展現成熟與智慧。不要過度主動攻勢，而是用你的改變與成長來吸引對方。</p>
+        </div>
+        <div class="scenario-block">
+          <h5>🔄 複合情境</h5>
+          <p>歸妹卦的提醒：先問自己為什麼想復合？是因為寂寞？不甘心？還是真心愛著？如果是前兩者，復合只會重蹈覆轍。如果是真心，那麼改變自己、給對方空間，才是正確的方向。</p>
+        </div>
+        <h5 style="color:var(--gold);margin:15px 0 10px">✅ 建議行動</h5>
+        <ul class="action-list">
+          <li><span class="action-icon">👁️</span><span class="action-text">先確認自己復合的真正動機</span></li>
+          <li><span class="action-icon">🌱</span><span class="action-text">專注改善自己，不再盯著對方</span></li>
+          <li><span class="action-icon">⏳</span><span class="action-text">給彼此時間和空間，不要急於求成</span></li>
+          <li><span class="action-icon">💎</span><span class="action-text">用實際行動證明你的改變，而非言語</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 睽卦 -->
+    <div class="hex-card">
+      <div class="hex-header" onclick="toggleHex(this)">
+        <div class="hex-icon-large">睽</div>
+        <div class="hex-info">
+          <h4>睽卦 — 異中求同</h4>
+          <p>離上兑下 | 分離、差異、化解 | 適用：分手、冷戰</p>
+        </div>
+        <span class="hex-badge">分手專用</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="hex-body">
+        <div class="hex-meaning">
+          <h5>💫 卦象解讀</h5>
+          <p>睽卦描述分離的狀態——就像火與水看起來無法相容。但此卦也告訴我們：差異不一定是壞事，關鍵在於如何找到共同點。</p>
+          <p style="margin-top:10px">如果正在經歷分手或冷戰，睽卦提醒：先冷靜下來，不要在情緒激動時做任何決定。你們之間的差異可能沒有那麼不可調和。</p>
+        </div>
+        <div class="scenario-block">
+          <h5>💔 分手情境</h5>
+          <p>睽卦說：這次分手可能是一個必要的過程，有些價值觀或生活方式的差異無法調和。與其勉強在一起，不如坦然接受分離，各自尋找更適合的人。</p>
+        </div>
+        <h5 style="color:var(--gold);margin:15px 0 10px">✅ 建議行動</h5>
+        <ul class="action-list">
+          <li><span class="action-icon">🧊</span><span class="action-text">先冷靜下來，不要在憤怒時做決定</span></li>
+          <li><span class="action-icon">🔍</span><span class="action-text">認真思考：你們的核心差異是什麼？能否調和？</span></li>
+          <li><span class="action-icon">👂</span><span class="action-text">如果還想挽救，主動溝通，嘗試理解對方觀點</span></li>
+          <li><span class="action-icon">🙏</span><span class="action-text">如果無法挽回，學會放下，祝福對方</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 其他 4 個卦象精簡版 -->
+    <div class="hex-card">
+      <div class="hex-header" onclick="toggleHex(this)">
+        <div class="hex-icon-large" style="background:rgba(212,168,67,0.1)">...+4</div>
+        <div class="hex-info">
+          <h4>其餘 4 個核心感情卦象</h4>
+          <p>家人、豊、咸、兑 — 完整解讀包含在完整版中</p>
+        </div>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="hex-body">
+        <div style="text-align:center;padding:40px">
+          <p style="color:var(--text-muted);font-size:1rem;margin-bottom:20px">完整版包含所有 8 個感情卦象的完整解讀：</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 家人卦 — 家庭和諧、親密關係</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 豊卦 — 豐盛情感、收獲愛情</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 咸卦（詳解版）— 暗戀初戀全分析</p>
+          <p style="color:var(--gold);margin-bottom:8px">✓ 兑卦 — 喜悦交流、甜蜜溝通</p>
+          <p style="color:var(--text-muted);margin-top:15px">每個卦象包含：詳細解讀、各情境分析、行動建議、案例說明</p>
+          <div style="margin-top:30px">
+            <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn" style="font-size:1rem;padding:14px 40px">獲取完整版 $8.9</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <h3>📋 可列印占卜記錄表</h3>
+    <p>每次占卜後，建議記錄以下內容，以便日後回顧與學習：</p>
+    <p style="margin-top:15px;color:var(--gold)">• 占卜日期與時間</p>
+    <p style="color:var(--gold)">• 當時的感情狀況描述</p>
+    <p style="color:var(--gold)">• 擲卦結果（哪個卦象）</p>
+    <p style="color:var(--gold)">• 你對卦象的解讀與理解</p>
+    <p style="color:var(--gold)">• 當時決定採取的行動</p>
+    <p style="color:var(--gold)">• 一個月後的結果回顧</p>
+  </div>
+
+  <div class="cta-section">
+    <h2>💕 讓易經指引你的感情之路</h2>
+    <p>完整版包含所有 8 個感情卦象的完整解讀、互動式占卜引導、可列印占卜記錄表。</p>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn">立即獲取完整版 $8.9</a>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px;">一次購買，終身使用 | 包含 PDF 版本</p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 25px;">
+      <span style="font-size: 1.8rem;">🛡️</span>
+      <div style="text-align: left;">
+        <strong style="color: var(--gold-light); display: block;">30 天滿意保證</strong>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">不滿意可全額退款</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Killer Lin Farm | <a href="https://linblance.gumroad.com">linblance.gumroad.com</a></p>
+    <p style="margin-top: 10px;">用易經的智慧，解決感情的迷惘</p>
+  </footer>
+</div>
+
+<script>
+function toggleHex(el) {
+  const body = el.nextElementSibling;
+  const btn = el.querySelector('.toggle-btn');
+  if (body.classList.contains('active')) {
+    body.classList.remove('active');
+    btn.textContent = '展開 ▼';
+  } else {
+    body.classList.add('active');
+    btn.textContent = '收合 ▲';
+  }
+}
+
+function doDivination() {
+  const situation = document.getElementById('situation').value;
+  const question = document.getElementById('question').value;
+  const intuition = document.getElementById('intuition').value;
+
+  if (!situation || !question) {
+    alert('請填寫感情處境和困擾的問題');
+    return;
+  }
+
+  const results = {
+    secret: { hex: '咸卦', title: '感應人心', advice: '這段暗戀正在萌發。咸卦說：真誠是關鍵。不要過度猜測，主動創造互動機會，但保持自然。對方可能對你有好感，但需要你迈出第一步。注意觀察對方的微小信號——一個眼神、一個回覆速度都可能透露心意。' },
+    breakup: { hex: '睽卦', title: '異中求同', advice: '分手是痛苦的，但睽卦提醒你：這可能是必要的。檢視這段關係中的核心差異——是價值觀、生活方式，還是溝通方式出了問題？有些分離是為了讓雙方找到更適合的人。先給自己時間和空間來疗傷，不要急於做任何決定。' },
+    reconcile: { hex: '歸妹卦', title: '以柔克剛', advice: '復合有機會，但需要智慧。歸妹卦說：不要攻勢過猛，用你的成長和改變來吸引對方。先問自己：為什麼想復合？是真心愛著，還是不甘心？如果是真心，那麼專注於自我提升，而不是盯著對方。給彼此時間和空間，用實際行動證明改變。' },
+    marriage: { hex: '恆卦', title: '持久穩定', advice: '恆卦對婚姻是正面的兆頭。它提醒：婚姻需要雙方共同堅守承諾，遇到困難時不要輕易放棄。在結婚前，好好檢視：你們的價值觀、溝通方式、對未來的規劃是否一致？好的婚姻建立在共同成長的基礎上，而不只是浪漫的感覺。' },
+    dating: { hex: '家人卦', title: '家庭和諧', advice: '這段關係正在走向穩定。家人卦說：你們的關係有成為長期伴侶的潛力。繼續培養彼此的信任和理解，不要讓日常忙碌破壞了你們的聯繫。建議建立固定的「關係時間」，保持浪漫和新鲜感。' },
+    single: { hex: '大過卦', title: '超越常規', advice: '你即將遇到改變你人生的人。大過卦說：這段緣分可能會打破你過去的期待與模式。保持開放的心態，不要過度設限。那個特別的人可能會以你意想不到的方式出現。準備好接受挑戰和成長，因為真正的愛情會讓你變得更好。' }
+  };
+
+  const result = results[situation] || { hex: '無妄卦', title: '正道而行', advice: '跟隨你的內心，保持正道。不要被恐懼或焦慮支配你的決定。' };
+
+  document.getElementById('resultContent').innerHTML = `
+    <p style="color:var(--gold-light);font-size:1.2rem;margin-bottom:10px">卦象：${result.hex}（${result.title}）</p>
+    <p style="color:var(--text-muted);line-height:1.9;margin-bottom:15px">${result.advice}</p>
+    <p style="color:var(--text-muted);font-size:0.85rem;font-style:italic">* 這是根據你的情況給出的方向性建議，真正的易經占卜需要擲銅錢三次得到完整的卦象。如需更精確的指引，請使用殺手林的易經占卜工具。</p>
+  `;
+  document.getElementById('resultDisplay').classList.add('active');
+  document.getElementById('resultDisplay').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>

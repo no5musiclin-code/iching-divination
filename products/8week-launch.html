@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8-Week Business Launch Plan | 8週商業啟動計劃</title>
+<style>
+:root { --bg-dark: #0a0a0f; --bg-card: #111118; --gold: #d4a843; --gold-light: #e8c675; --gold-dark: #a07828; --text: #e8e4dc; --text-muted: #8a8578; --border: #2a2a35; --green: #4a9c6d; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-dark); color: var(--text); font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; min-height: 100vh; background-image: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.03) 0%, transparent 40%); }
+.container { max-width: 950px; margin: 0 auto; padding: 40px 20px; }
+header { text-align: center; margin-bottom: 50px; }
+header .logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+.price-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; padding: 8px 24px; border-radius: 30px; font-size: 1.1rem; margin: 20px 0; }
+.hero-section { text-align: center; padding: 50px 30px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg-card); margin-bottom: 40px; }
+.hero-section h2 { font-size: 1.5rem; color: var(--gold-light); margin-bottom: 15px; }
+.hero-section p { color: var(--text-muted); line-height: 1.8; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+.feature-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; text-align: center; }
+.feature-box .icon { font-size: 2.2rem; margin-bottom: 12px; }
+.feature-box h5 { color: var(--gold); margin-bottom: 8px; }
+.feature-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.week-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 25px; overflow: hidden; }
+.week-header { display: flex; align-items: center; gap: 15px; padding: 22px 25px; cursor: pointer; transition: background 0.3s; background: var(--bg-card); }
+.week-header:hover { background: var(--bg-card-hover); }
+.week-num { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.3rem; flex-shrink: 0; }
+.week-info h4 { color: var(--gold-light); font-size: 1.15rem; margin-bottom: 5px; }
+.week-info p { color: var(--text-muted); font-size: 0.85rem; }
+.week-meta { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.week-meta .progress { background: rgba(74,156,109,0.1); border: 1px solid var(--green); padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; color: var(--green); }
+.week-meta .hex { color: var(--gold); font-size: 0.85rem; }
+.toggle-btn { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 0.9rem; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+.toggle-btn:hover { background: rgba(212,168,67,0.1); }
+.week-body { padding: 25px; border-top: 1px solid var(--border); display: none; }
+.week-body.active { display: block; }
+.week-goals { margin-bottom: 20px; }
+.week-goals h5 { color: var(--gold); margin-bottom: 12px; font-size: 1rem; }
+.goal-list { list-style: none; }
+.goal-list li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.goal-list li:last-child { border-bottom: none; }
+.checkbox { width: 20px; height: 20px; accent-color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.goal-text { font-size: 0.95rem; color: var(--text); }
+.goal-text strong { color: var(--gold-light); display: block; margin-bottom: 3px; }
+.goal-text span { color: var(--text-muted); font-size: 0.85rem; }
+.task-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+.task-card { background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 15px; }
+.task-card h6 { color: var(--gold); font-size: 0.85rem; margin-bottom: 8px; }
+.task-card p { color: var(--text-muted); font-size: 0.8rem; line-height: 1.5; }
+.task-card.done { border-color: var(--green); background: rgba(74,156,109,0.05); }
+.iching-advise { background: rgba(212,168,67,0.05); border: 1px solid rgba(212,168,67,0.15); border-radius: 12px; padding: 20px; margin: 20px 0; }
+.iching-advise h5 { color: var(--gold); margin-bottom: 10px; }
+.iching-advise p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+.progress-tracker { margin: 40px 0; }
+.progress-tracker h3 { color: var(--gold); text-align: center; margin-bottom: 20px; }
+.progress-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+.progress-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 15px 10px; text-align: center; transition: all 0.3s; }
+.progress-cell:hover { border-color: var(--gold-dark); }
+.progress-cell.completed { background: rgba(74,156,109,0.1); border-color: var(--green); }
+.progress-cell .week-label { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-bottom: 5px; }
+.progress-cell .week-icon { font-size: 1.5rem; margin-bottom: 5px; }
+.progress-cell .week-status { font-size: 0.75rem; color: var(--text-muted); }
+.check-in { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 15px 0; }
+.check-in h5 { color: var(--gold); margin-bottom: 12px; }
+.check-in textarea { width: 100%; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: var(--text); font-size: 0.9rem; min-height: 60px; outline: none; resize: vertical; }
+.celebration { background: linear-gradient(135deg, rgba(212,168,67,0.1), rgba(74,156,109,0.05)); border: 2px solid var(--gold-dark); border-radius: 16px; padding: 30px; margin: 40px 0; text-align: center; }
+.celebration h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 15px; }
+.celebration p { color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; }
+.celebration .reward { font-size: 3rem; margin-bottom: 15px; }
+.cta-section { text-align: center; padding: 60px 30px; background: linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border: 1px solid var(--border); border-radius: 20px; margin: 60px 0; }
+.cta-section h2 { font-size: 2rem; color: var(--gold-light); margin-bottom: 15px; }
+.cta-section p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+.cta-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; font-size: 1.1rem; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(212,168,67,0.35); }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 768px) { .task-grid { grid-template-columns: 1fr; } .progress-grid { grid-template-columns: repeat(4, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">☰ Killer Lin Farm</div>
+    <h1>8 週商業啟動計劃</h1>
+    <p>一個經過驗證的 8 週時間表，幫助創業者從概念到正式啟動。每一週都有清晰的目標、關鍵任務、易經建議，讓你的創業之旅有章可循。</p>
+    <div class="price-badge">💰 定價：$9.9 美元 | 終身使用</div>
+  </header>
+
+  <div class="hero-section">
+    <h2>🚀 為什麼需要這個計劃？</h2>
+    <p>大多數創業者浪費時間在不重要的事情上，或者在關鍵任務上拖延。這個 8 週計劃讓你每一天都知道該做什麼，確保你在正確的時間做正確的事情。結合易經智慧，讓你在每週都有宇宙能量的支持。</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-box"><div class="icon">📅</div><h5>每週目標設定</h5><p>清晰的每週焦點與可衡量的目標</p></div>
+    <div class="feature-box"><div class="icon">✅</div><h5>關鍵任務清單</h5><p>每週3-5個核心任務，完成即前進</p></div>
+    <div class="feature-box"><div class="icon">🔮</div><h5>易經每週建議</h5><p>每週卦象指引你的商業決策</p></div>
+    <div class="feature-box"><div class="icon">📊</div><h5>進度追蹤表</h5><p>視覺化你的每週進展</p></div>
+    <div class="feature-box"><div class="icon">🎉</div><h5>完成慶祝儀式</h5><p>每個階段的慶祝與反思</p></div>
+    <div class="feature-box"><div class="icon">🖨️</div><h5>可列印版本</h5><p>每週計劃可直接列印使用</p></div>
+  </div>
+
+  <div class="progress-tracker">
+    <h3>📊 8 週進度追蹤</h3>
+    <div class="progress-grid">
+      <div class="progress-cell"><div class="week-label">W1</div><div class="week-icon">🌱</div><div class="week-status">準備期</div></div>
+      <div class="progress-cell"><div class="week-label">W2</div><div class="week-icon">🔬</div><div class="week-status">驗證期</div></div>
+      <div class="progress-cell"><div class="week-label">W3</div><div class="week-icon">⚙️</div><div class="week-status">開發期</div></div>
+      <div class="progress-cell"><div class="week-label">W4</div><div class="week-icon">🎨</div><div class="week-status">設計期</div></div>
+      <div class="progress-cell"><div class="week-label">W5</div><div class="week-icon">📦</div><div class="week-status">產品期</div></div>
+      <div class="progress-cell"><div class="week-label">W6</div><div class="week-icon">📣</div><div class="week-status">行銷期</div></div>
+      <div class="progress-cell"><div class="week-label">W7</div><div class="week-icon">🚀</div><div class="week-status">預備期</div></div>
+      <div class="progress-cell"><div class="week-label">W8</div><div class="week-icon">🎊</div><div class="week-status">啟動期</div></div>
+    </div>
+  </div>
+
+  <!-- Week 1 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-num">W1</div>
+      <div class="week-info">
+        <h4>第 1 週：想法驗證與定位</h4>
+        <p>核心問題：我的想法真的值得做嗎？</p>
+      </div>
+      <div class="week-meta">
+        <span class="hex">卦象：屯卦</span>
+        <span class="progress">準備度 0%</span>
+      </div>
+      <button class="toggle-btn">展開 ▼</button>
+    </div>
+    <div class="week-body">
+      <div class="iching-advise">
+        <h5>🔮 易經每週建議（屯卦）</h5>
+        <p>屯卦代表「萬物初始」，就像種子剛剛在地下萌芽。這週你正在確認這個種子是否值得播種。</p>
+        <p style="margin-top:8px">建議：不要急於開發產品，先確認問題足夠大、客戶真的想要解決這個問題。保持耐心，等待信號明確。</p>
+      </div>
+      <div class="week-goals">
+        <h5>🎯 本週核心目標</h5>
+        <ul class="goal-list">
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>找到 5 個真實潛在客戶</strong><span>通過社群媒體、論壇或朋友推薦，聯繫至少 5 個可能遇到這個問題的人</span></div></li>
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>完成問題訪談</strong><span>對每個潛在客戶進行 15-20 分鐘的訪談，確認問題的真實性與重要性</span></div></li>
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>定義 MVP 功能</strong><span>根據訪談結果，列出你的 MVP 必須包含的 3-5 個核心功能</span></div></li>
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>完成商業模式畫布</strong><span>使用工具繪製你的商業模式畫布，確認你的商業邏輯是否成立</span></div></li>
+        </ul>
+      </div>
+      <div class="task-grid">
+        <div class="task-card"><h6>☕ 客戶訪談腳本</h6><p>準備一份 10 個問題的訪談腳本，專注於了解問題而非推銷解決方案</p></div>
+        <div class="task-card"><h6>📊 問題評估表</h6><p>建立一個簡單的評估表，記錄每個受訪者對問題的緊迫程度（1-10分）</p></div>
+        <div class="task-card"><h6>💰 支付意願測試</h6><p>在訪談中問：「如果這個問題有個解決方案，願意支付多少？」</p></div>
+      </div>
+      <div class="check-in">
+        <h5>📝 週末回顧</h5>
+        <textarea placeholder="這週你學到了什麼？客戶最關心的問題是什麼？你的想法需要調整嗎？"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 2 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-num">W2</div>
+      <div class="week-info">
+        <h4>第 2 週：市場研究與競爭分析</h4>
+        <p>核心問題：市場機會有多大？誰是我的競爭對手？</p>
+      </div>
+      <div class="week-meta">
+        <span class="hex">卦象：觀卦</span>
+        <span class="progress">準備度 0%</span>
+      </div>
+      <button class="toggle-btn">展開 ▼</button>
+    </div>
+    <div class="week-body">
+      <div class="iching-advise">
+        <h5>🔮 易經每週建議（觀卦）</h5>
+        <p>觀卦代表「觀察」——從高處俯瞰，了解全局。這週需要你退後一步，全面觀察市場格局。</p>
+        <p style="margin-top:8px">建議：不要只看競爭對手的產品，更要觀察他們的商業模式、客戶評價、營收狀況。找到你的差異化切入點。</p>
+      </div>
+      <div class="week-goals">
+        <h5>🎯 本週核心目標</h5>
+        <ul class="goal-list">
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>分析 5 個主要競爭對手</strong><span>深入了解他們的產品、價格、客戶、行銷策略、優勢與弱點</span></div></li>
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>識別差異化機會</strong><span>找出市場中尚未被滿足的需求或做得不好的地方</span></div></li>
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>繪製競爭定位圖</strong><span>用 2x2 矩陣定位你和競爭對手的位置（如：價格高/低 vs 功能多/少）</span></div></li>
+          <li><input type="checkbox" class="checkbox"><div class="goal-text"><strong>計算 TAM/SAM/SOM</strong><span>估算你的總市場、可服務市場、可獲得市場的大小</span></div></li>
+        </ul>
+      </div>
+      <div class="task-grid">
+        <div class="task-card"><h6>🔍 競爭對手清單</h6><p>列出所有直接或間接的競爭對手，包括他們的網站、營收估算、客戶評價</p></div>
+        <div class="task-card"><h6>📈 市場規模估算</h6><p>基於行業報告和公開數據，估算你的目標市場規模</p></div>
+        <div class="task-card"><h6>⚔️ 差異化策略</h6><p>用一句話說明：為什麼客戶應該選你而不是現有選項？</p></div>
+      </div>
+      <div class="check-in">
+        <h5>📝 週末回顧</h5>
+        <textarea placeholder="你的競爭對手誰最強？他們的弱點在哪？你的獨特價值主張是什麼？"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 3-8 精簡版 -->
+  <div class="week-section">
+    <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-num" style="background:var(--bg-dark);color:var(--gold)">W3-8</div>
+      <div class="week-info">
+        <h4>第 3-8 週：其餘 6 週完整內容</h4>
+        <p>產品開發、品牌設計、MVP 構建、行銷準備、發布倒數、成功啟動</p>
+      </div>
+      <button class="toggle-btn">展開 ▼</button>
+    </div>
+    <div class="week-body">
+      <div style="text-align:center;padding:40px">
+        <p style="color:var(--text-muted);font-size:1rem;margin-bottom:20px">完整版包含所有 8 週的詳細計劃：</p>
+        <p style="color:var(--gold);margin-bottom:8px">✓ W3: 核心功能開發 | 蒙卦 — 智慧啟蒙</p>
+        <p style="color:var(--gold);margin-bottom:8px">✓ W4: 品牌與視覺設計 | 賁卦 — 文采斐然</p>
+        <p style="color:var(--gold);margin-bottom:8px">✓ W5: MVP 構建冲刺 | 需卦 — 耐心積累</p>
+        <p style="color:var(--gold);margin-bottom:8px">✓ W6: 內容與行銷準備 | 巽卦 — 風行天下</p>
+        <p style="color:var(--gold);margin-bottom:8px">✓ W7: 發布前倒數 | 泰卦 — 天地交泰</p>
+        <p style="color:var(--gold);margin-bottom:8px">✓ W8: 正式啟動 | 大有卦 — 豐盛豐收</p>
+        <p style="color:var(--text-muted);margin-top:15px">每週包含：目標設定、任務清單、易經建議、進度追蹤、週末回顧</p>
+        <div style="margin-top:30px">
+          <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn" style="font-size:1rem;padding:14px 40px">獲取完整版 $9.9</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="celebration">
+    <div class="reward">🎊</div>
+    <h3>完成後的慶祝儀式</h3>
+    <p>當你完成 8 週的旅程，不要忘記慶祝你的成就！每一個偉大的企業都從第一步開始。</p>
+    <p style="margin-top:15px">建議的慶祝儀式：</p>
+    <p>• 寫一封信給未來的自己，記錄今天的夢想與決心</p>
+    <p>• 購買一件一直想要的禮物獎勵自己</p>
+    <p>• 與支持你的人分享你的成就與下一步計劃</p>
+    <p>• 開始規劃下一個更大的目標</p>
+  </div>
+
+  <div class="cta-section">
+    <h2>🚀 開始你的 8 週啟動之旅</h2>
+    <p>完整版包含所有 8 週的詳細計劃、可列印版本、每週回顧模板。</p>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn">立即獲取完整版 $9.9</a>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px;">一次購買，終身使用 | 包含 PDF 版本</p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 25px;">
+      <span style="font-size: 1.8rem;">🛡️</span>
+      <div style="text-align: left;">
+        <strong style="color: var(--gold-light); display: block;">30 天滿意保證</strong>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">不滿意可全額退款</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Killer Lin Farm | <a href="https://linblance.gumroad.com">linblance.gumroad.com</a></p>
+    <p style="margin-top: 10px;">8 週，改變你事業軌跡的開始</p>
+  </footer>
+</div>
+
+<script>
+function toggleWeek(el) {
+  const body = el.nextElementSibling;
+  const btn = el.querySelector('.toggle-btn');
+  if (body.classList.contains('active')) {
+    body.classList.remove('active');
+    btn.textContent = '展開 ▼';
+  } else {
+    body.classList.add('active');
+    btn.textContent = '收合 ▲';
+  }
+}
+</script>
+</body>
+</html>

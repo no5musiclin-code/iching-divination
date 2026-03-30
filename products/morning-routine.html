@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneur Morning Routine | 企業家晨間例程清單</title>
+<style>
+:root { --bg-dark: #0a0a0f; --bg-card: #111118; --gold: #d4a843; --gold-light: #e8c675; --gold-dark: #a07828; --text: #e8e4dc; --text-muted: #8a8578; --border: #2a2a35; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-dark); color: var(--text); font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; min-height: 100vh; background-image: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.03) 0%, transparent 40%); }
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+header { text-align: center; margin-bottom: 50px; }
+header .logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+.price-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; padding: 8px 24px; border-radius: 30px; font-size: 1.1rem; margin: 20px 0; }
+.schedule-table { width: 100%; border-collapse: collapse; margin: 30px 0; }
+.schedule-table th { background: rgba(212,168,67,0.1); color: var(--gold); padding: 14px; text-align: center; border: 1px solid var(--border); font-size: 1rem; }
+.schedule-table td { background: var(--bg-card); border: 1px solid var(--border); padding: 12px; vertical-align: top; }
+.time-cell { color: var(--gold); font-weight: 600; text-align: center; width: 100px; font-size: 0.95rem; }
+.activity-cell { font-size: 0.95rem; color: var(--text); }
+.activity-cell strong { color: var(--gold-light); display: block; margin-bottom: 4px; }
+.activity-cell p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.check-cell { text-align: center; width: 50px; }
+input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--gold); cursor: pointer; }
+.section-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 30px 0; }
+.section-box h3 { color: var(--gold); margin-bottom: 20px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+.tracking-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+.tracking-item { background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 15px; }
+.tracking-item label { font-size: 0.9rem; color: var(--text-muted); display: block; margin-bottom: 8px; }
+.tracking-item input[type="number"], .tracking-item select, .tracking-item input[type="text"] { width: 100%; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px; color: var(--text); font-size: 0.9rem; }
+.hexagram-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+.hex-card { background: var(--bg-dark); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+.hex-card .hex { font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; }
+.hex-card h5 { color: var(--gold-light); margin-bottom: 8px; }
+.hex-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.weekly-review { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 30px 0; }
+.weekly-review h3 { color: var(--gold); margin-bottom: 20px; }
+.review-question { margin-bottom: 15px; }
+.review-question label { color: var(--gold-light); font-size: 0.95rem; display: block; margin-bottom: 8px; }
+.review-question textarea, .review-question input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: var(--text); font-size: 0.9rem; min-height: 60px; }
+.print-btn { display: block; width: 100%; padding: 18px; background: var(--bg-card); border: 2px solid var(--gold); color: var(--gold); border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; text-align: center; margin: 30px 0; }
+.print-btn:hover { background: var(--gold); color: var(--bg-dark); }
+.cta-section { text-align: center; padding: 50px 30px; background: linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border: 1px solid var(--border); border-radius: 20px; margin: 50px 0; }
+.cta-section h2 { font-size: 1.8rem; color: var(--gold-light); margin-bottom: 15px; }
+.cta-section p { color: var(--text-muted); margin-bottom: 25px; font-size: 1rem; }
+.cta-btn { display: inline-block; padding: 16px 45px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; font-size: 1.05rem; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(212,168,67,0.35); }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 768px) { .schedule-table { font-size: 0.85rem; } .hexagram-section { grid-template-columns: 1fr; } }
+@media print { body { background: white; color: #1a1a1a; } .cta-section, .print-btn, header .logo, .price-badge, .cta-btn { display: none !important; } .container { max-width: 100%; padding: 10px; } .schedule-table th { background: #f0e6cc; color: #8a6914; } .schedule-table td, .section-box, .tracking-item { background: white; border: 1px solid #d4a843; } .activity-cell strong { color: #8a6914; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">☰ Killer Lin Farm</div>
+    <h1>企業家晨間例程清單</h1>
+    <p>從 5:30 到 7:30，兩小時的完美晨間例程。結合易經智慧、身體鍛煉、冥想、閱讀，幫助創業者每一天都以最好的狀態開始。</p>
+    <div class="price-badge">💰 定價：$4.9 美元 | 終身使用</div>
+  </header>
+
+  <div class="section-box">
+    <h3>🌅 每日晨間例程表（5:30 - 7:30）</h3>
+    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">* 勾選每個完成的項目，追蹤你的晨間實踐</p>
+    <table class="schedule-table">
+      <thead>
+        <tr><th>時間</th><th>活動</th><th>執行</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-cell">5:30<br><span style="font-size:0.75rem;color:var(--text-muted)">起點</span></td>
+          <td class="activity-cell">
+            <strong>🛏️ 起床 + 伸展（5 分鐘）</strong>
+            <p>柔和的鬧鐘叫醒你，不要按貪睡鍵。起床後做 10 次深呼吸，然後做全身伸展：手臂、腰部、腿部。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">5:35</td>
+          <td class="activity-cell">
+            <strong>☕ 喝水 + 上廁所（5 分鐘）</strong>
+            <p>喝一杯室溫水（可加檸檬），幫助身體補充夜間流失的水分。讓身體自然甦醒。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">5:40</td>
+          <td class="activity-cell">
+            <strong>🔮 易經每日占卜（15 分鐘）</strong>
+            <p>拿出三枚硬幣或使用易經應用，擲卦得知今天的卦象。記錄在下方日誌中，並閱讀今日卦象的含義與建議。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">5:55</td>
+          <td class="activity-cell">
+            <strong>🧘 冥想（15 分鐘）</strong>
+            <p>舒適地坐下，閉眼。跟隨一個冥想引導（推薦平靜/創業相關主題），或者只是靜靜地觀察呼吸。如果今天有卦象，可以結合卦象能量進行觀想。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">6:10</td>
+          <td class="activity-cell">
+            <strong>🏃 運動（20 分鐘）</strong>
+            <p>選擇一種你喜歡的運動：慢跑、HIIT、瑜伽、太極拳、游泳。運動幫助血液循環，喚醒身體每一個細胞。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">6:30</td>
+          <td class="activity-cell">
+            <strong>🚿 冷水淋浴（5 分鐘）</strong>
+            <p>運動後的冷水淋浴可以收緊皮膚、提升精神、刺激免疫系統。從 30 秒開始，逐漸增加到 5 分鐘。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">6:35</td>
+          <td class="activity-cell">
+            <strong>👔 個人整理（10 分鐘）</strong>
+            <p>刷牙、剃鬚/化妝、整理頭髮、穿著整潔。創業者需要注意自己的外在形象，它影響你的自信與他人對你的觀感。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">6:45</td>
+          <td class="activity-cell">
+            <strong>📖 閱讀（30 分鐘）</strong>
+            <p>選擇一本商業、個人成長或歷史相關的書籍。每天 30 分鐘，一年下來你會閱讀超過 18 本書。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">7:15</td>
+          <td class="activity-cell">
+            <strong>📝 計劃今日（10 分鐘）</strong>
+            <p>寫下今天的三個最重要目標（MIT）。查看你的日曆，確認今天的會議和截止日期。為即將到來的一天做好心理準備。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell">7:25</td>
+          <td class="activity-cell">
+            <strong>🙏 感恩 + 肯定（5 分鐘）</strong>
+            <p>說出三件你感恩的事情，以及三個你對自己的肯定宣言。這個習慣會重塑你的思維，讓你以積極的狀態開始新的一天。</p>
+          </td>
+          <td class="check-cell"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td class="time-cell" style="background: rgba(212,168,67,0.1);">7:30<br><span style="font-size:0.75rem;color:var(--text-muted)">完成</span></td>
+          <td class="activity-cell" style="background: rgba(212,168,67,0.05);">
+            <strong>🚀 出發！</strong>
+            <p>你已經完成了一個完美的晨間例程。今天的你比昨天更好，比大多數人都更早開始準備成功。現在，去征服這一天吧！</p>
+          </td>
+          <td class="check-cell" style="background: rgba(212,168,67,0.05);"><input type="checkbox"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-box">
+    <h3>🔮 今日易經占卜記錄</h3>
+    <div class="hexagram-section">
+      <div class="hex-card">
+        <div class="hex" id="todayHex">—</div>
+        <h5>今日卦象</h5>
+        <p id="hexMeaning">每天早上擲卦並記錄</p>
+      </div>
+      <div class="hex-card">
+        <h5>📝 占卜解讀</h5>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px;">今天這個卦象對我的創業意味著：</p>
+        <textarea style="width:100%;background:var(--bg-dark);border:1px solid var(--border);border-radius:8px;padding:10px;color:var(--text);font-size:0.85rem;min-height:80px" placeholder="記錄你對卦象的理解與今日的應用方向..."></textarea>
+      </div>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center;">建議使用殺手林的易經占卜工具進行每日占卜：<a href="https://linblance.gumroad.com" style="color:var(--gold)">linblance.gumroad.com</a></p>
+  </div>
+
+  <div class="section-box">
+    <h3>📊 每週追蹤與回顧</h3>
+    <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">每週日花 15 分鐘回顧這一周的晨間例程執行情況</p>
+    <div class="tracking-grid">
+      <div class="tracking-item"><label>本週完成天數（目標：7）</label><input type="number" min="0" max="7" value="0"></div>
+      <div class="tracking-item"><label>最常缺席的項目</label><select><option>— 請選擇 —</option><option>易經占卜</option><option>冥想</option><option>運動</option><option>閱讀</option><option>冷水淋浴</option><option>計劃今日</option></select></div>
+      <div class="tracking-item"><label>本週閱讀頁數</label><input type="number" min="0" placeholder="頁數"></div>
+      <div class="tracking-item"><label>總運動時間</label><input type="text" placeholder="例如：2小時30分"></div>
+      <div class="tracking-item"><label>最喜歡的晨間環節</label><input type="text" placeholder=""></div>
+      <div class="tracking-item"><label>最想改進的環節</label><input type="text" placeholder=""></div>
+    </div>
+  </div>
+
+  <div class="weekly-review">
+    <h3>📋 每週深度回顧問題</h3>
+    <div class="review-question">
+      <label>1. 這週我的晨間例程執行率是多少？我需要做什麼調整？</label>
+      <textarea placeholder=""></textarea>
+    </div>
+    <div class="review-question">
+      <label>2. 這週的易經占卜最讓我印象深刻的卦象是哪一個？為什麼？</label>
+      <textarea placeholder=""></textarea>
+    </div>
+    <div class="review-question">
+      <label>3. 晨間例程如何影響了我這週的工作表現和情緒狀態？</label>
+      <textarea placeholder=""></textarea>
+    </div>
+    <div class="review-question">
+      <label>4. 下週我想加入或移除什麼環節？原因是什麼？</label>
+      <textarea placeholder=""></textarea>
+    </div>
+    <div class="review-question">
+      <label>5. 我對自己這週的表現打幾分？（1-10）原因是什麼？</label>
+      <input type="text" placeholder="幾分：___ 原因：">
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨️ 列印本清單（列印當前視圖即可）</button>
+
+  <div class="cta-section">
+    <h2>🌟 完整版包含更多功能</h2>
+    <p>完整版包含可填寫PDF版本、30天追蹤表、以及每週回顧模板下載。</p>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn">立即獲取完整版 $4.9</a>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px;">一次購買，終身使用</p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px;">
+      <span style="font-size: 1.5rem;">🛡️</span>
+      <div style="text-align: left;">
+        <strong style="color: var(--gold-light); display: block;">30 天滿意保證</strong>
+        <span style="color: var(--text-muted); font-size: 0.85rem;">不滿意可全額退款</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Killer Lin Farm | <a href="https://linblance.gumroad.com">linblance.gumroad.com</a></p>
+    <p style="margin-top: 10px;">每天早晨 5:30，決定你這一天的成敗</p>
+  </footer>
+</div>
+
+<script>
+const hexagrams = [
+  { hex: '乾', name: '天道', meaning: '今天適合大胆行動，創造新局。保持剛健有力的能量，相信自己的能力。' },
+  { hex: '坤', name: '地道', meaning: '今天適合穏扎穏打，積累實力。多聽少說，包容他人，厚德載物。' },
+  { hex: '屯', name: '初始', meaning: '萬事起頭難，但只要勇於開始就已經成功了一半。今天適合啟動新計畫。' },
+  { hex: '蒙', name: '啟蒙', meaning: '今天適合學習和請教。可以找導師或前輩交流，會有意外收獲。' },
+  { hex: '需', name: '等待', meaning: '耐心是今天的關鍵。不要急於求成，等待最佳時機出現再做決定。' },
+  { hex: '讼', name: '争讼', meaning: '今天容易有爭執或溝通不暢。說話前三思，保持冷静，避免衝突。' },
+  { hex: '師', name: '師眾', meaning: '今天適合團隊协作。你有領導的氣場，可以帶動團隊完成目標。' },
+  { hex: '比', name: '親比', meaning: '今天適合建立關係和合作。主動聯繫重要的人，鞏固人脈。' },
+  { hex: '小畜', name: '積累', meaning: '今天適合穩步積累。不要急於擴張，專注於當下的小成果。' },
+  { hex: '履', name: '踐履', meaning: '今天適合腳踏實地行動。說到做到，你的信譽在今天尤其重要。' },
+  { hex: '泰', name: '通泰', meaning: '大吉之日！今天諸事順利，適合重要的商業洽談和新計畫啟動。' },
+  { hex: '否', name: '阻礙', meaning: '今天運勢稍弱，不宜冒進。保持低調，等待運勢好轉再做重要決定。' },
+  { hex: '同人', name: '和同', meaning: '今天適合團隊合作和建立聯盟。放開胸襟，廣結善緣，會帶來好運。' },
+  { hex: '大有', name: '豐收', meaning: '今天容易有收獲和成就。保持感恩的心，分享你的幸運給他人。' },
+  { hex: '謙', name: '谦逊', meaning: '今天運勢平和，但不宜張揚。保持謙逊，低調行事，會有貴人相助。' }
+];
+
+// Show random hexagram as placeholder
+const randomHex = hexagrams[Math.floor(Math.random() * hexagrams.length)];
+document.getElementById('todayHex').textContent = randomHex.hex;
+document.getElementById('hexMeaning').textContent = randomHex.name + '：' + randomHex.meaning;
+</script>
+</body>
+</html>
