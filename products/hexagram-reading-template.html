@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Hexagram Reading Report Template - 商業卦象解讀報告模板</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a14;
+            --bg-card: #12121f;
+            --gold: #d4af37;
+            --gold-light: #f0d875;
+            --gold-dim: #6b5a1a;
+            --purple: #9b59b6;
+            --teal: #1abc9c;
+            --text: #e4e0d8;
+            --text-muted: #8a8890;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-dark);
+            color: var(--text);
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 60px 20px 50px;
+            border-bottom: 1px solid var(--gold-dim);
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, rgba(155,89,182,0.05) 0%, transparent 100%);
+        }
+        h1 { font-size: 2.2em; color: var(--gold); text-shadow: 0 0 30px rgba(212,175,55,0.25); margin-bottom: 10px; }
+        .subtitle { color: var(--purple); letter-spacing: 3px; text-transform: uppercase; font-size: 0.9em; }
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #7a5a10);
+            color: var(--bg-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .section {
+            background: var(--bg-card);
+            border: 1px solid rgba(155,89,182,0.15);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+        h2 { color: var(--gold); font-size: 1.4em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(212,175,55,0.15); }
+        h3 { color: var(--gold-light); margin: 20px 0 10px; font-size: 1.1em; }
+        h4 { color: var(--teal); margin: 15px 0 8px; font-size: 1em; }
+        p { margin-bottom: 12px; }
+        label { color: var(--text-muted); font-size: 0.9em; display: block; margin-bottom: 5px; }
+        input, textarea, select {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        textarea { height: 100px; resize: vertical; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: var(--gold); background: rgba(212,175,55,0.05); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .scenario-box {
+            background: rgba(26,188,156,0.08);
+            border: 1px solid rgba(26,188,156,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .scenario-box h4 { color: var(--teal); }
+        .analysis-frame {
+            background: rgba(155,89,182,0.06);
+            border: 1px solid rgba(155,89,182,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .recommendation-card {
+            background: rgba(212,175,55,0.05);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 10px 10px 0;
+            padding: 15px 20px;
+            margin: 12px 0;
+        }
+        .recommendation-card strong { color: var(--gold-light); }
+        .followup-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .followup-table th { background: rgba(155,89,182,0.2); color: var(--gold-light); padding: 10px; text-align: left; font-size: 0.9em; }
+        .followup-table td { padding: 10px; border-bottom: 1px solid rgba(155,89,182,0.1); font-size: 0.9em; }
+        .pricing-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .pricing-table th { background: var(--gold); color: var(--bg-dark); padding: 10px 15px; text-align: left; }
+        .pricing-table td { padding: 10px 15px; border-bottom: 1px solid rgba(212,175,55,0.1); }
+        .pricing-table input { width: auto; }
+        .marketing-script {
+            background: rgba(26,188,156,0.05);
+            border: 1px dashed rgba(26,188,156,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .script-line { margin: 10px 0; padding: 8px 15px; background: rgba(255,255,255,0.03); border-radius: 6px; }
+        .script-label { color: var(--teal); font-size: 0.85em; font-weight: bold; margin-bottom: 3px; }
+        .locked-section {
+            background: repeating-linear-gradient(-45deg, rgba(155,89,182,0.03) 0px, rgba(155,89,182,0.03) 10px, transparent 10px, transparent 20px);
+            border: 1px dashed rgba(155,89,182,0.25);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #7a5a10);
+            color: var(--bg-dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.3); }
+        .page-break { border-top: 1px dashed var(--gold-dim); margin: 30px 0; }
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--gold-dim); margin-top: 40px; color: var(--text-muted); font-size: 0.9em; }
+        @media print {
+            body { background: white; color: #111; }
+            input, textarea { border-color: #ccc; background: white; }
+            .cta-button, .locked-section { display: none; }
+            .section { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <h1>📊 Business Hexagram Reading Report Template</h1>
+    <div class="subtitle">商業卦象解讀報告模板</div>
+    <div class="price-tag">$6.9 — Professional Template</div>
+    <p style="color:var(--text-muted); max-width:620px; margin:15px auto 0;">專為商業占卜師設計的完整報告模板。包含客戶 intake form、8種商業情境分析框架、行動建議模板、後續追蹤、收費報價與行銷話術。</p>
+</header>
+
+<!-- FREE PREVIEW: Intak Form + One Scenario -->
+
+<div class="section">
+    <h2>📋 客戶 Intake Form（客戶基本資料）</h2>
+    <p>在進行占卜前收集客戶資訊，幫助你更精準地解讀卦象與提供建議。</p>
+
+    <label>姓名 Name *</label>
+    <input type="text" placeholder="Client full name">
+
+    <label>公司/品牌 Company/Brand *</label>
+    <input type="text" placeholder="Business name">
+
+    <label>產業類別 Industry</label>
+    <select>
+        <option value="">請選擇...</option>
+        <option>科技/互聯網</option>
+        <option>餐飲/食品</option>
+        <option>零售/電商</option>
+        <option>金融/投資</option>
+        <option>健康/健身</option>
+        <option>教育/培訓</option>
+        <option>製造/生產</option>
+        <option>服務/顧問</option>
+        <option>媒體/內容創作</option>
+        <option>房地產</option>
+        <option>其他</option>
+    </select>
+
+    <label>公司規模 Company Size</label>
+    <select>
+        <option value="">請選擇...</option>
+        <option>一人公司 (Solopreneur)</option>
+        <option>2-10人</option>
+        <option>11-50人</option>
+        <option>51-200人</option>
+        <option>200人以上</option>
+    </select>
+
+    <div class="form-row">
+        <div>
+            <label>占卜日期 Date</label>
+            <input type="date">
+        </div>
+        <div>
+            <label>占卜類型 Reading Type</label>
+            <select>
+                <option value="">請選擇...</option>
+                <option>單卦占卜 (Single Hexagram)</option>
+                <option>六爻卦 (Six Lines)</option>
+                <option>變卦占斷 (Changing Lines)</option>
+                <option>時間卦 (Time-based)</option>
+                <option>合作配對 (Partnership)</option>
+            </select>
+        </div>
+    </div>
+
+    <label>主要問題 Main Question *</label>
+    <textarea placeholder="用戶想要問的核心問題，例如：「我應該在Q3啟動這個新產品嗎？」"></textarea>
+
+    <label>已經嘗試過的解決方案（可略）</label>
+    <textarea placeholder="過去嘗試過的方法、遇到的障礙"></textarea>
+
+    <label>其他需要你知道的背景資訊（可略）</label>
+    <textarea placeholder="任何可能影響解讀的背景"></textarea>
+</div>
+
+<div class="section">
+    <h2>🔮 占卜記錄區</h2>
+
+    <label>得到的主卦 Primary Hexagram</label>
+    <input type="text" placeholder="例如：第47卦 澤水困">
+
+    <div class="form-row">
+        <div>
+            <label>動爻（如有）Changing Lines</label>
+            <input type="text" placeholder="例如：第三爻、第五爻">
+        </div>
+        <div>
+            <label>變卦（如有）Post-Changing Hexagram</label>
+            <input type="text" placeholder="例如：第28 火風鼎">
+        </div>
+    </div>
+
+    <label>卦辭 Hexagram Text</label>
+    <textarea placeholder="抄寫卦辭"></textarea>
+
+    <label>爻辭（如有）Line Text</label>
+    <textarea placeholder="抄寫相關爻辭"></textarea>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整報告模板解鎖</h3>
+    <p style="color:var(--text-muted);">完整分析框架 + 所有8種商業情境 + 行動建議模板 + 後續追蹤表 + 收費報價 + 行銷話術</p>
+    <a href="https://shaishalin.gumroad.com/l/hexagram-reading-template" class="cta-button">$6.9 — Get Full Template Pack</a>
+</div>
+
+<div class="section">
+    <h2>📊 8種商業情境分析框架</h2>
+    <p>每種情境有獨立的分析切入點與重點關注方向：</p>
+
+    <div class="scenario-box">
+        <h4>場景 A：創業方向決策</h4>
+        <p><strong>適用問題：</strong>「我應該進入這個市場嗎？」「我的創業方向正確嗎？」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>主卦的「元亨利貞」四德是否符合你的初心</li>
+            <li>動爻所在的爻位（初爻基層行動 vs 五爻領導方向）</li>
+            <li>變卦結果——最終會轉向哪個方向</li>
+        </ul>
+        <p><strong>核心問題：</strong>這個方向是否「貞」（正）？是否符合你的核心價值？</p>
+    </div>
+
+    <div class="scenario-box">
+        <h4>場景 B：合作/夥伴評估</h4>
+        <p><strong>適用問題：</strong>「這個人適合做我的聯合創始人嗎？」「這個合作提案是否靠譜？」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>上卦（外在）與下卦（內在）的關係——是否有互補性</li>
+            <li>卦中是否有「比」和「應」的關係——和諧程度</li>
+            <li>動爻所在位置是否涉及人與人的互動</li>
+        </ul>
+        <p><strong>核心問題：</strong>這段合作是否「有孚」（有誠信）？長期看是否平衡？</p>
+    </div>
+
+    <div class="scenario-box">
+        <h4>場景 C：投資決策</h4>
+        <p><strong>適用問題：</strong>「這個投資機會是否靠譜？」「現在是進場時機嗎？」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>卦象中的「財」的能量分布——哪些位置代表財富</li>
+            <li>動爻是否在財位——即時行動 vs 等待</li>
+            <li>變卦是否帶來財務上的實質改變</li>
+        </ul>
+        <p><strong>核心問題：</strong>這個機會是否「利涉大川」——值得冒險？還是「不利涉大川」——風險過高？</p>
+    </div>
+
+    <div class="scenario-box">
+        <h4>場景 D：市場擴張/產品上市</h4>
+        <p><strong>適用問題：</strong>「新產品應該什麼時候上市？」「是否應該進入這個新市場？」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>時間因素——哪些卦象暗示快，哪些暗示慢</li>
+            <li>「需」卦能量——需要多少時間準備</li>
+            <li>變卦結果——這個行動最終的長期影響</li>
+        </ul>
+        <p><strong>核心問題：</strong>市場是否已經「亨通」（準備好了）？時機是否正確？</p>
+    </div>
+
+    <div class="scenario-box">
+        <h4>場景 E：人員/團隊管理</h4>
+        <p><strong>適用問題：</strong>「我應該開除這個人嗎？」「如何提升團隊士氣？」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>每一爻代表一個位置的人——初爻是基層，五爻是領導</li>
+            <li>哪個爻位出現問題——是基層不穩定還是領導方向錯誤</li>
+            <li>動爻的陰陽——這個變化是正向還是負向</li>
+        </ul>
+        <p><strong>核心問題：</strong>問題的根源是「過」還是「不及」？需要加強還是減弱？</p>
+    </div>
+
+    <div class="scenario-box">
+        <h4>場景 F：競爭對策</h4>
+        <p><strong>適用問題：</strong>「面對這個競爭對手我應該怎麼做？」「是否需要價格戰？」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>讼卦的能量——是否正在或即將發生衝突</li>
+            <li>「師」卦的組合——何時需要正面衝突，何時需要游擊</li>
+            <li>變卦預示的最終格局——雙贏還是一方吃掉另一方</li>
+        </ul>
+        <p><strong>核心問題：</strong>「讼」是否必要？還是有更好的「不戰而勝」策略？</p>
+    </div>
+
+    <div class="scenario-box">
+        <h4>場景 G：危機處理</h4>
+        <p><strong>適用問題：</strong>「公司正面臨重大危機，該怎麼辦？」「資金鏈快要斷了！」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>坎卦的能量——危險中有哪些轉機</li>
+            <li>「习坎」的反覆——危機可能不止一次，要有韌性</li>
+            <li>變卦指向——危機最終會演變成什麼局面</li>
+        </ul>
+        <p><strong>核心問題：</strong>如何「維持」——不讓情況繼續惡化，同時找到突破口？</p>
+    </div>
+
+    <div class="scenario-box">
+        <h4>場景 H：長期戰略/方向調整</h4>
+        <p><strong>適用問題：</strong>「我的公司5年內應該朝哪個方向發展？」「是否需要转型？」</p>
+        <p><strong>分析切入點：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>卦象的「卦變」——從當前卦轉向另一卦的過程代表轉型</li>
+            <li>陰陽比例——目前是否陽過盛需要收斂，或是陰過盛需要擴張</li>
+            <li>「大明終南」的方向感——最終的目標在哪里</li>
+        </ul>
+        <p><strong>核心問題：</strong>長期方向是否「貞」？是否符合天道？</p>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整版包含：</h3>
+    <div style="text-align:left; margin:15px 0; color:var(--text-muted);">
+        <p>✅ 完整8種情境的分析框架詳細說明</p>
+        <p>✅ 每種情境的完整問題清單</p>
+        <p>✅ 每種情境的報告撰寫範例</p>
+        <p>✅ 可編輯 Word/PDF 版本</p>
+    </div>
+    <a href="https://shaishalin.gumroad.com/l/hexagram-reading-template" class="cta-button">$6.9 — Get Full Template Pack</a>
+</div>
+
+<div class="section">
+    <h2>✅ 建議行動模板 Action Recommendations</h2>
+    <p>將卦象解讀轉化為具體可執行的行動建議：</p>
+
+    <div class="recommendation-card">
+        <strong>立即行動（0-7天）Immediate Actions</strong>
+        <textarea placeholder="根據卦象中明確指示的方向，列出1-3件需要立即執行的行動"></textarea>
+    </div>
+
+    <div class="recommendation-card">
+        <strong>短期計劃（1-3個月）Short-term Plan</strong>
+        <textarea placeholder="根據動爻與變卦，分析1-3個月內應該達到的里程碑"></textarea>
+    </div>
+
+    <div class="recommendation-card">
+        <strong>戰略方向（6-12個月）Strategic Direction</strong>
+        <textarea placeholder="根據整體卦象象辭與大象，制定6-12個月的戰略方向"></textarea>
+    </div>
+
+    <div class="recommendation-card">
+        <strong>警示關注點 Watch Out Points</strong>
+        <textarea placeholder="根據卦象中提到的危險、陷阱或陰影面，列出需要警惕的事項"></textarea>
+    </div>
+
+    <div class="recommendation-card">
+        <strong>成功關鍵 Success Factors</strong>
+        <textarea placeholder="根據卦象能量，指出達成目標最關鍵的1-3個成功要素"></textarea>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="section">
+    <h2>📅 後續追蹤表 Follow-up Tracker</h2>
+    <p>在占卜後追蹤客戶的情況，調整建議並建立長期關係：</p>
+
+    <table class="followup-table">
+        <tr>
+            <th>追蹤時間</th>
+            <th>客戶反饋</th>
+            <th>卦象驗證</th>
+            <th>調整建議</th>
+            <th>下次追蹤</th>
+        </tr>
+        <tr>
+            <td>占卜後 1週</td>
+            <td><textarea style="height:60px; margin:0;" placeholder="客戶的初步進展"></textarea></td>
+            <td><input type="text" placeholder="是否驗證"></td>
+            <td><textarea style="height:60px; margin:0;" placeholder="需要調整的建議"></textarea></td>
+            <td><input type="date"></td>
+        </tr>
+        <tr>
+            <td>占卜後 1個月</td>
+            <td><textarea style="height:60px; margin:0;" placeholder="客戶的初步進展"></textarea></td>
+            <td><input type="text" placeholder="是否驗證"></td>
+            <td><textarea style="height:60px; margin:0;" placeholder="需要調整的建議"></textarea></td>
+            <td><input type="date"></td>
+        </tr>
+        <tr>
+            <td>占卜後 3個月</td>
+            <td><textarea style="height:60px; margin:0;" placeholder="客戶的初步進展"></textarea></td>
+            <td><input type="text" placeholder="是否驗證"></td>
+            <td><textarea style="height:60px; margin:0;" placeholder="需要調整的建議"></textarea></td>
+            <td><input type="date"></td>
+        </tr>
+        <tr>
+            <td>占卜後 6個月</td>
+            <td><textarea style="height:60px; margin:0;" placeholder="客戶的初步進展"></textarea></td>
+            <td><input type="text" placeholder="是否驗證"></td>
+            <td><textarea style="height:60px; margin:0;" placeholder="需要調整的建議"></textarea></td>
+            <td><input type="date"></td>
+        </tr>
+    </table>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="section">
+    <h2>💰 收費報價模板 Pricing Template</h2>
+
+    <table class="pricing-table">
+        <tr>
+            <th>服務項目 Service</th>
+            <th>時間 Duration</th>
+            <th>單次價 Single</th>
+            <th>套餐價 Package</th>
+        </tr>
+        <tr>
+            <td>單卦商業占卜 Single Hexagram</td>
+            <td>30 min</td>
+            <td>$<input type="text" style="width:60px;" placeholder="80"></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>深度六爻分析 Deep Six Lines</td>
+            <td>60 min</td>
+            <td>$<input type="text" style="width:60px;" placeholder="150"></td>
+            <td>$<input type="text" style="width:60px;" placeholder="500/4次"></td>
+        </tr>
+        <tr>
+            <td>創業方向諮詢 Startup Direction</td>
+            <td>90 min</td>
+            <td>$<input type="text" style="width:60px;" placeholder="250"></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>投資決策解讀 Investment Reading</td>
+            <td>45 min</td>
+            <td>$<input type="text" style="width:60px;" placeholder="120"></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>季度重點解讀 Quarterly Review</td>
+            <td>60 min</td>
+            <td>$<input type="text" style="width:60px;" placeholder="150"></td>
+            <td>$<input type="text" style="width:60px;" placeholder="450/3次"></td>
+        </tr>
+        <tr>
+            <td>年度戰略解讀 Annual Strategy</td>
+            <td>120 min</td>
+            <td>$<input type="text" style="width:60px;" placeholder="400"></td>
+            <td>—</td>
+        </tr>
+        <tr>
+            <td>書面報告（無會話）Written Report Only</td>
+            <td>—</td>
+            <td>$<input type="text" style="width:60px;" placeholder="100"></td>
+            <td>—</td>
+        </tr>
+    </table>
+
+    <div class="recommendation-card" style="margin-top:20px;">
+        <strong>付款條款範例 Sample Payment Terms</strong>
+        <textarea style="height:80px;" placeholder="預付100% 或 先付50%，完成後付尾款">不接受口頭約定，所有服務請預付確認。臨時取消（24小時內）不退費，但可改期一次。</textarea>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="section">
+    <h2>📣 行銷話術範本 Marketing Scripts</h2>
+    <p>用於社群媒體、私人訊息與銷售頁面的行銷話術：</p>
+
+    <div class="marketing-script">
+        <div class="script-label">社群媒體貼文範例（Instagram/Facebook）</div>
+        <div class="script-line">
+            <p>創業的路上，你是否曾有過這樣的疑惑——</p>
+            <p>「這個方向真的對嗎？」</p>
+            <p>「資金該什麼時候進場？」</p>
+            <p>「這個合作夥伴值得信任嗎？」</p>
+            <p>三千年的智慧告訴你：答案一直都在。</p>
+            <p>我用易經為你的商業決策導航。<strong>占卜諮詢開放預約中，請私訊我。</strong></p>
+        </div>
+    </div>
+
+    <div class="marketing-script">
+        <div class="script-label">私人訊息（DMs）開場白</div>
+        <div class="script-line">
+            <p>「嗨 [名字]，感謝你的來訊！</p>
+            <p>你想問的[事業/投資/合作]問題，正是易經最擅長的領域。</p>
+            <p>我可以為你做一個30分鐘的單卦解讀，針對你的具體情況給出行動建議。</p>
+            <p>有興趣的話，請告訴我你想問的核心問題，我們來安排時間 😊」</p>
+        </div>
+    </div>
+
+    <div class="marketing-script">
+        <div class="script-label">客戶推薦信收集請求</div>
+        <div class="script-line">
+            <p>「嗨 [名字]，距離上次占卜已經一段時間了！</p>
+            <p>我很好奇當時的建議對你有沒有幫助？你現在的進展如何？</p>
+            <p>如果你願意分享你的經驗，我可以把你的故事（匿名）放在我的社群上，幫助其他創業者。</p>
+            <p>當然，如果你希望繼續得到我的支持，我也有一個季度套餐，涵蓋3次深度解讀，會比單次更優惠喔 🎯」</p>
+        </div>
+    </div>
+
+    <div class="marketing-script">
+        <div class="script-label">追加銷售話術（Upsell）</div>
+        <div class="script-line">
+            <p>「感謝你今天的占卜！根據你的卦象，我強烈建議你做一個書面報告——</p>
+            <p>因為你的問題比較複雜（涉及[投資/合作/擴張]），口述可能無法完整覆蓋所有細節。</p>
+            <p>書面報告會包含：完整的卦象解析、各個時間點的預測、以及我針對你情況設計的3個月行動計劃。</p>
+            <p>只需要加 [金額]，你會得到一份可以反覆查閱的深度分析。」</p>
+        </div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整版包含：</h3>
+    <div style="text-align:left; margin:20px 0; color:var(--text-muted);">
+        <p>✅ 可編輯 Word 版本（直接填入你的資訊）</p>
+        <p>✅ 可列印 PDF 版本</p>
+        <p>✅ 每種商業情境的完整報告範例（8份）</p>
+        <p>✅ 電子郵件自動回覆範本</p>
+        <p>✅ 社群媒體內容日曆</p>
+        <p>✅ 收費策略建議與市場定位指南</p>
+    </div>
+    <a href="https://shaishalin.gumroad.com/l/hexagram-reading-template" class="cta-button">$6.9 — Unlock Full Template Pack</a>
+</div>
+
+<footer>
+    <p style="color:var(--gold); margin-bottom:10px;">📊 Business Hexagram Reading Template</p>
+    <p>© 殺手林出品 | shaishalin.gumroad.com</p>
+</footer>
+
+</div>
+</body>
+</html>

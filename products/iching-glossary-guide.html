@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate I Ching Glossary & Reference Guide - 終極易經詞典</title>
+    <style>
+        :root {
+            --bg-dark: #0f0a00;
+            --bg-card: #1a1408;
+            --gold: #d4af37;
+            --gold-light: #f4d875;
+            --gold-dim: #6b5a1a;
+            --red: #c0392b;
+            --text: #e8e0c8;
+            --text-muted: #9a9080;
+            --accent: #b8860b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-dark);
+            color: var(--text);
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        .container { max-width: 920px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 60px 20px 50px;
+            border-bottom: 1px solid var(--gold-dim);
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, rgba(212,175,55,0.06) 0%, transparent 100%);
+        }
+        h1 { font-size: 2.2em; color: var(--gold); text-shadow: 0 0 30px rgba(212,175,55,0.25); margin-bottom: 10px; }
+        .subtitle { color: var(--gold-dim); letter-spacing: 3px; text-transform: uppercase; font-size: 0.9em; }
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #8b6914);
+            color: var(--bg-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .section {
+            background: var(--bg-card);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+        h2 { color: var(--gold); font-size: 1.4em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(212,175,55,0.15); }
+        h3 { color: var(--gold-light); margin: 25px 0 12px; font-size: 1.15em; }
+        h4 { color: var(--gold); font-size: 1.05em; margin: 20px 0 10px; }
+        p { margin-bottom: 13px; }
+        .hexagram-card {
+            background: rgba(212,175,55,0.04);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .hexagram-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+        .hexagram-symbol {
+            font-size: 2.2em;
+            color: var(--gold);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212,175,55,0.1);
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        .hexagram-info h4 { margin: 0; color: var(--gold-light); font-size: 1.15em; }
+        .hexagram-info p { margin: 4px 0 0; color: var(--text-muted); font-size: 0.9em; }
+        .hexagram-body { border-top: 1px solid rgba(212,175,55,0.1); padding-top: 15px; }
+        .keyword-tag {
+            display: inline-block;
+            background: rgba(212,175,55,0.15);
+            color: var(--gold-light);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 3px 3px 3px 0;
+        }
+        .glossary-entry {
+            background: rgba(212,175,55,0.04);
+            border-left: 3px solid var(--gold);
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .glossary-entry dt {
+            color: var(--gold-light);
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        .glossary-entry dd { margin: 0; color: var(--text); }
+        dl { padding: 0; }
+        .faq-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(212,175,55,0.04);
+            border-radius: 10px;
+        }
+        .faq-q { color: var(--gold-light); font-weight: bold; margin-bottom: 8px; }
+        .faq-q::before { content: 'Q: '; color: var(--red); }
+        .faq-a { padding-left: 20px; border-left: 2px solid rgba(212,175,55,0.2); margin-top: 8px; }
+        .quiz-box {
+            background: linear-gradient(135deg, rgba(192,57,43,0.08), rgba(212,175,55,0.05));
+            border: 1px solid rgba(192,57,43,0.2);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .quiz-q { color: var(--gold-light); font-size: 1.1em; margin-bottom: 12px; }
+        .quiz-options { list-style: none; padding: 0; }
+        .quiz-options li { padding: 8px 15px; margin: 5px 0; background: rgba(212,175,55,0.05); border-radius: 8px; }
+        .quiz-answer { display: none; color: var(--red); font-weight: bold; margin-top: 10px; }
+        .book-ref {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin: 12px 0;
+            padding: 15px;
+            background: rgba(212,175,55,0.04);
+            border-radius: 10px;
+        }
+        .book-icon { font-size: 2em; flex-shrink: 0; }
+        .bagua-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .bagua-cell {
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .bagua-cell .symbol { font-size: 2.5em; color: var(--gold); }
+        .bagua-cell .name { color: var(--gold-light); font-size: 1.1em; font-weight: bold; margin-top: 5px; }
+        .bagua-cell .element { color: var(--text-muted); font-size: 0.85em; }
+        .bagua-cell .meaning { color: var(--text); font-size: 0.85em; margin-top: 5px; }
+        .locked-section {
+            background: repeating-linear-gradient(-45deg, rgba(212,175,55,0.03) 0px, rgba(212,175,55,0.03) 10px, transparent 10px, transparent 20px);
+            border: 1px dashed var(--gold-dim);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #8b6914);
+            color: var(--bg-dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.3); }
+        .nav-toc {
+            background: rgba(212,175,55,0.06);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .nav-toc h3 { margin-top: 0; color: var(--gold); }
+        .nav-toc ol { padding-left: 20px; }
+        .nav-toc li { margin: 5px 0; color: var(--text); }
+        .nav-toc a { color: var(--gold-light); text-decoration: none; }
+        .nav-toc a:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--gold-dim); margin-top: 40px; color: var(--text-muted); font-size: 0.9em; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <h1>📖 The Ultimate I Ching Glossary & Reference Guide</h1>
+    <div class="subtitle">終極易經詞典</div>
+    <div class="price-tag">$9.9 — Complete Reference</div>
+    <p style="color:var(--text-muted); max-width:620px; margin:15px auto 0;">易經專業術語、64卦完整解釋、八卦基礎、動爻解讀、常見問題、練習題與參考書目——完整一套參考工具。</p>
+</header>
+
+<!-- FREE PREVIEW: Bagua + first 8 hexagrams -->
+
+<div class="nav-toc">
+    <h3>📚 目錄 Contents</h3>
+    <ol>
+        <li><a href="#bagua">八卦 — The Eight Trigrams</a></li>
+        <li><a href="#hexagrams">64卦 — The 64 Hexagrams（精選預覽）</a></li>
+        <li><a href="#changing">動爻與變卦 — Changing Lines & Phase Changes</a></li>
+        <li><a href="#qa">常見問題 Q&A</a></li>
+        <li><a href="#glossary">專業術語詞典</a></li>
+        <li><a href="#quiz">練習題 Practice Questions</a></li>
+        <li><a href="#books">參考書目 Recommended Reading</a></li>
+    </ol>
+</div>
+
+<div class="section">
+    <h2 id="bagua">☰ 八卦 — The Eight Trigrams</h2>
+    <p>八卦是易經的基石，由三爻組成。每一卦代表一種原初能量，貫穿宇宙萬物。</p>
+
+    <div class="bagua-grid">
+        <div class="bagua-cell">
+            <div class="symbol">☰</div>
+            <div class="name">乾 Qian</div>
+            <div class="element">天｜馬｜首｜西北</div>
+            <div class="meaning">創造力、果斷、剛健、天、君王</div>
+        </div>
+        <div class="bagua-cell">
+            <div class="symbol">☷</div>
+            <div class="name">坤 Kun</div>
+            <div class="element">地｜牛｜腹｜西南</div>
+            <div class="meaning">接受、包容、大地、母親、順從</div>
+        </div>
+        <div class="bagua-cell">
+            <div class="symbol">☳</div>
+            <div class="name">震 Zhen</div>
+            <div class="element">雷｜龍｜足｜東</div>
+            <div class="meaning">激動、驚恐、突破、警覺、萌芽</div>
+        </div>
+        <div class="bagua-cell">
+            <div class="symbol">☶</div>
+            <div class="name">艮 Gen</div>
+            <div class="element">山｜狗｜手｜東北</div>
+            <div class="meaning">靜止、停止、穩固、約束、山</div>
+        </div>
+        <div class="bagua-cell">
+            <div class="symbol">☵</div>
+            <div class="name">坎 Kan</div>
+            <div class="element">水｜豕｜耳｜北</div>
+            <div class="meaning">危險、流動、智慧、陷落、水</div>
+        </div>
+        <div class="bagua-cell">
+            <div class="symbol">☱</div>
+            <div class="name">兌 Dui</div>
+            <div class="element">澤｜羊｜口｜西</div>
+            <div class="meaning">喜悅、和諧、言語、少女、澤</div>
+        </div>
+        <div class="bagua-cell">
+            <div class="symbol">☲</div>
+            <div class="name">離 Li</div>
+            <div class="element">火｜雉｜目｜南</div>
+            <div class="meaning">光明、依附、熱情、禮儀、美麗</div>
+        </div>
+        <div class="bagua-cell">
+            <div class="symbol">☴</div>
+            <div class="name">巽 Xun</div>
+            <div class="element">風｜雞｜股｜東南</div>
+            <div class="meaning">滲透、溫順、商業、謙遜、風</div>
+        </div>
+    </div>
+
+    <h3>八卦生成序列（伏羲先天序）</h3>
+    <p>相傳伏羲畫卦，由太極生兩儀，兩儀生四象，四象生八卦，演化成八種基本符號。</p>
+    <div class="glossary-entry">
+        <dl>
+            <dt>太極（Taiji）</dt>
+            <dd>宇宙的原始狀態，混沌未分，一氣流行。這是萬物的起源，也是卦象的起點。</dd>
+            <dt>兩儀（Liangyi）</dt>
+            <dd>太極生兩儀，即陰（--)與陽（—）。陰陽是宇宙的兩種基本力量，一切變化都離不開陰陽的互動。</dd>
+            <dt>四象（Sixiang）</dt>
+            <dd>陰陽各生陰陽，成為四象：老陰、少陽、少陰、老陽。這代表陰陽的多少與程度變化。</dd>
+            <dt>八卦（Bagua）</dt>
+            <dd>四象再各生陰陽，成為八卦。每一個卦由三爻組成，代表三才之道——天、人、地。</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="section">
+    <h2 id="hexagrams">☯ 64卦 — The 64 Hexagrams（精選預覽）</h2>
+    <p>六十四卦由上下兩個八卦重疊而成，每個卦有六爻，共三百八十四爻，加上用九、用六，共四百零八種變化。以下是前十六卦的精選預覽：</p>
+
+    <div class="hexagram-card">
+        <div class="hexagram-header">
+            <div class="hexagram-symbol">☰☰</div>
+            <div class="hexagram-info">
+                <h4>1. 乾為天 Qian / Heaven</h4>
+                <p>上卦☰ + 下卦☰ | 六爻皆陽 | 純陽之卦</p>
+            </div>
+        </div>
+        <div class="hexagram-body">
+            <p><strong>卦辭：</strong>「乾：元亨利貞。」</p>
+            <p><strong>象曰：</strong>「天行健，君子以自強不息。」</p>
+            <p><strong>核心含義：</strong>純陽剛健之卦，象徵天道的運行，永恆不息的創造力。對於商業，這代表一個全新的開始階段——企業的初創期，需要領導者具備無比的決斷力與持續前進的動力。</p>
+            <p><strong>商業應用：</strong>在創業初期，面对重重困难时，乾卦告訴你不要退缩。你的意志力就是你的資產。在投資上，純陽可能意味著一個高風險高回報的機會，適合有冒險精神的投資者。</p>
+            <span class="keyword-tag">創造</span><span class="keyword-tag">領導力</span><span class="keyword-tag">剛健</span><span class="keyword-tag">行動</span><span class="keyword-tag">純陽</span>
+        </div>
+    </div>
+
+    <div class="hexagram-card">
+        <div class="hexagram-header">
+            <div class="hexagram-symbol">☷☷</div>
+            <div class="hexagram-info">
+                <h4>2. 坤為地 Kun / Earth</h4>
+                <p>上卦☷ + 下卦☷ | 六爻皆陰 | 純陰之卦</p>
+            </div>
+        </div>
+        <div class="hexagram-body">
+            <p><strong>卦辭：</strong>「坤：元亨利牝馬之貞。君子有攸往，先迷後得。」</p>
+            <p><strong>象曰：</strong>「地勢坤，君子以厚德載物。」</p>
+            <p><strong>核心含義：</strong>純陰柔順之卦，象徵大地的包容與承载力。此卦教導我們：有時候停下來等待比盲目前進更有智慧；有時候放棄控制反而能獲得更多。</p>
+            <p><strong>商業應用：</strong>當你的企業在快速擴張後需要整合期，坤卦提醒你要打好基礎、練好內功。在人際關係中，坤代表偉大的包容力，適合需要建立團隊或修復關係的時期。</p>
+            <span class="keyword-tag">包容</span><span class="keyword-tag">接受</span><span class="keyword-tag">大地</span><span class="keyword-tag">耐心</span><span class="keyword-tag">團隊</span>
+        </div>
+    </div>
+
+    <div class="hexagram-card">
+        <div class="hexagram-header">
+            <div class="hexagram-symbol">☵☳</div>
+            <div class="hexagram-info">
+                <h4>3. 水雷屯 Zhun / Difficulty</h4>
+                <p>上卦☵ + 下卦☳ | 坎+震 | 起始維艱</p>
+            </div>
+        </div>
+        <div class="hexagram-body">
+            <p><strong>卦辭：</strong>「屯：元亨利貞。勿用有攸往，利建侯。」</p>
+            <p><strong>象曰：</strong>「雲雷屯，君子以經綸。」</p>
+            <p><strong>核心含義：</strong>雲聚雷動而雨未降，象徵萬事起頭難的階段。這個卦告訴我們：在困難中保持信念，在混亂中建立秩序，是成長的必經之路。</p>
+            <p><strong>商業應用：</strong>新創業者最常遇到的卦象。產品剛上線、投資還沒到位、團隊還在磨合——這一切都在屯的階段。關鍵策略：不要急於擴張，先把核心問題一個個解決，同時建立你的「侯」——核心團隊和核心客戶。</p>
+            <span class="keyword-tag">困難</span><span class="keyword-tag">起步</span><span class="keyword-tag">雲雨</span><span class="keyword-tag">建侯</span><span class="keyword-tag">經綸</span>
+        </div>
+    </div>
+
+    <div class="hexagram-card">
+        <div class="hexagram-header">
+            <div class="hexagram-symbol">☶☵</div>
+            <div class="hexagram-info">
+                <h4>4. 山水蒙 Meng / Awakening</h4>
+                <p>上卦☶ + 下卦☵ | 艮+坎 | 蒙昧初期</p>
+            </div>
+        </div>
+        <div class="hexagram-body">
+            <p><strong>卦辭：</strong>「蒙：亨。匪我求童蒙，童蒙求我。」</p>
+            <p><strong>象曰：</strong>「山下出泉，蒙。君子以果行育德。」</p>
+            <p><strong>核心含義：</strong>山下有泉水流出，還未形成河流——象徵蒙昧初始，需要教育的階段。這個卦特別強調：真正的學習來自於內在的渴望，而非外在的強加。</p>
+            <p><strong>商業應用：</strong>當你進入一個全新的領域時，你就是「童蒙」。你需要找到好的導師，但記住——好導師不會主動找你，你必須主動尋求。這個卦也提醒教育訓練類產品：客戶主動找你才是最好的。</p>
+            <span class="keyword-tag">蒙昧</span><span class="keyword-tag">教育</span><span class="keyword-tag">啟蒙</span><span class="keyword-tag">果行</span><span class="keyword-tag">求知</span>
+        </div>
+    </div>
+
+    <div class="hexagram-card">
+        <div class="hexagram-header">
+            <div class="hexagram-symbol">☵☵</div>
+            <div class="hexagram-info">
+                <h4>5. 坎為水 Xu / Waiting</h4>
+                <p>上卦☵ + 下卦☵ | 坎水疊加 | 危險、需耐心</p>
+            </div>
+        </div>
+        <div class="hexagram-body">
+            <p><strong>卦辭：</strong>「需：有孚，光亨，貞吉。利涉大川。」</p>
+            <p><strong>象曰：</strong>「雲上於天，需。君子以飲食宴樂。」</p>
+            <p><strong>核心含義：</strong>雲在天上，需要等待雨水降臨。這個卦告訴我們：有時候最聰明的行動就是等待。在危險中保持冷靜，等待正確的時機，是成功的關鍵。</p>
+            <p><strong>商業應用：</strong>市場還沒准备好，資金還沒到位，團隊還需要磨合——這時候需要「需」的智慧：保持耐心，不要提前行動，同時做好準備，等待時機成熟。這也是水險之卦，提醒我們注意現金流管理和風險控制。</p>
+            <span class="keyword-tag">等待</span><span class="keyword-tag">耐心</span><span class="keyword-tag">危险</span><span class="keyword-tag">水险</span><span class="keyword-tag">時機</span>
+        </div>
+    </div>
+
+    <div class="hexagram-card">
+        <div class="hexagram-header">
+            <div class="hexagram-symbol">☰☵</div>
+            <div class="hexagram-info">
+                <h4>6. 天水讼 Song / Conflict</h4>
+                <p>上卦☰ + 下卦☵ | 乾+坎 | 爭讼、衝突</p>
+            </div>
+        </div>
+        <div class="hexagram-body">
+            <p><strong>卦辭：</strong>「讼：有孚，窒。惕中吉，終凶。利見大人，不利涉大川。」</p>
+            <p><strong>象曰：</strong>「天與水相違而行，讼。君子以做事謀始。」</p>
+            <p><strong>核心含義：</strong>天（剛健）與水（危險）方向相反，意味著衝突與訴訟。這個卦告誡：訴訟最終往往沒有贏家，預防衝突比解決衝突更重要。</p>
+            <p><strong>商業應用：</strong>当合作夥伴或客戶發生糾紛時，先想想讼卦的教訓：訴訟耗時費力，還可能毁掉名聲。最好的策略是「做事謀始」——在合約一開始就設計好爭議解決機制。如果真的進入訴訟，要評估成本與收益。</p>
+            <span class="keyword-tag">爭讼</span><span class="keyword-tag">衝突</span><span class="keyword-tag">談判</span><span class="keyword-tag">訴訟</span><span class="keyword-tag">預防</span>
+        </div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整64卦解釋</h3>
+    <p style="color:var(--text-muted);">解鎖所有 64 卦（每卦 300+ 字完整解讀）+ 卦變分析 + 商業應用 + 投資含義</p>
+    <a href="https://shaishalin.gumroad.com/l/iching-glossary-guide" class="cta-button">$9.9 — Get Full 64 Hexagrams</a>
+</div>
+
+<div class="section">
+    <h2 id="changing">🔄 動爻與變卦 — Changing Lines & Phase Changes</h2>
+    <p>易經不僅是靜態的符號系統，更是動態的變化模型。當你占卜時，某一爻可能會「變」——由陽變陰或由陰變陽，產生了所謂的「變卦」。</p>
+
+    <h3>什麼是動爻？</h3>
+    <div class="glossary-entry">
+        <dl>
+            <dt>動爻（Dong Yao）</dt>
+            <dd>在你占卜得到的一個卦中，如果某個陰爻（--）對應的陽爻（—）成為該卦的「主爻」，或者在蓍草法中出現特定的數量組合，那麼這個爻就被稱為「動爻」。動爻代表你當前處境中最需要關注的變化點。</dd>
+            <dt>老陽（Lao Yang）與老陰（Lao Yin）</dt>
+            <dd>在蓍草法中，蓍草的數量變化產生了四象：少陽（7，老陽未變）、少陰（8，老陰未變）、老陽（9，陽爻變陰爻）、老陰（6，陰爻變陽爻）。只有老陽和老陰是動爻。</dd>
+        </dl>
+    </div>
+
+    <h3>動爻的解讀原則</h3>
+    <div class="glossary-entry">
+        <dl>
+            <dt>一爻動：以該爻辭為主</dt>
+            <dd>只有一個動爻時，專注該爻的含義。它的位置和特性告訴你問題的具體面向。</dd>
+            <dt>二爻動：以上爻為主</dt>
+            <dd>兩個動爻時，以上方的爻為主要參考，下方爻為輔助。</dd>
+            <dt>三爻動：以全卦為主，參考變卦</dt>
+            <dd>三個動爻可能預示著重大的轉折點，需要特別注意。</dd>
+            <dt>四爻動：以變卦的下卦為主</dt>
+            <dd>四個動爻標誌著中期轉變，這些變化可能需要更長時間來顯現。</dd>
+            <dt>五爻動：以内不變的那一爻為主</dt>
+            <dd>五個動爻暗示著根本性的重組，只有核心保持不變。</dd>
+            <dt>六爻動：若全部為陽，則用「用九」；若全部為陰，則用「用六」</dt>
+            <dd>六爻皆動是最極端的狀態，代表全面的轉化——舊的我彻底死去，新的我誕生。</dd>
+        </dl>
+    </div>
+
+    <h3>變卦（互卦之外的另一種轉化）</h3>
+    <p>當動爻發生變化時，整個卦變成了另一個卦，這就是「變卦」。變卦代表你的處境轉化後的結果，是一個重要的參照。</p>
+    <div class="hexagram-card">
+        <h4>實例：天雷无妄 → 風雷益</h4>
+        <p>假設你得到无妄卦（☰☳），第三爻為動爻，發生變化後，無妄卦變成了益卦（☴☳）。</p>
+        <p><strong>無妄（☰☳）：</strong>不虛妄、腳踏實地、避免投機</p>
+        <p><strong>益（☴☳）：</strong>受益、增加、利的方向</p>
+        <p><strong>解讀：</strong>你目前可能過度追求快速成功（無妄卦警告），但如果能調整你的方法和態度，最終會轉化為真正受益的狀態（益卦）。第三爻的位置暗示調整要從基層做事方式開始。</p>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="section">
+    <h2 id="qa">❓ 常見問題 Q&A</h2>
+
+    <div class="faq-item">
+        <div class="faq-q">易經占卜的原理是什麼？</div>
+        <div class="faq-a">易經的原理建立在天人合一的宇宙觀上。它認為宇宙是一個有機的整体，任何局部的變化都與整體相連。當你占卜時，你的提問會與宇宙的當前狀態產生共鳴，通過蓍草或硬幣的隨機性呈現出來。這個隨機性並非真正的隨機，而是反映了宇宙能量的當前配置。現代心理學則認為占卜是一種自我反思的工具，幫助你在潛意識中找到答案。</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">初學者應該用什麼工具占卜？</div>
+        <div class="faq-a">推薦三種工具：1）三枚硬幣法（最簡單，適合入門），擲三次得到一爻；2）蓍草法（傳統方法，需要較長時間，但被視為最精準）；3）電腦隨機卦（方便快速，但缺少年占的儀式感與專注意識）。建議從三枚硬幣開始，熟练后再尝试蓍草法。</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">占卜時應該問什麼樣的問題？</div>
+        <div class="faq-a">好的占卜問題是：具體但不過度精確；開放但不模糊；專注於你可以影響的領域。避免問「我會不會發財」這樣的問題，改問「我應該如何調整我的財務策略」或「我目前的事業方向是否正確」。封閉式的Yes/No問題最好轉化為行動導向的問題。</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">易經可以用于商業決策嗎？</div>
+        <div class="faq-a">可以，但要正確理解其作用。易經不是水晶球，不能告訴你明天股市漲跌。它是一套思考框架，幫助你在複雜局面中理清脈絡、識別風險與機會、找到行動方向。許多成功的企業家（如軟銀孫正義）都公開表示使用易經作為決策輔助工具。</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">如何開始學習易經？</div>
+        <div class="faq-a">推薦路徑：1）先理解八卦的基本含義（不要急於跳到六十四卦）；2）學習六爻的基本結構和位置含義；3）閱讀1-2本經典導論（如《易經的奥秘》）；4）每天或每週為自己占一卦，並詳細記錄；5）定期回顧你的記錄，觀察占卜結果與實際事件的對應關係。</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">占卜時心態應該如何調整？</div>
+        <div class="faq-a">保持「清、誠、敬」三個心態：「清」是腦海清凈，雜念消散；「誠」是內心真誠，問題必須是你真正想知道的；「敬」是敬畏之心，不是害怕，而是對自然與傳統的尊重。不要在情緒激動、醉酒或吸毒時占卜，也不要為同一問題短時間內重複占卜（這稱為「褻瀆」）。</div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整內容解鎖</h3>
+    <p style="color:var(--text-muted);">64卦完整解釋 + 動爻詳解 + 更多Q&A + 完整術語詞典 + 練習題答案 + 完整書目</p>
+    <a href="https://shaishalin.gumroad.com/l/iching-glossary-guide" class="cta-button">$9.9 — Unlock Full Glossary</a>
+</div>
+
+<div class="section">
+    <h2 id="glossary">📚 專業術語詞典精選</h2>
+
+    <div class="glossary-entry">
+        <dl>
+            <dt>卦（Gua / Hexagram）</dt>
+            <dd>由六個爻堆疊而成的符號，共六十四種組合。每一卦都是一個「情境模型」，代表一種人生或宇宙的處境。</dd>
+            <dt>爻（Yao / Line）</dt>
+            <dd>卦的組成部分，分為陽爻（—）和陰爻（--）。每一爻從下往上數，分別是第一爻到第六爻。</dd>
+            <dt>卦辭（Gua Ci）</dt>
+            <dd>每卦開頭的總結性文字，通常包含對該卦基本含義的描述。如「乾：元亨利貞」就是乾卦的卦辭。</dd>
+            <dt>爻辭（Yao Ci）</dt>
+            <dd>每一爻的專屬解釋文字。六十四卦共有三百八十四爻（加上用九用六則為四百零八種）。</dd>
+            <dt>象（Xiang / Image）</dt>
+            <dd>《象傳》對卦象的解釋，分為大象和小象。大象解釋整個卦的結構，小象解釋每一爻。</dd>
+            <dt>文言（Wen Yan）</dt>
+            <dd>專門解釋乾坤兩卦的文字，是理解易經義理的重要篇章。</dd>
+            <dt>太極（Taiji）</dt>
+            <dd>宇宙的原始狀態，代表萬物的總源頭。</dd>
+            <dt>陰陽（Yin Yang）</dt>
+            <dd>宇宙的兩種基本力量。陰代表柔和、黑暗、消極；陽代表剛健、光明、積極。萬物皆包含陰陽兩面。</dd>
+            <dt>三才（Sancai）</dt>
+            <dd>天、人、地。八卦的三爻由下往上依次代表地、人、天。六十四卦的上卦為天，下卦為地，變爻為人。</dd>
+            <dt>納甲（Najia）</dt>
+            <dd>將十天干配入八卦的方法，用於風水和命理中的時間能量判斷。</dd>
+        </dl>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="section">
+    <h2 id="quiz">📝 練習題 Practice Questions</h2>
+
+    <div class="quiz-box">
+        <div class="quiz-q">1. 乾卦的卦象是由哪個八卦重疊而成？</div>
+        <ul class="quiz-options">
+            <li>a) ☰ + ☷</li>
+            <li>b) ☰ + ☰</li>
+            <li>c) ☳ + ☵</li>
+            <li>d) ☶ + ☲</li>
+        </ul>
+        <div class="quiz-answer">答案：b) ☰ + ☰ — 乾為天，兩個純陽八卦重疊，是六爻皆陽的純陽之卦。</div>
+    </div>
+
+    <div class="quiz-box">
+        <div class="quiz-q">2. 在易經中，「老陽」是指哪個數字？</div>
+        <ul class="quiz-options">
+            <li>a) 6</li>
+            <li>b) 7</li>
+            <li>c) 8</li>
+            <li>d) 9</li>
+        </ul>
+        <div class="quiz-answer">答案：d) 9 — 蓍草法中，9是老陽（陽爻變陰爻），6是老陰（陰爻變陽爻）。</div>
+    </div>
+
+    <div class="quiz-box">
+        <div class="quiz-q">3. 八卦中代表「水」的是哪個？</div>
+        <ul class="quiz-options">
+            <li>a) 坤</li>
+            <li>b) 坎</li>
+            <li>c) 巽</li>
+            <li>d) 兌</li>
+        </ul>
+        <div class="quiz-answer">答案：b) 坎 — 坎為水，象徵危險、流動與智慧。</div>
+    </div>
+
+    <div class="quiz-box">
+        <div class="quiz-q">4. 「天行健，君子以自強不息」是哪個卦的象辭？</div>
+        <ul class="quiz-options">
+            <li>a) 坤卦</li>
+            <li>b) 屯卦</li>
+            <li>c) 乾卦</li>
+            <li>d) 離卦</li>
+        </ul>
+        <div class="quiz-answer">答案：c) 乾卦 — 「天行健，君子以自強不息」是乾卦大象辭。</div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整練習題 + 答案解析</h3>
+    <p style="color:var(--text-muted);">完整20道練習題（附詳細解析）+ 自我測試評分系統</p>
+    <a href="https://shaishalin.gumroad.com/l/iching-glossary-guide" class="cta-button">$9.9 — Get Quiz + Answer Key</a>
+</div>
+
+<div class="section">
+    <h2 id="books">📚 參考書目 Recommended Reading</h2>
+
+    <div class="book-ref">
+        <div class="book-icon">📕</div>
+        <div>
+            <strong>《易經》</strong>（周易正經）<br>
+            作者：傳為周文王<br>
+            這是所有易經研究的源頭。推薦商務印書館或中華書局的版本，附有現代漢語注釋。
+        </div>
+    </div>
+
+    <div class="book-ref">
+        <div class="book-icon">📗</div>
+        <div>
+            <strong>《繫辭傳》《象傳》《文言傳》</strong><br>
+            作者：傳為孔子及其弟子<br>
+            這些是易經的十翼（十篇輔助文章），是理解易經義理的核心文本。
+        </div>
+    </div>
+
+    <div class="book-ref">
+        <div class="book-icon">📘</div>
+        <div>
+            <strong>《易經的奥秘》</strong><br>
+            作者：曾仕強<br>
+            當代最暢銷的易經入門書，用通俗易懂的語言解釋易經的核心概念。
+        </div>
+    </div>
+
+    <div class="book-ref">
+        <div class="book-icon">📙</div>
+        <div>
+            <strong>《I Ching: The Book of Change》</strong><br>
+            作者：Thomas Cleary（翻譯）<br>
+            英文世界最完整的易經譯本之一，包含王弼、孔穎達的經典注疏。
+        </div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整版包含：</h3>
+    <div style="text-align:left; margin:20px 0; color:var(--text-muted);">
+        <p>✅ 64卦完整解釋（每卦 300+ 字）</p>
+        <p>✅ 動爻與變卦的深度解讀</p>
+        <p>✅ 完整專業術語詞典（100+ 術語）</p>
+        <p>✅ 更多Q&A內容（30+ 問題）</p>
+        <p>✅ 完整20道練習題及詳細解析</p>
+        <p>✅ 完整參考書目（30+ 本推薦）</p>
+        <p>✅ 可列印詞典格式</p>
+    </div>
+    <a href="https://shaishalin.gumroad.com/l/iching-glossary-guide" class="cta-button">$9.9 — Unlock Everything</a>
+</div>
+
+<footer>
+    <p style="color:var(--gold); margin-bottom:10px;">📖 Ultimate I Ching Glossary</p>
+    <p>© 殺手林出品 | shaishalin.gumroad.com</p>
+</footer>
+
+</div>
+</body>
+</html>

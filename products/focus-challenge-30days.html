@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrepreneur's 30-Day Focus Challenge - 創業者30天專注挑戰</title>
+    <style>
+        :root {
+            --bg-dark: #0d0d1a;
+            --bg-card: #13132a;
+            --gold: #d4af37;
+            --gold-light: #f0d875;
+            --gold-dim: #7a6a20;
+            --purple: #8b5cf6;
+            --text: #e8e4f0;
+            --text-muted: #8a889a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-dark);
+            color: var(--text);
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 60px 20px 50px;
+            border-bottom: 1px solid var(--gold-dim);
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, rgba(139,92,246,0.05) 0%, transparent 100%);
+        }
+        h1 { font-size: 2.2em; color: var(--gold); text-shadow: 0 0 30px rgba(212,175,55,0.25); margin-bottom: 10px; }
+        .subtitle { color: var(--purple); letter-spacing: 3px; text-transform: uppercase; font-size: 0.9em; }
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #8b6914);
+            color: var(--bg-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .hero-text { color: var(--text-muted); max-width: 600px; margin: 15px auto 0; font-size: 1.05em; }
+        .section {
+            background: var(--bg-card);
+            border: 1px solid rgba(139,92,246,0.15);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 25px;
+        }
+        h2 { color: var(--gold); font-size: 1.4em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(212,175,55,0.15); }
+        h3 { color: var(--gold-light); margin: 20px 0 10px; font-size: 1.15em; }
+        h4 { color: var(--purple); margin: 15px 0 8px; font-size: 1em; }
+        p { margin-bottom: 12px; }
+        .ritual-box {
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(212,175,55,0.05));
+            border: 1px solid rgba(139,92,246,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .day-card {
+            background: rgba(212,175,55,0.04);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 12px 0;
+            position: relative;
+        }
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(139,92,246,0.3), transparent, rgba(212,175,55,0.2));
+            z-index: -1;
+        }
+        .day-number {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--bg-dark);
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        .hexagram-tag {
+            display: inline-block;
+            background: rgba(139,92,246,0.15);
+            color: var(--purple);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-left: 8px;
+        }
+        .morning-ritual {
+            background: rgba(139,92,246,0.08);
+            border-left: 3px solid var(--purple);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .morning-ritual strong { color: var(--gold-light); }
+        .affirmation { font-style: italic; color: var(--gold-light); margin: 8px 0; }
+        .meditation-tip { color: var(--text-muted); font-size: 0.95em; margin: 8px 0; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 20px 0; }
+        .grid-item {
+            background: rgba(139,92,246,0.04);
+            border: 1px solid rgba(139,92,246,0.12);
+            border-radius: 10px;
+            padding: 18px;
+        }
+        .grid-item h4 { color: var(--gold-light); }
+        .tracker-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .tracker-table th { background: rgba(139,92,246,0.2); color: var(--gold-light); padding: 10px; text-align: left; font-size: 0.9em; }
+        .tracker-table td { padding: 10px; border-bottom: 1px solid rgba(139,92,246,0.1); font-size: 0.9em; }
+        .tracker-table input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--gold); }
+        .weekly-review {
+            background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(139,92,246,0.05));
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .review-q { margin: 12px 0; padding: 10px 15px; background: rgba(212,175,55,0.04); border-radius: 8px; }
+        .review-q::before { content: '❓ '; color: var(--purple); }
+        .certificate {
+            border: 2px dashed var(--gold);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(212,175,55,0.03);
+        }
+        .certificate h3 { color: var(--gold); font-size: 1.6em; margin-bottom: 10px; }
+        .certificate .name-line { border-bottom: 1px solid var(--gold); width: 300px; margin: 15px auto; }
+        .locked-section {
+            background: repeating-linear-gradient(-45deg, rgba(139,92,246,0.03) 0px, rgba(139,92,246,0.03) 10px, transparent 10px, transparent 20px);
+            border: 1px dashed rgba(139,92,246,0.25);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #8b6914);
+            color: var(--bg-dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.3); }
+        .week-label {
+            background: var(--purple);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--gold-dim); margin-top: 40px; color: var(--text-muted); font-size: 0.9em; }
+        @media print {
+            body { background: white; color: #111; }
+            .section { border: 1px solid #ccc; box-shadow: none; }
+            .cta-button, .locked-section { display: none; }
+            .tracker-table { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <h1>⚡ Entrepreneur's 30-Day Focus Challenge</h1>
+    <div class="subtitle">創業者30天專注挑戰</div>
+    <div class="price-tag">$7.9 — Full Challenge</div>
+    <p class="hero-text">用易經智慧武裝你的每一天。30天，每天一個卦象主題，配合專注任務、早晨儀式與每週回顧，讓你的事業能量層級大幅提升。</p>
+</header>
+
+<!-- FREE PREVIEW: Morning Ritual + Days 1-3 -->
+
+<div class="section">
+    <h2>🌅 早晨儀式 — 每天成功的第一步</h2>
+    <p>這套早晨儀式融合易經占卜、肯定語與冥想，只需15分鐘，讓你的一天充滿方向感與專注力量。</p>
+
+    <div class="ritual-box">
+        <h3>☀️ 每日早晨儀式（15分鐘）</h3>
+        <div class="morning-ritual">
+            <strong>步驟 1：易經占卜（5分鐘）</strong>
+            <p>每天早上，閉上眼睛，深呼吸三次。默念：「今天我需要知道什麼？」</p>
+            <p>用三枚硬幣或蓍草占卜，得到一個卦象。根據當天的卦象主題來引導你的思緒與行動。這不是預測未來，而是與古老智慧連接，讓你的直覺打開。</p>
+        </div>
+        <div class="morning-ritual">
+            <strong>步驟 2：肯定語朗讀（3分鐘）</strong>
+            <p class="affirmation">「我是自己生命的創造者，我的每一個選擇都在構建我的帝國。」</p>
+            <p class="affirmation">「我的專注如激光，我的行動如雷霆。」</p>
+            <p class="affirmation">「今天我選擇只做最重要的一件事。」</p>
+        </div>
+        <div class="morning-ritual">
+            <strong>步驟 3：呼吸冥想（7分鐘）</strong>
+            <p class="meditation-tip">找一个安静的角落，坐直。闭上眼睛。</p>
+            <p class="meditation-tip">吸气4秒，屏息4秒，呼气6秒。重复7次。</p>
+            <p class="meditation-tip">想象一道金色的光从头顶进入，流遍全身，带走所有的杂念与焦虑。当你的思维完全安静时，感受「道」的存在，然后带着这份平静迎接新的一天。</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>📅 第一週：建立根基（第 1-7 天）</h2>
+    <div class="week-label">Week 1: Foundation</div>
+
+    <div class="day-card">
+        <h3><span class="day-number">1</span> Day 1: 乾卦 — 創造力<span class="hexagram-tag">☰ 純陽</span></h3>
+        <p><strong>主題：</strong>開天闢地，萬物初始。今天是新的開始，你是自己世界的創造者。</p>
+        <div class="morning-ritual">
+            <strong>早晨儀式：</strong>占得乾卦。肯定語：「我充满创造能量，今天我將創造奇迹。」
+        </div>
+        <p><strong>今日任務：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>寫下你的3個最重要目標（不超過3個）</li>
+            <li>删除或委托一件你一直在做的低價值任務</li>
+            <li>在不受打擾的時間段完成最重要的一件事</li>
+        </ul>
+        <p><strong>晚上反思：</strong>今天我創造了什麼？什麼阻礙了我的能量？</p>
+    </div>
+
+    <div class="day-card">
+        <h3><span class="day-number">2</span> Day 2: 坤卦 — 接受力<span class="hexagram-tag">☷ 純陰</span></h3>
+        <p><strong>主題：</strong>大地之母，包容萬物。今天學習接受，開放，接受幫助。</p>
+        <div class="morning-ritual">
+            <strong>早晨儀式：</strong>占得坤卦。肯定語：「我敞開心扉接受宇宙的支持。」
+        </div>
+        <p><strong>今日任務：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>聯繫一位曾經幫助過你的人，說聲謝謝</li>
+            <li>閱讀或觀看一個能擴展你思維的內容（不在你的舒適區）</li>
+            <li>放棄控制今天的一件小事</li>
+        </ul>
+        <p><strong>晚上反思：</strong>今天我接受了什麼？我放下控制時發生了什麼？</p>
+    </div>
+
+    <div class="day-card">
+        <h3><span class="day-number">3</span> Day 3: 屯卦 — 萌芽力<span class="hexagram-tag">☳ 起始維難</span></h3>
+        <p><strong>主題：</strong>萬事起頭難，雲雷聚而雨未降。今天在困難中保持信念。</p>
+        <div class="morning-ritual">
+            <strong>早晨儀式：</strong>占得屯卦。肯定語：「困難是暂时的，我的根基越來越稳固。」
+        </div>
+        <p><strong>今日任務：</strong></p>
+        <ul style="margin-left:20px; margin-top:8px;">
+            <li>選擇一個你一直在推遲的項目，今天啟動它（只要求邁出第一步）</li>
+            <li>列出你需要的3個幫助/資源來推動這個項目</li>
+            <li>聯繫其中一個資源的來源</li>
+        </ul>
+        <p><strong>晚上反思：</strong>今天我啟動了什麼？我如何度過了不確定性？</p>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整30天挑戰</h3>
+    <p style="color:var(--text-muted);">解鎖所有 30 天任務 + 完整早晨儀式 + 可列印追蹤表 + 完整每週回顧 + 完成證書</p>
+    <a href="https://shaishalin.gumroad.com/l/focus-challenge-30days" class="cta-button">$7.9 — Get Full 30-Day Challenge</a>
+</div>
+
+<div class="section">
+    <h2>📊 每日專注追蹤表（可列印）</h2>
+    <p>複印這張表，每天填寫。堅持30天，你的大腦會重組。</p>
+    <table class="tracker-table">
+        <tr>
+            <th>Day</th>
+            <th>Hexagram</th>
+            <th>Top 3 Goals</th>
+            <th>Completed?</th>
+            <th>Energy Level (1-10)</th>
+            <th>Notes</th>
+        </tr>
+        <tr><td>1</td><td>☰ 乾</td><td></td><td><input type="checkbox"></td><td></td><td></td></tr>
+        <tr><td>2</td><td>☷ 坤</td><td></td><td><input type="checkbox"></td><td></td><td></td></tr>
+        <tr><td>3</td><td>☳ 屯</td><td></td><td><input type="checkbox"></td><td></td><td></td></tr>
+        <tr><td>4</td><td>☶ 艮</td><td></td><td><input type="checkbox"></td><td></td><td></td></tr>
+        <tr><td>5</td><td>☵ 坎</td><td></td><td><input type="checkbox"></td><td></td><td></td></tr>
+        <tr><td>6</td><td>☱ 兌</td><td></td><td><input type="checkbox"></td><td></td><td></td></tr>
+        <tr><td>7</td><td>☲ 離</td><td></td><td><input type="checkbox"></td><td></td><td></td></tr>
+    </table>
+    <p style="font-size:0.85em; color:var(--text-muted); margin-top:10px;">* 完整30天表格在付費版本中提供</p>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="section">
+    <h2>🧭 八卦能量參考卡</h2>
+    <p>這張卡是你30天挑戰的密碼。每個卦象對應一種類型的專注挑戰：</p>
+    <div class="grid-2">
+        <div class="grid-item">
+            <h4>☰ 乾 Qian — 創造/領導</h4>
+            <p>能量：極陽、剛健、主動。今日任務聚焦：开创、决策、领导。不要等待，开始。</p>
+        </div>
+        <div class="grid-item">
+            <h4>☷ 坤 Kun — 接受/包容</h4>
+            <p>能量：極陰、柔順、被動。今日任務聚焦：开放、接收、学习。放下固执，拥抱新视角。</p>
+        </div>
+        <div class="grid-item">
+            <h4>☳ 屯 Zhun — 困難中成長</h4>
+            <p>能量：雲雷聚而雨未降，艱難中蘊藏生機。今日任務聚焦：在混乱中保持方向，不放弃第一步。</p>
+        </div>
+        <div class="grid-item">
+            <h4>☶ 艮 Gen — 停止/專注</h4>
+            <p>能量：山，静止，專注。今日任務聚焦：停止多工，專注一事。砍掉一切不必要的事。</p>
+        </div>
+        <div class="grid-item">
+            <h4>☵ 坎 Kan — 危險/韌性</h4>
+            <p>能量：水，危險，流動。今日任務聚焦：危機管理，情緒控制，在低潮中保持冷靜。</p>
+        </div>
+        <div class="grid-item">
+            <h4>☱ 兌 Dui — 喜悦/溝通</h4>
+            <p>能量：澤，喜悦，言語。今日任務聚焦：有效溝通，建設性反饋，團隊協作。</p>
+        </div>
+        <div class="grid-item">
+            <h4>☲ 離 Li — 光明/熱情</h4>
+            <p>能量：火，光明，依附。今日任務聚焦：公開發聲，推廣你的事業，讓世界看到你。</p>
+        </div>
+        <div class="grid-item">
+            <h4>☴ 巽 Xun — 滲透/溫順</h4>
+            <p>能量：風，滲透，溫順。今日任務聚焦：市場调研，谦卑学习，从小处渗透大机会。</p>
+        </div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整版包含：</h3>
+    <div class="grid-2" style="text-align:left; margin:20px 0;">
+        <div class="grid-item">
+            <h4>📅 完整30天每日任務</h4>
+            <p>每天獨立的卦象主題、任務、肯定語與反思問題</p>
+        </div>
+        <div class="grid-item">
+            <h4>🔮 完整早晨儀式手冊</h4>
+            <p>30天每天不同的占卜主題與冥想引導</p>
+        </div>
+        <div class="grid-item">
+            <h4>📊 完整30天追蹤表</h4>
+            <p>可列印版本，記錄每天的能量與進度</p>
+        </div>
+        <div class="grid-item">
+            <h4>💬 完整每週回顧問題</h4>
+            <p>每週深度反思，確保你從經驗中學習</p>
+        </div>
+        <div class="grid-item">
+            <h4>🏆 完成證書模板</h4>
+            <p>完成挑戰後可自定義的PDF證書</p>
+        </div>
+        <div class="grid-item">
+            <h4>📱 快速參考卡</h4>
+            <p>手機壁纸格式的卦象速查表</p>
+        </div>
+    </div>
+    <a href="https://shaishalin.gumroad.com/l/focus-challenge-30days" class="cta-button">$7.9 — Unlock Full Challenge</a>
+</div>
+
+<div class="section">
+    <h2>🏆 30天完成證書模板</h2>
+    <div class="certificate">
+        <h3>🎖️ 專注挑戰完成證書</h3>
+        <p>This certifies that</p>
+        <div class="name-line"></div>
+        <p>has successfully completed the</p>
+        <h4 style="color:var(--gold); margin:15px 0;">Entrepreneur's 30-Day Focus Challenge</h4>
+        <p style="font-size:0.9em; color:var(--text-muted);">創業者30天專注挑戰</p>
+        <p style="margin-top:20px; font-size:0.9em;">Completed on: <strong style="color:var(--gold);">_______________</strong></p>
+        <p style="margin-top:10px; color:var(--purple); font-size:1.1em;">☰ The Tao that can be told is not the eternal Tao</p>
+    </div>
+</div>
+
+<footer>
+    <p style="color:var(--gold); margin-bottom:10px;">⚡ Entrepreneur's 30-Day Focus Challenge</p>
+    <p>© 殺手林出品 | shaishalin.gumroad.com</p>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete Feng Shui Business Blueprint - 完整風水商業藍圖</title>
+    <style>
+        :root {
+            --bg-dark: #080f08;
+            --bg-card: #0f1a0f;
+            --green-gold: #8bc34a;
+            --gold: #d4af37;
+            --gold-light: #c5d941;
+            --text: #e0e8d0;
+            --text-muted: #8a9880;
+            --accent: #689f38;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-dark);
+            color: var(--text);
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid rgba(139,195,74,0.3);
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, rgba(139,195,74,0.05) 0%, transparent 100%);
+        }
+        h1 {
+            font-size: 2.2em;
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(212,175,55,0.3);
+            margin-bottom: 10px;
+        }
+        .subtitle { color: var(--green-gold); letter-spacing: 3px; text-transform: uppercase; font-size: 0.95em; }
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #9a7b0a);
+            color: var(--bg-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .section {
+            background: var(--bg-card);
+            border: 1px solid rgba(139,195,74,0.2);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: var(--green-gold);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139,195,74,0.15);
+        }
+        h3 { color: var(--gold-light); margin: 25px 0 12px; }
+        p { margin-bottom: 15px; }
+        .highlight-box {
+            background: rgba(139,195,74,0.08);
+            border-left: 3px solid var(--green-gold);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(104,159,56,0.05));
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 10px 15px;
+            margin: 6px 0;
+            background: rgba(139,195,74,0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .checklist li::before {
+            content: '☑';
+            color: var(--green-gold);
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .grid-item {
+            background: rgba(139,195,74,0.04);
+            border: 1px solid rgba(139,195,74,0.15);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .grid-item h4 { color: var(--gold-light); margin-bottom: 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background: rgba(139,195,74,0.2);
+            color: var(--gold-light);
+            padding: 10px 15px;
+            text-align: left;
+        }
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(139,195,74,0.1);
+        }
+        .direction-card {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin: 12px 0;
+            padding: 15px;
+            background: rgba(212,175,55,0.04);
+            border-radius: 10px;
+        }
+        .direction-icon {
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+        .locked-section {
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba(139,195,74,0.03) 0px,
+                rgba(139,195,74,0.03) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            border: 1px dashed rgba(139,195,74,0.3);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #9a7b0a);
+            color: var(--bg-dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.3);
+        }
+        .industry-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(139,195,74,0.15);
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: var(--green-gold);
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(139,195,74,0.2);
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <h1>🏠 The Complete Feng Shui Business Blueprint</h1>
+    <div class="subtitle">完整風水商業藍圖</div>
+    <div class="price-tag">$14.9 — Full Blueprint</div>
+    <p style="color:var(--text-muted); max-width:600px; margin:15px auto 0;">
+        運用古老風水智慧優化你的商業空間、網站、會議室與財位。<br>
+        適合：創業者、店主、餐廳老闆、电商卖家、服務業者。
+    </p>
+</header>
+
+<!-- FREE PREVIEW -->
+
+<div class="section">
+    <h2>🪑 辦公室風水佈局指南</h2>
+    <p>辦公室是你事業的發電機。它的佈局直接影響你的決策品質、團隊效率和財氣流通。以下是核心原則：</p>
+
+    <h3>1. 老闆/主管位置 — 「靠山」原則</h3>
+    <div class="highlight-box">
+        <strong>黃金法則：</strong>辦公桌後方必須有實牆，絕不能是窗戶、走廊或空蕩蕩的牆。風水中稱為「靠山」，心理學稱為「安全感」。<br><br>
+        <strong>具體建議：</strong>
+        <ul style="margin-top:10px; padding-left:20px;">
+            <li>坐位面對房門，但背不靠門</li>
+            <li>左邊放高柜（青龍位），右邊放低矮物（白虎位）</li>
+            <li>桌面保持整潔，暗指思緒清明</li>
+            <li>不要讓座位正上方有橫樑</li>
+        </ul>
+    </div>
+
+    <h3>2. 員工區域 — 魚缸與植物的能量配置</h3>
+    <div class="tip-box">
+        <strong>💡 魚缸風水：</strong>魚缸代表流動的財，適合放在公司的財位或進門的旺位。但要注意：
+        <ul style="margin-top:10px; padding-left:20px;">
+            <li>魚的數量與顏色配合你的命理</li>
+            <li>魚缸水要保持清潔，否則帶來霉運</li>
+            <li>死魚不及時清理，則破財</li>
+        </ul>
+    </div>
+
+    <h3>3. 會議室 — 能量放大器</h3>
+    <div class="direction-card">
+        <div class="direction-icon">🧭</div>
+        <div>
+            <strong>會議桌形狀：</strong>橢圓形或長方形最佳（方形象徵僵固）。<br>
+            <strong>方位選擇：</strong>
+            <ul style="margin-top:8px; padding-left:20px;">
+                <li>東：木氣，適合創意、腦力激盪</li>
+                <li>南：火氣，適合快速決策談判</li>
+                <li>北：水氣，適合財務規劃預算</li>
+            </ul>
+        </div>
+    </div>
+    <div class="direction-card">
+        <div class="direction-icon">💡</div>
+        <div>
+            <strong>會議室照明：</strong>光線要均勻，不能一邊明一邊暗。明暗不均暗示團隊內部的不公平感。牆上可以挂一幅山脈風景圖，但要確保山脈走向向上而非下垂。
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>🏪 商店/餐廳風水</h2>
+    <p>實體店的風水核心只有一個：讓客人願意走進來，願意掏錢，願意再回來。</p>
+
+    <h3>門口設計 — 吸納財氣的第一印象</h3>
+    <div class="highlight-box">
+        <strong>❌ 禁忌：</strong>
+        <ul style="margin-top:10px; padding-left:20px;">
+            <li>門口正對向上的樓梯（財氣往上流走）</li>
+            <li>門口正對電線杆、大樹、尖角建築（形煞）</li>
+            <li>門口太過寬敞（氣散，不聚財）</li>
+            <li>店內光線昏暗（陰氣過重）</li>
+        </ul>
+    </div>
+    <div class="tip-box">
+        <strong>✅ 優化方案：</strong>
+        <ul style="margin-top:10px; padding-left:20px;">
+            <li>在門口內側放一面凸鏡，將外部的銳氣反射回去</li>
+            <li>門口放置一對石獅子（左雄右雌），面朝外</li>
+            <li>門口地板保持乾淨光亮，有裂縫要修補</li>
+            <li>收銀台要「藏風聚氣」，不可正對大門</li>
+            <li>收銀台背後要有實牆，不可空</li>
+        </ul>
+    </div>
+
+    <h3>餐廳特殊風水</h3>
+    <div class="grid-2">
+        <div class="grid-item">
+            <h4>🍜 廚房位置</h4>
+            <p>廚房在風水中代表「財庫」，位置錯誤會導致財務問題。避免廚房在正南方（離宮火過旺，餐飲業火氣已重）。最佳位置是東南方向。</p>
+        </div>
+        <div class="grid-item">
+            <h4>🍽️ 座位安排</h4>
+            <p>座位不要背對門口或窗戶，這會讓客人感到不安全。VIP包厢應該在角落位置，提供隱私和安全感。主入口看到的最裡面的位置，是最旺財的位置。</p>
+        </div>
+        <div class="grid-item">
+            <h4>🎨 色彩選擇</h4>
+            <p>餐廳適合使用暖色調（紅、橙、黃）來刺激食欲，但要避免過度使用黑色或深藍色（抑制食欲）。綠色植物可以放在角落來化解煞氣。</p>
+        </div>
+        <div class="grid-item">
+            <h4>🔔 音聲與氣流</h4>
+            <p>輕柔的音樂可以促進消費，但過於吵雜會讓人想快點離開。使用空氣清新機或精油擴香器，保持空氣清新流動。</p>
+        </div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整版解鎖</h3>
+    <p style="color:var(--text-muted);">電子商務網站風水 + 會議室能量優化 + 財位激活 + 行業建議 + 可列印檢查清單</p>
+    <a href="https://shaishalin.gumroad.com/l/fengshui-business-blueprint" class="cta-button">$14.9 — Get Full Version on Gumroad</a>
+</div>
+
+<div class="section">
+    <h2>🧭 風水方位基礎速查表</h2>
+    <p>八大方位的基本含義，適用於任何商業空間配置：</p>
+    <table>
+        <tr><th>方位</th><th>八卦</th><th>元素</th><th>代表</th><th>商業應用</th></tr>
+        <tr><td>北</td><td>坎</td><td>水</td><td>事業、財富</td><td>財務部門、保險、貿易</td></tr>
+        <tr><td>南</td><td>離</td><td>火</td><td>名聲、知名度</td><td>公關、营销、表演业</td></tr>
+        <tr><td>東</td><td>震</td><td>木</td><td>成長、健康</td><td>研發、創意、教育</td></tr>
+        <tr><td>西</td><td>兌</td><td>金</td><td>貴人、藝術</td><td>藝術相關、珠寶、顧問</td></tr>
+        <tr><td>東南</td><td>巽</td><td>木</td><td>財富、婚姻</td><td>餐飲、零售、服務業</td></tr>
+        <tr><td>東北</td><td>艮</td><td>土</td><td>創造力、教育</td><td>學校、培訓機構</td></tr>
+        <tr><td>西南</td><td>坤</td><td>土</td><td>人脈、客戶</td><td>人資、客服、房地產</td></tr>
+        <tr><td>西北</td><td>乾</td><td>金</td><td>首腦、貴人</td><td>管理層、決策中心</td></tr>
+    </table>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="section">
+    <h2>🏢 各行業的風水建議（精華版）</h2>
+    <div class="grid-2">
+        <div class="grid-item">
+            <h4>💻 科技/互聯網公司</h4>
+            <p>科技屬「火」與「木」的結合。適合在東南方向種植闊葉植物，促進創新能量。服務器机房不要在正北方（坎水過旺會抑制運算速度）。辦公區域使用白色和淺灰色，能讓思維保持清晰。</p>
+        </div>
+        <div class="grid-item">
+            <h4>🍜 餐飲業</h4>
+            <p>火氣重，需要水來平衡。在店內放置魚缸或流水擺件來旺財。避免在廚房上方有橫樑，會讓廚師情緒不穩。紅色可以用於装飾但不要過度，會讓人過度緊張。</p>
+        </div>
+        <div class="grid-item">
+            <h4>🛍️ 零售業</h4>
+            <p>入口是財氣進來的通道。保持入口乾淨明亮，商品陳列有層次不擁擠。試衣間保持整潔通風。收銀台不要正對大門，讓錢財有進有出而非快速流失。</p>
+        </div>
+        <div class="grid-item">
+            <h4>💼 服務業/顧問</h4>
+            <p>服務業靠「人」吃飯，人脈就是財脈。會客室要溫暖舒適，讓客戶放鬆。牆上可以挂山水畫，但水要流向室內（招財）。座位要有靠山，讓客戶感到安全被支持。</p>
+        </div>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整版包含：</h3>
+    <div class="grid-3" style="text-align:left; margin:20px 0;">
+        <div class="grid-item">
+            <h4>🌐 電子商務網站風水</h4>
+            <p>網站首頁、登陸頁、按鈕顏色、結帳流程的風水優化</p>
+        </div>
+        <div class="grid-item">
+            <h4>🎯 會議室能量優化</h4>
+            <p>根據會議類型選擇正確方位與時間</p>
+        </div>
+        <div class="grid-item">
+            <h4>💰 財位激活方法</h4>
+            <p>明財位、暗財位、流通財位的識別與激活</p>
+        </div>
+        <div class="grid-item">
+            <h4>🗺️ 28種行業完整建議</h4>
+            <p>每個行業的特定位置、色彩、禁忌與推薦</p>
+        </div>
+        <div class="grid-item">
+            <h4>🖨️ 可列印檢查清單</h4>
+            <p>每個空間類型一份，快速診斷你現有的辦公室/店鋪</p>
+        </div>
+        <div class="grid-item">
+            <h4>📅 年度風水行事曆</h4>
+            <p>每個月的能量重點與行動建議</p>
+        </div>
+    </div>
+    <a href="https://shaishalin.gumroad.com/l/fengshui-business-blueprint" class="cta-button">$14.9 — Unlock Full Blueprint</a>
+</div>
+
+<footer>
+    <p style="color:var(--green-gold); margin-bottom:10px;">🏠 Feng Shui Business Blueprint</p>
+    <p>© 殺手林出品 | shaishalin.gumroad.com</p>
+</footer>
+
+</div>
+</body>
+</html>

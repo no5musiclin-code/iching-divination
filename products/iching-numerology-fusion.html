@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Ching Numerology Fusion - 易經命理融合指南</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a12;
+            --bg-card: #12121e;
+            --gold: #d4af37;
+            --gold-light: #f4d160;
+            --gold-dim: #8b7023;
+            --text: #e8e0d0;
+            --text-muted: #9a9080;
+            --accent: #c9a227;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-dark);
+            color: var(--text);
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid var(--gold-dim);
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 2.4em;
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(212,175,55,0.3);
+            margin-bottom: 10px;
+        }
+        .subtitle { color: var(--text-muted); font-size: 1.1em; letter-spacing: 3px; text-transform: uppercase; }
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--bg-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--gold-dim);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: 30px;
+            width: 60px; height: 3px;
+            background: var(--gold);
+        }
+        h2 {
+            color: var(--gold);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+        h3 { color: var(--gold-light); margin: 25px 0 12px; font-size: 1.15em; }
+        p { margin-bottom: 15px; color: var(--text); }
+        .hexagram-box {
+            background: rgba(212,175,55,0.08);
+            border-left: 3px solid var(--gold);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .hexagram-symbol {
+            font-size: 1.8em;
+            color: var(--gold);
+            display: inline-block;
+            margin-right: 12px;
+        }
+        .number-badge {
+            display: inline-block;
+            width: 36px; height: 36px;
+            background: var(--gold);
+            color: var(--bg-dark);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 10px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .grid-item {
+            background: rgba(212,175,55,0.05);
+            border: 1px solid var(--gold-dim);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .grid-item h4 { color: var(--gold-light); margin-bottom: 10px; }
+        .tip-box {
+            background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(201,162,39,0.05));
+            border: 1px solid var(--gold-dim);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tip-box strong { color: var(--gold); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background: var(--gold);
+            color: var(--bg-dark);
+            padding: 10px 15px;
+            text-align: left;
+        }
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+        }
+        tr:hover { background: rgba(212,175,55,0.05); }
+        .action-list {
+            list-style: none;
+            padding: 0;
+        }
+        .action-list li {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: rgba(212,175,55,0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--gold);
+        }
+        .locked-section {
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba(212,175,55,0.03) 0px,
+                rgba(212,175,55,0.03) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            border: 1px dashed var(--gold-dim);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .locked-section h3 { color: var(--gold); margin-top: 0; }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--bg-dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.4);
+        }
+        .gemini-section {
+            background: linear-gradient(135deg, #1a0a2e, #0a0a12);
+            border: 1px solid #6b3fa0;
+            border-radius: 12px;
+            padding: 35px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .gemini-section h2 { color: #c084fc; border-color: rgba(192,132,252,0.3); }
+        .gemini-section p { color: #d8b4fe; }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--gold-dim);
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+    <h1>☰ I Ching Numerology Fusion</h1>
+    <div class="subtitle">易經命理融合指南</div>
+    <div class="price-tag">$12.9 — Full Guide</div>
+    <p style="color:var(--text-muted); max-width:600px; margin:15px auto 0;">
+        探索生命靈數 1-9 與易經八卦的深度連結，解碼你的命理密碼。<br>
+        商業合作 × 投資運勢 × 愛情密碼 — 三大核心應用。
+    </p>
+</header>
+
+<!-- FREE PREVIEW: Life Path Numbers 1-5 -->
+
+<div class="section">
+    <h2>🌟 生命靈數 1-9 完整解讀</h2>
+    <p>生命靈數（Life Path Number）是根據你的出生日期計算出的核心數字，代表你的人生使命與成長方向。當它與易經八卦相遇，你將獲得更精準的命理指引。</p>
+
+    <h3>生命靈數 1 — 乾卦 (☀️ Qian / The Creative)</h3>
+    <div class="hexagram-box">
+        <span class="hexagram-symbol">☰</span>
+        <strong>卦象：</strong>三爻皆陽，纯阳刚健，象徵天、父、創造、領導。<br>
+        <strong>關鍵字：</strong>獨立、原創、勇敢、開創、先驅<br>
+        <strong>陰影面：</strong>固執、自負、孤立
+    </div>
+    <p><strong>你的核心本質：</strong>你是天生的領導者，攜帶著「乾」的能量来到这个世界。你的思维如同天空般高遠，创造力源源不断。你渴望成为第一、成为标杆，在任何领域都要留下自己的印记。</p>
+    <p><strong>命理融合分析：</strong>靈數1 + 乾卦：你的生命路线图指向开创伟业。你的意志力如天道运行般恒久不息，但需注意「满则损」的道理——过度的控制欲会消耗你的能量。建议在决策前听取他人意见，让「坤」的柔顺能量来平衡你的刚性。</p>
+    <div class="tip-box">
+        <strong>💡 每日行動：</strong>每早醒来，想象一道金光从头顶贯穿全身，这是天能量为你注入的创造力。今天至少做一件展现你独特性的事——穿特别的颜色、说别人不敢说的话、尝试全新的方法。
+    </div>
+
+    <h3>生命靈數 2 — 坤卦 (🌙 Kun / The Receptive)</h3>
+    <div class="hexagram-box">
+        <span class="hexagram-symbol">☷</span>
+        <strong>卦象：</strong>三爻皆陰，纯阴柔顺，象徵地、母、包容、顺势。<br>
+        <strong>關鍵字：</strong>合作、平衡、直觉、耐心、包容<br>
+        <strong>陰影面：</strong>依赖、优柔寡断、自我否定
+    </div>
+    <p><strong>你的核心本質：</strong>你是天生的外交官，携带「坤」的包容能量。你善于在差异中寻找共识，在冲突中创造和谐。你的直觉异常敏锐，能感知他人未说出口的需求。</p>
+    <p><strong>命理融合分析：</strong>靈數2 + 坤卦：你的天赋在于将不同的人与想法整合在一起。你如同大地的胸怀，承载万物而不争夺功劳。但要警惕「依附过深」——学会在关系中保持自我的完整，而不是不断为他人牺牲。</p>
+    <div class="tip-box">
+        <strong>💡 每日行動：</strong>今天练习说「不」——对一件你不真正想做的事说不。记住，健康的边界不是自私，而是保护你能量不被耗尽。你的包容要有牙齿。
+    </div>
+
+    <h3>生命靈數 3 — 震卦 (⚡ Zhen / The Arousing)</h3>
+    <div class="hexagram-box">
+        <span class="hexagram-symbol">☳</span>
+        <strong>卦象：</strong>一陽在下，奋起躁动，象徵雷、动、迅速、突破。<br>
+        <strong>關鍵字：</strong>表達、創意、溝通、活力、行動<br>
+        <strong>陰影面：</strong>三分鐘熱度、衝動、散漫
+    </div>
+    <p><strong>你的核心本質：</strong>你是天生的艺术家与沟通者，携带「震」的闪电能量。你的想法如同雷声般在脑海中炸响，创意的火花四处飞溅。你用语言、色彩、音符来传达生命的热情。</p>
+    <p><strong>命理融合分析：</strong>靈數3 + 震卦：你的表达力是上天给你的礼物，但雷的能量来得快去得也快。你需要「艮」山的定力来让你的才华落地。与其一次启动十个项目，不如选择一个深耕到底。专注力是你最需要修炼的课题。</p>
+    <div class="tip-box">
+        <strong>💡 每日行動：</strong>找一个你正在拖延的项目，今天只花15分钟在上面。关键不是完成，而是开始。让雷的能量有一个明确的落地点，而不是在空中乱闪。
+    </div>
+
+    <h3>生命靈數 4 — 艮卦 (🏔️ Gen / The Mountain)</h3>
+    <div class="hexagram-box">
+        <span class="hexagram-symbol">☶</span>
+        <strong>卦象：</strong>一陽在上，静止稳重，象徵山、止、稳固、专注。<br>
+        <strong>關鍵字：</strong>紀律、耐心、實踐、穩定、傳統<br>
+        <strong>陰影面：</strong>固執、僵化、逃避冒險
+    </div>
+    <p><strong>你的核心本質：</strong>你是天生的建设者与组织者，携带「艮」的稳如山岳能量。你用一步一步的踏实步伐构建帝国，不依赖侥幸。你是可靠的代名词，无论承诺什么都会兑现。</p>
+    <p><strong>命理融合分析：</strong>靈數4 + 艮卦：你的人生蓝图是建立持久价值的基础设施——无论是企业系统、房产投资还是家庭。但山也会变成牢笼——你需要学习「动」的智慧，在该前进时允许自己前进。你的稳定性是你的优势，但不要让它变成停滞。</p>
+    <div class="tip-box">
+        <strong>💡 每日行動：</strong>评估你目前正在坚持的一件事——它是真的在为你服务，还是只是惯性在拖着你？有时候停止一个无效的努力，比坚持一个错误的方向更需要勇气。
+    </div>
+
+    <h3>生命靈數 5 — 坎卦 (🌊 Kan / The Abyss)</h3>
+    <div class="hexagram-box">
+        <span class="hexagram-symbol">☵</span>
+        <strong>卦象：</strong>一陽陷於二陰之間，危险中行，象徵水、陷、智慧、流动。<br>
+        <strong>關鍵字：</strong>適應、彈性、危機處理、直覺、探索<br>
+        <strong>陰影面：</strong>焦慮、財務不穩、情緒波動
+    </div>
+    <p><strong>你的核心本質：</strong>你是天生的危机领袖与变革者，携带「坎」的水之智慧。越是混乱的环境，你越能展现非凡的适应力。你在他人退缩的地方看到机会，在危机中迅速成长。</p>
+    <p><strong>命理融合分析：</strong>靈數5 + 坎卦：你的人生使命往往与水有关——流动性、变化、跨界连接。你可能是创业者、顾问、投资者或探险家。但水能载舟亦能覆舟——你对风险的吸引力需要以智慧来平衡。建立财务缓冲，为你的高能量流动提供安全边际。</p>
+    <div class="tip-box">
+        <strong>💡 每日行動：</strong>檢視你的財務安全網——你有多少個月的緊急儲備？這個數字決定了你能在多大的風險中自由運作。今天就設立一個自動轉帳，每月存入收入的10%作為你的「自由基金」。
+    </div>
+</div>
+
+<!-- PREVIEW ENDS — FULL CONTENT LOCKED -->
+
+<div class="locked-section">
+    <h3>🔒 完整版解鎖</h3>
+    <p style="color:var(--text-muted);">生命靈數 6-9 的完整解讀<br>
+    每個數字的深度心理分析與命理建議</p>
+    <a href="https://shaishalin.gumroad.com/l/iching-numerology-fusion" class="cta-button">$12.9 — Get Full Version on Gumroad</a>
+</div>
+
+<!-- PREVIEW: Business Pairing Sample -->
+
+<div class="section">
+    <h2>💼 商業合作：數字 + 卦象配對分析</h2>
+    <p>在商業世界中，了解合作夥伴或客戶的生命靈數與易經特質，能幫助你設計更有效的溝通策略與合作方案。以下是一些經典配對的分析框架：</p>
+
+    <h3>靈數1（乾）+ 靈數8 — 最強創業組合</h3>
+    <div class="grid-3">
+        <div class="grid-item">
+            <h4>1的優點</h4>
+            <ul>
+                <li>無比的決策速度</li>
+                <li>顛覆性創新能力</li>
+                <li>敢於承擔風險</li>
+                <li>強大的個人魅力</li>
+            </ul>
+        </div>
+        <div class="grid-item">
+            <h4>8的優點</h4>
+            <ul>
+                <li>驚人的執行力</li>
+                <li>商業頭腦敏銳</li>
+                <li>專注力極強</li>
+                <li>現實導向</li>
+            </ul>
+        </div>
+        <div class="grid-item">
+            <h4>🔥 合作策略</h4>
+            <ul>
+                <li>1主導願景，8執行</li>
+                <li>1負責公關，8管理後台</li>
+                <li>避免同時做決策</li>
+                <li>設立明確的分工界線</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>靈數2（坤）+ 靈數7（兌）— 創意與顧問配對</h3>
+    <div class="hexagram-box">
+        <span class="hexagram-symbol">☷ + ☱</span>
+        <p>「坤」給予安全感和包容，「兌」帶來溝通力和愉悅。這對組合在諮詢、教育、心理輔導領域特別有天賦。建議合作時由2提供情感基礎，7負責對外表達和課程設計。</p>
+    </div>
+</div>
+
+<!-- PREVIEW ENDS -->
+
+<div class="locked-section">
+    <h3>🔒 完整商業配對分析</h3>
+    <p style="color:var(--text-muted);">36種數字配對組合 × 8種易經卦象配對 = 完整商業合盤指南<br>
+    每個配對含：溝通策略、衝突解決方案、共贏機會</p>
+    <a href="https://shaishalin.gumroad.com/l/iching-numerology-fusion" class="cta-button">$12.9 — Get Full Version</a>
+</div>
+
+<div class="gemini-section">
+    <h2>✨ 完整版包含更多內容</h2>
+    <p>完整版給予你：</p>
+    <div class="grid-3" style="text-align:left; margin-top:20px;">
+        <div class="grid-item">
+            <h4>🌟 生命靈數 6-9 完整解讀</h4>
+            <p>每個數字的深度心理分析、潛能開發、三觀建立建議</p>
+        </div>
+        <div class="grid-item">
+            <h4>💰 投資運勢分析</h4>
+            <p>你的生命數字密碼對應的投資策略與風險偏好</p>
+        </div>
+        <div class="grid-item">
+            <h4>❤️ 愛情密碼</h4>
+            <p>數字+卦象的親密關係配對分析與感情建議</p>
+        </div>
+        <div class="grid-item">
+            <h4>🏢 職場天賦地圖</h4>
+            <p>你的數字配置最匹配的職業與事業發展路徑</p>
+        </div>
+        <div class="grid-item">
+            <h4>🎯 每日/每月/每年行動計劃</h4>
+            <p>根據你的數字能量客製化的時間表</p>
+        </div>
+        <div class="grid-item">
+            <h4>📊 完整配對分析</h4>
+            <p>所有數字組合的商業/愛情/人際關係配對</p>
+        </div>
+    </div>
+    <a href="https://shaishalin.gumroad.com/l/iching-numerology-fusion" class="cta-button">$12.9 — Unlock Everything</a>
+</div>
+
+<footer>
+    <p style="color:var(--gold); margin-bottom:10px;">☰ I Ching × Numerology Fusion</p>
+    <p>© 殺手林出品 | shaishalin.gumroad.com</p>
+</footer>
+
+</div>
+</body>
+</html>
