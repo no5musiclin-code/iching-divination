@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日星座運勢｜今日指數</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0b0b18;
+    color: #d1d5db;
+    font-family: "Noto Sans TC", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  .bg {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(139,92,246,0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .wrapper {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 480px;
+  }
+  .header { text-align: center; margin-bottom: 2rem; }
+  .header .tag { font-size: 0.65rem; letter-spacing: 0.5em; color: #8b5cf6; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .header .date { font-size: 0.8rem; color: #4b5563; }
+
+  /* Selector */
+  .signs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .sign-btn {
+    padding: 0.7rem 0.2rem;
+    background: #111128;
+    border: 1px solid #1e1e3a;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    color: #6b7280;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+  }
+  .sign-btn .icon { font-size: 1.4rem; display: block; margin-bottom: 0.2rem; }
+  .sign-btn:hover { border-color: #8b5cf6; color: #c4b5fd; background: #13132a; }
+  .sign-btn.active { border-color: #8b5cf6; background: #1a1632; color: #c4b5fd; }
+
+  /* Rating bars */
+  .rating-section {
+    background: #0f0f24;
+    border: 1px solid #1e1e3a;
+    border-radius: 14px;
+    padding: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.9rem;
+  }
+  .rating-row:last-child { margin-bottom: 0; }
+  .rating-label { font-size: 0.75rem; color: #6b7280; width: 70px; flex-shrink: 0; }
+  .rating-bar-bg {
+    flex: 1; height: 5px;
+    background: #1a1a2e;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .rating-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.8s ease;
+  }
+  .rating-num { font-size: 0.7rem; color: #8b5cf6; width: 30px; text-align: right; font-weight: 600; }
+
+  /* Content */
+  .content-card {
+    background: #0f0f24;
+    border: 1px solid #1e1e3a;
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .content-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #8b5cf6;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+  }
+  .content-text {
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: #9ca3af;
+  }
+  .content-highlight {
+    margin-top: 0.8rem;
+    padding: 0.7rem 1rem;
+    background: rgba(139,92,246,0.08);
+    border-left: 3px solid #8b5cf6;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem;
+    color: #c4b5fd;
+    line-height: 1.7;
+  }
+
+  /* Lucky */
+  .lucky-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    margin-top: 1rem;
+  }
+  .lucky-item {
+    padding: 0.7rem;
+    background: #111128;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .lucky-emoji { font-size: 1.3rem; margin-bottom: 0.3rem; }
+  .lucky-label { font-size: 0.65rem; color: #4b5563; letter-spacing: 0.1em; }
+  .lucky-value { font-size: 0.78rem; color: #d1d5db; margin-top: 0.2rem; font-weight: 600; }
+
+  /* Ko-fi */
+  .kofi-section { text-align: center; padding: 1rem; }
+  .kofi-label { font-size: 0.65rem; letter-spacing: 0.4em; color: #1e1e3a; margin-bottom: 0.5rem; }
+  .kofi-btn {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #8b5cf6;
+    border: 1px solid #2a1a4a;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .kofi-btn:hover { background: rgba(139,92,246,0.08); }
+
+  .recalc-btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background: transparent;
+    border: 1px solid #1e1e3a;
+    color: #4b5563;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: all 0.3s;
+    margin-bottom: 1rem;
+  }
+  .recalc-btn:hover { border-color: #8b5cf6; color: #8b5cf6; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<div class="wrapper">
+  <div class="header">
+    <p class="tag">每日運勢</p>
+    <h1>星座運勢</h1>
+    <p class="date" id="today"></p>
+  </div>
+
+  <div class="signs-grid">
+    <button class="sign-btn active" onclick="selectSign('aries', this)">
+      <span class="icon">♈</span>牡羊
+    </button>
+    <button class="sign-btn" onclick="selectSign('taurus', this)">
+      <span class="icon">♉</span>金牛
+    </button>
+    <button class="sign-btn" onclick="selectSign('gemini', this)">
+      <span class="icon">♊</span>雙子
+    </button>
+    <button class="sign-btn" onclick="selectSign('cancer', this)">
+      <span class="icon">♋</span>巨蟹
+    </button>
+    <button class="sign-btn" onclick="selectSign('leo', this)">
+      <span class="icon">♌</span>獅子
+    </button>
+    <button class="sign-btn" onclick="selectSign('virgo', this)">
+      <span class="icon">♍</span>處女
+    </button>
+    <button class="sign-btn" onclick="selectSign('libra', this)">
+      <span class="icon">♎</span>天秤
+    </button>
+    <button class="sign-btn" onclick="selectSign('scorpio', this)">
+      <span class="icon">♏</span>天蠍
+    </button>
+    <button class="sign-btn" onclick="selectSign('sagittarius', this)">
+      <span class="icon">♐</span>射手
+    </button>
+    <button class="sign-btn" onclick="selectSign('capricorn', this)">
+      <span class="icon">♑</span>摩羯
+    </button>
+    <button class="sign-btn" onclick="selectSign('aquarius', this)">
+      <span class="icon">♒</span>水瓶
+    </button>
+    <button class="sign-btn" onclick="selectSign('pisces', this)">
+      <span class="icon">♓</span>雙魚
+    </button>
+  </div>
+
+  <button class="recalc-btn" onclick="generate()">🔄 重新生成今日運勢</button>
+
+  <div class="rating-section" id="ratings">
+    <div class="rating-row">
+      <span class="rating-label">愛情</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" id="loveFill" style="width:0%"></div></div>
+      <span class="rating-num" id="loveNum">--</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">事業</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" id="workFill" style="width:0%"></div></div>
+      <span class="rating-num" id="workNum">--</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">財運</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" id="moneyFill" style="width:0%"></div></div>
+      <span class="rating-num" id="moneyNum">--</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-label">健康</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" id="healthFill" style="width:0%"></div></div>
+      <span class="rating-num" id="healthNum">--</span>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <p class="content-title">整體運勢</p>
+    <p class="content-text" id="overallText">載入中...</p>
+    <div class="content-highlight" id="highlight"></div>
+  </div>
+
+  <div class="content-card">
+    <p class="content-title">💡 今日建議</p>
+    <p class="content-text" id="adviceText">載入中...</p>
+  </div>
+
+  <div class="content-card">
+    <p class="content-title">☘️ 幸運方位</p>
+    <div class="lucky-grid">
+      <div class="lucky-item">
+        <div class="lucky-emoji">🌟</div>
+        <div class="lucky-label">幸運色</div>
+        <div class="lucky-value" id="luckyColor">--</div>
+      </div>
+      <div class="lucky-item">
+        <div class="lucky-emoji">🔢</div>
+        <div class="lucky-label">幸運數</div>
+        <div class="lucky-value" id="luckyNum">--</div>
+      </div>
+      <div class="lucky-item">
+        <div class="lucky-emoji">🕐</div>
+        <div class="lucky-label">最佳時段</div>
+        <div class="lucky-value" id="luckyTime">--</div>
+      </div>
+      <div class="lucky-item">
+        <div class="lucky-emoji">💬</div>
+        <div class="lucky-label">幸運物</div>
+        <div class="lucky-value" id="luckyItem">--</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="kofi-section">
+    <p class="kofi-label">若有所得，隨喜支持</p>
+    <a class="kofi-btn" href="https://ko-fi.com/shaishalin" target="_blank">資 持</a>
+  </div>
+</div>
+
+<script>
+var COLORS = ['#8b5cf6','#ec4899','#f59e0b','#10b981','#3b82f6','#ef4444','#06b6d4','#f97316'];
+var LUCKY_COLORS = ['紫色','金色','銀色','紅色','綠色','藍色','白色','黑色','粉紅色'];
+var LUCKY_ITEMS = ['水晶','硬幣','書本','護身符','鮮花','茶葉','星星吊飾','風鈴'];
+var TIMES = ['上午 9-11 點','下午 2-4 點','傍晚 5-7 點','晚上 8-10 點','凌晨 1-3 點'];
+var NUMS = ['3','7','9','12','21','33','66','88'];
+
+var SIGN_DATA = {
+  aries:     { name:'牡羊座', desc:'行動力滿分的一天，你就像一顆即將升空的火箭。勇於表達想法，會得到意想不到的支持。' },
+  taurus:    { name:'金牛座', desc:'腳踏實地是今天的關鍵字。不要被誘惑衝昏頭，穩健的步伐會為你贏得長期的財富。' },
+  gemini:    { name:'雙子座', desc:'溝通運極佳！今天適合發表意見、做簡報、或是和老朋友聯絡感情。資訊就是金錢。' },
+  cancer:    { name:'巨蟹座', desc:'家庭運上揚。與家人相處能給你滿滿的能量，這股能量會反映在工作上的表現。' },
+  leo:       { name:'獅子座', desc:'自信是你最大的武器。今天的舞台是你的，大膽表現自己，不要謙虛！' },
+  virgo:     { name:'處女座', desc:'分析能力出眾，適合處理複雜的問題。拿出你的清單，一項項劃掉，成就感滿分。' },
+  libra:     { name:'天秤座', desc:'人際關係的平衡木走得越來越好。今天適合協調、談判、或是處理合作的細節。' },
+  scorpio:   { name:'天蠍座', desc:'直覺敏銳，別人看不出來的問題，你一眼就能看穿。跟著直覺走，有驚喜。' },
+  sagittarius: { name:'射手座', desc:'今天的冒險精神特別強烈，可能是出國、進修、或是接觸全然不同的領域。' },
+  capricorn: { name:'摩羯座', desc:'事業運步步高昇。今天的超額付出，會在未來獲得超額回報。繼續努力！' },
+  aquarius:  { name:'水瓶座', desc:'創新點子泉湧！今天想到的 idea 可能價值連城，記錄下來，這是你的資產。' },
+  pisces:    { name:'雙魚座', desc:'藝術與靈感並存的的一天。從事創作相關工作的人會有突破性進展。' }
+};
+
+var ADVICES = [
+  '今天適合給自己一個小獎勵，完成任務後吃點好的。',
+  '遇到衝突時，深呼吸再回應，勝過當下的情緒發洩。',
+  '今天的人脈投資，未來會以倍數回報。',
+  '不要拒絕新的機會，哪怕看起來有點陌生。',
+  '整理一下工作環境，好的能量來自整潔的空間。',
+  '今天適合說謝謝，讓身邊的人感受到你的善意。',
+  '財務決策押後一天，你今天的判斷力不是最佳狀態。',
+  '運動能幫你清理大腦思維，下午花 20 分鐘散個步。',
+  '今天適合主動出擊，被動等來的只有遺憾。',
+  '把大目標拆成小步驟，今天只要完成第一步就好。'
+];
+
+var HIGHLIGHTS = [
+  '🌟 今日關鍵字：行動。想到就去做，別等到明天。',
+  '💎 貴人星座：金牛座。與他們合作，財運加分。',
+  '🔥 今日 TOP：愛情運爆發，單身者有望遇到心動的人！',
+  '✨ 今日提醒：你比自己想像的更有能力，相信自己。',
+  '🎯 今日目標：完成一件你一直拖延的事情。',
+  '💰 金錢訊息：會有意外的小收入，記得存起來。',
+  '📚 今日課題：學會說「不」，把時間留給重要的事。',
+  '🚀 今日亮點：你的創造力達到本月高峰，別浪費了！'
+];
+
+function getSeed(sign) {
+  var today = new Date();
+  var seed = today.getFullYear() * 10000 + (today.getMonth()+1) * 100 + today.getDate();
+  // Mix sign code
+  var codes = { aries:1, taurus:2, gemini:3, cancer:4, leo:5, virgo:6, libra:7, scorpio:8, sagittarius:9, capricorn:10, aquarius:11, pisces:12 };
+  return (seed * codes[sign]) % 100;
+}
+
+function seededRand(seed, min, max) {
+  var x = Math.sin(seed) * 10000;
+  var r = x - Math.floor(x);
+  return min + r * (max - min);
+}
+
+function generate() {
+  var sign = currentSign;
+  var seed = getSeed(sign);
+  var sd = SIGN_DATA[sign];
+
+  var love = Math.round(seededRand(seed+1, 40, 99));
+  var work = Math.round(seededRand(seed+2, 40, 99));
+  var money = Math.round(seededRand(seed+3, 40, 99));
+  var health = Math.round(seededRand(seed+4, 40, 99));
+
+  document.getElementById('loveFill').style.width = love + '%';
+  document.getElementById('loveFill').style.background = love > 75 ? '#10b981' : love > 50 ? '#8b5cf6' : '#6b7280';
+  document.getElementById('loveNum').textContent = love;
+  document.getElementById('workFill').style.width = work + '%';
+  document.getElementById('workFill').style.background = work > 75 ? '#10b981' : work > 50 ? '#8b5cf6' : '#6b7280';
+  document.getElementById('workNum').textContent = work;
+  document.getElementById('moneyFill').style.width = money + '%';
+  document.getElementById('moneyFill').style.background = money > 75 ? '#10b981' : money > 50 ? '#8b5cf6' : '#6b7280';
+  document.getElementById('moneyNum').textContent = money;
+  document.getElementById('healthFill').style.width = health + '%';
+  document.getElementById('healthFill').style.background = health > 75 ? '#10b981' : health > 50 ? '#8b5cf6' : '#6b7280';
+  document.getElementById('healthNum').textContent = health;
+
+  var adviceIdx = seed % ADVICES.length;
+  var highlightIdx = (seed + 7) % HIGHLIGHTS.length;
+  var colorIdx = (seed + 3) % LUCKY_COLORS.length;
+  var itemIdx = (seed + 5) % LUCKY_ITEMS.length;
+  var timeIdx = (seed + 9) % TIMES.length;
+  var numIdx = (seed + 11) % NUMS.length;
+
+  document.getElementById('overallText').textContent = sd.desc;
+  document.getElementById('highlight').textContent = HIGHLIGHTS[highlightIdx];
+  document.getElementById('adviceText').textContent = ADVICES[adviceIdx];
+  document.getElementById('luckyColor').textContent = LUCKY_COLORS[colorIdx];
+  document.getElementById('luckyItem').textContent = LUCKY_ITEMS[itemIdx];
+  document.getElementById('luckyTime').textContent = TIMES[timeIdx];
+  document.getElementById('luckyNum').textContent = NUMS[numIdx];
+}
+
+var currentSign = 'aries';
+function selectSign(sign, btn) {
+  currentSign = sign;
+  document.querySelectorAll('.sign-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  generate();
+}
+
+window.addEventListener('load', function() {
+  var d = new Date();
+  var days = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+  document.getElementById('today').textContent = d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日 ' + days[d.getDay()];
+  generate();
+});
+</script>
+</body>
+</html>

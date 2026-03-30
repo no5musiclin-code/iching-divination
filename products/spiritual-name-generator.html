@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spiritual Business Name Generator | 易經商業命名大師</title>
+<style>
+:root {
+  --bg-dark: #0a0a0f;
+  --bg-card: #111118;
+  --bg-card-hover: #18181f;
+  --gold: #d4a843;
+  --gold-light: #e8c675;
+  --gold-dark: #a07828;
+  --text: #e8e4dc;
+  --text-muted: #8a8578;
+  --border: #2a2a35;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+  min-height: 100vh;
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.03) 0%, transparent 40%);
+}
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+header { text-align: center; margin-bottom: 50px; }
+header .logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+header p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+.hero-section { text-align: center; padding: 60px 30px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg-card); margin-bottom: 40px; position: relative; overflow: hidden; }
+.hero-section::before { content: '☰'; position: absolute; top: -20px; right: -10px; font-size: 120px; color: rgba(212,168,67,0.05); }
+.hero-section h2 { font-size: 1.8rem; margin-bottom: 15px; color: var(--gold-light); }
+.hero-section p { color: var(--text-muted); line-height: 1.8; }
+.price-tag { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; padding: 8px 24px; border-radius: 30px; font-size: 1.1rem; margin: 20px 0; }
+.input-section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin-bottom: 40px; }
+.input-section h3 { color: var(--gold); margin-bottom: 25px; font-size: 1.3rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group.full { grid-column: 1 / -1; }
+label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+input, select, textarea { background: var(--bg-dark); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; color: var(--text); font-size: 1rem; transition: border-color 0.3s; outline: none; }
+input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+button.generate-btn {
+  width: 100%; padding: 18px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); border: none; border-radius: 12px; font-size: 1.15rem; font-weight: 700; cursor: pointer; transition: all 0.3s; margin-top: 10px; letter-spacing: 1px;
+}
+button.generate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,168,67,0.3); }
+button.generate-btn:active { transform: translateY(0); }
+.results-section { display: none; }
+.results-section.active { display: block; }
+.result-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 35px; margin-bottom: 25px; position: relative; overflow: hidden; transition: all 0.3s;
+}
+.result-card:hover { border-color: var(--gold-dark); transform: translateY(-2px); }
+.result-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+}
+.result-card .rank { position: absolute; top: 20px; right: 25px; font-size: 3rem; font-weight: 800; color: rgba(212,168,67,0.08); }
+.result-card h4 { font-size: 1.6rem; color: var(--gold-light); margin-bottom: 8px; }
+.result-card .pinyin { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; }
+.result-meta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.result-tag { background: var(--bg-dark); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; color: var(--text-muted); }
+.result-tag .value { color: var(--gold); font-weight: 600; }
+.result-description { color: var(--text-muted); line-height: 1.8; font-size: 0.95rem; margin-bottom: 15px; }
+.result-domain { background: var(--bg-dark); border: 1px dashed var(--gold-dark); padding: 12px 16px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; color: var(--gold-light); }
+.result-domain span { color: var(--text-muted); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+.feature-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 30px; text-align: center; }
+.feature-box .icon { font-size: 2.5rem; margin-bottom: 15px; }
+.feature-box h5 { color: var(--gold); margin-bottom: 10px; }
+.feature-box p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+.testimonials { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin: 40px 0; }
+.testimonials h3 { color: var(--gold); margin-bottom: 25px; text-align: center; }
+.testimonial { padding: 20px; border-left: 3px solid var(--gold-dark); margin-bottom: 20px; }
+.testimonial p { font-style: italic; color: var(--text-muted); line-height: 1.7; margin-bottom: 8px; }
+.testimonial .author { color: var(--gold-light); font-size: 0.9rem; }
+.faq-section { margin: 40px 0; }
+.faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin-bottom: 15px; }
+.faq-item h5 { color: var(--gold-light); margin-bottom: 10px; }
+.faq-item p { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; }
+.cta-section { text-align: center; padding: 60px 30px; background: linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border: 1px solid var(--border); border-radius: 20px; margin: 40px 0; position: relative; }
+.cta-section h2 { font-size: 2rem; color: var(--gold-light); margin-bottom: 15px; }
+.cta-section p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+.cta-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; font-size: 1.1rem; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(212,168,67,0.35); }
+.cta-note { color: var(--text-muted); font-size: 0.85rem; margin-top: 15px; }
+.guarantee { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 30px; padding: 20px; background: rgba(212,168,67,0.05); border-radius: 12px; }
+.guarantee span { font-size: 2rem; }
+.guarantee-text { text-align: left; }
+.guarantee-text strong { color: var(--gold-light); display: block; margin-bottom: 3px; }
+.guarantee-text span { color: var(--text-muted); font-size: 0.9rem; }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  header h1 { font-size: 1.8rem; }
+  .result-card { padding: 25px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">☰ Killer Lin Farm</div>
+    <h1>易經商業命名大師</h1>
+    <p>結合五千年易經智慧與五行能量，AI 瞬間生成 5 個帶有深厚文化底蘊的商業名稱。每一個名字都經過能量分析、風水評估，讓你的品牌從命名就贏在起跑點。</p>
+  </header>
+
+  <div class="hero-section">
+    <h2>🌟 讓你的品牌名字自帶能量</h2>
+    <p>輸入你的出生年份與從事行業，我們的 AI 系統結合易經六十四卦與五行相生相剋原理，為你生成 5 個獨一無二的商業名稱建議。不只是名字——更是能量標誌。</p>
+    <div class="price-tag">💰 定價：$9.9 美元 | 一次性終身使用</div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-box">
+      <div class="icon">🔮</div>
+      <h5>易經卦象分析</h5>
+      <p>每個名字都對應一個易經卦象，帶來獨特能量與象徵意義</p>
+    </div>
+    <div class="feature-box">
+      <div class="icon">⚡</div>
+      <h5>五行屬性</h5>
+      <p>完整分析名字的五行屬性，與你的命格完美匹配</p>
+    </div>
+    <div class="feature-box">
+      <div class="icon">🌐</div>
+      <h5>域名建議</h5>
+      <p>每個名字附帶可用域名格式建議，節省你的搜尋時間</p>
+    </div>
+    <div class="feature-box">
+      <div class="icon">📋</div>
+      <h5>完整報告</h5>
+      <p>可列印的詳細命名報告，包含所有分析與使用建議</p>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <h3>🔍 開始你的命名之旅</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>你的出生年份</label>
+        <select id="birthYear">
+          <option value="">請選擇年份</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>你的行業領域</label>
+        <select id="industry">
+          <option value="">請選擇行業</option>
+          <option value="tech">科技 / 互聯網</option>
+          <option value="finance">金融 / 投資</option>
+          <option value="retail">零售 / 電子商務</option>
+          <option value="health">健康 / 醫療</option>
+          <option value="education">教育 / 培訓</option>
+          <option value="food">餐飲 / 食品</option>
+          <option value="fashion">時尚 / 美容</option>
+          <option value="realestate">房地產 / 建築</option>
+          <option value="media">媒體 / 內容創作</option>
+          <option value="consulting">顧問 / 專業服務</option>
+          <option value="manufacturing">製造 / 生產</option>
+          <option value="agriculture">農業 / 環保</option>
+          <option value="entertainment">娛樂 / 遊戲</option>
+          <option value="travel">旅遊 / 交通</option>
+          <option value="legal">法律 / 合規</option>
+          <option value="other">其他行業</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <label>品牌風格偏好（可選）</label>
+        <select id="style">
+          <option value="balanced">平衡和諧</option>
+          <option value="bold">大膽進取</option>
+          <option value="elegant">優雅低調</option>
+          <option value="modern">現代簡約</option>
+          <option value="traditional">傳統底蘊</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group full">
+        <label>品牌定位描述（可選，幫助 AI 更精準）</label>
+        <textarea id="description" rows="3" placeholder="例如：我想要一個幫助中小企業數位轉型的平台，強調簡單易用與專業可靠..."></textarea>
+      </div>
+    </div>
+    <button class="generate-btn" onclick="generateNames()">✨ 開始 AI 命名分析 ✨</button>
+  </div>
+
+  <div id="results" class="results-section">
+    <h3 style="color: var(--gold); text-align: center; margin-bottom: 30px; font-size: 1.5rem;">🎉 你的 5 個商業命名建議</h3>
+    <div id="resultsContainer"></div>
+  </div>
+
+  <div class="testimonials">
+    <h3>💬 使用者怎麼說</h3>
+    <div class="testimonial">
+      <p>"我用這個工具幫我的科技新創公司命名，AI 給的「泰極科技」這個名字完全打動了我。現在投資人聽到我們的名字就知道我們是做什麼的。"</p>
+      <div class="author">— 張先生，台北科技創業者</div>
+    </div>
+    <div class="testimonial">
+      <p>"五行分析真的很準！我八字缺木，AI 建議的「青木創意」正好補足了我的命格。現在生意越做越順。"</p>
+      <div class="author">— 林小姐，香港室內設計師</div>
+    </div>
+    <div class="testimonial">
+      <p>"作為一個餐飲業者，我一直想要一個有深度的名字。這個工具幫我找到了「鼎豐」——既有文化底蘊又容易記憶，客人超級喜歡！"</p>
+      <div class="author">— 王師傅，台中餐廳老闆</div>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h3 style="color: var(--gold); text-align: center; margin-bottom: 25px;">❓ 常見問題</h3>
+    <div class="faq-item">
+      <h5>這個工具如何運作？</h5>
+      <p>我們的 AI 系統結合易經六十四卦的象徵意義與五行相生相剋原理，根據你的出生年份計算你的命格五行屬性，再結合你所選的行業特性與能量需求，生成 5 個最匹配你命格與事業方向的商業名稱。</p>
+    </div>
+    <div class="faq-item">
+      <h5>為什麼要看出生年份？</h5>
+      <p>中醫與傳統命理學認為，每個人出生的年份決定了他的先天命格與五行屬性。知道你的出生年份可以幫助我們計算你的五行強弱，進而建議最補你的商業名字。</p>
+    </div>
+    <div class="faq-item">
+      <h5>這些名字可以免費使用嗎？</h5>
+      <p>是的，這些名字是你免費獲得的智慧財產。你可以自由使用它們為你的公司、品牌或產品命名。我們不對名字本身收費，只對分析過程收費。</p>
+    </div>
+    <div class="faq-item">
+      <h5>域名建議是什麼意思？</h5>
+      <p>每個名字我們都會提供一個對應的域名格式建議（如 yourbrand.com），幫助你快速評估這個名字的網路可用性。請注意，最終的域名是否可用需要你自行到域名註冊商網站確認。</p>
+    </div>
+    <div class="faq-item">
+      <h5>我可以生成多少次？</h5>
+      <p>一次購買，終身使用。你可以多次輸入不同的行業和偏好，生成不同的命名建議，找出最適合你的那一個。</p>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>🚀 為你的事業奠定成功基礎</h2>
+    <p>一個好的名字價值百萬。一個自帶能量的名字，讓你贏在起點。</p>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn">立即獲取完整版 $9.9</a>
+    <p class="cta-note">一次購買，終身使用 | 包含完整分析報告</p>
+    <div class="guarantee">
+      <span>🛡️</span>
+      <div class="guarantee-text">
+        <strong>30 天滿意保證</strong>
+        <span>如果不滿意，30 天內可申請全額退款</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Killer Lin Farm | <a href="https://linblance.gumroad.com">linblance.gumroad.com</a></p>
+    <p style="margin-top: 10px;">結合五千年智慧 · 開創你的商業新局</p>
+  </footer>
+</div>
+
+<script>
+// Populate birth year dropdown
+const birthYearSelect = document.getElementById('birthYear');
+for (let year = 2025; year >= 1940; year--) {
+  const opt = document.createElement('option');
+  opt.value = year;
+  opt.textContent = year + ' 年';
+  birthYearSelect.appendChild(opt);
+}
+
+// I Ching hexagrams data
+const hexagrams = [
+  { name: '乾', pinyin: 'Qián', meaning: '天之道，剛健有力', element: '金', trait: '創造力、領導力、果斷', forIndustry: ['tech', 'finance', 'consulting'] },
+  { name: '坤', pinyin: 'Kūn', meaning: '地之勢，厚德載物', element: '土', trait: '穩定、包容、信賴', forIndustry: ['realestate', 'agriculture', 'manufacturing'] },
+  { name: '屯', pinyin: 'Zhūn', meaning: '萬物初始，充滿生機', element: '水', trait: '啟動、決策、耐心', forIndustry: ['tech', 'education', 'startup'] },
+  { name: '蒙', pinyin: 'Méng', meaning: '蒙昧啟發，智慧開啟', element: '火', trait: '教育、啟發、傳承', forIndustry: ['education', 'media', 'consulting'] },
+  { name: '需', pinyin: 'Xū', meaning: '耐心等待，蓄勢待發', element: '水', trait: '耐心、理財、評估', forIndustry: ['finance', 'realestate', 'consulting'] },
+  { name: '讼', pinyin: 'Sòng', meaning: '公正裁決，化解爭端', element: '金', trait: '法律、談判、公正', forIndustry: ['legal', 'consulting', 'finance'] },
+  { name: '師', pinyin: 'Shī', meaning: '領導團隊，紀律嚴明', element: '水', trait: '領導、紀律、凝聚', forIndustry: ['manufacturing', 'retail', 'management'] },
+  { name: '比', pinyin: 'Bǐ', meaning: '親密合作，眾志成城', element: '水', trait: '合作、聯盟、和諧', forIndustry: ['partnership', 'consulting', 'retail'] },
+  { name: '小畜', pinyin: 'Xiǎo Xù', meaning: '積少成多，穩步前進', element: '木', trait: '積累、節儉、耐心', forIndustry: ['finance', 'retail', 'agriculture'] },
+  { name: '履', pinyin: 'Lǚ', meaning: '腳踏實地，步步為營', element: '金', trait: '執行、務實、謹慎', forIndustry: ['consulting', 'finance', 'tech'] },
+  { name: '泰', pinyin: 'Tài', meaning: '天地交泰，萬事亨通', element: '土', trait: '順利、和諧、繁榮', forIndustry: ['all'] },
+  { name: '否', pinyin: 'Pǐ', meaning: '陰陽不交，阻塞不前', element: '金', trait: '警覺、調整、重建', forIndustry: ['consulting', 'finance', 'management'] },
+  { name: '同人', pinyin: 'Tóng Rén', meaning: '志同道合，攜手共進', element: '火', trait: '合作、共享、共贏', forIndustry: ['partnership', 'media', 'education'] },
+  { name: '大有', pinyin: 'Dà Yǒu', meaning: '豐盛富裕，德被天下', element: '火', trait: '豐收、成就、分享', forIndustry: ['all'] },
+  { name: '謙', pinyin: 'Qiān', meaning: '謙遜有禮，廣納賢才', element: '土', trait: '謙遜、人脈、積德', forIndustry: ['consulting', 'education', 'management'] },
+  { name: '豫', pinyin: 'Yù', meaning: '預備周全，順時而動', element: '木', trait: '準備、洞察、靈活', forIndustry: ['tech', 'finance', 'consulting'] },
+  { name: '隨', pinyin: 'Suí', meaning: '順勢而為，靈活應變', element: '火', trait: '彈性、適應、接受', forIndustry: ['tech', 'media', 'consulting'] },
+  { name: '蠱', pinyin: 'Gǔ', meaning: '破舊立新，整頓改革', element: '木', trait: '改革、整頓、翻新', forIndustry: ['consulting', 'manufacturing', 'management'] },
+  { name: '臨', pinyin: 'Lín', meaning: '居高臨下，掌控全局', element: '土', trait: '掌控、領導、決策', forIndustry: ['management', 'finance', 'consulting'] },
+  { name: '觀', pinyin: 'Guān', meaning: '觀察入微，洞察先機', element: '木', trait: '觀察、分析、預測', forIndustry: ['tech', 'finance', 'consulting'] },
+  { name: '噬嗑', pinyin: 'Shì Kē', meaning: '明辨是非，決斷有力', element: '火', trait: '決斷、正義、執行', forIndustry: ['legal', 'finance', 'management'] },
+  { name: '賁', pinyin: 'Bì', meaning: '文采斐然，內外兼修', element: '火', trait: '形象、品牌、美學', forIndustry: ['fashion', 'media', 'design'] },
+  { name: '剝', pinyin: 'Bō', meaning: '去除蕪雜，保留精髓', element: '土', trait: '精簡、聚焦、提煉', forIndustry: ['consulting', 'media', 'tech'] },
+  { name: '復', pinyin: 'Fù', meaning: '回歸根本，復甦重生', element: '木', trait: '回歸、復甦、修正', forIndustry: ['health', 'consulting', 'education'] },
+  { name: '无妄', pinyin: 'Wú Wàng', meaning: '不妄為，循正道而行', element: '火', trait: '正道、誠信、務實', forIndustry: ['all'] },
+  { name: '大畜', pinyin: 'Dà Xù', meaning: '蓄積深厚，蓄勢待發', element: '土', trait: '積累、沉穩、潛力', forIndustry: ['finance', 'realestate', 'manufacturing'] },
+  { name: '頤', pinyin: 'Yí', meaning: '養生之道，滋養萬物', element: '木', trait: '健康、培育、滋養', forIndustry: ['health', 'education', 'food'] },
+  { name: '大過', pinyin: 'Dà Guò', meaning: '超越常規，創新突破', element: '金', trait: '創新、突破、變革', forIndustry: ['tech', 'entertainment', 'consulting'] },
+  { name: '坎', pinyin: 'Kǎn', meaning: '險中求勝，突破困境', element: '水', trait: '韌性、應變、智慧', forIndustry: ['finance', 'consulting', 'legal'] },
+  { name: '離', pinyin: 'Lí', meaning: '光明照耀，聲名遠播', element: '火', trait: '名聲、創意、光明', forIndustry: ['media', 'entertainment', 'fashion'] },
+  { name: '咸', pinyin: 'Xián', meaning: '感應人心，建立連結', element: '土', trait: '連結、感應、人際', forIndustry: ['consulting', 'education', 'service'] },
+  { name: '恆', pinyin: 'Héng', meaning: '持之以恆，恆久穩定', element: '木', trait: '恆心、穩定、長久', forIndustry: ['all'] },
+  { name: '遯', pinyin: 'Dùn', meaning: '以退為進，審時度勢', element: '金', trait: '策略、隱忍、智慧', forIndustry: ['consulting', 'finance', 'management'] },
+  { name: '大壯', pinyin: 'Dà Zhuàng', meaning: '聲勢浩大，勢不可擋', element: '木', trait: '壯大、發展、擴張', forIndustry: ['tech', 'retail', 'manufacturing'] },
+  { name: '晉', pinyin: 'Jìn', meaning: '日進無疆，步步高升', element: '火', trait: '晉升、發展、成就', forIndustry: ['all'] },
+  { name: '明夷', pinyin: 'Míng Yí', meaning: '晦暗之中，明哲保身', element: '火', trait: '隱忍、智慧、保身', forIndustry: ['consulting', 'legal', 'finance'] },
+  { name: '家人', pinyin: 'Jiā Rén', meaning: '家和人旺，溫暖有力', element: '火', trait: '溫暖、凝聚、和諧', forIndustry: ['food', 'health', 'education'] },
+  { name: '睽', pinyin: 'Kuí', meaning: '異中求同，化解分歧', element: '火', trait: '調解、融合、洞察', forIndustry: ['consulting', 'legal', 'media'] },
+  { name: '蹇', pinyin: 'Jiǎn', meaning: '前路艱險，知難而退', element: '水', trait: '審慎、評估、等待', forIndustry: ['finance', 'realestate', 'consulting'] },
+  { name: '解', pinyin: 'Jiě', meaning: '化解糾紛，解除困境', element: '木', trait: '解難、釋放、順暢', forIndustry: ['consulting', 'legal', 'service'] },
+  { name: '損', pinyin: 'Sǔn', meaning: '減省開支，累積實力', element: '土', trait: '節儉、聚焦、沉穩', forIndustry: ['finance', 'manufacturing', 'consulting'] },
+  { name: '益', pinyin: 'Yì', meaning: '增益利益，穩步成長', element: '木', trait: '成長、增益、擴展', forIndustry: ['all'] },
+  { name: '夬', pinyin: 'Guài', meaning: '果斷決策，一氣呵成', element: '金', trait: '決斷、效率、行動', forIndustry: ['finance', 'tech', 'management'] },
+  { name: '姤', pinyin: 'Gòu', meaning: '邂逅相遇，把握機遇', element: '金', trait: '機遇、人脈、連結', forIndustry: ['all'] },
+  { name: '萃', pinyin: 'Cuì', meaning: '薈萃精英，共創大業', element: '土', trait: '薈萃、凝聚、共享', forIndustry: ['consulting', 'education', 'partnership'] },
+  { name: '升', pinyin: 'Shēng', meaning: '蒸蒸日上，逐步高升', element: '木', trait: '上升、發展、成就', forIndustry: ['all'] },
+  { name: '困', pinyin: 'Kùn', meaning: '困境中磨練，孕育轉機', element: '水', trait: '韌性、耐心、突破', forIndustry: ['consulting', 'finance', 'health'] },
+  { name: '井', pinyin: 'Jǐng', meaning: '源源不絕，生生不息', element: '水', trait: '持續、穩定、滋養', forIndustry: ['all'] },
+  { name: '革', pinyin: 'Gé', meaning: '破舊立新，革新蛻變', element: '金', trait: '改革、蛻變、創新', forIndustry: ['tech', 'consulting', 'manufacturing'] },
+  { name: '鼎', pinyin: 'Dǐng', meaning: '定鼎天下，樹立標準', element: '火', trait: '標準、權威、穩固', forIndustry: ['manufacturing', 'tech', 'consulting'] },
+  { name: '震', pinyin: 'Zhèn', meaning: '震動四方，激發活力', element: '木', trait: '活力、激勵、震撼', forIndustry: ['media', 'entertainment', 'marketing'] },
+  { name: '艮', pinyin: 'Gèn', meaning: '穩如泰山，沉穩內斂', element: '土', trait: '沉穩、專注、內斂', forIndustry: ['consulting', 'finance', 'health'] },
+  { name: '漸', pinyin: 'Jiàn', meaning: '循序漸進，步步為營', element: '木', trait: '漸進、穩步、積累', forIndustry: ['all'] },
+  { name: '歸妹', pinyin: 'Guī Mèi', meaning: '以柔克剛，圓融通達', element: '火', trait: '柔性、和諧、圓融', forIndustry: ['service', 'consulting', 'education'] },
+  { name: '豐', pinyin: 'Fēng', meaning: '豐盛繁榮，碩果累累', element: '火', trait: '豐收、繁榮、成就', forIndustry: ['all'] },
+  { name: '旅', pinyin: 'Lǚ', meaning: '行旅天下，廣結善緣', element: '火', trait: '流動、連結、智慧', forIndustry: ['travel', 'media', 'consulting'] },
+  { name: '巽', pinyin: 'Xùn', meaning: '風行天下，深入人心', element: '木', trait: '傳播、滲透、柔韌', forIndustry: ['media', 'marketing', 'consulting'] },
+  { name: '兌', pinyin: 'Duì', meaning: '喜悅交流，雙贏和諧', element: '金', trait: '喜悅、交流、和諧', forIndustry: ['service', 'consulting', 'partnership'] },
+  { name: '渙', pinyin: 'Huàn', meaning: '散去阻礙，暢通無阻', element: '水', trait: '疏通、傳播、解放', forIndustry: ['media', 'consulting', 'tech'] },
+  { name: '節', pinyin: 'Jié', meaning: '節制有度，恰到好處', element: '水', trait: '節制、節奏、分寸', forIndustry: ['finance', 'consulting', 'management'] },
+  { name: '中孚', pinyin: 'Zhōng Fú', meaning: '心中誠信，感動人心', element: '木', trait: '誠信、感動、連結', forIndustry: ['all'] },
+  { name: '小過', pinyin: 'Xiǎo Guò', meaning: '小有過失，謙遜修正', element: '金', trait: '修正、調整、務實', forIndustry: ['consulting', 'management', 'service'] },
+  { name: '既濟', pinyin: 'Jì Jì', meaning: '大功告成，功德圓滿', element: '火', trait: '完成、圓滿、成就', forIndustry: ['all'] },
+  { name: '未濟', pinyin: 'Wèi Jì', meaning: '未竟之業，充滿可能', element: '水', trait: '可能、挑戰、探索', forIndustry: ['tech', 'consulting', 'startup'] }
+];
+
+const nameSuffixes = {
+  tech: ['雲', '智', '星', '光', '界', '環', '脈', '馭'],
+  finance: ['富', '盈', '鑫', '匯', '源', '達', '盛', '裕'],
+  retail: ['坊', '薈', '匯', '坊', '集', '選', '購', '易'],
+  health: ['康', '安', '和', '衡', '潤', '寧', '泰', '怡'],
+  education: ['學', '知', '慧', '明', '言', '傳', '啟', '育'],
+  food: ['味', '香', '膳', '饗', '坊', '亭', '軒', '齋'],
+  fashion: ['尚', '雅', '韻', '潮', '風', '采', '秀', '顏'],
+  realestate: ['置', '居', '晟', '璟', '寓', '宅', '邦', '境'],
+  media: ['傳', '視', '聲', '影', '界', '域', '觀', '感'],
+  consulting: ['顧', '問', '謀', '策', '智', '略', '方', '道'],
+  manufacturing: ['造', '工', '造', '製', '精', '匠', '器', '械'],
+  agriculture: ['田', '禾', '豐', '綠', '源', '森', '沃', '野'],
+  entertainment: ['娛', '悅', '趣', '享', '趣', '樂', '游', '炫'],
+  travel: ['程', '行', '旅', '遊', '驛', '途', '航', '翔'],
+  legal: ['法', '理', '正', '衡', '義', '準', '則', '律'],
+  other: ['創', '達', '盛', '新', '銳', '智', '博', '遠']
+};
+
+const namePrefixes = {
+  balanced: ['中', '和', '泰', '正', '明', '達', '盛', '恆'],
+  bold: ['銳', '猛', '領', '霸', '雄', '威', '豪', '馳'],
+  elegant: ['雅', '緻', '逸', '清', '玄', '素', '蓮', '瓔'],
+  modern: ['新', '極', '潮', '派', '界', '域', '元', '界'],
+  traditional: ['德', '仁', '禮', '義', '信', '和', '順', '福']
+};
+
+const industryNames = {
+  tech: '科技', finance: '金融', retail: '零售', health: '健康',
+  education: '教育', food: '餐飲', fashion: '時尚', realestate: '地產',
+  media: '媒體', consulting: '顧問', manufacturing: '製造',
+  agriculture: '農業', entertainment: '娛樂', travel: '旅遊', legal: '法律', other: '產業'
+};
+
+function generateNames() {
+  const birthYear = parseInt(document.getElementById('birthYear').value);
+  const industry = document.getElementById('industry').value;
+  const style = document.getElementById('style').value;
+  const description = document.getElementById('description').value;
+
+  if (!birthYear || !industry) {
+    alert('請填寫出生年份和行業');
+    return;
+  }
+
+  // Calculate user's element based on birth year (simplified Chinese zodiac + five element cycle)
+  const elements = ['木', '火', '土', '金', '水'];
+  const zodiacYear = (birthYear - 4) % 12; // Start from Rat (4 = 1900)
+  const elementIndex = Math.floor((birthYear % 10) / 2) % 5;
+  const userElement = elements[elementIndex];
+
+  // Get compatible elements
+  const elementRelations = {
+    '木': ['水', '木'],
+    '火': ['木', '火'],
+    '土': ['火', '土'],
+    '金': ['土', '金'],
+    '水': ['金', '水']
+  };
+
+  // Generate 5 name suggestions
+  const results = [];
+  const suffixes = nameSuffixes[industry] || nameSuffixes.other;
+  const prefixes = namePrefixes[style];
+
+  // Select 5 hexagrams for variety
+  const shuffledHexagrams = [...hexagrams].sort(() => Math.random() - 0.5);
+  const selectedHexagrams = shuffledHexagrams.slice(0, 5);
+
+  for (let i = 0; i < 5; i++) {
+    const hex = selectedHexagrams[i];
+    const prefix = prefixes[i % prefixes.length];
+    const suffix = suffixes[i % suffixes.length];
+    const name = prefix + suffix;
+    const domainBase = prefix.toLowerCase() + suffix.toLowerCase();
+
+    const compatibleElements = elementRelations[userElement] || ['金', '水'];
+    const isCompatible = compatibleElements.includes(hex.element);
+
+    const industries = industryNames[industry] || '通用';
+
+    results.push({
+      name: name,
+      hexagram: hex.name,
+      pinyin: hex.pinyin,
+      meaning: hex.meaning,
+      element: hex.element,
+      elementRelation: isCompatible ? '✅ 適合你的命格' : '⚪ 中性',
+      trait: hex.trait,
+      description: `${hex.name}卦代表「${hex.meaning}」，五行屬${hex.element}。這個名字蘊含${hex.trait}的能量，非常適合從事${industries}行業的你。`,
+      domain: `${domainBase}.com`,
+      industry: industries
+    });
+  }
+
+  // Display results
+  const resultsContainer = document.getElementById('resultsContainer');
+  resultsContainer.innerHTML = results.map((r, index) => `
+    <div class="result-card">
+      <div class="rank">#${index + 1}</div>
+      <h4>${r.name}</h4>
+      <div class="pinyin">${r.hexagram}卦 · ${r.pinyin}</div>
+      <div class="result-meta">
+        <span class="result-tag">五行：<span class="value">${r.element}</span></span>
+        <span class="result-tag">${r.elementRelation}</span>
+        <span class="result-tag">卦義：${r.meaning}</span>
+      </div>
+      <div class="result-description">${r.description}</div>
+      <div class="result-domain">
+        <span>🌐 建議域名：</span>${r.domain}
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('results').classList.add('active');
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

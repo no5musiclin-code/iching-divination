@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>殺手林 AI 易經商業顧問｜訂閱表單</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%);
+            color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .form-container {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d4af37;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(212,175,55,0.5);
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212,175,55,0.2);
+        }
+        
+        input::placeholder {
+            color: #666;
+        }
+        
+        .cta-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #0d0d0d;
+            padding: 16px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(212,175,55,0.4);
+        }
+        
+        .info-box {
+            background: rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .info-box p {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .info-box .icon {
+            margin-right: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>殺手林 AI 商業決策顧問</h1>
+        <p class="subtitle">填寫表單，開始你的易經創業之旅</p>
+        
+        <div class="info-box">
+            <p>
+                <span class="icon">💡</span>
+                提交表單後，殺手林會透過 Telegram 聯繫你確認付款與服務細節。請確保填寫正確的 Telegram ID。
+            </p>
+        </div>
+        
+        <form id="subscribeForm">
+            <div class="form-group">
+                <label for="name">姓名 / 暱稱 *</label>
+                <input type="text" id="name" name="name" required placeholder="如何稱呼你">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">電子郵件 *</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="telegram">Telegram ID *</label>
+                <input type="text" id="telegram" name="telegram" required placeholder="@your_telegram_id">
+                <small style="color: #888; display: block; margin-top: 5px;">在 Telegram 搜尋 @useridbot 可以查到你的 ID</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="plan">選擇方案 *</label>
+                <select id="plan" name="plan" required>
+                    <option value="">請選擇方案</option>
+                    <option value="monthly">月度訂閱 $19/月</option>
+                    <option value="halfyear">半年方案 $99/6個月（節省 $15）</option>
+                    <option value="single">單次咨詢 $9.9</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="question">你想問的第一個商業問題（選填）</label>
+                <input type="text" id="question" name="question" placeholder="簡單描述你想諮詢的方向">
+            </div>
+            
+            <button type="submit" class="cta-btn">提交訂閱申請</button>
+        </form>
+        
+        <footer>
+            <p>© 2026 殺手林 AI 顧問</p>
+            <p style="margin-top: 10px;">
+                <a href="https://t.me/shaishalin_advisor_bot" target="_blank">Telegram Bot</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // 在實際應用中，這裡會發送到後端
+            console.log('Subscription data:', data);
+            
+            // 顯示感謝訊息
+            const msg = `
+✅ 訂閱申請已提交！
+
+📧 電子郵件: ${data.email}
+💬 Telegram: ${data.telegram}
+📦 方案: ${data.plan === 'monthly' ? '月度訂閱 $19/月' : data.plan === 'halfyear' ? '半年方案 $99' : '單次咨詢 $9.9'}
+
+殺手林會在 24 小時內透過 Telegram 聯繫你確認！
+
+請保持 Telegram 在線 📱
+            `;
+            
+            alert(msg);
+            this.reset();
+        });
+    </script>
+</body>
+</html>

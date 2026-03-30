@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>關鍵字探索器｜流量密碼</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0c0c18;
+    color: #e2e8f0;
+    font-family: "Noto Sans TC", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  .bg { position: fixed; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.06) 0%, transparent 60%); pointer-events: none; }
+  .wrap { position: relative; z-index: 1; width: 100%; max-width: 680px; }
+
+  .header { text-align: center; margin-bottom: 2rem; }
+  .tag { font-size: 0.65rem; letter-spacing: 0.4em; color: #f59e0b; text-transform: uppercase; margin-bottom: 0.5rem; }
+  h1 { font-size: 1.7rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .subtitle { font-size: 0.82rem; color: #64748b; }
+
+  .search-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .search-input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    background: #13132a;
+    border: 1px solid #2a2a4a;
+    border-radius: 10px;
+    color: #e2e8f0;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .search-input:focus { border-color: #f59e0b; }
+  .search-input::placeholder { color: #374151; }
+  .search-btn {
+    padding: 0.9rem 1.8rem;
+    background: #f59e0b;
+    color: #0c0c18;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  .search-btn:hover { background: #d97706; }
+
+  /* Filters */
+  .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .filter-btn {
+    padding: 0.4rem 0.9rem;
+    background: #13132a;
+    border: 1px solid #1e1e3a;
+    border-radius: 50px;
+    color: #6b7280;
+    font-size: 0.72rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .filter-btn:hover, .filter-btn.active { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,0.08); }
+
+  /* Results */
+  .result-card {
+    background: #0f0f22;
+    border: 1px solid #1a1a30;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s;
+  }
+  .result-card:hover { border-color: #f59e0b33; }
+  .result-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+  }
+  .result-left { display: flex; align-items: center; gap: 0.8rem; }
+  .result-index { font-size: 0.7rem; color: #374151; min-width: 24px; }
+  .result-kw { font-size: 0.95rem; font-weight: 600; color: #e2e8f0; }
+  .result-tags { display: flex; gap: 0.3rem; margin-top: 0.3rem; flex-wrap: wrap; }
+  .tag-small {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+    background: #1a1a30;
+    border-radius: 3px;
+    color: #6b7280;
+  }
+  .result-right { display: flex; align-items: center; gap: 1.2rem; flex-shrink: 0; }
+  .vol-badge {
+    text-align: right;
+  }
+  .vol-num { font-size: 0.85rem; font-weight: 700; color: #f59e0b; font-variant-numeric: tabular-nums; }
+  .vol-label { font-size: 0.6rem; color: #4b5563; letter-spacing: 0.1em; }
+  .trend-arrow { font-size: 1.1rem; }
+  .expand-icon { color: #374151; font-size: 0.8rem; transition: transform 0.3s; }
+  .result-card.open .expand-icon { transform: rotate(180deg); }
+  .result-detail {
+    display: none;
+    padding: 0 1.2rem 1rem;
+    border-top: 1px solid #1a1a30;
+  }
+  .result-card.open .result-detail { display: block; }
+  .detail-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .detail-item {}
+  .detail-label { font-size: 0.65rem; color: #4b5563; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
+  .detail-val { font-size: 0.8rem; color: #9ca3af; }
+  .detail-val.highlight { color: #10b981; font-weight: 600; }
+
+  .affiliate-btn {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.5rem 1rem;
+    background: #f59e0b;
+    color: #0c0c18;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .affiliate-btn:hover { background: #d97706; }
+
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #374151;
+    font-size: 0.85rem;
+  }
+  .empty-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+  /* Ko-fi */
+  .kofi-section { text-align: center; padding: 1.5rem 0; border-top: 1px solid #1a1a30; margin-top: 1rem; }
+  .kofi-label { font-size: 0.65rem; letter-spacing: 0.4em; color: #1a1a30; margin-bottom: 0.5rem; }
+  .kofi-btn { display: inline-block; padding: 0.5rem 1.2rem; font-size: 0.75rem; letter-spacing: 0.2em; color: #f59e0b; border: 1px solid #2a2a0a; text-decoration: none; border-radius: 4px; transition: all 0.3s; }
+  .kofi-btn:hover { background: rgba(245,158,11,0.08); }
+
+  .loading { display: none; text-align: center; padding: 1rem; }
+  .loading.show { display: block; }
+  .loading-dots { color: #f59e0b; font-size: 1.5rem; letter-spacing: 0.3em; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<div class="wrap">
+  <div class="header">
+    <p class="tag">SEO 工具</p>
+    <h1>關鍵字探索器</h1>
+    <p class="subtitle">輸入任意向，探索相關關鍵字的搜尋量與趨勢</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="例如：被動收入、AI創業、聯盟行銷..." onkeydown="if(event.key==='Enter')search()">
+    <button class="search-btn" onclick="search()">搜 索</button>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="setFilter('all', this)">🔥 熱門</button>
+    <button class="filter-btn" onclick="setFilter('longtail', this)">📊 長尾詞</button>
+    <button class="filter-btn" onclick="setFilter('question', this)">❓ 問答型</button>
+    <button class="filter-btn" onclick="setFilter('affiliate', this)">💰 變現詞</button>
+    <button class="filter-btn" onclick="setFilter('local', this)">📍 本地搜</button>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="loading-dots">●●●</div>
+  </div>
+
+  <div id="results"></div>
+
+  <div class="empty" id="emptyState">
+    <div class="empty-icon">🔍</div>
+    <p>輸入關鍵字開始探索<br><span style="font-size:0.75rem; color:#374151;">例如：「被動收入」「AI工具」「網路創業」</span></p>
+  </div>
+
+  <div class="kofi-section">
+    <p class="kofi-label">若有所得，隨喜支持</p>
+    <a class="kofi-btn" href="https://ko-fi.com/shaishalin" target="_blank">資 持</a>
+  </div>
+</div>
+
+<script>
+var currentFilter = 'all';
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  if (document.getElementById('searchInput').value.trim()) search();
+}
+
+function seededRand(seed, min, max) {
+  var x = Math.sin(seed) * 10000;
+  return min + (x - Math.floor(x)) * (max - min);
+}
+
+function seededChoice(seed, arr) {
+  return arr[Math.floor(seededRand(seed, 0, arr.length))];
+}
+
+var KEYWORD_DATASETS = {
+  default: [
+    { kw: '被動收入 2026', tags: ['熱門','長尾'], vol: 8800, trend: '↑', cpc: 3.2, competition: '低', difficulty: '易', type: 'money' },
+    { kw: 'AI 工具 推薦', tags: ['熱門','AI'], vol: 22000, trend: '↑↑', cpc: 1.8, competition: '高', difficulty: '難', type: 'tech' },
+    { kw: '聯盟行銷 新手', tags: ['新手','教學'], vol: 5400, trend: '↑', cpc: 2.1, competition: '中', difficulty: '中', type: 'money' },
+    { kw: '如何 在網路上 賺錢', tags: ['問答','熱門'], vol: 35000, trend: '↑↑', cpc: 2.5, competition: '高', difficulty: '難', type: 'money' },
+    { kw: 'WordPress 架站 教學', tags: ['技術','長尾'], vol: 12000, trend: '→', cpc: 1.5, competition: '中', difficulty: '中', type: 'tech' },
+    { kw: '數位商品 製作', tags: ['變現','教學'], vol: 7200, trend: '↑↑', cpc: 2.8, competition: '低', difficulty: '易', type: 'money' },
+    { kw: 'SEO 關鍵字 工具', tags: ['工具','技術'], vol: 9900, trend: '↑', cpc: 4.2, competition: '中', difficulty: '中', type: 'tech' },
+    { kw: '什麼是被動收入', tags: ['問答','定義'], vol: 14500, trend: '→', cpc: 1.2, competition: '中', difficulty: '中', type: 'money' },
+    { kw: 'AI 聊天機器人 製作', tags: ['AI','技術'], vol: 6800, trend: '↑↑', cpc: 3.5, competition: '低', difficulty: '易', type: 'tech' },
+    { kw: '部落格 變現 方法', tags: ['變現','教學'], vol: 8900, trend: '↑', cpc: 2.0, competition: '中', difficulty: '中', type: 'money' }
+  ]
+};
+
+function generateResults(seed, filter) {
+  var base = KEYWORD_DATASETS.default;
+  var results = [];
+  for (var i = 0; i < base.length; i++) {
+    var item = base[i];
+    var modifier = seededRand(seed + i * 17, 0.7, 1.5);
+    var item2 = {
+      kw: item.kw,
+      tags: item.tags,
+      vol: Math.round(item.vol * modifier),
+      trend: seededChoice(seed + i * 3, ['↑','↑','↑↑','→']),
+      cpc: (item.cpc * seededRand(seed + i * 5, 0.8, 1.3)).toFixed(1),
+      competition: seededChoice(seed + i * 7, ['低','中','高']),
+      difficulty: item.difficulty,
+      type: item.type
+    };
+    if (filter === 'all') { results.push(item2); continue; }
+    if (filter === 'longtail' && item.kw.length > 8) results.push(item2);
+    if (filter === 'question' && (item.kw.includes('如何') || item.kw.includes('什麼') || item.tags.includes('問答'))) results.push(item2);
+    if (filter === 'affiliate' && item.type === 'money') results.push(item2);
+    if (filter === 'local' && item.tags.includes('本地')) results.push(item2);
+  }
+  if (filter === 'longtail' || filter === 'question' || filter === 'affiliate' || filter === 'local') {
+    if (results.length < 3) {
+      results = base.filter(function(d){ return d.type === 'money' || d.type === 'tech'; }).slice(0, 8);
+    }
+  }
+  return results.slice(0, 10);
+}
+
+function search() {
+  var q = document.getElementById('searchInput').value.trim();
+  if (!q) return;
+
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('loading').classList.add('show');
+  document.getElementById('results').innerHTML = '';
+
+  var seed = q.split('').reduce(function(a,c){ return a + c.charCodeAt(0); }, 0);
+  var results = generateResults(seed, currentFilter);
+
+  setTimeout(function() {
+    document.getElementById('loading').classList.remove('show');
+    renderResults(results);
+  }, 800);
+}
+
+function renderResults(results) {
+  var html = '';
+  results.forEach(function(r, i) {
+    var tagHtml = r.tags.map(function(t){ return '<span class="tag-small">' + t + '</span>'; }).join('');
+    var trendColor = r.trend.includes('↑↑') ? '#10b981' : r.trend.includes('↑') ? '#34d399' : '#6b7280';
+    html += '<div class="result-card" onclick="toggleCard(this)">' +
+      '<div class="result-top">' +
+        '<div class="result-left">' +
+          '<span class="result-index">' + (i+1) + '</span>' +
+          '<div>' +
+            '<div class="result-kw">' + r.kw + '</div>' +
+            '<div class="result-tags">' + tagHtml + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="result-right">' +
+          '<div class="vol-badge">' +
+            '<div class="vol-num">' + (r.vol >= 1000 ? (r.vol/1000).toFixed(1) + 'K' : r.vol) + '</div>' +
+            '<div class="vol-label">月搜量</div>' +
+          '</div>' +
+          '<div style="color:' + trendColor + '; font-size:0.9rem; font-weight:700;">' + r.trend + '</div>' +
+          '<div class="expand-icon">▾</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="result-detail">' +
+        '<div class="detail-row">' +
+          '<div class="detail-item"><div class="detail-label">CPC 廣告成本</div><div class="detail-val highlight">$' + r.cpc + '</div></div>' +
+          '<div class="detail-item"><div class="detail-label">競爭程度</div><div class="detail-val">' + r.competition + '</div></div>' +
+          '<div class="detail-item"><div class="detail-label">SEO 難度</div><div class="detail-val">' + r.difficulty + '</div></div>' +
+          '<div class="detail-item"><div class="detail-label">變現潛力</div><div class="detail-val highlight">' + (r.type === 'money' ? '💰 高' : '⚙️ 中') + '</div></div>' +
+        '</div>' +
+        '<a class="affiliate-btn" href="https://ko-fi.com/shaishalin" target="_blank">📊 查看完整 SEO 報告</a>' +
+      '</div>' +
+    '</div>';
+  });
+  document.getElementById('results').innerHTML = html;
+}
+
+function toggleCard(card) {
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>

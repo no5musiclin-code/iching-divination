@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startup Decision Framework | 創業者決策框架套組</title>
+<style>
+:root {
+  --bg-dark: #0a0a0f;
+  --bg-card: #111118;
+  --bg-card-hover: #18181f;
+  --gold: #d4a843;
+  --gold-light: #e8c675;
+  --gold-dark: #a07828;
+  --text: #e8e4dc;
+  --text-muted: #8a8578;
+  --border: #2a2a35;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+  min-height: 100vh;
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.03) 0%, transparent 40%);
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+header { text-align: center; margin-bottom: 50px; }
+header .logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+header p { color: var(--text-muted); font-size: 1.05rem; max-width: 700px; margin: 0 auto; line-height: 1.7; }
+.price-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; padding: 8px 24px; border-radius: 30px; font-size: 1.1rem; margin: 20px 0; }
+.hero-section { text-align: center; padding: 50px 30px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg-card); margin-bottom: 50px; }
+.hero-section h2 { font-size: 1.6rem; color: var(--gold-light); margin-bottom: 15px; }
+.hero-section p { color: var(--text-muted); line-height: 1.8; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+.feature-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; text-align: center; }
+.feature-box .icon { font-size: 2.2rem; margin-bottom: 12px; }
+.feature-box h5 { color: var(--gold); margin-bottom: 8px; font-size: 1rem; }
+.feature-box p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+.template-section { margin-bottom: 50px; }
+.template-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 30px; overflow: hidden;
+}
+.template-header { display: flex; align-items: center; gap: 15px; padding: 25px 30px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.3s; }
+.template-header:hover { background: var(--bg-card-hover); }
+.template-icon { font-size: 1.8rem; }
+.template-info h3 { color: var(--gold-light); font-size: 1.25rem; margin-bottom: 4px; }
+.template-info p { color: var(--text-muted); font-size: 0.9rem; }
+.template-badge { margin-left: auto; background: rgba(212,168,67,0.1); color: var(--gold); padding: 5px 14px; border-radius: 15px; font-size: 0.8rem; }
+.template-body { padding: 30px; display: none; }
+.template-body.active { display: block; }
+.template-body h4 { color: var(--gold); margin-bottom: 20px; font-size: 1.1rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+.cell { background: var(--bg-dark); border: 1px solid var(--border); padding: 15px; border-radius: 8px; }
+.cell.highlight { border-color: var(--gold-dark); background: rgba(212,168,67,0.05); }
+.cell.success { border-color: #4a9c6d; background: rgba(74,156,109,0.05); }
+.cell.danger { border-color: #c0392b; background: rgba(192,57,43,0.05); }
+.cell.warning { border-color: #d4a843; background: rgba(212,168,67,0.05); }
+.cell-header { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+.cell-content { font-size: 0.85rem; color: var(--text-muted); min-height: 40px; }
+input.fill-in { background: var(--bg-dark); border: 1px dashed var(--border); border-radius: 6px; padding: 10px; color: var(--text-muted); font-size: 0.85rem; width: 100%; outline: none; }
+input.fill-in:focus { border-color: var(--gold); }
+table.template-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.template-table th, .template-table td { border: 1px solid var(--border); padding: 12px; text-align: left; font-size: 0.9rem; }
+.template-table th { background: rgba(212,168,67,0.1); color: var(--gold); font-weight: 600; }
+.template-table td { background: var(--bg-dark); color: var(--text-muted); }
+.template-table td input { background: transparent; border: none; color: var(--text-muted); width: 100%; font-size: 0.85rem; outline: none; }
+.quadrant-chart { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.quadrant { padding: 20px; border-radius: 12px; min-height: 120px; }
+.quadrant h6 { font-size: 0.9rem; margin-bottom: 10px; }
+.quadrant p { font-size: 0.8rem; line-height: 1.5; }
+.q1 { background: rgba(212,168,67,0.1); border: 1px solid var(--gold-dark); }
+.q1 h6 { color: var(--gold); }
+.q2 { background: rgba(74,156,109,0.1); border: 1px solid #4a9c6d; }
+.q2 h6 { color: #6bc48a; }
+.q3 { background: rgba(192,57,43,0.1); border: 1px solid #c0392b; }
+.q3 h6 { color: #e74c3c; }
+.q4 { background: rgba(142,133,120,0.1); border: 1px solid var(--border); }
+.q4 h6 { color: var(--text-muted); }
+.roadmap { position: relative; }
+.roadmap-phase { display: flex; gap: 20px; margin-bottom: 25px; align-items: flex-start; }
+.phase-marker { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.phase-content { flex: 1; }
+.phase-content h5 { color: var(--gold-light); margin-bottom: 8px; }
+.phase-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; }
+.phase-tasks { display: flex; flex-wrap: wrap; gap: 8px; }
+.phase-task { background: var(--bg-dark); border: 1px solid var(--border); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; color: var(--text-muted); }
+.week-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+.week-cell { background: var(--bg-dark); border: 1px solid var(--border); padding: 12px; border-radius: 8px; text-align: center; }
+.week-cell h6 { color: var(--gold); font-size: 0.8rem; margin-bottom: 5px; }
+.week-cell p { color: var(--text-muted); font-size: 0.75rem; }
+.risk-matrix { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.risk-cell { padding: 15px; border-radius: 10px; text-align: center; min-height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.risk-low { background: rgba(74,156,109,0.15); border: 1px solid #4a9c6d; }
+.risk-medium { background: rgba(212,168,67,0.15); border: 1px solid var(--gold-dark); }
+.risk-high { background: rgba(192,57,43,0.15); border: 1px solid #c0392b; }
+.risk-cell h6 { font-size: 0.85rem; margin-bottom: 5px; }
+.risk-cell p { font-size: 0.75rem; }
+.toggle-btn { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 0.9rem; margin-left: auto; padding: 5px 10px; border-radius: 5px; transition: background 0.3s; }
+.toggle-btn:hover { background: rgba(212,168,67,0.1); }
+.cta-section { text-align: center; padding: 60px 30px; background: linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border: 1px solid var(--border); border-radius: 20px; margin: 60px 0; }
+.cta-section h2 { font-size: 2rem; color: var(--gold-light); margin-bottom: 15px; }
+.cta-section p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+.cta-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; font-size: 1.1rem; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(212,168,67,0.35); }
+.footer-note { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 15px; }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .quadrant-chart { grid-template-columns: 1fr; }
+  .week-grid { grid-template-columns: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">☰ Killer Lin Farm</div>
+    <h1>創業者決策框架套組</h1>
+    <p>10 個最實用的商業決策框架模板，幫助創業者在複雜的商業環境中做出明智決策。從策略分析到風險管理，從產品規劃到團隊建設——你需要的一切都在這裡。</p>
+    <div class="price-badge">💰 定價：$14.9 美元 | 終身使用</div>
+  </header>
+
+  <div class="hero-section">
+    <h2>🎯 為什麼你需要這些框架？</h2>
+    <p>每一個成功的企業家都有自己的一套思考工具。這些框架是經過全球數百家新創公司驗證的決策利器，幫助你系統化地分析問題、識別機會、降低風險。</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-box"><div class="icon">📊</div><h5>SWOT 分析</h5><p>透視你的競爭優勢與劣勢</p></div>
+    <div class="feature-box"><div class="icon">🧱</div><h5>商業模式畫布</h5><p>一页看清你的整個商業邏輯</p></div>
+    <div class="feature-box"><div class="icon">🌳</div><h5>決策樹模板</h5><p>系統化分析每個選項的後果</p></div>
+    <div class="feature-box"><div class="icon">⚠️</div><h5>風險評估矩陣</h5><p>量化風險，制定應對策略</p></div>
+    <div class="feature-box"><div class="icon">🗺️</div><h5>產品路線圖</h5><p>8 週階段化產品規劃模板</p></div>
+    <div class="feature-box"><div class="icon">💰</div><h5>財務預測表</h5><p>三年營收與支出預測工具</p></div>
+    <div class="feature-box"><div class="icon">👥</div><h5>OKR 追蹤表</h5><p>目標與關鍵結果管理系統</p></div>
+    <div class="feature-box"><div class="icon">🎯</div><h5>價值主張畫布</h5><p>對準客戶需求的創新工具</p></div>
+    <div class="feature-box"><div class="icon">⚖️</div><h5>競爭分析圖</h5><p>五力模型與市場定位工具</p></div>
+    <div class="feature-box"><div class="icon">📅</div><h5>每週回顧模板</h5><p>持續改進的PDCA循環工具</p></div>
+  </div>
+
+  <!-- 1. SWOT 分析模板 -->
+  <div class="template-section">
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">📊</span>
+        <div class="template-info">
+          <h3>1. SWOT 分析模板</h3>
+          <p>分析你的優勢、劣勢、機會與威脅</p>
+        </div>
+        <span class="template-badge">經典工具</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <h4>填寫你的 SWOT 分析</h4>
+        <div class="grid-2">
+          <div class="cell success">
+            <div class="cell-header">S 優勢 Strengths</div>
+            <div class="cell-content">
+              <input class="fill-in" placeholder="你的內部優勢...">
+              <input class="fill-in" placeholder="你的內部優勢..." style="margin-top:8px">
+              <input class="fill-in" placeholder="你的內部優勢..." style="margin-top:8px">
+            </div>
+          </div>
+          <div class="cell warning">
+            <div class="cell-header">W 劣勢 Weaknesses</div>
+            <div class="cell-content">
+              <input class="fill-in" placeholder="你的內部劣勢...">
+              <input class="fill-in" placeholder="你的內部劣勢..." style="margin-top:8px">
+              <input class="fill-in" placeholder="你的內部劣勢..." style="margin-top:8px">
+            </div>
+          </div>
+          <div class="cell highlight">
+            <div class="cell-header">O 機會 Opportunities</div>
+            <div class="cell-content">
+              <input class="fill-in" placeholder="外部環境帶來的機會...">
+              <input class="fill-in" placeholder="外部環境帶來的機會..." style="margin-top:8px">
+              <input class="fill-in" placeholder="外部環境帶來的機會..." style="margin-top:8px">
+            </div>
+          </div>
+          <div class="cell danger">
+            <div class="cell-header">T 威脅 Threats</div>
+            <div class="cell-content">
+              <input class="fill-in" placeholder="外部環境的潛在威脅...">
+              <input class="fill-in" placeholder="外部環境的潛在威脅..." style="margin-top:8px">
+              <input class="fill-in" placeholder="外部環境的潛在威脅..." style="margin-top:8px">
+            </div>
+          </div>
+        </div>
+        <h4 style="margin-top: 20px;">SO-WT 策略組合</h4>
+        <div class="grid-2">
+          <div class="cell">
+            <div class="cell-header">SO 策略（優勢+機會）</div>
+            <div class="cell-content">
+              <input class="fill-in" placeholder="如何利用優勢抓住機會？">
+              <input class="fill-in" placeholder="" style="margin-top:8px">
+            </div>
+          </div>
+          <div class="cell">
+            <div class="cell-header">WT 策略（劣勢+威脅）</div>
+            <div class="cell-content">
+              <input class="fill-in" placeholder="如何弥补劣势应对威胁？">
+              <input class="fill-in" placeholder="" style="margin-top:8px">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 商業模式畫布 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">🧱</span>
+        <div class="template-info">
+          <h3>2. 商業模式畫布</h3>
+          <p>一张画布看清整个商业逻辑</p>
+        </div>
+        <span class="template-badge">必備工具</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <div class="grid-3" style="grid-template-columns: 2fr 1fr 2fr; margin-bottom: 15px;">
+          <div></div>
+          <div class="cell highlight" style="text-align:center">
+            <div class="cell-header">核心合作夥伴</div>
+            <input class="fill-in" placeholder="誰是你的合作夥伴？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+          <div></div>
+        </div>
+        <div class="grid-3" style="grid-template-columns: 1fr 2fr 1fr; margin-bottom: 15px;">
+          <div class="cell">
+            <div class="cell-header">關鍵活動</div>
+            <input class="fill-in" placeholder="你需要做什麼？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+          <div class="cell highlight">
+            <div class="cell-header">價值主張</div>
+            <input class="fill-in" placeholder="你為客戶解決什麼問題？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+          <div class="cell">
+            <div class="cell-header">客戶關係</div>
+            <input class="fill-in" placeholder="如何與客戶互動？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+        </div>
+        <div class="grid-3" style="grid-template-columns: 1fr 2fr 1fr; margin-bottom: 15px;">
+          <div class="cell">
+            <div class="cell-header">關鍵資源</div>
+            <input class="fill-in" placeholder="你需要什麼資源？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+          <div class="cell highlight">
+            <div class="cell-header">通路 / 渠道</div>
+            <input class="fill-in" placeholder="如何接觸客戶？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+          <div class="cell">
+            <div class="cell-header">客戶區隔</div>
+            <input class="fill-in" placeholder="誰是你的目標客戶？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="cell">
+            <div class="cell-header">成本結構</div>
+            <input class="fill-in" placeholder="主要成本有哪些？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+          <div class="cell">
+            <div class="cell-header">收入來源</div>
+            <input class="fill-in" placeholder="如何賺錢？">
+            <input class="fill-in" placeholder="" style="margin-top:6px">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 決策樹模板 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">🌳</span>
+        <div class="template-info">
+          <h3>3. 決策樹模板</h3>
+          <p>系統化分析每個選項的後果與概率</p>
+        </div>
+        <span class="template-badge">分析工具</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <h4>決策問題：</h4>
+        <input class="fill-in" placeholder="你需要做的決定是什麼？" style="margin-bottom:20px">
+        <table class="template-table">
+          <thead>
+            <tr>
+              <th style="width:5%">#</th>
+              <th style="width:20%">選項</th>
+              <th style="width:15%">可能的結果</th>
+              <th style="width:15%">發生概率</th>
+              <th style="width:15%">結果價值</th>
+              <th style="width:30%">備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><input placeholder="選項 A"></td><td><input placeholder="結果 1"></td><td><input placeholder="50%"></td><td><input placeholder="+100"></td><td><input placeholder="說明"></td></tr>
+            <tr><td>2</td><td><input placeholder="選項 A"></td><td><input placeholder="結果 2"></td><td><input placeholder="50%"></td><td><input placeholder="-20"></td><td><input placeholder="說明"></td></tr>
+            <tr><td>3</td><td><input placeholder="選項 B"></td><td><input placeholder="結果 1"></td><td><input placeholder="70%"></td><td><input placeholder="+50"></td><td><input placeholder="說明"></td></tr>
+            <tr><td>4</td><td><input placeholder="選項 B"></td><td><input placeholder="結果 2"></td><td><input placeholder="30%"></td><td><input placeholder="-10"></td><td><input placeholder="說明"></td></tr>
+            <tr><td>5</td><td><input placeholder=""></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+          </tbody>
+        </table>
+        <h4 style="margin-top:25px">期望值計算（EV = 概率 × 結果值）</h4>
+        <div class="grid-2">
+          <div class="cell">
+            <div class="cell-header">選項 A 期望值</div>
+            <input class="fill-in" placeholder="計算: 0.5×100 + 0.5×(-20) = 40">
+          </div>
+          <div class="cell">
+            <div class="cell-header">選項 B 期望值</div>
+            <input class="fill-in" placeholder="計算: 0.7×50 + 0.3×(-10) = 32">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 風險評估矩陣 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">⚠️</span>
+        <div class="template-info">
+          <h3>4. 風險評估矩陣</h3>
+          <p>量化風險可能性與影響程度</p>
+        </div>
+        <span class="template-badge">風險管理</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <h4>風險矩陣（影響程度 × 發生概率）</h4>
+        <div class="risk-matrix" style="margin-bottom: 25px;">
+          <div style="grid-column: 1;"><div class="cell" style="background:rgba(74,156,109,0.05);border-color:#4a9c6d;margin-top:60px;text-align:center"><span style="font-size:0.8rem;color:var(--text-muted)">低影響</span></div></div>
+          <div class="risk-cell risk-low"><h6>低概率</h6><p>■ 可忽略</p></div>
+          <div class="risk-cell risk-low"><h6>中概率</h6><p>■ 可忽略</p></div>
+          <div class="risk-cell risk-medium"><h6>高概率</h6><p>☐ 注意</p></div>
+          <div class="risk-cell risk-high"><h6>極高概率</h6><p>☐ 高度關注</p></div>
+          <div style="grid-column: 1;"><div class="cell" style="background:rgba(74,156,109,0.05);border-color:#4a9c6d;margin-top:60px;text-align:center"><span style="font-size:0.8rem;color:var(--text-muted)">高影響</span></div></div>
+          <div class="risk-cell risk-low"><h6>低概率</h6><p>☐ 注意</p></div>
+          <div class="risk-cell risk-medium"><h6>中概率</h6><p>☐ 高度關注</p></div>
+          <div class="risk-cell risk-high"><h6>高概率</h6><p>☐ 嚴重風險</p></div>
+          <div class="risk-cell risk-high"><h6>極高概率</h6><p>☐ 危機</p></div>
+        </div>
+        <table class="template-table">
+          <thead>
+            <tr>
+              <th>#</th><th>風險描述</th><th>概率(1-5)</th><th>影響(1-5)</th><th>風險值</th><th>應對策略</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><input placeholder="描述風險"></td><td><input placeholder="1-5"></td><td><input placeholder="1-5"></td><td style="background:rgba(212,168,67,0.1)"><input value="=概率×影響" style="color:var(--gold)"></td><td><input placeholder="應對計劃"></td></tr>
+            <tr><td>2</td><td><input placeholder=""></td><td><input></td><td><input></td><td></td><td><input></td></tr>
+            <tr><td>3</td><td><input placeholder=""></td><td><input></td><td><input></td><td></td><td><input></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. 產品路線圖 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">🗺️</span>
+        <div class="template-info">
+          <h3>5. 產品路線圖（8 週）</h3>
+          <p>階段化產品開發與發布計劃</p>
+        </div>
+        <span class="template-badge">產品管理</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <h4>8 週產品路線圖</h4>
+        <div class="roadmap">
+          <div class="roadmap-phase">
+            <div class="phase-marker">W1-2</div>
+            <div class="phase-content">
+              <h5>第 1-2 週：基礎建設</h5>
+              <p>完成核心功能設計、技術架構搭建、開發環境配置</p>
+              <div class="phase-tasks">
+                <span class="phase-task">需求分析</span>
+                <span class="phase-task">原型設計</span>
+                <span class="phase-task">架構選擇</span>
+                <span class="phase-task">團隊分工</span>
+              </div>
+            </div>
+          </div>
+          <div class="roadmap-phase">
+            <div class="phase-marker">W3-4</div>
+            <div class="phase-content">
+              <h5>第 3-4 週：核心開發</h5>
+              <p>完成 MVP 核心功能開發、内部測試與迭代</p>
+              <div class="phase-tasks">
+                <span class="phase-task">功能開發</span>
+                <span class="phase-task">單元測試</span>
+                <span class="phase-task">內部審查</span>
+                <span class="phase-task">Bug 修復</span>
+              </div>
+            </div>
+          </div>
+          <div class="roadmap-phase">
+            <div class="phase-marker">W5-6</div>
+            <div class="phase-content">
+              <h5>第 5-6 週：測試與優化</h5>
+              <p>Beta 測試、用戶回饋收集、性能優化</p>
+              <div class="phase-tasks">
+                <span class="phase-task">Beta 發布</span>
+                <span class="phase-task">用戶訪談</span>
+                <span class="phase-task">效能調優</span>
+                <span class="phase-task">UI 調整</span>
+              </div>
+            </div>
+          </div>
+          <div class="roadmap-phase">
+            <div class="phase-marker">W7-8</div>
+            <div class="phase-content">
+              <h5>第 7-8 週：發布準備</h5>
+              <p>行銷素材準備、發布後監控系統、客服培訓</p>
+              <div class="phase-tasks">
+                <span class="phase-task">行銷網站</span>
+                <span class="phase-task">發布審查</span>
+                <span class="phase-task">監控設定</span>
+                <span class="phase-task">客服腳本</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 財務預測表 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">💰</span>
+        <div class="template-info">
+          <h3>6. 財務預測表（3年）</h3>
+          <p>營收、成本、現金流預測工具</p>
+        </div>
+        <span class="template-badge">財務管理</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <table class="template-table">
+          <thead>
+            <tr><th>項目</th><th>第1年</th><th>第2年</th><th>第3年</th></tr>
+          </thead>
+          <tbody>
+            <tr><th colspan="4" style="background:rgba(212,168,67,0.08);color:var(--gold)">營收預測</th></tr>
+            <tr><td>產品/服務收入</td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr><td>訂閱收入</td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr><td>其他收入</td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr style="background:rgba(74,156,109,0.05)"><td><strong>總營收</strong></td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr><th colspan="4" style="background:rgba(212,168,67,0.08);color:var(--gold)">成本預測</th></tr>
+            <tr><td>人力成本</td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr><td>營運成本</td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr><td>行銷費用</td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr><td>技術/工具</td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr style="background:rgba(192,57,43,0.05)"><td><strong>總成本</strong></td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+            <tr style="background:rgba(212,168,67,0.1)"><td><strong>淨利潤</strong></td><td><input placeholder="$"></td><td><input placeholder="$"></td><td><input placeholder="$"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 7. OKR 追蹤表 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">👥</span>
+        <div class="template-info">
+          <h3>7. OKR 追蹤表</h3>
+          <p>目標與關鍵結果管理系統</p>
+        </div>
+        <span class="template-badge">目標管理</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <h4>本季度 OKR（Objective & Key Results）</h4>
+        <table class="template-table">
+          <thead>
+            <tr><th>目標（O）</th><th>關鍵結果（KR）</th><th>當前進度</th><th>信心度</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="3" style="vertical-align:top"><input placeholder="O1: 本季度核心目標" style="height:80px"></td>
+              <td><input placeholder="KR1: 量化指標"></td>
+              <td><input placeholder="0-100%"></td>
+              <td><input placeholder="高/中/低"></td>
+            </tr>
+            <tr>
+              <td><input placeholder="KR2: 量化指標"></td>
+              <td><input placeholder="0-100%"></td>
+              <td><input placeholder="高/中/低"></td>
+            </tr>
+            <tr>
+              <td><input placeholder="KR3: 量化指標"></td>
+              <td><input placeholder="0-100%"></td>
+              <td><input placeholder="高/中/低"></td>
+            </tr>
+            <tr>
+              <td rowspan="3" style="vertical-align:top"><input placeholder="O2: " style="height:80px"></td>
+              <td><input placeholder="KR1: "></td>
+              <td><input></td>
+              <td><input></td>
+            </tr>
+            <tr>
+              <td><input placeholder="KR2: "></td>
+              <td><input></td>
+              <td><input></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 8. 價值主張畫布 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">🎯</span>
+        <div class="template-info">
+          <h3>8. 價值主張畫布</h3>
+          <p>對準客戶需求的創新工具</p>
+        </div>
+        <span class="template-badge">創新工具</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <div class="grid-2">
+          <div class="cell highlight">
+            <div class="cell-header">客戶檔案（Profile）</div>
+            <div style="margin-top:10px">
+              <p style="color:var(--gold);font-size:0.85rem;margin-bottom:8px">■ 客戶工作</p>
+              <input class="fill-in" placeholder="客戶想要完成的事情...">
+              <input class="fill-in" placeholder="" style="margin-top:6px">
+              <p style="color:var(--gold);font-size:0.85rem;margin:12px 0 8px">■ 痛點</p>
+              <input class="fill-in" placeholder="客戶面臨的問題...">
+              <input class="fill-in" placeholder="" style="margin-top:6px">
+              <p style="color:var(--gold);font-size:0.85rem;margin:12px 0 8px">■ 收穫（Gain）</p>
+              <input class="fill-in" placeholder="客戶渴望的結果...">
+              <input class="fill-in" placeholder="" style="margin-top:6px">
+            </div>
+          </div>
+          <div class="cell highlight">
+            <div class="cell-header">價值地圖（Map）</div>
+            <div style="margin-top:10px">
+              <p style="color:var(--gold);font-size:0.85rem;margin-bottom:8px">■ 產品/服務（Pains）</p>
+              <input class="fill-in" placeholder="如何緩解客戶痛點...">
+              <input class="fill-in" placeholder="" style="margin-top:6px">
+              <p style="color:var(--gold);font-size:0.85rem;margin:12px 0 8px">■ 收益創造（Gains）</p>
+              <input class="fill-in" placeholder="如何創造客戶想要的收穫...">
+              <input class="fill-in" placeholder="" style="margin-top:6px">
+              <p style="color:var(--gold);font-size:0.85rem;margin:12px 0 8px">■ 止痛方（Pain Relievers）</p>
+              <input class="fill-in" placeholder="你的產品如何消除痛點...">
+              <input class="fill-in" placeholder="" style="margin-top:6px">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. 競爭分析圖 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">⚖️</span>
+        <div class="template-info">
+          <h3>9. 競爭分析圖（ Porter's Five Forces ）</h3>
+          <p>分析行業競爭結構與市場吸引力</p>
+        </div>
+        <span class="template-badge">戰略分析</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <div class="quadrant-chart" style="margin-bottom:20px">
+          <div class="quadrant q1">
+            <h6>1. 現有競爭者</h6>
+            <input class="fill-in" placeholder="主要競爭者有哪些？他們的市場份額？" style="margin-bottom:8px">
+            <p style="color:var(--text-muted);font-size:0.85rem">競爭程度：<input class="fill-in" placeholder="高/中/低"></p>
+          </div>
+          <div class="quadrant q2">
+            <h6>2. 潛在進入者</h6>
+            <input class="fill-in" placeholder="誰可能進入這個市場？" style="margin-bottom:8px">
+            <p style="color:var(--text-muted);font-size:0.85rem">進入壁壘：<input class="fill-in" placeholder="高/中/低"></p>
+          </div>
+          <div class="quadrant q3">
+            <h6>3. 替代品威脅</h6>
+            <input class="fill-in" placeholder="有哪些替代產品或服務？" style="margin-bottom:8px">
+            <p style="color:var(--text-muted);font-size:0.85rem">替代風險：<input class="fill-in" placeholder="高/中/低"></p>
+          </div>
+          <div class="quadrant q4">
+            <h6>4. 供應商議價能力</h6>
+            <input class="fill-in" placeholder="主要供應商有哪些？" style="margin-bottom:8px">
+            <p style="color:var(--text-muted);font-size:0.85rem">議價能力：<input class="fill-in" placeholder="高/中/低"></p>
+          </div>
+        </div>
+        <div class="cell" style="margin-top:15px">
+          <div class="cell-header">5. 買家議價能力</div>
+          <input class="fill-in" placeholder="主要客戶群是誰？他們的議價能力如何？" style="margin-top:10px">
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. 每週回顧模板 -->
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <span class="template-icon">📅</span>
+        <div class="template-info">
+          <h3>10. 每週回顧模板（ PDCA 循環）</h3>
+          <p>持續改進的每週總結工具</p>
+        </div>
+        <span class="template-badge">持續改進</span>
+        <button class="toggle-btn">展開 ▼</button>
+      </div>
+      <div class="template-body">
+        <h4>第 ____ 週回顧（ 日期：________ ）</h4>
+        <div class="grid-2" style="margin-top:20px">
+          <div class="cell success">
+            <div class="cell-header">✅ 本週成就</div>
+            <input class="fill-in" placeholder="1. " style="margin-bottom:8px">
+            <input class="fill-in" placeholder="2. " style="margin-bottom:8px">
+            <input class="fill-in" placeholder="3. ">
+          </div>
+          <div class="cell danger">
+            <div class="cell-header">❌ 本週挫折</div>
+            <input class="fill-in" placeholder="1. " style="margin-bottom:8px">
+            <input class="fill-in" placeholder="2. " style="margin-bottom:8px">
+            <input class="fill-in" placeholder="3. ">
+          </div>
+        </div>
+        <div class="cell highlight" style="margin-top:15px">
+          <div class="cell-header">📚 本週學習</div>
+          <input class="fill-in" placeholder="學到了什麼新東西？" style="margin-top:10px">
+          <input class="fill-in" placeholder="這個知識如何應用於未來？" style="margin-top:8px">
+        </div>
+        <div class="grid-2" style="margin-top:15px">
+          <div class="cell">
+            <div class="cell-header">🎯 下週優先事項（Plan）</div>
+            <input class="fill-in" placeholder="1. " style="margin-top:10px">
+            <input class="fill-in" placeholder="2. " style="margin-top:8px">
+            <input class="fill-in" placeholder="3. " style="margin-top:8px">
+          </div>
+          <div class="cell">
+            <div class="cell-header">⚡ 下週改進（Do）</div>
+            <input class="fill-in" placeholder="要開始做什麼？" style="margin-top:10px">
+            <input class="fill-in" placeholder="要停止做什麼？" style="margin-top:8px">
+            <input class="fill-in" placeholder="要繼續做什麼？" style="margin-top:8px">
+          </div>
+        </div>
+        <div class="cell" style="margin-top:15px">
+          <div class="cell-header">⭐ 自我評分（1-10）</div>
+          <div style="display:flex;justify-content:space-between;margin-top:10px">
+            <span style="color:var(--text-muted)">效能：<input class="fill-in" placeholder="分" style="width:40px;display:inline"></span>
+            <span style="color:var(--text-muted)">健康：<input class="fill-in" placeholder="分" style="width:40px;display:inline"></span>
+            <span style="color:var(--text-muted)">學習：<input class="fill-in" placeholder="分" style="width:40px;display:inline"></span>
+            <span style="color:var(--text-muted)">關係：<input class="fill-in" placeholder="分" style="width:40px;display:inline"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>🚀 立即擁有你專屬的決策工具箱</h2>
+    <p>完整版包含所有 10 個框架的 可填寫PDF 版本，可直接列印使用，附赠每個框架的填寫範例與使用說明。</p>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn">立即獲取完整版 $14.9</a>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px;">一次購買，終身使用 | 包含 PDF 版本與範例</p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 25px;">
+      <span style="font-size: 1.8rem;">🛡️</span>
+      <div style="text-align: left;">
+        <strong style="color: var(--gold-light); display: block;">30 天滿意保證</strong>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">如果不滿意，30 天內可申請全額退款</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Killer Lin Farm | <a href="https://linblance.gumroad.com">linblance.gumroad.com</a></p>
+    <p style="margin-top: 10px;">用框架思考，用系統執行，讓每一個決定都離成功更近一步</p>
+  </footer>
+</div>
+
+<script>
+function toggleTemplate(el) {
+  const body = el.nextElementSibling;
+  const btn = el.querySelector('.toggle-btn');
+  if (body.classList.contains('active')) {
+    body.classList.remove('active');
+    btn.textContent = '展開 ▼';
+  } else {
+    body.classList.add('active');
+    btn.textContent = '收合 ▲';
+  }
+}
+</script>
+</body>
+</html>

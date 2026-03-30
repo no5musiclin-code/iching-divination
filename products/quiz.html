@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>測驗｜你是哪種創業者？</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f0f1a;
+    color: #e0dff0;
+    font-family: "Noto Sans TC", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+  .hero-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 30%, rgba(99,102,241,0.12) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    padding: 1.5rem;
+  }
+
+  /* Screen */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeUp 0.5s ease; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Intro */
+  .tag-line {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: #6366f1;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .subtitle {
+    font-size: 0.95rem;
+    color: #8b8aa0;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .cover-art {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-art::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(168,85,247,0.15));
+  }
+  .start-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2.5rem;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .start-btn:hover { background: #4f46e5; transform: translateY(-2px); }
+  .start-btn:active { transform: translateY(0); }
+
+  /* Progress */
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 4px;
+    background: #1e1e30;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-num {
+    font-size: 0.75rem;
+    color: #6366f1;
+    font-weight: 600;
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* Question */
+  .question-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  .options { display: flex; flex-direction: column; gap: 0.8rem; }
+  .option {
+    padding: 1rem 1.2rem;
+    background: #13132a;
+    border: 1px solid #1e1e3a;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #c0bfe0;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .option:hover {
+    background: #1a1a3a;
+    border-color: #6366f1;
+    color: #e0dff0;
+    transform: translateX(4px);
+  }
+  .option:active { transform: translateX(2px); }
+  .opt-letter {
+    width: 28px; height: 28px;
+    background: #1e1e3a;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6366f1;
+    flex-shrink: 0;
+  }
+
+  /* Result */
+  .result-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    color: #818cf8;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+  .result-type {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .result-emoji { font-size: 3rem; margin-bottom: 1rem; }
+  .result-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #8b8aa0;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #13132a;
+    border-radius: 10px;
+    border-left: 3px solid #6366f1;
+  }
+  .result-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .trait {
+    padding: 0.3rem 0.8rem;
+    background: #1a1a3a;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    color: #a5b4fc;
+  }
+  .share-section {
+    background: #13132a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .share-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #6366f1;
+    margin-bottom: 0.8rem;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.8rem;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .share-btn:hover { background: #4f46e5; }
+
+  /* Ko-fi */
+  .kofi-section {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #1e1e30;
+    margin-top: 1rem;
+  }
+  .kofi-label { font-size: 0.65rem; letter-spacing: 0.4em; color: #3a3a5a; margin-bottom: 0.6rem; }
+  .kofi-btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: #6366f1;
+    border: 1px solid #2a2a4a;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .kofi-btn:hover { border-color: #6366f1; background: rgba(99,102,241,0.08); }
+  .kofi-note { font-size: 0.6rem; color: #2a2a4a; margin-top: 0.5rem; }
+
+  .retake-btn {
+    display: block;
+    margin: 1.5rem auto 0;
+    background: transparent;
+    border: none;
+    color: #4a4a6a;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+  }
+  .retake-btn:hover { color: #6366f1; }
+</style>
+</head>
+<body>
+<div class="hero-bg"></div>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="screen active" id="intro">
+    <p class="tag-line">創業者性格測驗</p>
+    <h1>你是哪種<br>創業者？</h1>
+    <div class="cover-art">🚀</div>
+    <p class="subtitle">6 道題目，探索你的創業基因。了解自己是哪種類型的創業者，以及如何在 AI 時代找到最適合的致富路徑。</p>
+    <button class="start-btn" onclick="startQuiz()">開始測驗 →</button>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div class="screen" id="quiz">
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-num" id="progressNum">1/6</div>
+    </div>
+    <p class="question-text" id="questionText"></p>
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="screen" id="result">
+    <p class="result-badge">創業性格分析</p>
+    <div class="result-emoji" id="resultEmoji"></div>
+    <h2 class="result-type" id="resultType"></h2>
+    <div class="result-traits" id="resultTraits"></div>
+    <div class="result-desc" id="resultDesc"></div>
+
+    <div class="share-section">
+      <p class="share-label">分享給朋友</p>
+      <a class="share-btn" id="shareBtn">標記我：「我是「」型創業者！</a>
+    </div>
+
+    <button class="retake-btn" onclick="retake()">重新測驗</button>
+
+    <div class="kofi-section">
+      <p class="kofi-label">若有所得，隨喜支持</p>
+      <a class="kofi-btn" href="https://ko-fi.com/shaishalin" target="_blank">資 持</a>
+      <p class="kofi-note">ko-fi.com/shaishalin</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    q: '早上起床，你第一個想到的是？',
+    opts: [
+      { letter: 'A', text: '今天的待辦事項怎麼排優先順序', type: 'm' },
+      { letter: 'B', text: '有什麼新想法可以試試看？', type: 'v' },
+      { letter: 'C', text: '睡到自然醒再說吧！', type: 's' },
+      { letter: 'D', text: '有沒有發現什麼新趨勢？', type: 'a' }
+    ]
+  },
+  {
+    q: '面對一個新商機，你的第一直覺是？',
+    opts: [
+      { letter: 'A', text: '先做市場調查，再決定要不要投入', type: 'm' },
+      { letter: 'B', text: '先做再說，邊做邊調整！', type: 'v' },
+      { letter: 'C', text: '這個風險有多高？失敗了怎麼辦？', type: 's' },
+      { letter: 'D', text: '這個趨勢能持續多久？別人做了什麼？', type: 'a' }
+    ]
+  },
+  {
+    q: '你的創業啟蒙來自於？',
+    opts: [
+      { letter: 'A', text: '身邊有人靠創業翻身，我想證明自己也可以', type: 'm' },
+      { letter: 'B', text: '看到一個問題，我想親手解決它', type: 'v' },
+      { letter: 'C', text: '不想上班，想掌握自己的時間', type: 's' },
+      { letter: 'D', text: '被某個成功案例激勵，想要複製並超越', type: 'a' }
+    ]
+  },
+  {
+    q: '週末下午，你最可能做什麼？',
+    opts: [
+      { letter: 'A', text: '優化產品、處理客服、回覆郵件', type: 'm' },
+      { letter: 'B', text: '去參加創業聚會或工作坊', type: 'v' },
+      { letter: 'C', text: '陪家人、爬山、徹底休息', type: 's' },
+      { letter: 'D', text: '研究新工具、閱讀商業案例、聽Podcast', type: 'a' }
+    ]
+  },
+  {
+    q: '你身邊的朋友怎麼形容你？',
+    opts: [
+      { letter: 'A', text: '靠譜，做事有始有終', type: 'm' },
+      { letter: 'B', text: '點子王，腦袋停不下來', type: 'v' },
+      { letter: 'C', text: '佛系，隨遇而安', type: 's' },
+      { letter: 'D', text: '分析帝，數據說明一切', type: 'a' }
+    ]
+  },
+  {
+    q: '如果只能選一個詞描述你對財富的態度？',
+    opts: [
+      { letter: 'A', text: '穩紮穩打，積少成多', type: 'm' },
+      { letter: 'B', text: 'all-in，贏就贏大的', type: 'v' },
+      { letter: 'C', text: '夠用就好，追求自由', type: 's' },
+      { letter: 'D', text: '知識變現，可持續被動收入', type: 'a' }
+    ]
+  }
+];
+
+const RESULTS = {
+  m: {
+    type: '實幹型創業者',
+    emoji: '⚙️',
+    traits: ['執行力強', '紀律嚴明', '一步一腳印'],
+    desc: '你是那種把點子變成產品、把產品變成營收的人。你不愛說廢話，最愛看數據和結果。對你來說，創業就是一個項目接著一個項目做，遇到問題就解決問題。你的最大武器是「恆心」——彎腰播種，時間會幫你收割。建議善用 AI 工具放大你的執行力，例如用 AI 幫你快速生成內容、客服回覆、資料整理，讓你一人團隊做到十人產出。'
+  },
+  v: {
+    type: '破壞型創業者',
+    emoji: '💥',
+    traits: ['敢冒險', '直覺敏銳', '說服力強'],
+    desc: '你是那種看到機會就跳下去、然後在空中想辦法的人。你有很強的直覺，能在別人還在觀望時就已經行動了。你不怕失敗，因為你知道失敗是最好的教材。你的最大武器是「速度」——天下武功，唯快不破。建議把你的破壞力導向可規模化的方向：用 AI 快速驗證想法、做登陸頁測試用戶反應，用最小成本驗證假設。'
+  },
+  s: {
+    type: '自由型創業者',
+    emoji: '☁️',
+    traits: ['重視生活品質', '興趣導向', '不作大不死'],
+    desc: '你是那種不想被體制束縛、想要掌控自己時間的人。你對「富有」的定義不只是銀行帳戶數字，而是內心的平靜和自由。你不喜歡壓力，但一旦找到自己熱愛的事情，爆發力驚人。建議瞄準「被動收入」和「知識變現」兩個方向：建立數位商品、設計自動化流程，讓系統幫你賺錢，而不是用時間換錢。'
+  },
+  a: {
+    type: '戰略型創業者',
+    emoji: '🧠',
+    traits: ['愛研究', '模型化思維', '佈局者'],
+    desc: '你是那種看事情看本質、做決策靠數據的人。你喜歡在行動前把所有變數都想清楚，一旦出手就很有把握。你最大的武器是「認知」——你知道別人不知道的，你就能賺別人賺不到的錢。建議把這種分析能力變現：做內容輸出（教別人你擅長的事）、建立付費訂閱、把分析框架產品化。AI 時代，認知差異就是財富差距。'
+  }
+};
+
+let currentQ = 0;
+let scores = { m: 0, v: 0, s: 0, a: 0 };
+
+function startQuiz() {
+  document.getElementById('intro').classList.remove('active');
+  document.getElementById('quiz').classList.add('active');
+  currentQ = 0;
+  scores = { m: 0, v: 0, s: 0, a: 0 };
+  showQuestion();
+}
+
+function showQuestion() {
+  var q = QUESTIONS[currentQ];
+  document.getElementById('questionText').textContent = q.q;
+  var pct = Math.round((currentQ / QUESTIONS.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressNum').textContent = (currentQ + 1) + '/' + QUESTIONS.length;
+
+  var optsHtml = '';
+  q.opts.forEach(function(o) {
+    optsHtml += '<div class="option" onclick="pick(\'' + o.type + '\', this)">' +
+      '<span class="opt-letter">' + o.letter + '</span>' + o.text + '</div>';
+  });
+  document.getElementById('options').innerHTML = optsHtml;
+}
+
+function pick(type, el) {
+  scores[type]++;
+  // Visual feedback
+  var opts = document.querySelectorAll('.option');
+  opts.forEach(function(o) { o.style.pointerEvents = 'none'; });
+  el.style.background = '#1a1a3a';
+  el.style.borderColor = '#6366f1';
+  el.style.color = '#e0dff0';
+
+  setTimeout(function() {
+    currentQ++;
+    if (currentQ < QUESTIONS.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
+  }, 350);
+}
+
+function showResult() {
+  // Find highest score
+  var max = 0, winner = 'm';
+  for (var k in scores) {
+    if (scores[k] > max) { max = scores[k]; winner = k; }
+  }
+  // Tie-breaker
+  var sorted = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; });
+  winner = sorted[0];
+
+  var r = RESULTS[winner];
+  document.getElementById('quiz').classList.remove('active');
+  document.getElementById('result').classList.add('active');
+
+  document.getElementById('resultEmoji').textContent = r.emoji;
+  document.getElementById('resultType').textContent = r.type;
+  document.getElementById('resultDesc').textContent = r.desc;
+
+  var traitsHtml = '';
+  r.traits.forEach(function(t) {
+    traitsHtml += '<span class="trait">' + t + '</span>';
+  });
+  document.getElementById('resultTraits').innerHTML = traitsHtml;
+
+  var shareText = encodeURIComponent('我剛做了創業者性格測驗，結果是「' + r.type + '」！' + r.emoji + '\n\n你是哪種創業者？測測看 👇\nhttps://shaishalin.wordpress.com');
+  document.getElementById('shareBtn').href = 'https://twitter.com/intent/tweet?text=' + shareText;
+  document.getElementById('shareBtn').target = '_blank';
+}
+
+function retake() {
+  document.getElementById('result').classList.remove('active');
+  document.getElementById('intro').classList.add('active');
+  document.getElementById('progressFill').style.width = '0%';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>複利計算機｜你的錢在幫你賺錢</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #050d1a;
+    color: #e2e8f0;
+    font-family: "Noto Sans TC", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  .glow {
+    position: fixed;
+    top: 30%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 720px;
+  }
+  .header { text-align: center; margin-bottom: 2.5rem; }
+  .header .tag { font-size: 0.7rem; letter-spacing: 0.4em; color: #10b981; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .header h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+  .header p { font-size: 0.85rem; color: #64748b; }
+
+  /* Cards */
+  .card {
+    background: #0a1628;
+    border: 1px solid #1e3a5f;
+    border-radius: 16px;
+    padding: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .card-title { font-size: 0.8rem; letter-spacing: 0.2em; color: #10b981; margin-bottom: 1.2rem; font-weight: 600; }
+
+  /* Inputs */
+  .input-row { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+  .input-row:last-child { margin-bottom: 0; }
+  .input-label { font-size: 0.78rem; color: #94a3b8; display: flex; justify-content: space-between; }
+  .input-label span { color: #10b981; font-weight: 600; }
+  input[type="range"] {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    background: #1e3a5f;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    background: #10b981;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(16,185,129,0.4);
+  }
+  .val-display {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Result Hero */
+  .result-hero {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background: linear-gradient(135deg, #0a2818 0%, #0a1628 100%);
+    border: 1px solid #10b98133;
+    border-radius: 16px;
+    margin-bottom: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .result-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(16,185,129,0.12), transparent 70%);
+  }
+  .result-label { font-size: 0.7rem; letter-spacing: 0.4em; color: #10b981; margin-bottom: 0.8rem; text-transform: uppercase; position: relative; }
+  .result-big {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #10b981;
+    font-variant-numeric: tabular-nums;
+    position: relative;
+    text-shadow: 0 0 30px rgba(16,185,129,0.4);
+    margin-bottom: 0.3rem;
+  }
+  .result-sub {
+    font-size: 0.8rem;
+    color: #64748b;
+    position: relative;
+  }
+  .result-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    position: relative;
+  }
+  .result-col {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    background: rgba(16,185,129,0.05);
+    border-radius: 10px;
+    border: 1px solid #10b98122;
+  }
+  .result-col-val {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #34d399;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.2rem;
+  }
+  .result-col-label { font-size: 0.7rem; color: #64748b; letter-spacing: 0.1em; }
+
+  /* Chart bar */
+  .chart-section { margin-top: 1.5rem; position: relative; }
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 100px;
+    margin-bottom: 0.5rem;
+  }
+  .bar {
+    flex: 1;
+    background: #10b981;
+    border-radius: 2px 2px 0 0;
+    min-height: 4px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+  .bar:last-child { opacity: 1; background: #34d399; }
+  .bar:hover { opacity: 1; }
+  .bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: #475569;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: #0a1628;
+    border: 1px solid #1e3a5f;
+    border-radius: 16px;
+    padding: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+  }
+  .cta-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .cta-desc { font-size: 0.82rem; color: #64748b; margin-bottom: 1.2rem; line-height: 1.6; }
+  .cta-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: #10b981;
+    color: #050d1a;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .cta-btn:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(16,185,129,0.3); }
+
+  /* Ko-fi */
+  .kofi-section { text-align: center; padding: 1rem; }
+  .kofi-label { font-size: 0.65rem; letter-spacing: 0.4em; color: #1e3a5f; margin-bottom: 0.5rem; }
+  .kofi-btn {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #10b981;
+    border: 1px solid #10b98133;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .kofi-btn:hover { background: rgba(16,185,129,0.08); }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="wrapper">
+  <div class="header">
+    <p class="tag">被動收入工具</p>
+    <h1>複利計算機</h1>
+    <p>你的錢在幫你賺錢 — 愛因斯坦說複利是世界第八奇蹟</p>
+  </div>
+
+  <div class="result-hero">
+    <p class="result-label">20 年後你會擁有</p>
+    <div class="result-big" id="totalDisplay">$0</div>
+    <p class="result-sub">投入本金 $<span id="principalDisplay">0</span> × 每年 <span id="rateDisplay">0</span>% 報酬率</p>
+
+    <div class="result-row">
+      <div class="result-col">
+        <div class="result-col-val" id="profitDisplay">$0</div>
+        <div class="result-col-label">利息收益</div>
+      </div>
+      <div class="result-col">
+        <div class="result-col-val" id="monthlyDisplay">$0</div>
+        <div class="result-col-label">每月被動收入</div>
+      </div>
+    </div>
+
+    <div class="chart-section" id="chartSection">
+      <div class="bar-chart" id="barChart"></div>
+      <div class="bar-labels"><span>今天</span><span>5年</span><span>10年</span><span>20年</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-title">基本參數</p>
+    <div class="input-row">
+      <div class="input-label">初始本金 <span id="pctLabel">$10,000</span></div>
+      <input type="range" id="principal" min="1000" max="500000" step="1000" value="10000" oninput="calc()">
+    </div>
+    <div class="input-row">
+      <div class="input-label">每月定投 <span id="monthlyLabel">$500</span></div>
+      <input type="range" id="monthly" min="0" max="10000" step="100" value="500" oninput="calc()">
+    </div>
+    <div class="input-row">
+      <div class="input-label">年化報酬率 <span id="rateLabel">10%</span></div>
+      <input type="range" id="rate" min="1" max="30" step="0.5" value="10" oninput="calc()">
+    </div>
+    <div class="input-row">
+      <div class="input-label">投資年限 <span id="yearsLabel">20 年</span></div>
+      <input type="range" id="years" min="1" max="40" step="1" value="20" oninput="calc()">
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-title">常見投資工具報酬率參考</p>
+    <div style="display:flex; flex-direction:column; gap:0.6rem;">
+      <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#94a3b8;">
+        <span>S&P 500 指數（歷史平均）</span><span style="color:#10b981; font-weight:600;">~10%</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#94a3b8;">
+        <span>美國公債（長期平均）</span><span style="color:#34d399; font-weight:600;">~5%</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#94a3b8;">
+        <span>銀行定存（參考）</span><span style="color:#64748b; font-weight:600;">~1.5%</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#94a3b8;">
+        <span>AI 機器人理財（新兴）</span><span style="color:#10b981; font-weight:600;">~12-15%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <p class="cta-title">想要實際行動？</p>
+    <p class="cta-desc">複利的力量需要時間發酵。選擇合適的投資平台，讓你的錢開始為你工作。<br>以下是我實測過的靠譜平台（按風險排列）：</p>
+    <a class="cta-btn" href="https://www.finnr.cc/register?invite=shailin" target="_blank">🏆 開始投資（終身免佣）</a>
+  </div>
+
+  <div class="kofi-section">
+    <p class="kofi-label">若有所得，隨喜支持</p>
+    <a class="kofi-btn" href="https://ko-fi.com/shaishalin" target="_blank">資 持</a>
+  </div>
+</div>
+
+<script>
+function fmt(n) {
+  if (n >= 10000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+  if (n >= 1000) return '$' + (n/1000).toFixed(0) + 'K';
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function fmtFull(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function calc() {
+  var p = parseInt(document.getElementById('principal').value);
+  var m = parseInt(document.getElementById('monthly').value);
+  var r = parseFloat(document.getElementById('rate').value) / 100;
+  var y = parseInt(document.getElementById('years').value);
+
+  document.getElementById('pctLabel').textContent = '$' + p.toLocaleString();
+  document.getElementById('monthlyLabel').textContent = '$' + m.toLocaleString();
+  document.getElementById('rateLabel').textContent = r.toFixed(1) + '%';
+  document.getElementById('yearsLabel').textContent = y + ' 年';
+
+  // Compound interest with monthly contributions
+  // FV = P(1+r)^n + PMT * ((1+r)^n - 1) / r
+  var total = p * Math.pow(1 + r, y) + m * 12 * ((Math.pow(1 + r, y) - 1) / r);
+  var profit = total - p - (m * 12 * y);
+  var monthlyIncome = (total * r) / 12; // 4% safe withdrawal rate
+
+  document.getElementById('totalDisplay').textContent = fmt(total);
+  document.getElementById('principalDisplay').textContent = p.toLocaleString();
+  document.getElementById('rateDisplay').textContent = (r * 100).toFixed(1);
+  document.getElementById('profitDisplay').textContent = fmt(profit);
+  document.getElementById('monthlyDisplay').textContent = fmt(monthlyIncome);
+
+  // Chart bars (yearly snapshots)
+  var barData = [];
+  var steps = y <= 5 ? y : y <= 10 ? Math.floor(y/2) : Math.floor(y/4);
+  steps = Math.max(steps, 4);
+  var barHtml = '';
+  var maxVal = total;
+  for (var i = 0; i <= steps; i++) {
+    var yr = Math.round(i * y / steps);
+    var val = p * Math.pow(1 + r, yr) + m * 12 * ((Math.pow(1 + r, yr) - 1) / r);
+    var pct = (val / maxVal) * 100;
+    barHtml += '<div class="bar" style="height:' + Math.max(4, pct) + '%" title="第' + yr + '年: ' + fmt(val) + '"></div>';
+  }
+  document.getElementById('barChart').innerHTML = barHtml;
+}
+
+window.addEventListener('load', calc);
+</script>
+</body>
+</html>

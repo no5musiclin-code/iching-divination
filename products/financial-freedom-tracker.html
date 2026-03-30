@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>財務自由追蹤器｜AI 財務顧問表格套組</title>
+<meta name="description" content="收入追蹤、支出分類、被動進帳監控、凈資產增長一目了然。含12個月歷史記錄與圖表分析。">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0f1a; color: #e2e8f0; font-family: "Noto Sans TC", sans-serif; min-height: 100vh; }
+.hero {
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f2a1a 100%);
+  padding: 3.5rem 1.5rem; text-align: center;
+}
+.badge { background: rgba(74,222,128,0.15); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 0.75rem; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); background: linear-gradient(135deg, #4ade80, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.75rem; line-height: 1.3; }
+.hero p { color: #94a3b8; max-width: 600px; margin: 0 auto 1rem; }
+.container { max-width: 720px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+@media(max-width:560px){ .grid{ grid-template-columns: 1fr; } }
+.stat-card { background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.15); border-radius: 12px; padding: 1.25rem; text-align: center; }
+.stat-number { font-size: 1.8rem; font-weight: 700; color: #4ade80; }
+.stat-label { color: #64748b; font-size: 0.8rem; margin-top: 0.25rem; }
+.features { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.features h2 { color: #4ade80; font-size: 1.05rem; margin-bottom: 1rem; }
+.features ol { padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.features li { color: #94a3b8; font-size: 0.88rem; line-height: 1.5; }
+.features li strong { color: #e2e8f0; }
+.sheet-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(74,222,128,0.12); border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
+.sheet-card h3 { color: #4ade80; font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+.sheet-card p { color: #94a3b8; font-size: 0.85rem; line-height: 1.6; }
+table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.82rem; }
+th { background: rgba(74,222,128,0.1); color: #4ade80; padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid rgba(74,222,128,0.2); }
+td { padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #94a3b8; }
+.sample { background: rgba(0,0,0,0.35); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.8rem; color: #a5f3fc; font-family: "SF Mono","Fira Code",monospace; line-height: 1.8; margin-top: 0.75rem; }
+.price-box { background: linear-gradient(135deg, #0a1a0a, #0f2a1a); border: 1px solid rgba(74,222,128,0.3); border-radius: 16px; padding: 1.75rem; text-align: center; margin: 2rem 0; }
+.price-box .price { font-size: 2rem; font-weight: 700; color: #4ade80; }
+.price-box p { color: #94a3b8; margin: 0.5rem 0 1.5rem; }
+.buy-btn { background: linear-gradient(135deg, #4ade80, #16a34a); color: #0a0a14; padding: 0.85rem 2rem; border-radius: 30px; font-weight: 700; text-decoration: none; display: inline-block; font-size: 1rem; }
+footer { text-align: center; padding: 2rem; color: #475569; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
+footer a { color: #4ade80; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">💵 熱銷剛需品</div>
+  <h1>財務自由追蹤器</h1>
+  <p>AI 財務顧問級試算表套組。收入追蹤、支出分類、被動進帳監控、凈資產增長，一表掌控。</p>
+</div>
+
+<div class="container">
+
+  <div class="grid">
+    <div class="stat-card"><div class="stat-number">$0</div><div class="stat-label">本月被動收入</div></div>
+    <div class="stat-card"><div class="stat-number">$0</div><div class="stat-label">本月總支出</div></div>
+    <div class="stat-card"><div class="stat-number">$0</div><div class="stat-label">凈資產</div></div>
+    <div class="stat-card"><div class="stat-number">0%</div><div class="stat-label">FI 進度</div></div>
+  </div>
+
+  <div class="features">
+    <h2>📦 套組包含四個連動表格</h2>
+    <ol>
+      <li><strong>月收入追蹤表</strong> — 收入來源分類、被動/主動收入比例、每月對比圖</li>
+      <li><strong>支出管理表</strong> — 固定/變動支出分類、預算 vs 實際、警示線設置</li>
+      <li><strong>FI 進度追蹤表</strong> — 財務自由進度條、每年里程碑、被動收入覆蓋率</li>
+      <li><strong>被動收入儀表板</strong> — 聯盟行銷/數位商品/投資，每月收益追蹤與趨勢圖</li>
+    </ol>
+  </div>
+
+  <div class="sheet-card">
+    <h3>📊 月收入追蹤表（範例格式）</h3>
+    <p>記錄所有收入來源，自動計算被動收入佔比，視覺化月收入趨勢。</p>
+    <table>
+      <tr><th>收入來源</th><th>本月</th><th>上月</th><th>YoY</th><th>性質</th></tr>
+      <tr><td>聯盟行銷（Amazon）</td><td>$127</td><td>$98</td><td>+30%</td><td>被動</td></tr>
+      <tr><td>數位商品（Ko-fi）</td><td>$85</td><td>$60</td><td>+42%</td><td>被動</td></tr>
+      <tr><td>聯盟行銷（ инструменти）</td><td>$43</td><td>$55</td><td>-22%</td><td>被動</td></tr>
+      <tr><td>正職薪水</td><td>$3,200</td><td>$3,200</td><td>—</td><td>主動</td></tr>
+      <tr><td><strong>合計</strong></td><td><strong>$3,455</strong></td><td><strong>$3,413</strong></td><td><strong>+1.2%</strong></td><td></td></tr>
+    </table>
+    <div class="sample">
+被動收入合計：$255 / 總收入 $3,455 = <strong>7.4%</strong><br>
+目標被動收入覆蓋率：30%（一年後）<br>
+落後：-22.6%（需增加被動收入來源）
+    </div>
+  </div>
+
+  <div class="sheet-card">
+    <h3>💸 支出管理表（預算 vs 實際）</h3>
+    <p>設定每月預算，自動追蹤實際支出，超支時自動紅色警示。</p>
+    <table>
+      <tr><th>支出類別</th><th>預算</th><th>實際</th><th>差額</th><th>狀態</th></tr>
+      <tr><td>住房/租金</td><td>$800</td><td>$800</td><td>$0</td><td style="color:#4ade80;">✓</td></tr>
+      <tr><td>食物/外食</td><td>$400</td><td>$467</td><td>-$67</td><td style="color:#f87171;">⚠ 超支</td></tr>
+      <tr><td>交通費</td><td>$150</td><td>$120</td><td>+$30</td><td style="color:#4ade80;">✓</td></tr>
+      <tr><td>娛樂/休閒</td><td>$100</td><td>$87</td><td>+$13</td><td style="color:#4ade80;">✓</td></tr>
+      <tr><td>學習/書籍</td><td>$50</td><td>$0</td><td>+$50</td><td style="color:#fbbf24;">未使用</td></tr>
+      <tr><td>工具/訂閱</td><td>$30</td><td>$32</td><td>-$2</td><td style="color:#f87171;">⚠</td></tr>
+    </table>
+  </div>
+
+  <div class="sheet-card">
+    <h3>🎯 FI 進度追蹤表（FIRE 路線圖）</h3>
+    <p>財務自由進度視覺化。顯示你與 FIRE 目標的距離。</p>
+    <table>
+      <tr><th>階段</th><th>目標金額</th><th>目前金額</th><th>進度</th></tr>
+      <tr><td>安全基金（3個月）</td><td>$9,000</td><td>$6,200</td><td>68.9%</td></tr>
+      <tr><td>半年安全基金</td><td>$18,000</td><td>$6,200</td><td>34.4%</td></tr>
+      <tr><td>FIRE 目標（25x 年支出）</td><td>$240,000</td><td>$6,200</td><td>2.6%</td></tr>
+    </table>
+    <div class="sample">
+FIRE 進度：<span style="color:#f87171;">▓░░░░░░░░░</span> 2.6%<br>
+預計FIRE年齡（每年存30%）：2047年<br>
+加速方案：增加被動收入來源可提前至 2035年
+    </div>
+  </div>
+
+  <div class="sheet-card">
+    <h3>💰 被動收入儀表板（Bonus 表格）</h3>
+    <p>專門追蹤你的線上被動收入，建立多元收入組合視角。</p>
+    <table>
+      <tr><th>被動收入來源</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+      <tr><td>AI 提示詞商品（Ko-fi）</td><td>$45</td><td>$127</td><td>$215</td><td>$?</td></tr>
+      <tr><td>聯盟行銷（聯盟計劃）</td><td>$32</td><td>$89</td><td>$156</td><td>$?</td></tr>
+      <tr><td>Medium 文章收益</td><td>$5</td><td>$12</td><td>$28</td><td>$?</td></tr>
+      <tr><td><strong>合計</strong></td><td><strong>$82</strong></td><td><strong>$228</strong></td><td><strong>$399</strong></td><td><strong>$?</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="price-box">
+    <div class="price">$6 USD</div>
+    <p>財務自由追蹤器｜Excel/Google Sheets 格式<br>四個連動表格 + 自動化公式 + 視覺化圖表</p>
+    <a href="https://ko-fi.com/s/00367ecd74" class="buy-btn">立即取得套組 →</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>由 <a href="https://shaishalin.wordpress.com">殺手林</a> 製作 ｜ <a href="https://ko-fi.com/shaishalin">支持更多創作</a></p>
+</footer>
+
+</body>
+</html>

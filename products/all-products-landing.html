@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>殺手林商店｜AI 創業數位商品全集</title>
+<meta name="description" content="AI創業提示詞、創業藍圖、易經創業指南、社群內容套組、財務追蹤器，熱銷數位商品全集。">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a14; color: #e2e8f0; font-family: "Noto Sans TC", -apple-system, sans-serif; min-height: 100vh; }
+header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); }
+header .logo { font-weight: 700; font-size: 1.1rem; color: #e2e8f0; }
+header .logo span { color: #a78bfa; }
+header a { color: #a78bfa; text-decoration: none; font-size: 0.85rem; }
+.hero { background: linear-gradient(135deg, #0f0f2a 0%, #1a1a2e 50%, #0d1b3e 100%); padding: 3.5rem 1.5rem; text-align: center; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); background: linear-gradient(135deg, #e2e8f0, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.75rem; line-height: 1.3; }
+.hero p { color: #94a3b8; max-width: 640px; margin: 0 auto 1rem; font-size: 1rem; }
+.hero .price-tag { background: linear-gradient(135deg, #d4af37, #b8962e); color: #0a0a14; font-weight: 700; padding: 0.5rem 1.5rem; border-radius: 30px; display: inline-block; font-size: 1.1rem; }
+.hero .original-price { color: #64748b; text-decoration: line-through; margin-left: 0.5rem; }
+.container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.section-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 2px; color: #a78bfa; font-weight: 700; margin: 2rem 0 0.75rem; }
+.products-grid { display: flex; flex-direction: column; gap: 1.25rem; }
+.product-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: all 0.25s; }
+.product-card:hover { border-color: rgba(167,139,250,0.4); transform: translateY(-2px); }
+.product-header { padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+.product-icon { font-size: 2rem; flex-shrink: 0; }
+.product-meta { flex: 1; }
+.product-name { font-weight: 700; font-size: 1.05rem; color: #e2e8f0; margin-bottom: 0.2rem; }
+.product-desc { color: #94a3b8; font-size: 0.85rem; }
+.product-value { font-size: 0.78rem; color: #64748b; margin-top: 0.2rem; }
+.product-contents { background: rgba(0,0,0,0.2); padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
+.product-contents h4 { color: #a78bfa; font-size: 0.8rem; margin-bottom: 0.5rem; }
+.product-contents ul { display: flex; flex-direction: column; gap: 0.3rem; }
+.product-contents li { color: #94a3b8; font-size: 0.82rem; padding-left: 1rem; position: relative; }
+.product-contents li::before { content: '✓'; position: absolute; left: 0; color: #4ade80; font-size: 0.7rem; top: 0.05rem; }
+.cta-section { background: linear-gradient(135deg, #1e1b4b, #312e81, #1e1b4b); border: 1px solid rgba(167,139,250,0.3); border-radius: 20px; padding: 2.5rem 2rem; text-align: center; margin: 2.5rem 0; }
+.cta-section h2 { font-size: 1.6rem; margin-bottom: 0.75rem; }
+.cta-section p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.cta-section .total { color: #64748b; text-decoration: line-through; margin-left: 0.5rem; }
+.cta-section .savings { color: #4ade80; font-size: 0.9rem; margin-top: 0.5rem; }
+.buy-btn { background: linear-gradient(135deg, #a78bfa, #7c3aed); color: #fff; padding: 1rem 2.5rem; border-radius: 30px; font-weight: 700; text-decoration: none; display: inline-block; font-size: 1.1rem; transition: all 0.2s; }
+.buy-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(167,139,250,0.4); }
+.note { font-size: 0.8rem; color: #64748b; margin-top: 0.75rem; }
+.trust { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.trust span { color: #64748b; font-size: 0.82rem; display: flex; align-items: center; gap: 0.4rem; }
+footer { text-align: center; padding: 2rem; color: #475569; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
+footer a { color: #a78bfa; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">殺手林<span>.</span>AI</div>
+  <a href="https://shaishalin.wordpress.com">返回網站</a>
+</header>
+
+<div class="hero">
+  <h1>殺手林 AI 創業數位商品全集</h1>
+  <p>從零到一建立網路事業，你需要的所有工具、知識、模板，全部在這裡。精心整理，直接可用。</p>
+  <div class="price-tag">全套 $5 <span class="original-price">總價值 $42</span></div>
+</div>
+
+<div class="container">
+
+  <div class="section-label">—— 商品一 ——</div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <span class="product-icon">📋</span>
+        <div class="product-meta">
+          <div class="product-name">AI 創業提示詞大全｜50+ 實戰模板</div>
+          <div class="product-desc">涵蓋商業計劃、聯盟行銷、SEO、銷售漏斗、社群內容的完整提示詞庫</div>
+          <div class="product-value">價值 $5</div>
+        </div>
+      </div>
+      <div class="product-contents">
+        <h4>包含內容：</h4>
+        <ul>
+          <li>SOSTAC 商業計劃教練提示詞</li>
+          <li>商業模式 Canvas 分析提示詞</li>
+          <li>聯盟行銷文案生成器（3種風格）</li>
+          <li>10 分鐘 SEO 文章架構生成器</li>
+          <li>長尾關鍵字挖掘提示詞</li>
+          <li>5 封自動化 Email 序列</li>
+          <li>Landing Page 高轉化文案框架</li>
+          <li>一個月社群內容日曆生成器</li>
+          <li>短影音 60 秒腳本格式</li>
+          <li>變現瓶頸診斷提示詞</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">—— 商品二 ——</div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <span class="product-icon">📘</span>
+        <div class="product-meta">
+          <div class="product-name">AI 創業藍圖｜從零到月收 $500</div>
+          <div class="product-desc">完整的實戰手冊，50+ 頁，涵蓋商業模式選擇、變現策略、用工具型</div>
+          <div class="product-value">價值 $9</div>
+        </div>
+      </div>
+      <div class="product-contents">
+        <h4>包含內容：</h4>
+        <ul>
+          <li>5 種最適合新手的 AI 商業模式詳解</li>
+          <li>3 步法找到藍海利基市場</li>
+          <li>AI 工具武裝清單（免費到付費）</li>
+          <li>聯盟行銷變現路線圖（12個月）</li>
+          <li>數位商品變現路線圖</li>
+          <li>SEO + 社群免費流量策略</li>
+          <li>聯盟行銷收入計算公式</li>
+          <li>數位商品定價策略</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">—— 商品三 ——</div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <span class="product-icon">☰</span>
+        <div class="product-meta">
+          <div class="product-name">易經創業指南｜64 卦中的商業智慧</div>
+          <div class="product-desc">傳統智慧與現代商業結合，10 個核心卦象的商業解讀與決策框架</div>
+          <div class="product-value">價值 $7</div>
+        </div>
+      </div>
+      <div class="product-contents">
+        <h4>包含內容：</h4>
+        <ul>
+          <li>乾為天 — 領導者的自強之道</li>
+          <li>坤為地 — 團隊合作的厚德</li>
+          <li>地天泰 — 合作的黃金時機</li>
+          <li>天地否 — 逆境中的保守策略</li>
+          <li>坎為水 — 危機中的脫困智慧</li>
+          <li>巽為風 — 市場渗透策略</li>
+          <li>離為火 — 品牌建立的藝術</li>
+          <li>艮為山 — 適時止損的哲學</li>
+          <li>兌為澤 — 談判與說服的藝術</li>
+          <li>澤雷隨 — 順勢而為的智慧</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">—— 商品四 ——</div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <span class="product-icon">🔥</span>
+        <div class="product-meta">
+          <div class="product-name">AI 社群內容創作套組｜90 天內容日曆</div>
+          <div class="product-desc">60 篇原創帖文範本（X/Twitter、Threads、IG、FB）+ 完整發布行事曆</div>
+          <div class="product-value">價值 $7</div>
+        </div>
+      </div>
+      <div class="product-contents">
+        <h4>包含內容：</h4>
+        <ul>
+          <li>X/Twitter 帖文 20 篇（教育型）</li>
+          <li>Threads 長文 20 篇（觀點輸出型）</li>
+          <li>Instagram Caption 10 篇</li>
+          <li>Facebook 帖文 10 篇</li>
+          <li>90 天完整內容行事曆</li>
+          <li>Bonus：30 個高互動標題鉤子</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">—— 商品五 ——</div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <span class="product-icon">💵</span>
+        <div class="product-meta">
+          <div class="product-name">新創業者萬用手冊｜商業計劃 + 追蹤表</div>
+          <div class="product-desc">商業模式圖 + 12週里程碑追蹤 + Startup 財務預測計算機</div>
+          <div class="product-value">價值 $8</div>
+        </div>
+      </div>
+      <div class="product-contents">
+        <h4>包含內容：</h4>
+        <ul>
+          <li>CBM 商業模式圖（九宮格）</li>
+          <li>SOSTAC 90 天行動計劃框架</li>
+          <li>12 週里程碑追蹤表</li>
+          <li>Startup 財務預測計算機</li>
+          <li>12 個月現金流追蹤表</li>
+          <li>Bonus：創業焦慮緩解清單</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">—— 商品六 ——</div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-header">
+        <span class="product-icon">💰</span>
+        <div class="product-meta">
+          <div class="product-name">財務自由追蹤器｜Excel/Sheets 格式</div>
+          <div class="product-desc">AI 財務顧問級試算表套組，含收入追蹤、支出分類、FI 進度、被動收入儀表板</div>
+          <div class="product-value">價值 $6</div>
+        </div>
+      </div>
+      <div class="product-contents">
+        <h4>包含內容：</h4>
+        <ul>
+          <li>月收入追蹤表（含被動/主動分類）</li>
+          <li>支出管理表（預算 vs 實際對比）</li>
+          <li>FI 進度追蹤表（視覺化里程碑）</li>
+          <li>被動收入儀表板（季度趨勢圖）</li>
+          <li>自動化公式（自動計算總計、差額、進度）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>🎁 全部 6 個商品，一次帶走</h2>
+    <p>總價值 $42 → <strong style="color:#a78bfa;">限時 $5 USD</strong></p>
+    <p class="savings">相當於 88% 折扣，越早買越划算</p>
+    <a href="https://ko-fi.com/s/00367ecd74" class="buy-btn">🚀 前往 Ko-fi 取得全套</a>
+    <p class="note">一次購買，永久使用。持續更新版本。</p>
+    <div class="trust">
+      <span>🔒 安全的支付平台</span>
+      <span>📧 購買後即時取貨</span>
+      <span>♻️ 持續更新版本</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>由 <a href="https://shaishalin.wordpress.com">殺手林</a> 製作 ｜ <a href="https://ko-fi.com/shaishalin">支持更多創作</a></p>
+</footer>
+
+</body>
+</html>

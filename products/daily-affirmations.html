@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Affirmation Cards | 每日肯定語卡牌</title>
+<style>
+:root {
+  --bg-dark: #0a0a0f;
+  --bg-card: #111118;
+  --bg-card-hover: #18181f;
+  --gold: #d4a843;
+  --gold-light: #e8c675;
+  --gold-dark: #a07828;
+  --text: #e8e4dc;
+  --text-muted: #8a8578;
+  --border: #2a2a35;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+  min-height: 100vh;
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(212,168,67,0.04) 0%, transparent 50%),
+                    radial-gradient(ellipse at 80% 20%, rgba(212,168,67,0.03) 0%, transparent 40%);
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+header { text-align: center; margin-bottom: 50px; }
+header .logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+header p { color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+.price-badge { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; padding: 8px 24px; border-radius: 30px; font-size: 1.1rem; margin: 20px 0; }
+.category-section { margin-bottom: 50px; }
+.category-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+.category-icon { font-size: 2rem; }
+.category-title { font-size: 1.5rem; color: var(--gold-light); }
+.category-count { color: var(--text-muted); font-size: 0.9rem; margin-left: auto; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; position: relative; overflow: hidden; transition: all 0.3s; cursor: pointer;
+}
+.card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+  transform: scaleX(0); transition: transform 0.3s;
+}
+.card:hover { border-color: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.card:hover::before { transform: scaleX(1); }
+.card-date { font-size: 0.8rem; color: var(--gold); margin-bottom: 12px; font-weight: 600; letter-spacing: 1px; }
+.card-text { font-size: 1.15rem; line-height: 1.8; color: var(--text); font-weight: 500; }
+.card:hover .card-text { color: var(--gold-light); }
+.card-number { position: absolute; top: 20px; right: 20px; font-size: 4rem; font-weight: 800; color: rgba(212,168,67,0.06); line-height: 1; }
+.card-tag { display: inline-block; background: rgba(212,168,67,0.1); color: var(--gold); padding: 4px 12px; border-radius: 15px; font-size: 0.75rem; margin-top: 15px; }
+.cta-section { text-align: center; padding: 60px 30px; background: linear-gradient(135deg, var(--bg-card), var(--bg-dark)); border: 1px solid var(--border); border-radius: 20px; margin: 60px 0; }
+.cta-section h2 { font-size: 2rem; color: var(--gold-light); margin-bottom: 15px; }
+.cta-section p { color: var(--text-muted); margin-bottom: 25px; font-size: 1.05rem; }
+.cta-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); font-weight: 700; font-size: 1.1rem; border-radius: 50px; text-decoration: none; transition: all 0.3s; }
+.cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(212,168,67,0.35); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 50px 0; }
+.feature-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 30px; text-align: center; }
+.feature-box .icon { font-size: 2.5rem; margin-bottom: 15px; }
+.feature-box h5 { color: var(--gold); margin-bottom: 10px; }
+.feature-box p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+.how-to-use { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin: 40px 0; }
+.how-to-use h3 { color: var(--gold); margin-bottom: 25px; text-align: center; }
+.step { display: flex; gap: 20px; margin-bottom: 25px; align-items: flex-start; }
+.step-number { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--bg-dark); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.step-content h5 { color: var(--gold-light); margin-bottom: 5px; }
+.step-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+.print-btn { display: block; width: 100%; padding: 18px; background: var(--bg-card); border: 2px solid var(--gold); color: var(--gold); border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; text-align: center; margin: 40px 0; }
+.print-btn:hover { background: var(--gold); color: var(--bg-dark); }
+footer { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+footer a { color: var(--gold); text-decoration: none; }
+@media print {
+  body { background: white; color: #1a1a1a; }
+  .cta-section, .print-btn, header .logo, .price-badge { display: none !important; }
+  .card { background: white; border: 2px solid #d4a843; page-break-inside: avoid; margin-bottom: 20px; }
+  .card-text { color: #1a1a1a; }
+  .card-number { color: rgba(212,168,67,0.1); }
+  .container { max-width: 100%; padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">☰ Killer Lin Farm</div>
+    <h1>每日肯定語卡牌</h1>
+    <p>31 張精心設計的每日肯定語，涵蓋企業家思維、財富吸引、健康生活三大領域。每天一張，引導你建立堅強的內心城堡，讓成功的信念深入骨髓。</p>
+    <div class="price-badge">💰 定價：$5.9 美元 | 終身使用</div>
+  </header>
+
+  <div class="features-grid">
+    <div class="feature-box">
+      <div class="icon">💼</div>
+      <h5>企業家思維 15 張</h5>
+      <p>建立成功創業者應有的信念系統與思維模式</p>
+    </div>
+    <div class="feature-box">
+      <div class="icon">💰</div>
+      <h5>財富吸引 8 張</h5>
+      <p>重新程式設計你的金錢潛意識，打開財富通道</p>
+    </div>
+    <div class="feature-box">
+      <div class="icon">🌿</div>
+      <h5>健康生活 8 張</h5>
+      <p>養成身心平衡的生活態度與健康習慣</p>
+    </div>
+    <div class="feature-box">
+      <div class="icon">🖨️</div>
+      <h5>可列印設計</h5>
+      <p>每張卡片均可獨立列印，裁剪後隨身攜帶</p>
+    </div>
+  </div>
+
+  <div class="how-to-use">
+    <h3>✨ 如何使用這些卡牌</h3>
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h5>選擇今日卡牌</h5>
+        <p>根據今天的日期（1-31日）選擇對應的卡牌，例如 15 日就選擇第 15 張卡片。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h5>晨間朗讀</h5>
+        <p>起床後對著鏡子大聲朗讀卡牌上的肯定語三遍，感受每個字詞的力量。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h5>日間反思</h5>
+        <p>在午餐或下班前重新閱讀今天的卡牌，思考如何在實際情境中實踐這個信念。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h5>睡前感恩</h5>
+        <p>就寢前感謝今天卡牌帶給你的力量，並期待明天的全新卡牌。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 企業家肯定語 -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">💼</span>
+      <h2 class="category-title">企業家肯定語</h2>
+      <span class="category-count">15 張卡牌</span>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-number">01</div>
+        <div class="card-date">第一天 · 企業家信念</div>
+        <div class="card-text">我是自己事業的 CEO，我有能力創造任何我想要的結果。我的每一個決定都在帶領我走向成功。</div>
+        <span class="card-tag">#自信心 #領導力</span>
+      </div>
+      <div class="card">
+        <div class="card-number">02</div>
+        <div class="card-date">第二天 · 決策力</div>
+        <div class="card-text">我相信自己的直覺。每一個決定無論大小，都是我累積智慧的表現。我行動，我學習，我成長。</div>
+        <span class="card-tag">#直覺 #行動力</span>
+      </div>
+      <div class="card">
+        <div class="card-number">03</div>
+        <div class="card-date">第三天 · 逆境應對</div>
+        <div class="card-text">挑戰是我成長的階梯。今天的困難是明天的故事，我的韌性比任何障礙都強大。</div>
+        <span class="card-tag">#韌性 #逆境</span>
+      </div>
+      <div class="card">
+        <div class="card-number">04</div>
+        <div class="card-date">第四天 · 機會識別</div>
+        <div class="card-text">機會無處不在，我隨時準備好迎接它。我用敏銳的眼光發現別人忽略的價值，用行動創造奇蹟。</div>
+        <span class="card-tag">#機會 #洞察力</span>
+      </div>
+      <div class="card">
+        <div class="card-number">05</div>
+        <div class="card-date">第五天 · 團隊領導</div>
+        <div class="card-text">我吸引最優秀的人才加入我的團隊。我懂得授權、信任、激勵，讓每個人發揮最大潛能。</div>
+        <span class="card-tag">#團隊 #領導力</span>
+      </div>
+      <div class="card">
+        <div class="card-number">06</div>
+        <div class="card-date">第六天 · 價值創造</div>
+        <div class="card-text">我的存在是為了創造價值。我問自己：「我能為這個世界解決什麼問題？」答案引導我走向成功。</div>
+        <span class="card-tag">#價值 #使命感</span>
+      </div>
+      <div class="card">
+        <div class="card-number">07</div>
+        <div class="card-date">第七天 · 持續學習</div>
+        <div class="card-text">我每天都比昨天更聰明一點。閱讀、觀察、提問是我最好的投資，我永遠保持好奇心。</div>
+        <span class="card-tag">#學習 #成長</span>
+      </div>
+      <div class="card">
+        <div class="card-number">08</div>
+        <div class="card-date">第八天 · 現金流思維</div>
+        <div class="card-text">錢是能量流動的工具，我對金錢關係健康而正面。我創造價值，獲得回報，讓金錢為我工作。</div>
+        <span class="card-tag">#財商 #現金流</span>
+      </div>
+      <div class="card">
+        <div class="card-number">09</div>
+        <div class="card-date">第九天 · 客户第一</div>
+        <div class="card-text">每一位客戶都是我的貴人。我用心理解他們的需求，超越期待，建立長期信任關係。</div>
+        <span class="card-tag">#客戶 #服務</span>
+      </div>
+      <div class="card">
+        <div class="card-number">10</div>
+        <div class="card-date">第十天 · 品牌建立</div>
+        <div class="card-text">我的品牌代表我的承諾與品質。我言行一致，專業可靠，讓每一次互動都在加深信任。</div>
+        <span class="card-tag">#品牌 #誠信</span>
+      </div>
+      <div class="card">
+        <div class="card-number">11</div>
+        <div class="card-date">第十一天 · 時間自由</div>
+        <div class="card-text">我的時間是最寶貴的資源。我優先做最重要的事，果斷放棄低價值的活動，讓每一天都高效有意義。</div>
+        <span class="card-tag">#時間管理 #效率</span>
+      </div>
+      <div class="card">
+        <div class="card-number">12</div>
+        <div class="card-date">第十二天 · 創新勇氣</div>
+        <div class="card-text">我敢於嘗試新事物，接受失敗作為學習的一部分。創新是我的DNA，我不怕打破常規。</div>
+        <span class="card-tag">#創新 #勇氣</span>
+      </div>
+      <div class="card">
+        <div class="card-number">13</div>
+        <div class="card-date">第十三天 · 專注紀律</div>
+        <div class="card-text">我專注於我的核心目標，不被雜音分散注意力。紀律是我的超能力，讓平凡的行動累積成就不凡的結果。</div>
+        <span class="card-tag">#專注 #紀律</span>
+      </div>
+      <div class="card">
+        <div class="card-number">14</div>
+        <div class="card-date">第十四天 · 感恩夥伴</div>
+        <div class="card-text">我感謝每一位在我創業路上支持我的人。家人、夥伴、客戶、導師——沒有他們就沒有今天的我。</div>
+        <span class="card-tag">#感恩 #夥伴</span>
+      </div>
+      <div class="card">
+        <div class="card-number">15</div>
+        <div class="card-date">第十五天 · 使命宣言</div>
+        <div class="card-text">我有偉大的使命，這使命比我自己更大。每天醒來，我知道自己在做有意義的事，改變世界從改變自己開始。</div>
+        <span class="card-tag">#使命 #願景</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 財富吸引肯定語 -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">💰</span>
+      <h2 class="category-title">財富吸引肯定語</h2>
+      <span class="category-count">8 張卡牌</span>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-number">16</div>
+        <div class="card-date">第十六天 · 財富信念</div>
+        <div class="card-text">金錢是美好的能量，它讓我能夠幫助更多人、做更多好事。我值得富有，我正在創造豐盛的人生。</div>
+        <span class="card-tag">#財富信念 #豐盛</span>
+      </div>
+      <div class="card">
+        <div class="card-number">17</div>
+        <div class="card-date">第十七天 · 收入增加</div>
+        <div class="card-text">我的收入正在持續成長。我不斷提升自己的能力與價值，吸引更好的機會與更豐厚的報酬。</div>
+        <span class="card-tag">#收入 #成長</span>
+      </div>
+      <div class="card">
+        <div class="card-number">18</div>
+        <div class="card-date">第十八天 · 被動收入</div>
+        <div class="card-text">我的資產在不斷增加，被動收入像流水一樣源源不絕。我建立讓錢為我工作的系統。</div>
+        <span class="card-tag">#被動收入 #資產</span>
+      </div>
+      <div class="card">
+        <div class="card-number">19</div>
+        <div class="card-date">第十九天 · 投资智慧</div>
+        <div class="card-text">我是一個智慧的投資者。我持續學習金融知識，做出理性的投資決策，讓我的財富穩健增值。</div>
+        <span class="card-tag">#投資 #智慧</span>
+      </div>
+      <div class="card">
+        <div class="card-number">20</div>
+        <div class="card-date">第二十天 · 慷慨大方</div>
+        <div class="card-text">我是一個慷慨的人。當我給予，世界會以更多回報我。我用金錢創造善的循環，財富因分享而倍增。</div>
+        <span class="card-tag">#慷慨 #給予</span>
+      </div>
+      <div class="card">
+        <div class="card-number">21</div>
+        <div class="card-date">第二十一天 · 消除金錢恐懼</div>
+        <div class="card-text">我不再恐懼金錢匱乏。我活在富足的宇宙中，我的需求總是被滿足，我永遠有足夠的資源達成我的目標。</div>
+        <span class="card-tag">#恐懼消除 #安全感</span>
+      </div>
+      <div class="card">
+        <div class="card-number">22</div>
+        <div class="card-date">第二十二天 · 財務自由</div>
+        <div class="card-text">我正在走向財務自由。這不是一個夢，而是一個計劃。我每天行動，一步步構建我的自由人生。</div>
+        <span class="card-tag">#財務自由 #夢想</span>
+      </div>
+      <div class="card">
+        <div class="card-number">23</div>
+        <div class="card-date">第二十三天 · 金錢關係</div>
+        <div class="card-text">我與金錢的關係是健康的、正面的、快樂的。我感謝每一分錢來到我的生命，我善用每一分錢創造更大的價值。</div>
+        <span class="card-tag">#金錢關係 #感恩</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 健康生活肯定語 -->
+  <div class="category-section">
+    <div class="category-header">
+      <span class="category-icon">🌿</span>
+      <h2 class="category-title">健康生活肯定語</h2>
+      <span class="category-count">8 張卡牌</span>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-number">24</div>
+        <div class="card-date">第二十四天 · 身體活力</div>
+        <div class="card-text">我的身體是強壯有力的。我每天運動，合理飲食，讓身體保持最佳狀態，支持我完成偉大的使命。</div>
+        <span class="card-tag">#身體 #活力</span>
+      </div>
+      <div class="card">
+        <div class="card-number">25</div>
+        <div class="card-date">第二十五天 · 心理健康</div>
+        <div class="card-text">我的心靈是平靜喜悅的。我學會放下焦慮，擁抱不確定性，相信自己有能力處理任何挑戰。</div>
+        <span class="card-tag">#心靈 #平靜</span>
+      </div>
+      <div class="card">
+        <div class="card-number">26</div>
+        <div class="card-date">第二十六天 · 充足睡眠</div>
+        <div class="card-text">我值得充足的休息。好的睡眠讓我精力充沛、創造力爆發、情緒穩定。今晚我會好好睡覺。</div>
+        <span class="card-tag">#睡眠 #休息</span>
+      </div>
+      <div class="card">
+        <div class="card-number">27</div>
+        <div class="card-date">第二十七天 · 健康界限</div>
+        <div class="card-text">我學會說「不」。我有勇氣設定健康界限，拒絕過度消耗我能量的人事物，保護我最寶貴的資源——我的時間與精力。</div>
+        <span class="card-tag">#界限 #拒絕</span>
+      </div>
+      <div class="card">
+        <div class="card-number">28</div>
+        <div class="card-date">第二十八天 · 正向飲食</div>
+        <div class="card-text">我用心選擇讓我身體強壯的食物。每一口都是對自己的愛，我享受美味，同時照顧好自己的身體。</div>
+        <span class="card-tag">#飲食 #自愛</span>
+      </div>
+      <div class="card">
+        <div class="card-number">29</div>
+        <div class="card-date">第二十九天 · 能量管理</div>
+        <div class="card-text">我的能量是珍貴的。我有意識地管理自己的精力，在高效工作與充分休息之間找到完美平衡。</div>
+        <span class="card-tag">#能量 #平衡</span>
+      </div>
+      <div class="card">
+        <div class="card-number">30</div>
+        <div class="card-date">第三十天 · 活在當下</div>
+        <div class="card-text">我活在當下這一刻。我不再過度擔憂未來或沉溺過去。我全心投入此時此刻，感受生命的美好。</div>
+        <span class="card-tag">#當下 #正念</span>
+      </div>
+      <div class="card">
+        <div class="card-number">31</div>
+        <div class="card-date">第三十一天 · 整體的和諧</div>
+        <div class="card-text">我是身心靈和諧的完整個體。我尊重自己的身體、滋養我的心靈、凈化我的思想。我是一個不斷成長、越來越完整的人。</div>
+        <span class="card-tag">#和諧 #完整</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="window.print()">🖨️ 列印所有卡牌（列印當前視圖即可）</button>
+
+  <div class="cta-section">
+    <h2>🌟 完整版包含更多內容</h2>
+    <p>購買完整版獲得 PDF 高解析度版本，可直接列印為精美卡片套組，附贈收納盒與使用指南手冊。</p>
+    <a href="https://linblance.gumroad.com/l/iching-business-oracle" class="cta-btn">立即獲取完整版 $5.9</a>
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 15px;">一次購買，終身使用 | 可列印 PDF 版本</p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 25px;">
+      <span style="font-size: 1.8rem;">🛡️</span>
+      <div style="text-align: left;">
+        <strong style="color: var(--gold-light); display: block;">30 天滿意保證</strong>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">如果不滿意，30 天內可申請全額退款</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Killer Lin Farm | <a href="https://linblance.gumroad.com">linblance.gumroad.com</a></p>
+    <p style="margin-top: 10px;">每天一個信念，塑造你的成功未來</p>
+  </footer>
+</div>
+</body>
+</html>

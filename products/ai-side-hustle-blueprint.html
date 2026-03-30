@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 創業藍圖｜從零到月收 $500 的實戰手冊</title>
+<meta name="description" content="一份完整的 AI 創業行動手冊，包含商業模式、變現策略、工具選型，從零開始建立被動收入。">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0f0f1a; color: #e2e8f0; font-family: "Noto Sans TC", sans-serif; min-height: 100vh; }
+.hero {
+  background: linear-gradient(135deg, #1a0533 0%, #0d1b3e 50%, #1a0533 100%);
+  padding: 4rem 1.5rem; text-align: center;
+  border-bottom: 1px solid rgba(167,139,250,0.2);
+}
+.hero .badge { background: rgba(167,139,250,0.15); color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 1rem; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); background: linear-gradient(135deg, #e2e8f0, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; line-height: 1.3; }
+.hero p { color: #94a3b8; max-width: 600px; margin: 0 auto; font-size: 1.05rem; }
+.hero-meta { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; color: #64748b; font-size: 0.85rem; }
+.hero-meta span { display: flex; align-items: center; gap: 0.3rem; }
+.container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.toc {
+  background: rgba(167,139,250,0.06);
+  border: 1px solid rgba(167,139,250,0.15);
+  border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem;
+}
+.toc h2 { color: #a78bfa; font-size: 1.1rem; margin-bottom: 1rem; }
+.toc ol { padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.toc li { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
+.toc li strong { color: #e2e8f0; }
+.section { margin-bottom: 2.5rem; }
+.section h2 { font-size: 1.3rem; color: #e2e8f0; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(167,139,250,0.2); }
+.section h3 { font-size: 1.05rem; color: #a78bfa; margin: 1.5rem 0 0.75rem; }
+.section p { color: #94a3b8; line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+.step-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(167,139,250,0.15);
+  border-radius: 12px; padding: 1.25rem; margin: 1rem 0;
+}
+.step-box h4 { color: #e2e8f0; margin-bottom: 0.75rem; font-size: 1rem; }
+.step-box p { margin-bottom: 0.5rem; }
+.highlight-box {
+  background: linear-gradient(135deg, rgba(167,139,250,0.1), rgba(99,102,241,0.1));
+  border-left: 4px solid #a78bfa;
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem; margin: 1.5rem 0;
+}
+.highlight-box p { color: #e2e8f0; font-size: 0.95rem; line-height: 1.7; }
+.price-box {
+  background: linear-gradient(135deg, #1e1b4b, #312e81);
+  border: 1px solid rgba(167,139,250,0.4);
+  border-radius: 20px; padding: 2rem; text-align: center; margin: 2rem 0;
+}
+.price-box .price { font-size: 2.5rem; font-weight: 700; color: #a78bfa; }
+.price-box .original { color: #64748b; text-decoration: line-through; margin-left: 0.5rem; }
+.price-box p { color: #94a3b8; margin: 0.75rem 0 1.5rem; }
+.buy-btn {
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  color: #fff; padding: 1rem 2.5rem; border-radius: 30px;
+  font-weight: 700; font-size: 1.1rem; text-decoration: none;
+  display: inline-block; transition: transform 0.2s;
+}
+.buy-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(167,139,250,0.4); }
+.note { font-size: 0.8rem; color: #64748b; margin-top: 0.75rem; }
+footer { text-align: center; padding: 2rem; color: #475569; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
+footer a { color: #a78bfa; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">📘 實戰手冊</div>
+  <h1>AI 創業藍圖｜從零到月收 $500</h1>
+  <p>一份完整的 AI 創業行動手冊。包含商業模式選擇、變現策略、用工具型、流量獲取方法。適合想用 AI 開始網路事業的你。</p>
+  <div class="hero-meta">
+    <span>📄 50+ 頁完整指南</span>
+    <span>🔢 含 12 個實用模板</span>
+    <span>💰 附變現計算機</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>📋 指南目錄</h2>
+  <ol>
+    <li><strong>第一章：如何選擇你的 AI 商業模式</strong> — 5 種最适合新手的變現方式</li>
+    <li><strong>第二章：如何選擇利基市場</strong> — 用 3 步法找到競爭低、利潤高的藍海</li>
+    <li><strong>第三章：如何用 AI 工具武裝自己</strong> — 免費到付費工具完整選型指南</li>
+    <li><strong>第四章：如何變現 — 變現策略詳解</strong> — 聯盟行銷、數位商品、服務變現的路線圖</li>
+    <li><strong>第五章：如何獲取流量</strong> — 免費流量（SEO + 社群）與付費流量詳解</li>
+    <li><strong>第六章：變現計算機使用教學</strong> — 用數字模型預測你的收入</li>
+  </ol>
+</div>
+
+<div class="section">
+  <h2>第一章：如何選擇你的 AI 商業模式</h2>
+  <p>AI 創業不是要你發明新技術，而是用 AI 工具放大你的技能和創意。以下是 5 種最適合新手的變現方式：</p>
+
+  <h3>模式一：AI + 內容創作 → 聯盟行銷</h3>
+  <div class="step-box">
+    <h4>🎯 適合誰：</h4>
+    <p>喜歡寫作、有某個領域知識（理財、健康、科技、旅遊）的人</p>
+    <h4 style="margin-top:0.75rem;">💡 怎麼做：</h4>
+    <p>1. 用 AI 工具加速內容產出（每週 2-3 篇 SEO 文章）<br>2. 在文章中嵌入聯盟連結<br>3. 累積流量後被動收入自然來</p>
+    <h4 style="margin-top:0.75rem;">💰 變現潛力：</h4>
+    <p>月流量 1 萬 → 月收 $200-$500（聯盟傭金）</p>
+  </div>
+
+  <h3>模式二：AI + 技能 → 數位商品</h3>
+  <div class="step-box">
+    <h4>🎯 適合誰：</h4>
+    <p>有專業技能（設計、寫作、攝影、程式）的人</p>
+    <h4 style="margin-top:0.75rem;">💡 怎麼做：</h4>
+    <p>1. 用 AI 工具將技能系統化（寫提示詞模板、設計素材、工作流程）<br>2. 包裝成數位商品（電子書、模板包、教程）<br>3. 在 Gumroad / Ko-fi 銷售</p>
+    <h4 style="margin-top:0.75rem;">💰 變現潛力：</h4>
+    <p>一款受歡迎的數位商品 → 月收 $300-$1000+ 被動收入</p>
+  </div>
+
+  <h3>模式三：AI + 專業知識 → 付費諮詢/服務</h3>
+  <div class="step-box">
+    <h4>🎯 適合誰：</h4>
+    <p>有某個領域深度經驗（行銷、法律、財務、健康）的人</p>
+    <h4 style="margin-top:0.75rem;">💡 怎麼做：</h4>
+    <p>1. 用 AI 工具提升服務效率（報告生成、客戶溝通）<br>2. 建立標準化服務產品（1 小時顧問、策略評估）<br>3. 在 LinkedIn / 個人網站推廣</p>
+  </div>
+
+  <h3>模式四：AI + 流量 → 內容變現</h3>
+  <div class="step-box">
+    <h4>🎯 適合誰：</h4>
+    <p>願意持續創作內容（YouTube、TikTok、Podcas）的人</p>
+    <h4 style="margin-top:0.75rem;">💡 怎麼做：</h4>
+    <p>1. 用 AI 工具降低內容製作成本（字幕、部落格、圖片）<br>2. 油管廣告分紅 / Brand Sponsor<br>3. 粉絲經濟變現</p>
+  </div>
+
+  <h3>模式五：AI + 在地需求 → 小工具/SaaS</h3>
+  <div class="step-box">
+    <h4>🎯 適合誰：</h4>
+    <p>有一點技術背景或願意學 No-Code 工具的人</p>
+    <h4 style="margin-top:0.75rem;">💡 怎麼做：</h4>
+    <p>1. 找到某個特定人群的剛需問題<br>2. 用 AI 工具（Cursor、N8N、WordPress）搭建解決方案<br>3. 訂閱制變現</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>第二章：如何選擇利基市場</h2>
+  <p>選擇比努力更重要。一個好的利基市場讓你的流量獲取成本更低，轉化率更高。</p>
+
+  <h3>3 步法找到藍海利基：</h3>
+
+  <div class="step-box">
+    <h4>第一步：畫出你的「技能 × 興趣 × 需求」交集</h4>
+    <p>你在什麼領域有知識？你對什麼話題有熱情？什麼領域的人願意付錢？三個圈的交集就是你的候選利基。</p>
+  </div>
+
+  <div class="step-box">
+    <h4>第二步：驗證市場需求（關鍵字研究）</h4>
+    <p>用 Google Trends 確認搜尋量趨勢。用 Ubersuggest / AnswerThePublic 找有搜尋量但競爭不高的關鍵字。</p>
+    <p>好的利基信號：月搜量 1000-5000、相關文章數少於 5 萬、廣告主少。</p>
+  </div>
+
+  <div class="step-box">
+    <h4>第三步：確認變現路徑</h4>
+    <p>在正式投入之前，先確認：這個利基市場的讀者/用戶，願意為什麼東西付錢？</p>
+    <p>有聯盟計劃嗎？有付費課程嗎？有相關工具訂閱嗎？變現路徑越清晰，成功的概率越高。</p>
+  </div>
+
+  <div class="highlight-box">
+    <p>💡 <strong>殺手林推薦的新手利基方向（2026 年）：</strong><br>
+    • AI 工具使用教程（競爭適中，變現容易）<br>
+    • 健康/健身追蹤（永恆需求，聯盟機會多）<br>
+    • 個人理財/被動收入（高願付意願）<br>
+    • 在地生活指南（競爭低，讀者忠誠度高）</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>第三章：如何用 AI 工具武裝自己</h2>
+  <p>用對工具，讓你的產出效率提升 10 倍。以下是必備工具清單：</p>
+
+  <h3>內容創作工具</h3>
+  <div class="step-box">
+    <p><strong>Claude / ChatGPT / Gemini</strong> — 主力寫作助理。用於文章起草、編輯、頭尾段優化。</p>
+    <p><strong>Gamma / Beautiful.ai</strong> — 快速生成簡報。不用一小時就能做出專業簡報。</p>
+    <p><strong>Canva + Magic Design</strong> — AI 圖片設計。無設計背景也能做出好看的視覺素材。</p>
+  </div>
+
+  <h3>流量工具</h3>
+  <div class="step-box">
+    <p><strong>Google Analytics 4</strong> — 流量分析標配。了解用戶行為必備。</p>
+    <p><strong>Ubersuggest</strong> — SEO 關鍵字研究。月費 $12 / 免費版本基本夠用。</p>
+    <p><strong>ConvertKit / Mailchimp</strong> — Email 清單管理。建立讀者清單是長期變現的關鍵。</p>
+  </div>
+
+  <h3>變現工具</h3>
+  <div class="step-box">
+    <p><strong>Ko-fi / Gumroad</strong> — 數位商品銷售。零成本開始，PayPal 直接結算。</p>
+    <p><strong>WordPress.com</strong> — 個人網站/部落格。年費不到 $200，擁有自己的流量地盤。</p>
+    <p><strong>Amazon Associates / Awin</strong> — 聯盟行銷。全球最大聯盟網絡，涵蓋幾乎所有知名品牌。</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>第四章：變現策略詳解</h2>
+
+  <h3>聯盟行銷變現路線圖</h3>
+  <div class="step-box">
+    <p><strong>第 1-3 個月：建立內容基礎</strong><br>
+    每週 2 篇 SEO 文章，累積 20-30 篇內容。用 AI 工具加速產出。</p>
+    <p><strong>第 4-6 個月：申請聯盟計劃</strong><br>
+    當你的網站有一定內容和流量後，申請目標品牌的聯盟計劃。</p>
+    <p><strong>第 6-12 個月：優化並擴張</strong><br>
+    找出最高轉化的內容和聯盟連結，集中資源擴張這块。</p>
+  </div>
+
+  <h3>數位商品變現路線圖</h3>
+  <div class="step-box">
+    <p><strong>第 1 步：找出你的「技能精華」</strong><br>
+    你對什麼事情比多數人做得更好？把這個技能背後的流程、模板、經驗抽取出來。</p>
+    <p><strong>第 2 步：用 AI 工具將技能產品化</strong><br>
+    用 AI 幫你將經驗寫成電子書、製作成模板包、錄製教程。</p>
+    <p><strong>第 3 步：建立銷售漏斗</strong><br>
+    用免費內容引流 → Email 清單 → 銷售頁轉化。這是最小成本的變現模型。</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>第五章：流量獲取</h2>
+
+  <h3>免費流量策略</h3>
+  <div class="highlight-box">
+    <p><strong>SEO（搜尋引擎最佳化）</strong>：是最被動、成本最低的免費流量來源。<br>
+    核心原則：選擇正確的關鍵字 + 產出高質量內容 + 持續獲取反向連結。<br>
+    工具：用 AI 工具加速內容產出，用 Ubersuggest 研究關鍵字。</p>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>社群媒體（X / Threads / IG）</strong>：快速建立個人品牌影響力的管道。<br>
+    核心原則：提供價值、持續曝光、引流回主站。<br>
+    工具：用 AI 工具批量產出 Threads 推文、X 推文。</p>
+  </div>
+
+  <h3>付費流量策略（進階）</h3>
+  <p>當你的變現模型驗證成功後，可以考虑投放廣告放大。建議從小額開始：<br>
+  • Meta 廣告：$5-$10/天，測試不同受眾<br>
+  • Google Ads：投放高意圖關鍵字<br>
+  • 建議在廣告投入前，先確保自然流量已穩定。</p>
+</div>
+
+<div class="section">
+  <h2>第六章：變現計算機使用教學</h2>
+  <p>創業需要數字說話。學會用計算機模型預測你的收入，不要凭感觉。</p>
+
+  <div class="step-box">
+    <h4>聯盟行銷收入計算公式：</h4>
+    <p><strong>月收入 = 月流量 × 轉化率 × 訂單金額 × 傭金比例</strong></p>
+    <p>例如：月流量 5,000 × 轉化率 2% × 平均訂單 $50 × 傭金 20% = <strong>$100/月</strong></p>
+  </div>
+
+  <div class="step-box">
+    <h4>數位商品收入計算公式：</h4>
+    <p><strong>月收入 = 產品價格 × 月銷量</strong></p>
+    <p>例如：產品定價 $19 × 每月銷量 30 份 = <strong>$570/月</strong></p>
+    <p>加上聯盟流量推薦獎勵，往往能達到 $800-$1000/月。</p>
+  </div>
+</div>
+
+<div class="price-box">
+  <div class="price">$9 <span class="original">$29</span></div>
+  <p>AI 創業藍圖完整版<br>含：PDF 指南 + 12 個操作模板 + 變現計算機</p>
+  <a href="https://ko-fi.com/s/00367ecd74" class="buy-btn">立即取得完整版 →</a>
+  <p class="note">一次購買，永久使用。持續更新。</p>
+</div>
+
+</div>
+
+<footer>
+  <p>由 <a href="https://shaishalin.wordpress.com">殺手林</a> 製作 ｜ <a href="https://ko-fi.com/shaishalin">支持更多創作</a></p>
+</footer>
+
+</body>
+</html>
