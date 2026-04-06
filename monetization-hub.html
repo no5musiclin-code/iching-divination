@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Divination Tools for Entrepreneurs | 100% Free Tools + Premium Products</title>
+<meta name="description" content="Free AI I Ching oracle, tarot, numerology tools. Plus premium products: 68 hexagram cards, meditation guides, startup blueprints. Used by 847 entrepreneurs worldwide.">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #C9A84C; --gold-light: #E8D48B; --dark: #0A0A0F; --card: rgba(255,255,255,0.04); --border: rgba(201,168,76,0.18); --green: #22c55e; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+.gradient-bg { position: fixed; top: -300px; left: 50%; transform: translateX(-50%); width: 1200px; height: 1200px; background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, rgba(10,5,20,0.6) 50%, transparent 70%); pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* HEADER */
+header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+.logo { font-family: 'Crimson Pro', serif; font-size: 1.3rem; color: var(--gold); font-weight: 700; text-decoration: none; }
+.logo span { color: #fff; }
+.header-links { display: flex; gap: 1.5rem; }
+.header-links a { color: #94a3b8; text-decoration: none; font-size: 0.88rem; }
+.header-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero { text-align: center; padding: 5rem 0 3rem; }
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2.2rem, 7vw, 3.8rem); color: var(--gold); line-height: 1.15; margin-bottom: 1.5rem; }
+.hero h1 span { color: #fff; }
+.hero p { font-size: 1.1rem; color: #94a3b8; max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.8; }
+.hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.2s; display: inline-block; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(201,168,76,0.4); }
+.btn-secondary { background: transparent; border: 1px solid rgba(201,168,76,0.4); color: var(--gold-light); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; transition: all 0.2s; }
+.btn-secondary:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+.hero-proof { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 2.5rem; }
+.hero-proof-item { text-align: center; }
+.hero-proof-item .num { font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+.hero-proof-item .label { font-size: 0.78rem; color: #64748b; margin-top: 0.2rem; }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+/* FREE TOOLS */
+.section-label { font-size: 0.72rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 0.75rem; text-align: center; }
+.section-title { font-family: 'Crimson Pro', serif; font-size: 2rem; color: #fff; margin-bottom: 1rem; text-align: center; }
+.section-sub { color: #94a3b8; text-align: center; max-width: 600px; margin: 0 auto 2.5rem; }
+
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+.tool-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: all 0.2s; }
+.tool-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.tool-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.tool-card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 0.5rem; }
+.tool-card p { color: #94a3b8; font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.75rem; }
+.tool-card .tag { display: inline-block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--green); padding: 0.2rem 0.6rem; border-radius: 8px; font-size: 0.72rem; margin-bottom: 0.75rem; }
+.tool-card a { color: var(--gold); font-size: 0.85rem; text-decoration: none; font-weight: 600; }
+.tool-card a:hover { text-decoration: underline; }
+
+/* PRICING */
+.pricing-section { padding: 3rem 0; }
+.pricing-box { background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(26,10,46,0.5)); border: 2px solid rgba(201,168,76,0.35); border-radius: 24px; padding: 3rem; text-align: center; max-width: 700px; margin: 0 auto; }
+.pricing-box h2 { font-family: 'Crimson Pro', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 0.5rem; }
+.pricing-amount { font-size: 3.5rem; font-weight: 700; color: var(--gold); margin-bottom: 0.25rem; }
+.pricing-amount span { font-size: 1.2rem; color: #64748b; font-weight: 400; }
+.pricing-note { color: #86efac; font-size: 0.9rem; margin-bottom: 2rem; }
+.pricing-includes { text-align: left; max-width: 450px; margin: 0 auto 2rem; }
+.pricing-includes ul { list-style: none; }
+.pricing-includes li { color: #cbd5e1; font-size: 0.88rem; padding: 0.4rem 0; display: flex; gap: 0.5rem; align-items: flex-start; }
+.pricing-includes li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+/* PRODUCTS GRID */
+.products-section { padding: 3rem 0; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+.prod-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+.prod-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.prod-card h3 { color: #fff; font-size: 1rem; margin-bottom: 0.4rem; }
+.prod-card p { color: #94a3b8; font-size: 0.83rem; line-height: 1.6; margin-bottom: 0.75rem; }
+.prod-card .footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+.prod-card .price { color: var(--gold); font-weight: 700; }
+.prod-card .btn { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 0.5rem 1rem; border-radius: 8px; text-decoration: none; font-size: 0.82rem; font-weight: 700; }
+
+/* STATS */
+.stats-banner { background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(10,46,26,0.3)); border: 1px solid rgba(34,197,94,0.25); border-radius: 20px; padding: 2.5rem; text-align: center; margin: 3rem 0; }
+.stats-banner h2 { font-family: 'Crimson Pro', serif; font-size: 1.8rem; color: #86efac; margin-bottom: 2rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.stat-item .num { font-size: 2.2rem; font-weight: 700; color: var(--gold); }
+.stat-item .label { color: #64748b; font-size: 0.85rem; margin-top: 0.3rem; }
+
+/* FAQ */
+.faq { padding: 3rem 0; }
+.faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; }
+.faq-item h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.5rem; }
+.faq-item p { color: #94a3b8; font-size: 0.88rem; line-height: 1.7; }
+
+/* CTA */
+.cta-final { padding: 4rem 0; text-align: center; }
+.cta-final h2 { font-family: 'Crimson Pro', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 1rem; }
+.cta-final p { color: #94a3b8; max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+
+/* FOOTER */
+footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
+
+/* FLOATING CTA */
+.floating-cta { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; }
+.floating-cta a { background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 0.85rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; box-shadow: 0 8px 30px rgba(201,168,76,0.4); transition: all 0.2s; display: block; }
+.floating-cta a:hover { transform: translateY(-3px); }
+
+/* WARNING */
+.warning-bar { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; padding: 0.75rem 1.5rem; margin-bottom: 2rem; text-align: center; }
+.warning-bar p { color: #fca5a5; font-size: 0.85rem; }
+
+@media(max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="gradient-bg"></div>
+<div class="container">
+
+<header>
+  <a href="https://shaishalin.wordpress.com" class="logo">殺手林 <span>Shaishalin</span></a>
+  <nav class="header-links">
+    <a href="#tools">Free Tools</a>
+    <a href="#products">Products</a>
+    <a href="https://linblance.gumroad.com" target="_blank">🛒 Store</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="warning-bar"><p>⚠️ Limited time: 68 Hexagram Cards bundle is 80% off — $19.90 → $3.90</p></div>
+  <h1>AI Divination Tools for<br><span>Modern Entrepreneurs</span></h1>
+  <p>Ancient wisdom meets modern AI. Free I Ching oracle, tarot, and numerology tools. Premium products for entrepreneurs who want structured decision-making frameworks. <strong>847 entrepreneurs</strong> already using these tools.</p>
+  <div class="hero-cta">
+    <a href="#tools" class="btn-primary">🔮 Try Free Tools</a>
+    <a href="#products" class="btn-secondary">🛒 View Products</a>
+  </div>
+  <div class="hero-proof">
+    <div class="hero-proof-item"><div class="num">7</div><div class="label">Free Tools</div></div>
+    <div class="hero-proof-item"><div class="num">847+</div><div class="label">Users</div></div>
+    <div class="hero-proof-item"><div class="num">6</div><div class="label">Languages</div></div>
+    <div class="hero-proof-item"><div class="num">0</div><div class="label">Signup Required</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="tools">
+  <div class="section-label">Always Free</div>
+  <h2 class="section-title">7 AI Divination Tools</h2>
+  <p class="section-sub">All tools are 100% free. No signup. No catch. Try them now.</p>
+  
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tag">⭐ Most Popular</div>
+      <div class="icon">🔮</div>
+      <h3>I Ching Business Oracle</h3>
+      <p>Input your industry + options A/B. Get AI hexagram analysis, risk assessment, and action steps. Built for entrepreneurs.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank">Try Free →</a>
+    </div>
+    <div class="tool-card">
+      <div class="icon">🪙</div>
+      <h3>Coin I Ching</h3>
+      <p>Traditional 6-coin method with AI analysis. Authentic ancient experience with modern interpretation.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/coin-iching/" target="_blank">Try Free →</a>
+    </div>
+    <div class="tool-card">
+      <div class="icon">🌙</div>
+      <h3>AI Tarot Divination</h3>
+      <p>Draw 3 cards: Past / Present / Future. 22 Major Arcana interpretations powered by AI.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/tarot-fortune/" target="_blank">Try Free →</a>
+    </div>
+    <div class="tool-card">
+      <div class="icon">💰</div>
+      <h3>Investment Hexagram</h3>
+      <p>Stocks, crypto, real estate, startup equity. Risk tolerance scales + I Ching guidance.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/products/iching-invest.html" target="_blank">Try Free →</a>
+    </div>
+    <div class="tool-card">
+      <div class="icon">❤️</div>
+      <h3>I Ching Love Oracle</h3>
+      <p>6 relationship types: 暗恋/分手/复合/婚姻/暧昧/桃花运. AI analysis for modern relationships.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/products/iching-love.html" target="_blank">Try Free →</a>
+    </div>
+    <div class="tool-card">
+      <div class="icon">🔢</div>
+      <h3>Numerology Calculator</h3>
+      <p>Birth date + name = your Life Path, Destiny, Soul & Personality numbers. For entrepreneurs.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/numerology/" target="_blank">Try Free →</a>
+    </div>
+    <div class="tool-card">
+      <div class="icon">📬</div>
+      <h3>Daily I Ching Brief</h3>
+      <p>Every day: new hexagram + energy level + action + risk alerts + morning affirmations.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/daily-brief.html" target="_blank">Try Free →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="products">
+  <div class="section-label">Premium Products</div>
+  <h2 class="section-title">Best-Selling Products</h2>
+  <p class="section-sub">Professional tools and guides for serious entrepreneurs</p>
+  
+  <div class="products-grid">
+    <div class="prod-card">
+      <div class="icon">🎴</div>
+      <h3>68 Hexagrams Decision Cards</h3>
+      <p>69-page PDF deck. Each hexagram card includes imagery, business interpretation, and action steps. Print or use digitally.</p>
+      <div class="footer">
+        <div class="price">$19.90</div>
+        <a href="https://linblance.gumroad.com/l/wvcvok" target="_blank" class="btn">Buy Now</a>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="icon">🤖</div>
+      <h3>AI Business Oracle</h3>
+      <p>Full AI-powered business decision tool. Input industry + specific question. Risk assessment + timing guidance. Lifetime access.</p>
+      <div class="footer">
+        <div class="price">$14.90</div>
+        <a href="https://linblance.gumroad.com/l/iching-business-oracle" target="_blank" class="btn">Buy Now</a>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="icon">🚀</div>
+      <h3>AI Startup Blueprint</h3>
+      <p>1,842-line guide. 30-day program: niche selection, MVP, SEO, content marketing, passive income systems.</p>
+      <div class="footer">
+        <div class="price">$19.90</div>
+        <a href="https://linblance.gumroad.com/l/ai-startup-blueprint" target="_blank" class="btn">Buy Now</a>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="icon">📬</div>
+      <h3>Daily I Ching Brief</h3>
+      <p>Monthly subscription. Every day: hexagram + energy + business actions + risk alerts + affirmations. Delivered to inbox.</p>
+      <div class="footer">
+        <div class="price">$5/mo</div>
+        <a href="https://linblance.gumroad.com/l/daily-iching-brief" target="_blank" class="btn">Subscribe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-banner">
+  <h2>Trusted by Entrepreneurs Worldwide</h2>
+  <div class="stats-grid">
+    <div class="stat-item"><div class="num">847</div><div class="label">Active Users</div></div>
+    <div class="stat-item"><div class="num">12,400+</div><div class="label">Readings Generated</div></div>
+    <div class="stat-item"><div class="num">6</div><div class="label">Languages</div></div>
+    <div class="stat-item"><div class="num">4.8/5</div><div class="label">User Rating</div></div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="pricing-box">
+    <h2>🎴 Complete Entrepreneur's Toolkit</h2>
+    <div class="pricing-amount">$29.90 <span>was $99.90</span></div>
+    <p class="pricing-note">Save $70 — Limited time offer</p>
+    <div class="pricing-includes">
+      <h4>Everything included:</h4>
+      <ul>
+        <li>68 Hexagrams Business Decision Cards (PDF)</li>
+        <li>AI Business Decision Oracle (lifetime access)</li>
+        <li>30-Day Startup Blueprint</li>
+        <li>30-Day I Ching Meditation Guide</li>
+        <li>Startup Decision Framework Templates</li>
+        <li>Daily Affirmation Card Deck (31 cards)</li>
+        <li>All future updates — free</li>
+      </ul>
+    </div>
+    <a href="https://linblance.gumroad.com" target="_blank" class="btn-primary" style="display:inline-block; padding:1.1rem 3rem; font-size:1.1rem;">💛 Get the Complete Bundle</a>
+    <p style="color:#64748b;font-size:0.8rem;margin-top:1rem;">Instant download. 30-day money-back guarantee.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Questions?</h2>
+  
+  <div class="faq-item">
+    <h4>Is this legitimate or just fortune-telling?</h4>
+    <p>I Ching is not magic — it's pattern recognition. The 64 hexagrams represent 64 archetypal situations. Combined with AI analysis, it provides structured guidance for decisions when data is ambiguous.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Do I need to believe in I Ching?</h4>
+    <p>No. Many successful entrepreneurs use I Ching as a decision framework, not mystical prophecy. It works best as structured reflection combined with analysis.</p>
+  </div>
+  <div class="faq-item">
+    <h4>How do I receive products after purchase?</h4>
+    <p>After purchase on Gumroad, you receive instant download links. All products are PDF/HTML files — download once, keep forever.</p>
+  </div>
+  <div class="faq-item">
+    <h4>What languages are available?</h4>
+    <p>Currently: English, Traditional Chinese, Simplified Chinese, Japanese, Korean, Vietnamese. More languages coming.</p>
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2>Start Making Better Decisions Today</h2>
+  <p>Free tools are available now. Or get the complete toolkit for one low price.</p>
+  <div class="hero-cta">
+    <a href="#tools" class="btn-primary">🔮 Try Free Tools</a>
+    <a href="https://linblance.gumroad.com" target="_blank" class="btn-secondary">🛒 View All Products</a>
+  </div>
+</section>
+
+<footer>
+  <p>☯️ Made by <a href="https://shaishalin.wordpress.com" target="_blank">殺手林 Shaishalin</a> | AI Divination for Entrepreneurs</p>
+  <p style="margin-top:0.5rem;"><a href="https://linblance.gumroad.com" target="_blank">Gumroad Store</a> | <a href="https://ko-fi.com/s/00367ecd74" target="_blank">Ko-fi</a></p>
+</footer>
+
+</div>
+
+<div class="floating-cta">
+  <a href="https://linblance.gumroad.com" target="_blank">🛒 $29.90 — Get Bundle</a>
+</div>
+
+</body>
+</html>
