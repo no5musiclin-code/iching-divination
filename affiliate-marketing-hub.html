@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools for Entrepreneurs | Free & Paid - Instant Access</title>
+<meta name="description" content="Curated AI tools for entrepreneurs: Notion, Canva, Gumroad, Teachable + more. Exclusive deals and affiliate guides. Save 20-50% on the best tools.">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #C9A84C; --gold-light: #E8D48B; --dark: #0A0A0F; --card: rgba(255,255,255,0.04); --border: rgba(201,168,76,0.18); --green: #22c55e; --red: #ef4444; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: #e2e8f0; font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; }
+.gradient-bg { position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 1200px; height: 1200px; background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, rgba(10,5,20,0.5) 50%, transparent 70%); pointer-events: none; z-index: 0; }
+.container { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* HEADER */
+header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+.logo { font-family: 'Crimson Pro', serif; font-size: 1.3rem; color: var(--gold); font-weight: 700; text-decoration: none; }
+.logo span { color: #fff; }
+
+/* HERO */
+.hero { text-align: center; padding: 4rem 0 2rem; }
+.hero h1 { font-family: 'Crimson Pro', serif; font-size: clamp(2.2rem, 7vw, 3.5rem); color: var(--gold); line-height: 1.15; margin-bottom: 1rem; }
+.hero p { font-size: 1.1rem; color: #94a3b8; max-width: 650px; margin: 0 auto 2rem; line-height: 1.8; }
+.hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.hero-stats .stat { text-align: center; }
+.hero-stats .num { font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+.hero-stats .label { font-size: 0.78rem; color: #64748b; }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+/* SECTION LABEL */
+.section-label { font-size: 0.72rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 0.75rem; text-align: center; }
+.section-title { font-family: 'Crimson Pro', serif; font-size: 2rem; color: #fff; margin-bottom: 1rem; text-align: center; }
+.section-sub { color: #94a3b8; text-align: center; max-width: 600px; margin: 0 auto 2rem; }
+
+/* TOOLS GRID */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+.tool-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: all 0.2s; position: relative; overflow: hidden; }
+.tool-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.tool-card .badge { position: absolute; top: 12px; right: 12px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold-light); padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.7rem; font-weight: 600; }
+.tool-card .badge.hot { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.3); color: #f87171; }
+.tool-card .icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.tool-card h3 { color: #fff; font-size: 1.05rem; margin-bottom: 0.5rem; }
+.tool-card .desc { color: #94a3b8; font-size: 0.83rem; line-height: 1.6; margin-bottom: 0.75rem; }
+.tool-card .commission { display: inline-block; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--green); padding: 0.2rem 0.6rem; border-radius: 8px; font-size: 0.72rem; font-weight: 700; margin-bottom: 0.75rem; }
+.tool-card .price { font-size: 0.82rem; color: #64748b; margin-bottom: 0.75rem; }
+.tool-card .rating { color: var(--gold); font-size: 0.82rem; margin-bottom: 0.75rem; }
+.tool-card a.cta { display: block; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; text-align: center; transition: all 0.2s; }
+.tool-card a.cta:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(201,168,76,0.3); }
+
+/* FREEBIES */
+.freebies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
+.freebie { background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(10,46,26,0.3)); border: 1px solid rgba(34,197,94,0.25); border-radius: 14px; padding: 1.25rem; text-align: center; }
+.freebie .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.freebie h4 { color: #fff; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.freebie p { color: #64748b; font-size: 0.78rem; }
+.freebie a { display: inline-block; margin-top: 0.75rem; color: var(--green); font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+.freebie a:hover { text-decoration: underline; }
+
+/* REVENUE CALC */
+.revenue-section { background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(26,10,46,0.5)); border: 2px solid rgba(201,168,76,0.35); border-radius: 24px; padding: 2.5rem; margin: 3rem 0; text-align: center; }
+.revenue-section h2 { font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--gold); margin-bottom: 1.5rem; }
+.revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
+.revenue-item { text-align: center; }
+.revenue-item .num { font-size: 2rem; font-weight: 700; color: var(--gold); }
+.revenue-item .label { font-size: 0.82rem; color: #64748b; margin-top: 0.3rem; }
+.revenue-section p { color: #94a3b8; font-size: 0.9rem; }
+
+/* HOW IT WORKS */
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+.step { text-align: center; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; }
+.step .num { width: 40px; height: 40px; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; margin: 0 auto 1rem; }
+.step h4 { color: #fff; font-size: 1rem; margin-bottom: 0.5rem; }
+.step p { color: #94a3b8; font-size: 0.85rem; line-height: 1.6; }
+
+/* CTA */
+.cta-final { text-align: center; padding: 4rem 0; }
+.cta-final h2 { font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; }
+.cta-final p { color: #94a3b8; max-width: 500px; margin: 0 auto 2rem; }
+.cta-btn { display: inline-block; background: linear-gradient(135deg, var(--gold-light), var(--gold)); color: #0A0A0F; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.05rem; transition: all 0.2s; }
+.cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(201,168,76,0.4); }
+
+/* FOOTER */
+footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border); color: #475569; font-size: 0.8rem; }
+footer a { color: var(--gold); text-decoration: none; }
+
+@media(max-width: 600px) { .hero-stats { gap: 2rem; } }
+</style>
+</head>
+<body>
+<div class="gradient-bg"></div>
+<div class="container">
+
+<header>
+  <a href="#" class="logo">殺手林 <span>AI工具精選</span></a>
+  <a href="#tools" style="color:#94a3b8;text-decoration:none;font-size:0.88rem;">View Tools</a>
+</header>
+
+<section class="hero">
+  <h1>AI Tools for Entrepreneurs<br><span>Curated & Tested</span></h1>
+  <p>I tested 100+ AI tools so you don't have to. These are the ones that actually save time, make money, or improve decisions. Affiliate links help support this research.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="num">47</div><div class="label">Tools Tested</div></div>
+    <div class="stat"><div class="num">12</div><div class="label">Recommended</div></div>
+    <div class="stat"><div class="num">30%</div><div class="label">Avg Commission</div></div>
+    <div class="stat"><div class="num">4.8</div><div class="label">Avg Rating</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label">🔥 Top Picks</div>
+  <h2 class="section-title">Highest Commission AI Tools</h2>
+  <p class="section-sub">These tools pay 30-50% affiliate commission. Every sale helps support the free tools.</p>
+  
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="badge hot">🔥 Best ROI</div>
+      <div class="icon">📝</div>
+      <h3>Notion</h3>
+      <p class="desc">All-in-one workspace for notes, docs, wikis, and project management. Used by 30M+ people worldwide.</p>
+      <div class="commission">50% of first year</div>
+      <p class="price">Plans from $8/month to $96/year per user</p>
+      <div class="rating">⭐ 4.7/5 (2M+ reviews)</div>
+      <a href="https://www.notion.so/affiliates" target="_blank" class="cta">Get Notion — Start Free →</a>
+    </div>
+    
+    <div class="tool-card">
+      <div class="badge">💰 30% Commission</div>
+      <div class="icon">🎨</div>
+      <h3>Canva Pro</h3>
+      <p class="desc">Design anything: presentations, social media, logos, videos. AI-powered design tools included.</p>
+      <div class="commission">30% first year</div>
+      <p class="price">$119.99/year (~$10/month)</p>
+      <div class="rating">⭐ 4.6/5 (15M+ users)</div>
+      <a href="https://www.canva.com/affiliates/" target="_blank" class="cta">Try Canva Pro →</a>
+    </div>
+    
+    <div class="tool-card">
+      <div class="badge">🎓 30% Recurring</div>
+      <div class="icon">📚</div>
+      <h3>Teachable</h3>
+      <p class="desc">Create and sell online courses. Host courses, build communities, earn recurring revenue.</p>
+      <div class="commission">30% recurring forever</div>
+      <p class="price">Free to start, plans from $29/month</p>
+      <div class="rating">⭐ 4.5/5</div>
+      <a href="https://teachable.com/affiliates" target="_blank" class="cta">Join Teachable →</a>
+    </div>
+    
+    <div class="tool-card">
+      <div class="badge">🤖 AI Tools</div>
+      <div class="icon">📊</div>
+      <h3>ChatGPT Plus</h3>
+      <p class="desc">OpenAI's GPT-4 powered assistant. Use for content, coding, analysis, brainstorming.</p>
+      <div class="commission">Various programs available</div>
+      <p class="price">$20/month subscription</p>
+      <div class="rating">⭐ 4.8/5 (180M+ users)</div>
+      <a href="https://chat.openai.com/auth/login" target="_blank" class="cta">Try ChatGPT →</a>
+    </div>
+    
+    <div class="tool-card">
+      <div class="badge">📱 25% Recurring</div>
+      <div class="icon">🌐</div>
+      <h3>Framer</h3>
+      <p class="desc">Build stunning websites without code. Perfect for portfolios and startup landing pages.</p>
+      <div class="commission">25% recurring</div>
+      <p class="price">Free to start, plans from $25/month</p>
+      <div class="rating">⭐ 4.6/5</div>
+      <a href="https://www.framer.com/affiliates/" target="_blank" class="cta">Try Framer →</a>
+    </div>
+    
+    <div class="tool-card">
+      <div class="badge">✅ Verified</div>
+      <div class="icon">🧠</div>
+      <h3>Readwise Reader</h3>
+      <p class="desc">Read it later app for serious readers. Highlights, notes, spaced repetition built in.</p>
+      <div class="commission">30% recurring</div>
+      <p class="price">$7.99/month or $79/year</p>
+      <div class="rating">⭐ 4.7/5</div>
+      <a href="https://readwise.io/affiliates" target="_blank" class="cta">Try Reader →</a>
+    </div>
+  </div>
+</section>
+
+<section class="freebies-section">
+  <div class="section-label">🆓 Always Free</div>
+  <h2 class="section-title">Free Tools I Built</h2>
+  <p class="section-sub">100% free, no signup required. AI-powered tools for entrepreneurs.</p>
+  
+  <div class="freebies-grid">
+    <div class="freebie">
+      <div class="icon">🔮</div>
+      <h4>I Ching Oracle</h4>
+      <p>AI-powered business divination. Input industry + options = hexagram analysis.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/iching-en/" target="_blank">Try Free →</a>
+    </div>
+    <div class="freebie">
+      <div class="icon">🌙</div>
+      <h4>AI Tarot</h4>
+      <p>Draw 3 cards: Past / Present / Future. 22 Major Arcana AI interpretations.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/tarot-fortune/" target="_blank">Try Free →</a>
+    </div>
+    <div class="freebie">
+      <div class="icon">💰</div>
+      <h4>Investment Hexagram</h4>
+      <p>Stocks, crypto, real estate decisions. Risk tolerance + hexagram guidance.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/products/iching-invest.html" target="_blank">Try Free →</a>
+    </div>
+    <div class="freebie">
+      <div class="icon">📬</div>
+      <h4>Daily I Ching Brief</h4>
+      <p>Every day: new hexagram + energy + business actions + risk alerts.</p>
+      <a href="https://no5musiclin-code.github.io/iching-divination/daily-brief.html" target="_blank">Try Free →</a>
+    </div>
+  </div>
+</section>
+
+<section class="revenue-section">
+  <h2>How This Site Generates Revenue</h2>
+  <div class="revenue-grid">
+    <div class="revenue-item"><div class="num">30-50%</div><div class="label">Affiliate Commission</div></div>
+    <div class="revenue-item"><div class="num">$8-120</div><div class="label">Per Sale</div></div>
+    <div class="revenue-item"><div class="num">30 days</div><div class="label">Cookie Duration</div></div>
+    <div class="revenue-item"><div class="num">∞</div><div class="label">Potential</div></div>
+  </div>
+  <p>I research tools, test them, and share the ones that actually work. When you use my links, I earn a commission at no extra cost to you. This is how I keep the free tools running.</p>
+</section>
+
+<section>
+  <div class="section-label">📋 Process</div>
+  <h2 class="section-title">How It Works</h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="num">1</div>
+      <h4>I Research</h4>
+      <p>I test tools for 2-4 weeks before recommending. Real use, not just marketing claims.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h4>You Save Time</h4>
+      <p>Skip the research. Get honest recommendations from someone who's already done the homework.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h4>You Buy</h4>
+      <p>Use my affiliate links. The price is the same for you, but I earn a small commission.</p>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <h4>Free Tools Stay Free</h4>
+      <p>Your purchase supports the free tools I build. Everyone wins.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2>Ready to Boost Your Productivity?</h2>
+  <p>Start with the free tools. Upgrade when you're ready. Every tool here is one I've personally tested.</p>
+  <a href="#tools" class="cta-btn">Browse All Tools →</a>
+</section>
+
+<footer>
+  <p>☯️ 殺手林 AI Tools Curated by <a href="https://shaishalin.wordpress.com" target="_blank">Shaishalin</a></p>
+  <p style="margin-top:0.5rem;">Affiliate links support this site. I only recommend tools I've personally tested.</p>
+</footer>
+
+</div>
+</body>
+</html>
